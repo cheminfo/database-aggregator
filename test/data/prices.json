@@ -1,954 +1,1226 @@
 [
   {
     "commonID": "2925038",
-    "currency": "USD",
-    "price": 3120,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 3120,
+      "quantity": "1kg"
+    },
     "sequentialID": 3
   },
   {
     "commonID": "2925038",
-    "currency": "USD",
-    "price": 41.8,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 41.8,
+      "quantity": "1g"
+    },
     "sequentialID": 4
   },
   {
     "commonID": "2925038",
-    "currency": "USD",
-    "price": 3.12,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 3.12,
+      "quantity": "1mg"
+    },
     "sequentialID": 5
   },
   {
     "commonID": "2925038",
-    "currency": "USD",
-    "price": 4.23,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 4.23,
+      "quantity": "1mmol"
+    },
     "sequentialID": 6
   },
   {
     "commonID": "2926713",
-    "currency": "USD",
-    "price": 57200,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 57200,
+      "quantity": "1kg"
+    },
     "sequentialID": 9
   },
   {
     "commonID": "2926713",
-    "currency": "USD",
-    "price": 131,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 131,
+      "quantity": "1g"
+    },
     "sequentialID": 10
   },
   {
     "commonID": "2926713",
-    "currency": "USD",
-    "price": 55.4,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 55.4,
+      "quantity": "1mg"
+    },
     "sequentialID": 11
   },
   {
     "commonID": "2926713",
-    "currency": "USD",
-    "price": 13.3,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 13.3,
+      "quantity": "1mmol"
+    },
     "sequentialID": 12
   },
   {
     "commonID": "9682820",
-    "currency": "USD",
-    "price": 91900000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 91900000,
+      "quantity": "1kg"
+    },
     "sequentialID": 25
   },
   {
     "commonID": "9682820",
-    "currency": "USD",
-    "price": 91900,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 91900,
+      "quantity": "1g"
+    },
     "sequentialID": 26
   },
   {
     "commonID": "9682820",
-    "currency": "USD",
-    "price": 91.9,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 91.9,
+      "quantity": "1mg"
+    },
     "sequentialID": 27
   },
   {
     "commonID": "9682820",
-    "currency": "USD",
-    "price": 9300,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 9300,
+      "quantity": "1mmol"
+    },
     "sequentialID": 28
   },
   {
     "commonID": "9736385",
-    "currency": "USD",
-    "price": 65300,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 65300,
+      "quantity": "1kg"
+    },
     "sequentialID": 33
   },
   {
     "commonID": "9736385",
-    "currency": "USD",
-    "price": 65.3,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 65.3,
+      "quantity": "1g"
+    },
     "sequentialID": 34
   },
   {
     "commonID": "9736385",
-    "currency": "USD",
-    "price": 65.3,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 65.3,
+      "quantity": "1mg"
+    },
     "sequentialID": 35
   },
   {
     "commonID": "9736385",
-    "currency": "USD",
-    "price": 6.61,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 6.61,
+      "quantity": "1mmol"
+    },
     "sequentialID": 36
   },
   {
     "commonID": "9742097",
-    "currency": "USD",
-    "price": 687000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 687000,
+      "quantity": "1kg"
+    },
     "sequentialID": 39
   },
   {
     "commonID": "9742097",
-    "currency": "USD",
-    "price": 367,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 367,
+      "quantity": "1g"
+    },
     "sequentialID": 40
   },
   {
     "commonID": "9742097",
-    "currency": "USD",
-    "price": 367,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 367,
+      "quantity": "1mg"
+    },
     "sequentialID": 41
   },
   {
     "commonID": "9742097",
-    "currency": "USD",
-    "price": 37.1,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 37.1,
+      "quantity": "1mmol"
+    },
     "sequentialID": 42
   },
   {
     "commonID": "9744414",
-    "currency": "USD",
-    "price": 82900,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 82900,
+      "quantity": "1kg"
+    },
     "sequentialID": 46
   },
   {
     "commonID": "9744414",
-    "currency": "USD",
-    "price": 164,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 164,
+      "quantity": "1g"
+    },
     "sequentialID": 47
   },
   {
     "commonID": "9744414",
-    "currency": "USD",
-    "price": 0.345,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 0.345,
+      "quantity": "1mg"
+    },
     "sequentialID": 48
   },
   {
     "commonID": "9744414",
-    "currency": "USD",
-    "price": 16.6,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 16.6,
+      "quantity": "1mmol"
+    },
     "sequentialID": 49
   },
   {
     "commonID": "9744654",
-    "currency": "USD",
-    "price": 378000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 378000,
+      "quantity": "1kg"
+    },
     "sequentialID": 54
   },
   {
     "commonID": "9744654",
-    "currency": "USD",
-    "price": 98.7,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 98.7,
+      "quantity": "1g"
+    },
     "sequentialID": 55
   },
   {
     "commonID": "9744654",
-    "currency": "USD",
-    "price": 0.359,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 0.359,
+      "quantity": "1mg"
+    },
     "sequentialID": 56
   },
   {
     "commonID": "9744654",
-    "currency": "USD",
-    "price": 9.98,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 9.98,
+      "quantity": "1mmol"
+    },
     "sequentialID": 57
   },
   {
     "commonID": "9744654",
-    "currency": "USD",
-    "price": 378000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 378000,
+      "quantity": "1kg"
+    },
     "sequentialID": 58
   },
   {
     "commonID": "9744654",
-    "currency": "USD",
-    "price": 98.7,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 98.7,
+      "quantity": "1g"
+    },
     "sequentialID": 59
   },
   {
     "commonID": "9744654",
-    "currency": "USD",
-    "price": 0.359,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 0.359,
+      "quantity": "1mg"
+    },
     "sequentialID": 60
   },
   {
     "commonID": "9744654",
-    "currency": "USD",
-    "price": 9.98,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 9.98,
+      "quantity": "1mmol"
+    },
     "sequentialID": 61
   },
   {
     "commonID": "9890062",
-    "currency": "USD",
-    "price": 812000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 812000,
+      "quantity": "1kg"
+    },
     "sequentialID": 65
   },
   {
     "commonID": "9890062",
-    "currency": "USD",
-    "price": 812,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 812,
+      "quantity": "1g"
+    },
     "sequentialID": 66
   },
   {
     "commonID": "9890062",
-    "currency": "USD",
-    "price": 812,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 812,
+      "quantity": "1mg"
+    },
     "sequentialID": 67
   },
   {
     "commonID": "9890062",
-    "currency": "USD",
-    "price": 82.2,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 82.2,
+      "quantity": "1mmol"
+    },
     "sequentialID": 68
   },
   {
     "commonID": "13734173",
-    "currency": "USD",
-    "price": 21800,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 21800,
+      "quantity": "1kg"
+    },
     "sequentialID": 71
   },
   {
     "commonID": "13734173",
-    "currency": "USD",
-    "price": 154,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 154,
+      "quantity": "1g"
+    },
     "sequentialID": 72
   },
   {
     "commonID": "13734173",
-    "currency": "USD",
-    "price": 21.8,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 21.8,
+      "quantity": "1mg"
+    },
     "sequentialID": 73
   },
   {
     "commonID": "13734173",
-    "currency": "USD",
-    "price": 15.5,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 15.5,
+      "quantity": "1mmol"
+    },
     "sequentialID": 74
   },
   {
     "commonID": "13734173",
-    "currency": "USD",
-    "price": 21800,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 21800,
+      "quantity": "1kg"
+    },
     "sequentialID": 75
   },
   {
     "commonID": "13734173",
-    "currency": "USD",
-    "price": 154,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 154,
+      "quantity": "1g"
+    },
     "sequentialID": 76
   },
   {
     "commonID": "13734173",
-    "currency": "USD",
-    "price": 21.8,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 21.8,
+      "quantity": "1mg"
+    },
     "sequentialID": 77
   },
   {
     "commonID": "13734173",
-    "currency": "USD",
-    "price": 15.5,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 15.5,
+      "quantity": "1mmol"
+    },
     "sequentialID": 78
   },
   {
     "commonID": "17515344",
-    "currency": "USD",
-    "price": 91900000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 91900000,
+      "quantity": "1kg"
+    },
     "sequentialID": 81
   },
   {
     "commonID": "17515344",
-    "currency": "USD",
-    "price": 91900,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 91900,
+      "quantity": "1g"
+    },
     "sequentialID": 82
   },
   {
     "commonID": "17515344",
-    "currency": "USD",
-    "price": 91.9,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 91.9,
+      "quantity": "1mg"
+    },
     "sequentialID": 83
   },
   {
     "commonID": "17515344",
-    "currency": "USD",
-    "price": 9300,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 9300,
+      "quantity": "1mmol"
+    },
     "sequentialID": 84
   },
   {
     "commonID": "17515344",
-    "currency": "USD",
-    "price": 91900000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 91900000,
+      "quantity": "1kg"
+    },
     "sequentialID": 85
   },
   {
     "commonID": "17515344",
-    "currency": "USD",
-    "price": 91900,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 91900,
+      "quantity": "1g"
+    },
     "sequentialID": 86
   },
   {
     "commonID": "17515344",
-    "currency": "USD",
-    "price": 91.9,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 91.9,
+      "quantity": "1mg"
+    },
     "sequentialID": 87
   },
   {
     "commonID": "17515344",
-    "currency": "USD",
-    "price": 9300,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 9300,
+      "quantity": "1mmol"
+    },
     "sequentialID": 88
   },
   {
     "commonID": "17515360",
-    "currency": "USD",
-    "price": 17300,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 17300,
+      "quantity": "1kg"
+    },
     "sequentialID": 91
   },
   {
     "commonID": "17515360",
-    "currency": "USD",
-    "price": 140,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 140,
+      "quantity": "1g"
+    },
     "sequentialID": 92
   },
   {
     "commonID": "17515360",
-    "currency": "USD",
-    "price": 17.3,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 17.3,
+      "quantity": "1mg"
+    },
     "sequentialID": 93
   },
   {
     "commonID": "17515360",
-    "currency": "USD",
-    "price": 14.2,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 14.2,
+      "quantity": "1mmol"
+    },
     "sequentialID": 94
   },
   {
     "commonID": "17515360",
-    "currency": "USD",
-    "price": 17300,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 17300,
+      "quantity": "1kg"
+    },
     "sequentialID": 95
   },
   {
     "commonID": "17515360",
-    "currency": "USD",
-    "price": 140,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 140,
+      "quantity": "1g"
+    },
     "sequentialID": 96
   },
   {
     "commonID": "17515360",
-    "currency": "USD",
-    "price": 17.3,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 17.3,
+      "quantity": "1mg"
+    },
     "sequentialID": 97
   },
   {
     "commonID": "17515360",
-    "currency": "USD",
-    "price": 14.2,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 14.2,
+      "quantity": "1mmol"
+    },
     "sequentialID": 98
   },
   {
     "commonID": "17524220",
-    "currency": "USD",
-    "price": 15100,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 15100,
+      "quantity": "1kg"
+    },
     "sequentialID": 101
   },
   {
     "commonID": "17524220",
-    "currency": "USD",
-    "price": 232,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 232,
+      "quantity": "1g"
+    },
     "sequentialID": 102
   },
   {
     "commonID": "17524220",
-    "currency": "USD",
-    "price": 15.1,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 15.1,
+      "quantity": "1mg"
+    },
     "sequentialID": 103
   },
   {
     "commonID": "17524220",
-    "currency": "USD",
-    "price": 23.4,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 23.4,
+      "quantity": "1mmol"
+    },
     "sequentialID": 104
   },
   {
     "commonID": "17524220",
-    "currency": "USD",
-    "price": 15100,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 15100,
+      "quantity": "1kg"
+    },
     "sequentialID": 105
   },
   {
     "commonID": "17524220",
-    "currency": "USD",
-    "price": 232,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 232,
+      "quantity": "1g"
+    },
     "sequentialID": 106
   },
   {
     "commonID": "17524220",
-    "currency": "USD",
-    "price": 15.1,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 15.1,
+      "quantity": "1mg"
+    },
     "sequentialID": 107
   },
   {
     "commonID": "17524220",
-    "currency": "USD",
-    "price": 23.4,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 23.4,
+      "quantity": "1mmol"
+    },
     "sequentialID": 108
   },
   {
     "commonID": "17524691",
-    "currency": "USD",
-    "price": 30600,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 30600,
+      "quantity": "1kg"
+    },
     "sequentialID": 111
   },
   {
     "commonID": "17524691",
-    "currency": "USD",
-    "price": 71.8,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 71.8,
+      "quantity": "1g"
+    },
     "sequentialID": 112
   },
   {
     "commonID": "17524691",
-    "currency": "USD",
-    "price": 30.6,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 30.6,
+      "quantity": "1mg"
+    },
     "sequentialID": 113
   },
   {
     "commonID": "17524691",
-    "currency": "USD",
-    "price": 7.27,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 7.27,
+      "quantity": "1mmol"
+    },
     "sequentialID": 114
   },
   {
     "commonID": "17524691",
-    "currency": "USD",
-    "price": 30600,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 30600,
+      "quantity": "1kg"
+    },
     "sequentialID": 115
   },
   {
     "commonID": "17524691",
-    "currency": "USD",
-    "price": 71.8,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 71.8,
+      "quantity": "1g"
+    },
     "sequentialID": 116
   },
   {
     "commonID": "17524691",
-    "currency": "USD",
-    "price": 30.6,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 30.6,
+      "quantity": "1mg"
+    },
     "sequentialID": 117
   },
   {
     "commonID": "17524691",
-    "currency": "USD",
-    "price": 7.27,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 7.27,
+      "quantity": "1mmol"
+    },
     "sequentialID": 118
   },
   {
     "commonID": "17524747",
-    "currency": "USD",
-    "price": 188000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 188000,
+      "quantity": "1kg"
+    },
     "sequentialID": 121
   },
   {
     "commonID": "17524747",
-    "currency": "USD",
-    "price": 71.8,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 71.8,
+      "quantity": "1g"
+    },
     "sequentialID": 122
   },
   {
     "commonID": "17524747",
-    "currency": "USD",
-    "price": 71.8,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 71.8,
+      "quantity": "1mg"
+    },
     "sequentialID": 123
   },
   {
     "commonID": "17524747",
-    "currency": "USD",
-    "price": 7.27,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 7.27,
+      "quantity": "1mmol"
+    },
     "sequentialID": 124
   },
   {
     "commonID": "17524747",
-    "currency": "USD",
-    "price": 188000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 188000,
+      "quantity": "1kg"
+    },
     "sequentialID": 125
   },
   {
     "commonID": "17524747",
-    "currency": "USD",
-    "price": 71.8,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 71.8,
+      "quantity": "1g"
+    },
     "sequentialID": 126
   },
   {
     "commonID": "17524747",
-    "currency": "USD",
-    "price": 71.8,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 71.8,
+      "quantity": "1mg"
+    },
     "sequentialID": 127
   },
   {
     "commonID": "17524747",
-    "currency": "USD",
-    "price": 7.27,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 7.27,
+      "quantity": "1mmol"
+    },
     "sequentialID": 128
   },
   {
     "commonID": "17540576",
-    "currency": "USD",
-    "price": 9250000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 9250000,
+      "quantity": "1kg"
+    },
     "sequentialID": 131
   },
   {
     "commonID": "17540576",
-    "currency": "USD",
-    "price": 9250,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 9250,
+      "quantity": "1g"
+    },
     "sequentialID": 132
   },
   {
     "commonID": "17540576",
-    "currency": "USD",
-    "price": 9.25,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 9.25,
+      "quantity": "1mg"
+    },
     "sequentialID": 133
   },
   {
     "commonID": "17540576",
-    "currency": "USD",
-    "price": 936,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 936,
+      "quantity": "1mmol"
+    },
     "sequentialID": 134
   },
   {
     "commonID": "17540576",
-    "currency": "USD",
-    "price": 9250000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 9250000,
+      "quantity": "1kg"
+    },
     "sequentialID": 135
   },
   {
     "commonID": "17540576",
-    "currency": "USD",
-    "price": 9250,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 9250,
+      "quantity": "1g"
+    },
     "sequentialID": 136
   },
   {
     "commonID": "17540576",
-    "currency": "USD",
-    "price": 9.25,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 9.25,
+      "quantity": "1mg"
+    },
     "sequentialID": 137
   },
   {
     "commonID": "17540576",
-    "currency": "USD",
-    "price": 936,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 936,
+      "quantity": "1mmol"
+    },
     "sequentialID": 138
   },
   {
     "commonID": "2907915",
-    "currency": "USD",
-    "price": 2340,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 2340,
+      "quantity": "1kg"
+    },
     "sequentialID": 145
   },
   {
     "commonID": "2907915",
-    "currency": "USD",
-    "price": 90.7,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 90.7,
+      "quantity": "1g"
+    },
     "sequentialID": 146
   },
   {
     "commonID": "2907915",
-    "currency": "USD",
-    "price": 1.57,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 1.57,
+      "quantity": "1mg"
+    },
     "sequentialID": 147
   },
   {
     "commonID": "2907915",
-    "currency": "USD",
-    "price": 9.18,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 9.18,
+      "quantity": "1mmol"
+    },
     "sequentialID": 148
   },
   {
     "commonID": "2911670",
-    "currency": "USD",
-    "price": 120,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 120,
+      "quantity": "1kg"
+    },
     "sequentialID": 153
   },
   {
     "commonID": "2911670",
-    "currency": "USD",
-    "price": 10.7,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 10.7,
+      "quantity": "1g"
+    },
     "sequentialID": 154
   },
   {
     "commonID": "2911670",
-    "currency": "USD",
-    "price": 3.91,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 3.91,
+      "quantity": "1mg"
+    },
     "sequentialID": 155
   },
   {
     "commonID": "2911670",
-    "currency": "USD",
-    "price": 1.08,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 1.08,
+      "quantity": "1mmol"
+    },
     "sequentialID": 156
   },
   {
     "commonID": "2913321",
-    "currency": "USD",
-    "price": 34.3,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 34.3,
+      "quantity": "1kg"
+    },
     "sequentialID": 159
   },
   {
     "commonID": "2913321",
-    "currency": "USD",
-    "price": 34.3,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 34.3,
+      "quantity": "1g"
+    },
     "sequentialID": 160
   },
   {
     "commonID": "2913321",
-    "currency": "USD",
-    "price": 0.102,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 0.102,
+      "quantity": "1mg"
+    },
     "sequentialID": 161
   },
   {
     "commonID": "2913321",
-    "currency": "USD",
-    "price": 3.47,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 3.47,
+      "quantity": "1mmol"
+    },
     "sequentialID": 162
   },
   {
     "commonID": "2915338",
-    "currency": "USD",
-    "price": 189,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 189,
+      "quantity": "1kg"
+    },
     "sequentialID": 166
   },
   {
     "commonID": "2915338",
-    "currency": "USD",
-    "price": 3.73,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 3.73,
+      "quantity": "1g"
+    },
     "sequentialID": 167
   },
   {
     "commonID": "2915338",
-    "currency": "USD",
-    "price": 0.839,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 0.839,
+      "quantity": "1mg"
+    },
     "sequentialID": 168
   },
   {
     "commonID": "2915338",
-    "currency": "USD",
-    "price": 0.377,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 0.377,
+      "quantity": "1mmol"
+    },
     "sequentialID": 169
   },
   {
     "commonID": "2917517",
-    "currency": "USD",
-    "price": 158,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 158,
+      "quantity": "1kg"
+    },
     "sequentialID": 172
   },
   {
     "commonID": "2917517",
-    "currency": "USD",
-    "price": 53.2,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 53.2,
+      "quantity": "1g"
+    },
     "sequentialID": 173
   },
   {
     "commonID": "2917517",
-    "currency": "USD",
-    "price": 0.08,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 0.08,
+      "quantity": "1mg"
+    },
     "sequentialID": 174
   },
   {
     "commonID": "2917517",
-    "currency": "USD",
-    "price": 5.39,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 5.39,
+      "quantity": "1mmol"
+    },
     "sequentialID": 175
   },
   {
     "commonID": "9767152",
-    "currency": "USD",
-    "price": 31000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 31000,
+      "quantity": "1kg"
+    },
     "sequentialID": 179
   },
   {
     "commonID": "9767152",
-    "currency": "USD",
-    "price": 102,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 102,
+      "quantity": "1g"
+    },
     "sequentialID": 180
   },
   {
     "commonID": "9767152",
-    "currency": "USD",
-    "price": 102,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 102,
+      "quantity": "1mg"
+    },
     "sequentialID": 181
   },
   {
     "commonID": "9767152",
-    "currency": "USD",
-    "price": 10.3,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 10.3,
+      "quantity": "1mmol"
+    },
     "sequentialID": 182
   },
   {
     "commonID": "2912269",
-    "currency": "USD",
-    "price": 11400,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 11400,
+      "quantity": "1kg"
+    },
     "sequentialID": 193
   },
   {
     "commonID": "2912269",
-    "currency": "USD",
-    "price": 182,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 182,
+      "quantity": "1g"
+    },
     "sequentialID": 194
   },
   {
     "commonID": "2912269",
-    "currency": "USD",
-    "price": 11.4,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 11.4,
+      "quantity": "1mg"
+    },
     "sequentialID": 195
   },
   {
     "commonID": "2912269",
-    "currency": "USD",
-    "price": 18.4,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 18.4,
+      "quantity": "1mmol"
+    },
     "sequentialID": 196
   },
   {
     "commonID": "2912272",
-    "currency": "USD",
-    "price": 44900,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 44900,
+      "quantity": "1kg"
+    },
     "sequentialID": 200
   },
   {
     "commonID": "2912272",
-    "currency": "USD",
-    "price": 109,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 109,
+      "quantity": "1g"
+    },
     "sequentialID": 201
   },
   {
     "commonID": "2912272",
-    "currency": "USD",
-    "price": 109,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 109,
+      "quantity": "1mg"
+    },
     "sequentialID": 202
   },
   {
     "commonID": "2912272",
-    "currency": "USD",
-    "price": 11,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 11,
+      "quantity": "1mmol"
+    },
     "sequentialID": 203
   },
   {
     "commonID": "2915364",
-    "currency": "USD",
-    "price": 312,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 312,
+      "quantity": "1kg"
+    },
     "sequentialID": 206
   },
   {
     "commonID": "2915364",
-    "currency": "USD",
-    "price": 45.4,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 45.4,
+      "quantity": "1g"
+    },
     "sequentialID": 207
   },
   {
     "commonID": "2915364",
-    "currency": "USD",
-    "price": 0.571,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 0.571,
+      "quantity": "1mg"
+    },
     "sequentialID": 208
   },
   {
     "commonID": "2915364",
-    "currency": "USD",
-    "price": 4.59,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 4.59,
+      "quantity": "1mmol"
+    },
     "sequentialID": 209
   },
   {
     "commonID": "2919336",
-    "currency": "USD",
-    "price": 250,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 250,
+      "quantity": "1kg"
+    },
     "sequentialID": 212
   },
   {
     "commonID": "2919336",
-    "currency": "USD",
-    "price": 6.59,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 6.59,
+      "quantity": "1g"
+    },
     "sequentialID": 213
   },
   {
     "commonID": "2919336",
-    "currency": "USD",
-    "price": 0.25,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 0.25,
+      "quantity": "1mg"
+    },
     "sequentialID": 214
   },
   {
     "commonID": "2919336",
-    "currency": "USD",
-    "price": 0.667,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 0.667,
+      "quantity": "1mmol"
+    },
     "sequentialID": 215
   },
   {
     "commonID": "17552062",
-    "currency": "USD",
-    "price": 30000,
-    "quantity": "1kg",
+    "data": {
+      "currency": "USD",
+      "price": 30000,
+      "quantity": "1kg"
+    },
     "sequentialID": 218
   },
   {
     "commonID": "17552062",
-    "currency": "USD",
-    "price": 245,
-    "quantity": "1g",
+    "data": {
+      "currency": "USD",
+      "price": 245,
+      "quantity": "1g"
+    },
     "sequentialID": 219
   },
   {
     "commonID": "17552062",
-    "currency": "USD",
-    "price": 27.9,
-    "quantity": "1mg",
+    "data": {
+      "currency": "USD",
+      "price": 27.9,
+      "quantity": "1mg"
+    },
     "sequentialID": 220
   },
   {
     "commonID": "17552062",
-    "currency": "USD",
-    "price": 24.8,
-    "quantity": "1mmol",
+    "data": {
+      "currency": "USD",
+      "price": 24.8,
+      "quantity": "1mmol"
+    },
     "sequentialID": 221
   }
 ]
