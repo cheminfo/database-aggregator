@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/cheminfo/database-aggregator/issues"
   },
-  "homepage": "https://github.com/cheminfo/database-aggregator#readme"
+  "homepage": "https://github.com/cheminfo/database-aggregator#readme",
+  "dependencies": {
+    "mongodb": "^2.1.4",
+    "mongoose": "^4.3.7"
+  }
 }
