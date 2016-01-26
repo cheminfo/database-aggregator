@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require should --reporter mocha-better-spec-reporter --recursive"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,13 @@
   },
   "homepage": "https://github.com/cheminfo/database-aggregator#readme",
   "dependencies": {
+    "debug": "^2.2.0",
     "mongodb": "^2.1.4",
     "mongoose": "^4.3.7"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4",
+    "mocha-better-spec-reporter": "^3.0.1",
+    "should": "^8.0.1"
   }
 }
