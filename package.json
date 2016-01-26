@@ -1,0 +1,22 @@
+{
+  "name": "database-aggregator",
+  "version": "0.0.1",
+  "description": "A database aggregator",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheminfo/database-aggregator.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cheminfo/database-aggregator/issues"
+  },
+  "homepage": "https://github.com/cheminfo/database-aggregator#readme"
+}
