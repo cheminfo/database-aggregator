@@ -10,4 +10,6 @@ exports.getConfig = function (customConfig) {
     return Object.assign({}, defaultConfig, homeConfig, envConfig, customConfig);
 };
 
+
+
 exports.globalConfig = exports.getConfig();
