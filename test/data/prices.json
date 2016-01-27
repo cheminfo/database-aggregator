@@ -1,6 +1,7 @@
 [
   {
     "commonID": "2925038",
+    "_id": "3",
     "data": {
       "currency": "USD",
       "price": 3120,
@@ -10,6 +11,7 @@
   },
   {
     "commonID": "2925038",
+    "_id": "4",
     "data": {
       "currency": "USD",
       "price": 41.8,
@@ -19,6 +21,7 @@
   },
   {
     "commonID": "2925038",
+    "_id": "5",
     "data": {
       "currency": "USD",
       "price": 3.12,
@@ -28,6 +31,7 @@
   },
   {
     "commonID": "2925038",
+    "_id": "6",
     "data": {
       "currency": "USD",
       "price": 4.23,
@@ -37,6 +41,7 @@
   },
   {
     "commonID": "2926713",
+    "_id": "9",
     "data": {
       "currency": "USD",
       "price": 57200,
@@ -46,6 +51,7 @@
   },
   {
     "commonID": "2926713",
+    "_id": "10",
     "data": {
       "currency": "USD",
       "price": 131,
@@ -55,6 +61,7 @@
   },
   {
     "commonID": "2926713",
+    "_id": "11",
     "data": {
       "currency": "USD",
       "price": 55.4,
@@ -64,6 +71,7 @@
   },
   {
     "commonID": "2926713",
+    "_id": "12",
     "data": {
       "currency": "USD",
       "price": 13.3,
@@ -73,6 +81,7 @@
   },
   {
     "commonID": "9682820",
+    "_id": "25",
     "data": {
       "currency": "USD",
       "price": 91900000,
@@ -82,6 +91,7 @@
   },
   {
     "commonID": "9682820",
+    "_id": "26",
     "data": {
       "currency": "USD",
       "price": 91900,
@@ -91,6 +101,7 @@
   },
   {
     "commonID": "9682820",
+    "_id": "27",
     "data": {
       "currency": "USD",
       "price": 91.9,
@@ -100,6 +111,7 @@
   },
   {
     "commonID": "9682820",
+    "_id": "28",
     "data": {
       "currency": "USD",
       "price": 9300,
@@ -109,6 +121,7 @@
   },
   {
     "commonID": "9736385",
+    "_id": "33",
     "data": {
       "currency": "USD",
       "price": 65300,
@@ -118,6 +131,7 @@
   },
   {
     "commonID": "9736385",
+    "_id": "34",
     "data": {
       "currency": "USD",
       "price": 65.3,
@@ -127,6 +141,7 @@
   },
   {
     "commonID": "9736385",
+    "_id": "35",
     "data": {
       "currency": "USD",
       "price": 65.3,
@@ -136,6 +151,7 @@
   },
   {
     "commonID": "9736385",
+    "_id": "36",
     "data": {
       "currency": "USD",
       "price": 6.61,
@@ -145,6 +161,7 @@
   },
   {
     "commonID": "9742097",
+    "_id": "39",
     "data": {
       "currency": "USD",
       "price": 687000,
@@ -154,6 +171,7 @@
   },
   {
     "commonID": "9742097",
+    "_id": "40",
     "data": {
       "currency": "USD",
       "price": 367,
@@ -163,6 +181,7 @@
   },
   {
     "commonID": "9742097",
+    "_id": "41",
     "data": {
       "currency": "USD",
       "price": 367,
@@ -172,6 +191,7 @@
   },
   {
     "commonID": "9742097",
+    "_id": "42",
     "data": {
       "currency": "USD",
       "price": 37.1,
@@ -181,6 +201,7 @@
   },
   {
     "commonID": "9744414",
+    "_id": "46",
     "data": {
       "currency": "USD",
       "price": 82900,
@@ -190,6 +211,7 @@
   },
   {
     "commonID": "9744414",
+    "_id": "47",
     "data": {
       "currency": "USD",
       "price": 164,
@@ -199,6 +221,7 @@
   },
   {
     "commonID": "9744414",
+    "_id": "48",
     "data": {
       "currency": "USD",
       "price": 0.345,
@@ -208,6 +231,7 @@
   },
   {
     "commonID": "9744414",
+    "_id": "49",
     "data": {
       "currency": "USD",
       "price": 16.6,
@@ -217,6 +241,7 @@
   },
   {
     "commonID": "9744654",
+    "_id": "54",
     "data": {
       "currency": "USD",
       "price": 378000,
@@ -226,6 +251,7 @@
   },
   {
     "commonID": "9744654",
+    "_id": "55",
     "data": {
       "currency": "USD",
       "price": 98.7,
@@ -235,6 +261,7 @@
   },
   {
     "commonID": "9744654",
+    "_id": "56",
     "data": {
       "currency": "USD",
       "price": 0.359,
@@ -244,6 +271,7 @@
   },
   {
     "commonID": "9744654",
+    "_id": "57",
     "data": {
       "currency": "USD",
       "price": 9.98,
@@ -253,6 +281,7 @@
   },
   {
     "commonID": "9744654",
+    "_id": "58",
     "data": {
       "currency": "USD",
       "price": 378000,
@@ -262,6 +291,7 @@
   },
   {
     "commonID": "9744654",
+    "_id": "59",
     "data": {
       "currency": "USD",
       "price": 98.7,
@@ -271,6 +301,7 @@
   },
   {
     "commonID": "9744654",
+    "_id": "60",
     "data": {
       "currency": "USD",
       "price": 0.359,
@@ -280,6 +311,7 @@
   },
   {
     "commonID": "9744654",
+    "_id": "61",
     "data": {
       "currency": "USD",
       "price": 9.98,
@@ -289,6 +321,7 @@
   },
   {
     "commonID": "9890062",
+    "_id": "65",
     "data": {
       "currency": "USD",
       "price": 812000,
@@ -298,6 +331,7 @@
   },
   {
     "commonID": "9890062",
+    "_id": "66",
     "data": {
       "currency": "USD",
       "price": 812,
@@ -307,6 +341,7 @@
   },
   {
     "commonID": "9890062",
+    "_id": "67",
     "data": {
       "currency": "USD",
       "price": 812,
@@ -316,6 +351,7 @@
   },
   {
     "commonID": "9890062",
+    "_id": "68",
     "data": {
       "currency": "USD",
       "price": 82.2,
@@ -325,6 +361,7 @@
   },
   {
     "commonID": "13734173",
+    "_id": "71",
     "data": {
       "currency": "USD",
       "price": 21800,
@@ -334,6 +371,7 @@
   },
   {
     "commonID": "13734173",
+    "_id": "72",
     "data": {
       "currency": "USD",
       "price": 154,
@@ -343,6 +381,7 @@
   },
   {
     "commonID": "13734173",
+    "_id": "73",
     "data": {
       "currency": "USD",
       "price": 21.8,
@@ -352,6 +391,7 @@
   },
   {
     "commonID": "13734173",
+    "_id": "74",
     "data": {
       "currency": "USD",
       "price": 15.5,
@@ -361,6 +401,7 @@
   },
   {
     "commonID": "13734173",
+    "_id": "75",
     "data": {
       "currency": "USD",
       "price": 21800,
@@ -370,6 +411,7 @@
   },
   {
     "commonID": "13734173",
+    "_id": "76",
     "data": {
       "currency": "USD",
       "price": 154,
@@ -379,6 +421,7 @@
   },
   {
     "commonID": "13734173",
+    "_id": "77",
     "data": {
       "currency": "USD",
       "price": 21.8,
@@ -388,6 +431,7 @@
   },
   {
     "commonID": "13734173",
+    "_id": "78",
     "data": {
       "currency": "USD",
       "price": 15.5,
@@ -397,6 +441,7 @@
   },
   {
     "commonID": "17515344",
+    "_id": "81",
     "data": {
       "currency": "USD",
       "price": 91900000,
@@ -406,6 +451,7 @@
   },
   {
     "commonID": "17515344",
+    "_id": "82",
     "data": {
       "currency": "USD",
       "price": 91900,
@@ -415,6 +461,7 @@
   },
   {
     "commonID": "17515344",
+    "_id": "83",
     "data": {
       "currency": "USD",
       "price": 91.9,
@@ -424,6 +471,7 @@
   },
   {
     "commonID": "17515344",
+    "_id": "84",
     "data": {
       "currency": "USD",
       "price": 9300,
@@ -433,6 +481,7 @@
   },
   {
     "commonID": "17515344",
+    "_id": "85",
     "data": {
       "currency": "USD",
       "price": 91900000,
@@ -442,6 +491,7 @@
   },
   {
     "commonID": "17515344",
+    "_id": "86",
     "data": {
       "currency": "USD",
       "price": 91900,
@@ -451,6 +501,7 @@
   },
   {
     "commonID": "17515344",
+    "_id": "87",
     "data": {
       "currency": "USD",
       "price": 91.9,
@@ -460,6 +511,7 @@
   },
   {
     "commonID": "17515344",
+    "_id": "88",
     "data": {
       "currency": "USD",
       "price": 9300,
@@ -469,6 +521,7 @@
   },
   {
     "commonID": "17515360",
+    "_id": "91",
     "data": {
       "currency": "USD",
       "price": 17300,
@@ -478,6 +531,7 @@
   },
   {
     "commonID": "17515360",
+    "_id": "92",
     "data": {
       "currency": "USD",
       "price": 140,
@@ -487,6 +541,7 @@
   },
   {
     "commonID": "17515360",
+    "_id": "93",
     "data": {
       "currency": "USD",
       "price": 17.3,
@@ -496,6 +551,7 @@
   },
   {
     "commonID": "17515360",
+    "_id": "94",
     "data": {
       "currency": "USD",
       "price": 14.2,
@@ -505,6 +561,7 @@
   },
   {
     "commonID": "17515360",
+    "_id": "95",
     "data": {
       "currency": "USD",
       "price": 17300,
@@ -514,6 +571,7 @@
   },
   {
     "commonID": "17515360",
+    "_id": "96",
     "data": {
       "currency": "USD",
       "price": 140,
@@ -523,6 +581,7 @@
   },
   {
     "commonID": "17515360",
+    "_id": "97",
     "data": {
       "currency": "USD",
       "price": 17.3,
@@ -532,6 +591,7 @@
   },
   {
     "commonID": "17515360",
+    "_id": "98",
     "data": {
       "currency": "USD",
       "price": 14.2,
@@ -541,6 +601,7 @@
   },
   {
     "commonID": "17524220",
+    "_id": "101",
     "data": {
       "currency": "USD",
       "price": 15100,
@@ -550,6 +611,7 @@
   },
   {
     "commonID": "17524220",
+    "_id": "102",
     "data": {
       "currency": "USD",
       "price": 232,
@@ -559,6 +621,7 @@
   },
   {
     "commonID": "17524220",
+    "_id": "103",
     "data": {
       "currency": "USD",
       "price": 15.1,
@@ -568,6 +631,7 @@
   },
   {
     "commonID": "17524220",
+    "_id": "104",
     "data": {
       "currency": "USD",
       "price": 23.4,
@@ -577,6 +641,7 @@
   },
   {
     "commonID": "17524220",
+    "_id": "105",
     "data": {
       "currency": "USD",
       "price": 15100,
@@ -586,6 +651,7 @@
   },
   {
     "commonID": "17524220",
+    "_id": "106",
     "data": {
       "currency": "USD",
       "price": 232,
@@ -595,6 +661,7 @@
   },
   {
     "commonID": "17524220",
+    "_id": "107",
     "data": {
       "currency": "USD",
       "price": 15.1,
@@ -604,6 +671,7 @@
   },
   {
     "commonID": "17524220",
+    "_id": "108",
     "data": {
       "currency": "USD",
       "price": 23.4,
@@ -613,6 +681,7 @@
   },
   {
     "commonID": "17524691",
+    "_id": "111",
     "data": {
       "currency": "USD",
       "price": 30600,
@@ -622,6 +691,7 @@
   },
   {
     "commonID": "17524691",
+    "_id": "112",
     "data": {
       "currency": "USD",
       "price": 71.8,
@@ -631,6 +701,7 @@
   },
   {
     "commonID": "17524691",
+    "_id": "113",
     "data": {
       "currency": "USD",
       "price": 30.6,
@@ -640,6 +711,7 @@
   },
   {
     "commonID": "17524691",
+    "_id": "114",
     "data": {
       "currency": "USD",
       "price": 7.27,
@@ -649,6 +721,7 @@
   },
   {
     "commonID": "17524691",
+    "_id": "115",
     "data": {
       "currency": "USD",
       "price": 30600,
@@ -658,6 +731,7 @@
   },
   {
     "commonID": "17524691",
+    "_id": "116",
     "data": {
       "currency": "USD",
       "price": 71.8,
@@ -667,6 +741,7 @@
   },
   {
     "commonID": "17524691",
+    "_id": "117",
     "data": {
       "currency": "USD",
       "price": 30.6,
@@ -676,6 +751,7 @@
   },
   {
     "commonID": "17524691",
+    "_id": "118",
     "data": {
       "currency": "USD",
       "price": 7.27,
@@ -685,6 +761,7 @@
   },
   {
     "commonID": "17524747",
+    "_id": "121",
     "data": {
       "currency": "USD",
       "price": 188000,
@@ -694,6 +771,7 @@
   },
   {
     "commonID": "17524747",
+    "_id": "122",
     "data": {
       "currency": "USD",
       "price": 71.8,
@@ -703,6 +781,7 @@
   },
   {
     "commonID": "17524747",
+    "_id": "123",
     "data": {
       "currency": "USD",
       "price": 71.8,
@@ -712,6 +791,7 @@
   },
   {
     "commonID": "17524747",
+    "_id": "124",
     "data": {
       "currency": "USD",
       "price": 7.27,
@@ -721,6 +801,7 @@
   },
   {
     "commonID": "17524747",
+    "_id": "125",
     "data": {
       "currency": "USD",
       "price": 188000,
@@ -730,6 +811,7 @@
   },
   {
     "commonID": "17524747",
+    "_id": "126",
     "data": {
       "currency": "USD",
       "price": 71.8,
@@ -739,6 +821,7 @@
   },
   {
     "commonID": "17524747",
+    "_id": "127",
     "data": {
       "currency": "USD",
       "price": 71.8,
@@ -748,6 +831,7 @@
   },
   {
     "commonID": "17524747",
+    "_id": "128",
     "data": {
       "currency": "USD",
       "price": 7.27,
@@ -757,6 +841,7 @@
   },
   {
     "commonID": "17540576",
+    "_id": "131",
     "data": {
       "currency": "USD",
       "price": 9250000,
@@ -766,6 +851,7 @@
   },
   {
     "commonID": "17540576",
+    "_id": "132",
     "data": {
       "currency": "USD",
       "price": 9250,
@@ -775,6 +861,7 @@
   },
   {
     "commonID": "17540576",
+    "_id": "133",
     "data": {
       "currency": "USD",
       "price": 9.25,
@@ -784,6 +871,7 @@
   },
   {
     "commonID": "17540576",
+    "_id": "134",
     "data": {
       "currency": "USD",
       "price": 936,
@@ -793,6 +881,7 @@
   },
   {
     "commonID": "17540576",
+    "_id": "135",
     "data": {
       "currency": "USD",
       "price": 9250000,
@@ -802,6 +891,7 @@
   },
   {
     "commonID": "17540576",
+    "_id": "136",
     "data": {
       "currency": "USD",
       "price": 9250,
@@ -811,6 +901,7 @@
   },
   {
     "commonID": "17540576",
+    "_id": "137",
     "data": {
       "currency": "USD",
       "price": 9.25,
@@ -820,6 +911,7 @@
   },
   {
     "commonID": "17540576",
+    "_id": "138",
     "data": {
       "currency": "USD",
       "price": 936,
@@ -829,6 +921,7 @@
   },
   {
     "commonID": "2907915",
+    "_id": "145",
     "data": {
       "currency": "USD",
       "price": 2340,
@@ -838,6 +931,7 @@
   },
   {
     "commonID": "2907915",
+    "_id": "146",
     "data": {
       "currency": "USD",
       "price": 90.7,
@@ -847,6 +941,7 @@
   },
   {
     "commonID": "2907915",
+    "_id": "147",
     "data": {
       "currency": "USD",
       "price": 1.57,
@@ -856,6 +951,7 @@
   },
   {
     "commonID": "2907915",
+    "_id": "148",
     "data": {
       "currency": "USD",
       "price": 9.18,
@@ -865,6 +961,7 @@
   },
   {
     "commonID": "2911670",
+    "_id": "153",
     "data": {
       "currency": "USD",
       "price": 120,
@@ -874,6 +971,7 @@
   },
   {
     "commonID": "2911670",
+    "_id": "154",
     "data": {
       "currency": "USD",
       "price": 10.7,
@@ -883,6 +981,7 @@
   },
   {
     "commonID": "2911670",
+    "_id": "155",
     "data": {
       "currency": "USD",
       "price": 3.91,
@@ -892,6 +991,7 @@
   },
   {
     "commonID": "2911670",
+    "_id": "156",
     "data": {
       "currency": "USD",
       "price": 1.08,
@@ -901,6 +1001,7 @@
   },
   {
     "commonID": "2913321",
+    "_id": "159",
     "data": {
       "currency": "USD",
       "price": 34.3,
@@ -910,6 +1011,7 @@
   },
   {
     "commonID": "2913321",
+    "_id": "160",
     "data": {
       "currency": "USD",
       "price": 34.3,
@@ -919,6 +1021,7 @@
   },
   {
     "commonID": "2913321",
+    "_id": "161",
     "data": {
       "currency": "USD",
       "price": 0.102,
@@ -928,6 +1031,7 @@
   },
   {
     "commonID": "2913321",
+    "_id": "162",
     "data": {
       "currency": "USD",
       "price": 3.47,
@@ -937,6 +1041,7 @@
   },
   {
     "commonID": "2915338",
+    "_id": "166",
     "data": {
       "currency": "USD",
       "price": 189,
@@ -946,6 +1051,7 @@
   },
   {
     "commonID": "2915338",
+    "_id": "167",
     "data": {
       "currency": "USD",
       "price": 3.73,
@@ -955,6 +1061,7 @@
   },
   {
     "commonID": "2915338",
+    "_id": "168",
     "data": {
       "currency": "USD",
       "price": 0.839,
@@ -964,6 +1071,7 @@
   },
   {
     "commonID": "2915338",
+    "_id": "169",
     "data": {
       "currency": "USD",
       "price": 0.377,
@@ -973,6 +1081,7 @@
   },
   {
     "commonID": "2917517",
+    "_id": "172",
     "data": {
       "currency": "USD",
       "price": 158,
@@ -982,6 +1091,7 @@
   },
   {
     "commonID": "2917517",
+    "_id": "173",
     "data": {
       "currency": "USD",
       "price": 53.2,
@@ -991,6 +1101,7 @@
   },
   {
     "commonID": "2917517",
+    "_id": "174",
     "data": {
       "currency": "USD",
       "price": 0.08,
@@ -1000,6 +1111,7 @@
   },
   {
     "commonID": "2917517",
+    "_id": "175",
     "data": {
       "currency": "USD",
       "price": 5.39,
@@ -1009,6 +1121,7 @@
   },
   {
     "commonID": "9767152",
+    "_id": "179",
     "data": {
       "currency": "USD",
       "price": 31000,
@@ -1018,6 +1131,7 @@
   },
   {
     "commonID": "9767152",
+    "_id": "180",
     "data": {
       "currency": "USD",
       "price": 102,
@@ -1027,6 +1141,7 @@
   },
   {
     "commonID": "9767152",
+    "_id": "181",
     "data": {
       "currency": "USD",
       "price": 102,
@@ -1036,6 +1151,7 @@
   },
   {
     "commonID": "9767152",
+    "_id": "182",
     "data": {
       "currency": "USD",
       "price": 10.3,
@@ -1045,6 +1161,7 @@
   },
   {
     "commonID": "2912269",
+    "_id": "193",
     "data": {
       "currency": "USD",
       "price": 11400,
@@ -1054,6 +1171,7 @@
   },
   {
     "commonID": "2912269",
+    "_id": "194",
     "data": {
       "currency": "USD",
       "price": 182,
@@ -1063,6 +1181,7 @@
   },
   {
     "commonID": "2912269",
+    "_id": "195",
     "data": {
       "currency": "USD",
       "price": 11.4,
@@ -1072,6 +1191,7 @@
   },
   {
     "commonID": "2912269",
+    "_id": "196",
     "data": {
       "currency": "USD",
       "price": 18.4,
@@ -1081,6 +1201,7 @@
   },
   {
     "commonID": "2912272",
+    "_id": "200",
     "data": {
       "currency": "USD",
       "price": 44900,
@@ -1090,6 +1211,7 @@
   },
   {
     "commonID": "2912272",
+    "_id": "201",
     "data": {
       "currency": "USD",
       "price": 109,
@@ -1099,6 +1221,7 @@
   },
   {
     "commonID": "2912272",
+    "_id": "202",
     "data": {
       "currency": "USD",
       "price": 109,
@@ -1108,6 +1231,7 @@
   },
   {
     "commonID": "2912272",
+    "_id": "203",
     "data": {
       "currency": "USD",
       "price": 11,
@@ -1117,6 +1241,7 @@
   },
   {
     "commonID": "2915364",
+    "_id": "206",
     "data": {
       "currency": "USD",
       "price": 312,
@@ -1126,6 +1251,7 @@
   },
   {
     "commonID": "2915364",
+    "_id": "207",
     "data": {
       "currency": "USD",
       "price": 45.4,
@@ -1135,6 +1261,7 @@
   },
   {
     "commonID": "2915364",
+    "_id": "208",
     "data": {
       "currency": "USD",
       "price": 0.571,
@@ -1144,6 +1271,7 @@
   },
   {
     "commonID": "2915364",
+    "_id": "209",
     "data": {
       "currency": "USD",
       "price": 4.59,
@@ -1153,6 +1281,7 @@
   },
   {
     "commonID": "2919336",
+    "_id": "212",
     "data": {
       "currency": "USD",
       "price": 250,
@@ -1162,6 +1291,7 @@
   },
   {
     "commonID": "2919336",
+    "_id": "213",
     "data": {
       "currency": "USD",
       "price": 6.59,
@@ -1171,6 +1301,7 @@
   },
   {
     "commonID": "2919336",
+    "_id": "214",
     "data": {
       "currency": "USD",
       "price": 0.25,
@@ -1180,6 +1311,7 @@
   },
   {
     "commonID": "2919336",
+    "_id": "215",
     "data": {
       "currency": "USD",
       "price": 0.667,
@@ -1189,6 +1321,7 @@
   },
   {
     "commonID": "17552062",
+    "_id": "218",
     "data": {
       "currency": "USD",
       "price": 30000,
@@ -1198,6 +1331,7 @@
   },
   {
     "commonID": "17552062",
+    "_id": "219",
     "data": {
       "currency": "USD",
       "price": 245,
@@ -1207,6 +1341,7 @@
   },
   {
     "commonID": "17552062",
+    "_id": "220",
     "data": {
       "currency": "USD",
       "price": 27.9,
@@ -1216,6 +1351,7 @@
   },
   {
     "commonID": "17552062",
+    "_id": "221",
     "data": {
       "currency": "USD",
       "price": 24.8,
