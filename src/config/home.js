@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const debug = require('debug')('config:home');
+const debug = require('../util/debug')('config:home');
 
 const mainConfigPath =
     process.env.DATABASE_AGGREGATOR_CONFIG ||
