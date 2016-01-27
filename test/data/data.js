@@ -1,6 +1,6 @@
 'use strict';
 
-const Entry = require('../../src/schema/entry');
+const Entry = require('../../src/schema/source');
 
 const connection = require('../../src/mongo/connection');
 const mongoose = require('mongoose');

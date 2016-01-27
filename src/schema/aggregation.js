@@ -17,5 +17,9 @@ module.exports = new Schema({
     action: {
         type: String,
         required: true
+    },
+    id: {
+        type: String,
+        required: true
     }
 });
