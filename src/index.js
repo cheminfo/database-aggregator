@@ -19,10 +19,8 @@ module.exports = {
 
         return seqIdTrack.getLastSeqId(aggregateDB)
             .then(seqId => {
-                console.log('last seq id', seqId);
                 // Get commonID of entries that have seqid > seqId
                 return Promise.all(sourceNames.map(sourceName => {
-                    console.log(sourceName, seqId)
                     return source.getCommonIds(sourceName, seqId);
                 }));
             })
