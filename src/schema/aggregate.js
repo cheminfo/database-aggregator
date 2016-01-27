@@ -9,5 +9,13 @@ module.exports = new Schema({
     value: {
         type: Object,
         required: true
+    },
+    date: {
+        type: Number,
+        required: true
+    },
+    action: {
+        type: String,
+        required: true
     }
 });
