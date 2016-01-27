@@ -1,6 +1,6 @@
 'use strict';
 
-const prefix = 'DATABASE_AGGREGATOR';
+const prefix = 'DATABASE_AGGREGATOR_';
 
 const envConfig = {};
 for (const name in process.env) {

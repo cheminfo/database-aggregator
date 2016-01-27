@@ -11,7 +11,6 @@ module.exports = function () {
     return connection().then(() => {
         // Drop collections
         let models = {};
-        console.log(mongoose.connection.db);
         return Promise.all(collections
             .map(collection => {
                 try {
