@@ -3,12 +3,17 @@
 const model = require('./../model');
 const Model = model.getSeqIdAggregated();
 
-exports.getLastSeqId = function (name) {
-    return Model.findById(name).exec().then(result => result ? result.seq : 0);
+exports.getLastSeqIds = function (name) {
+    return Model.findById(name).exec();
 };
 
-exports.setSeqId = function(name, seqid) {
-    return Model.findByIdAndUpdate(name, {seq: seqid}, {new: true, upsert: true})
+exports.setSeqIds = function(name, seqIds) {
+
+    return Model.findByIdAndUpdate(name, {seq: seqIds}, {new: true, upsert: true})
         .exec()
         .then(result => result.seq);
+};
+
+exports.clear = function () {
+    return Model.remove({});
 };

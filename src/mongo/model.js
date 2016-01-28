@@ -3,7 +3,8 @@
 const mongoose = require('mongoose');
 const sourceSchema = require('../schema/source');
 const aggregationSchema = require('../schema/aggregation');
-const seqIdSchema = require('../schema/seqId');
+const seqIdCountSchema = require('../schema/seqIdCount');
+const seqIdAggregatedSchema = require('../schema/seqIdAggregated');
 
 const models = new Map();
 
@@ -16,11 +17,11 @@ exports.getAggregation = function(name) {
 };
 
 exports.getSeqIdCount = function () {
-    return getModel('_', 'seqIdCount', seqIdSchema);
+    return getModel('_', 'seqIdCount', seqIdCountSchema);
 };
 
 exports.getSeqIdAggregated = function () {
-    return getModel('_', 'seqIdAggregated', seqIdSchema);
+    return getModel('_', 'seqIdAggregated', seqIdAggregatedSchema);
 };
 
 

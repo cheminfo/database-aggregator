@@ -6,8 +6,12 @@ const collections = ['miscelaneous', 'names', 'prices'];
 const model = require('../../src/mongo/model');
 
 module.exports = function () {
-    return connection().then(() => {
+    return connection()
+        .then(() => model.getSeqIdCount().remove({}))
+        .then(() => model.getSeqIdAggregated().remove({}))
+        .then(() => {
         // Drop collections
+
         return Promise.all(collections
             .map(collection => {
                 try {
@@ -16,7 +20,6 @@ module.exports = function () {
                 } catch(e) {
                     return Promise.resolve();
                 }
-
             })
         ).then(() => {
             return Promise.all(collections.map(collection => {

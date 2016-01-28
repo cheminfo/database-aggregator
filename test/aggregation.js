@@ -3,7 +3,7 @@
 const data = require('./data/data');
 const aggregation = require('..');
 
-describe('database connection', function () {
+describe('Aggregation', function () {
     before(data);
     it('Should create aggregated collection', function () {
         return aggregation.update('chemical');

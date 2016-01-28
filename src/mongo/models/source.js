@@ -7,7 +7,11 @@ exports.getCommonIds = function (name, fromSeq) {
     return connection().then(() => {
         fromSeq = fromSeq || 0;
         var Model = model.getSource(name);
-        return Model.find({sequentialID: {$gt: fromSeq}}).select({commonID: 1}).exec().then(res => res.map(r => r.commonID));
+        return Model
+            .find({sequentialID: {$gt: fromSeq}})
+            .select({commonID: 1, sequentialID: 1})
+            .sort({sequentialID: 'asc'})
+            .exec();
     });
 };
 

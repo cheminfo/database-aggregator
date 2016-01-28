@@ -8,3 +8,7 @@ exports.getNextSequenceID = function (name) {
         .exec()
         .then(result => result.seq);
 };
+
+exports.clear = function () {
+    return Model.remove({});
+};
