@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const oracledb = require('../oracledb');
 const mongodb = require('../mongo/connection');
 const model = require('../mongo/model');
-const seqid = require('../mongo/seqid');
+const seqid = require('../mongo/models/seqIdCount');
 const sqlUtil = require('../util/sql');
 
 module.exports = function (options) {
@@ -27,9 +27,6 @@ module.exports = function (options) {
 };
 
 function dateid(options) {
-    if (!options.dateClause) {
-        throw new Error('dateClause option is mandatory');
-    }
     return doDateid(options);
 }
 
@@ -45,13 +42,15 @@ const doDateid = Promise.coroutine(function* (options) {
     const latest = yield Model.findOne().sort('-date').exec();
     let query = options.query;
 
+    query = 'SELECT * FROM (\n' + query + '\n) inner_table';
+
     if (latest) {
         // >= because many rows can have the same date
-        query = `${query}\n${options.dateClause} ${options.dateField} >= ${sqlUtil.formatTimestamp(latest.date)}`;
+        query = `${query}\nWHERE moddate >= ${sqlUtil.formatTimestamp(latest.date)}`;
     }
 
     // This clause is very important for incremental updates
-    query = `${query}\nORDER BY ${options.dateField} ASC`;
+    query = `${query}\nORDER BY moddate ASC`;
 
     console.log(query);
 
