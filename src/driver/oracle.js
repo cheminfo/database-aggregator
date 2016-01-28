@@ -1,11 +1,13 @@
 'use strict';
 
 const Promise = require('bluebird');
+const isequal = require('lodash.isequal');
 const oracledb = require('../oracledb');
 const mongodb = require('../mongo/connection');
 const model = require('../mongo/model');
 const seqid = require('../mongo/models/seqIdCount');
 const sqlUtil = require('../util/sql');
+const debug = require('../util/debug')('driver:oracle');
 
 module.exports = function (options) {
     if (!options.connectString) {
@@ -52,8 +54,6 @@ const doDateid = Promise.coroutine(function* (options) {
     // This clause is very important for incremental updates
     query = `${query}\nORDER BY moddate ASC`;
 
-    console.log(query);
-
     const resultSet = yield oracleConn.execute(query);
     let rows;
     do {
@@ -66,13 +66,26 @@ const doDateid = Promise.coroutine(function* (options) {
                 doc._id = row.ID;
                 doc.commonID = row.PID;
             }
-            doc.date = row.MODDATE || new Date(0);
+
+            const date = row.MODDATE || new Date(0);
+
             delete row.ID;
             delete row.PID;
             delete row.MODDATE;
-            doc.data = row;
-            doc.sequentialID = yield seqid.getNextSequenceID('source_' + collection);
-            yield doc.save();
+
+            if (!isequal(doc.data, row)) {
+                debug.trace('rows are not equal');
+                doc.data = row;
+                doc.date = date;
+                doc.sequentialID = yield seqid.getNextSequenceID('source_' + collection);
+                yield doc.save();
+            } else {
+                debug.trace('rows are equal');
+                if (!isequal(date, doc.date)) {
+                    doc.date = date;
+                    yield doc.save();
+                }
+            }
         }
     } while (rows.length > 0);
     yield resultSet.close();
