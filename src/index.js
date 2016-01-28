@@ -1,11 +1,11 @@
 'use strict';
 
-const seqIdTrack = require('./mongo/seqidTrack');
+const seqIdTrack = require('./mongo/models/seqIdAggregated');
 const config = require('./config/config').globalConfig;
-const aggregation = require('./mongo/aggregation');
-const source = require('./mongo/source');
+const aggregation = require('./mongo/models/aggregation');
+const source = require('./mongo/models/source');
 const debug = require('./util/debug')('aggregation');
-const seqId = require('./mongo/seqid');
+const seqId = require('./mongo/models/seqIdCount');
 
 module.exports = {
     update: function(aggregateDB) {

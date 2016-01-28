@@ -8,4 +8,8 @@ describe('database connection', function () {
     it('Should create aggregated collection', function () {
         return aggregation.update('chemical');
     });
+
+    it('Should reject if configuration does not exist', function () {
+
+    })
 });

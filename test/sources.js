@@ -1,7 +1,7 @@
 'use strict';
 
 const data = require('./data/data');
-const sources = require('../src/mongo/source');
+const sources = require('../src/mongo/models/source');
 
 describe('Sources', function () {
     before(data);

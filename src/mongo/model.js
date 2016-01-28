@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const sourceSchema = require('../schema/source');
 const aggregationSchema = require('../schema/aggregation');
+const seqIdSchema = require('../schema/seqId');
 
 const models = new Map();
 
@@ -13,6 +14,15 @@ exports.getSource = function (name) {
 exports.getAggregation = function(name) {
     return getModel('aggregation', name, aggregationSchema);
 };
+
+exports.getSeqIdCount = function () {
+    return getModel('_', 'seqIdCount', seqIdSchema);
+};
+
+exports.getSeqIdAggregated = function () {
+    return getModel('_', 'seqIdAggregated', seqIdSchema);
+};
+
 
 function getModel(prefix, name, schema) {
     const coll_name = `${prefix}_${name}`;

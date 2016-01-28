@@ -1,6 +1,6 @@
 'use strict';
 
-const model = require('./model');
+const model = require('./../model');
 
 exports.save = function (name, data) {
     const Model = model.getAggregation(name);

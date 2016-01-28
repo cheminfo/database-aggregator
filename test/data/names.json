@@ -1,450 +1,506 @@
 [
   {
     "commonID": "2925038",
-    "_id": "1",
     "data": {
       "name": "tert-Butyldimethylamine"
     },
-    "sequentialID": 1
+    "sequentialID": 1,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 2
   },
   {
     "commonID": "2926713",
-    "_id": "7",
     "data": {
       "name": "3,3-Dimethylbutylamine"
     },
-    "sequentialID": 7
+    "sequentialID": 7,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 8
   },
   {
     "commonID": "5033827",
-    "_id": "13",
     "data": {
       "name": "N,N-dimethylbutan-2-amine"
     },
-    "sequentialID": 13
+    "sequentialID": 13,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 14
   },
   {
     "commonID": "5033827",
-    "_id": "14",
     "data": {
       "name": "N,N-dimethylbutan-2-amine"
     },
-    "sequentialID": 14
+    "sequentialID": 14,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 15
   },
   {
     "commonID": "5033827",
-    "_id": "15",
     "data": {
       "name": "dimethyl(sec-butyl)amine"
     },
-    "sequentialID": 15
+    "sequentialID": 15,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 16
   },
   {
     "commonID": "9682820",
-    "_id": "17",
     "data": {
       "name": "1-Amino-2-methylpentane"
     },
-    "sequentialID": 17
+    "sequentialID": 17,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 18
   },
   {
     "commonID": "9682820",
-    "_id": "18",
     "data": {
       "name": "1-Pentanamine, 2-methyl-"
     },
-    "sequentialID": 18
+    "sequentialID": 18,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 19
   },
   {
     "commonID": "9682820",
-    "_id": "19",
     "data": {
       "name": "2-Methyl-1-pentylamine"
     },
-    "sequentialID": 19
+    "sequentialID": 19,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 20
   },
   {
     "commonID": "9682820",
-    "_id": "20",
     "data": {
       "name": "2-Methylamylamine"
     },
-    "sequentialID": 20
+    "sequentialID": 20,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 21
   },
   {
     "commonID": "9682820",
-    "_id": "21",
     "data": {
       "name": "2-Methylpentylamine"
     },
-    "sequentialID": 21
+    "sequentialID": 21,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 22
   },
   {
     "commonID": "9682820",
-    "_id": "22",
     "data": {
       "name": "Nsc163973"
     },
-    "sequentialID": 22
+    "sequentialID": 22,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 23
   },
   {
     "commonID": "9682820",
-    "_id": "23",
     "data": {
       "name": "Pentylamine, 2-methyl-"
     },
-    "sequentialID": 23
+    "sequentialID": 23,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 24
   },
   {
     "commonID": "9736385",
-    "_id": "29",
     "data": {
       "name": "1-Propanamine, N,N,2-trimethyl-"
     },
-    "sequentialID": 29
+    "sequentialID": 29,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 30
   },
   {
     "commonID": "9736385",
-    "_id": "30",
     "data": {
       "name": "Einecs 230-639-2"
     },
-    "sequentialID": 30
+    "sequentialID": 30,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 31
   },
   {
     "commonID": "9736385",
-    "_id": "31",
     "data": {
       "name": "N,N-Dimethylisobutylamine"
     },
-    "sequentialID": 31
+    "sequentialID": 31,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 32
   },
   {
     "commonID": "9742097",
-    "_id": "37",
     "data": {
       "name": "3-Aminohexane"
     },
-    "sequentialID": 37
+    "sequentialID": 37,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 38
   },
   {
     "commonID": "9744414",
-    "_id": "43",
     "data": {
       "name": "Einecs 244-688-2"
     },
-    "sequentialID": 43
+    "sequentialID": 43,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 44
   },
   {
     "commonID": "9744414",
-    "_id": "44",
     "data": {
       "name": "N-Isopropylpropylamine"
     },
-    "sequentialID": 44
+    "sequentialID": 44,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 45
   },
   {
     "commonID": "9744654",
-    "_id": "50",
     "data": {
       "name": "2-Butanamine, N-ethyl-"
     },
-    "sequentialID": 50
+    "sequentialID": 50,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 51
   },
   {
     "commonID": "9744654",
-    "_id": "51",
     "data": {
       "name": "Einecs 244-159-6"
     },
-    "sequentialID": 51
+    "sequentialID": 51,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 52
   },
   {
     "commonID": "9744654",
-    "_id": "52",
     "data": {
       "name": "N-Ethyl-1-methylpropylamine"
     },
-    "sequentialID": 52
+    "sequentialID": 52,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 53
   },
   {
     "commonID": "9890062",
-    "_id": "62",
     "data": {
       "name": "1,2-Dimethylbutylamine"
     },
-    "sequentialID": 62
+    "sequentialID": 62,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 63
   },
   {
     "commonID": "9890062",
-    "_id": "63",
     "data": {
       "name": "Einecs 252-544-5"
     },
-    "sequentialID": 63
+    "sequentialID": 63,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 64
   },
   {
     "commonID": "13734173",
-    "_id": "69",
     "data": {
       "name": "N-Methylisoamylamine"
     },
-    "sequentialID": 69
+    "sequentialID": 69,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 70
   },
   {
     "commonID": "17515344",
-    "_id": "79",
     "data": {
       "name": "N-Methylpentane-2-amine"
     },
-    "sequentialID": 79
+    "sequentialID": 79,
+    "date": "2016-01-28T10:36:36.204Z",
+    "_id": 80
   },
   {
     "commonID": "17515360",
-    "_id": "89",
     "data": {
       "name": "(S)-3,3-Dimethyl-2-butylamine"
     },
-    "sequentialID": 89
+    "sequentialID": 89,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 90
   },
   {
     "commonID": "17524220",
-    "_id": "99",
     "data": {
       "name": "(R)-3,3-Dimethyl-2-butylamine"
     },
-    "sequentialID": 99
+    "sequentialID": 99,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 100
   },
   {
     "commonID": "17524691",
-    "_id": "109",
     "data": {
       "name": "(S)-2-Aminohexane"
     },
-    "sequentialID": 109
+    "sequentialID": 109,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 110
   },
   {
     "commonID": "17524747",
-    "_id": "119",
     "data": {
       "name": "REF DUPL: (S)-2-Aminohexane"
     },
-    "sequentialID": 119
+    "sequentialID": 119,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 120
   },
   {
     "commonID": "17540576",
-    "_id": "129",
     "data": {
       "name": "Hexylamine-15n"
     },
-    "sequentialID": 129
+    "sequentialID": 129,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 130
   },
   {
     "commonID": "17555206",
-    "_id": "139",
     "data": {
       "name": "Triethylammonium cation"
     },
-    "sequentialID": 139
+    "sequentialID": 139,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 140
   },
   {
     "commonID": "2907915",
-    "_id": "141",
     "data": {
       "name": "2-Ethylbutylamine"
     },
-    "sequentialID": 141
+    "sequentialID": 141,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 142
   },
   {
     "commonID": "2907915",
-    "_id": "142",
     "data": {
       "name": "2-Ethylbutylamin"
     },
-    "sequentialID": 142
+    "sequentialID": 142,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 143
   },
   {
     "commonID": "2907915",
-    "_id": "143",
     "data": {
       "name": "3-(Aminomethyl)-pentan"
     },
-    "sequentialID": 143
+    "sequentialID": 143,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 144
   },
   {
     "commonID": "2911670",
-    "_id": "149",
     "data": {
       "name": "Diisopropylamine"
     },
-    "sequentialID": 149
+    "sequentialID": 149,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 150
   },
   {
     "commonID": "2911670",
-    "_id": "150",
     "data": {
       "name": "Diisopropylamin"
     },
-    "sequentialID": 150
+    "sequentialID": 150,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 151
   },
   {
     "commonID": "2911670",
-    "_id": "151",
     "data": {
       "name": "(N-(1-Methylethyl)-2)propanamine"
     },
-    "sequentialID": 151
+    "sequentialID": 151,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 152
   },
   {
     "commonID": "2913321",
-    "_id": "157",
     "data": {
       "name": "Dipropylamine"
     },
-    "sequentialID": 157
+    "sequentialID": 157,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 158
   },
   {
     "commonID": "2915338",
-    "_id": "163",
     "data": {
       "name": "Triethylamine"
     },
-    "sequentialID": 163
+    "sequentialID": 163,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 164
   },
   {
     "commonID": "2915338",
-    "_id": "164",
     "data": {
       "name": "TETN"
     },
-    "sequentialID": 164
+    "sequentialID": 164,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 165
   },
   {
     "commonID": "2917517",
-    "_id": "170",
     "data": {
       "name": "Hexylamine"
     },
-    "sequentialID": 170
+    "sequentialID": 170,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 171
   },
   {
     "commonID": "9767152",
-    "_id": "176",
     "data": {
       "name": "Einecs 246-966-9"
     },
-    "sequentialID": 176
+    "sequentialID": 176,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 177
   },
   {
     "commonID": "9767152",
-    "_id": "177",
     "data": {
       "name": "N-Methylpentylamine"
     },
-    "sequentialID": 177
+    "sequentialID": 177,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 178
   },
   {
     "commonID": "10034719",
-    "_id": "183",
     "data": {
       "name": "2-Aminohexane"
     },
-    "sequentialID": 183
+    "sequentialID": 183,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 184
   },
   {
     "commonID": "10034719",
-    "_id": "184",
     "data": {
       "name": "2-Hexylamine"
     },
-    "sequentialID": 184
+    "sequentialID": 184,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 185
   },
   {
     "commonID": "10034719",
-    "_id": "185",
     "data": {
       "name": "1-Methylpentylamine"
     },
-    "sequentialID": 185
+    "sequentialID": 185,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 186
   },
   {
     "commonID": "10034719",
-    "_id": "186",
     "data": {
       "name": "Pentylamine, 1-methyl-"
     },
-    "sequentialID": 186
+    "sequentialID": 186,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 187
   },
   {
     "commonID": "10034719",
-    "_id": "187",
     "data": {
       "name": "2-Hexanamine"
     },
-    "sequentialID": 187
+    "sequentialID": 187,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 188
   },
   {
     "commonID": "2912269",
-    "_id": "189",
     "data": {
       "name": "1,3-Dimethylbutylamine"
     },
-    "sequentialID": 189
+    "sequentialID": 189,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 190
   },
   {
     "commonID": "2912269",
-    "_id": "190",
     "data": {
       "name": "4-Methyl-2-pentylamin"
     },
-    "sequentialID": 190
+    "sequentialID": 190,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 191
   },
   {
     "commonID": "2912269",
-    "_id": "191",
     "data": {
       "name": "1,3-Dimethylbutylamin"
     },
-    "sequentialID": 191
+    "sequentialID": 191,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 192
   },
   {
     "commonID": "2912272",
-    "_id": "197",
     "data": {
       "name": "2-Amino-3,3-dimethylbutane"
     },
-    "sequentialID": 197
+    "sequentialID": 197,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 198
   },
   {
     "commonID": "2912272",
-    "_id": "198",
     "data": {
       "name": "2-Amino-3,3-dimethylbutan"
     },
-    "sequentialID": 198
+    "sequentialID": 198,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 199
   },
   {
     "commonID": "2915364",
-    "_id": "204",
     "data": {
       "name": "N-Ethyl-n-butylamine"
     },
-    "sequentialID": 204
+    "sequentialID": 204,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 205
   },
   {
     "commonID": "2919336",
-    "_id": "210",
     "data": {
       "name": "N,N-Dimethylaminobutane"
     },
-    "sequentialID": 210
+    "sequentialID": 210,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 211
   },
   {
     "commonID": "17552062",
-    "_id": "216",
     "data": {
       "name": "N-tert-Butylethylamine"
     },
-    "sequentialID": 216
+    "sequentialID": 216,
+    "date": "2016-01-28T10:36:36.205Z",
+    "_id": 217
   }
 ]

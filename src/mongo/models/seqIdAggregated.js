@@ -1,9 +1,7 @@
 'use strict';
 
-const mongoose = require('mongoose');
-
-const schema = require('../schema/seqid');
-const Model = mongoose.model('seqidTracks', schema);
+const model = require('./../model');
+const Model = model.getSeqIdAggregated();
 
 exports.getLastSeqId = function (name) {
     return Model.findById(name).exec().then(result => result ? result.seq : 0);

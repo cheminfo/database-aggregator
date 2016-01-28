@@ -1,7 +1,7 @@
 'use strict';
 
-const connection = require('./connection');
-const model = require('./model');
+const connection = require('./../connection');
+const model = require('./../model');
 
 exports.getCommonIds = function (name, fromSeq) {
     return connection().then(() => {
