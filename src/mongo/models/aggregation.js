@@ -17,7 +17,7 @@ exports.getLatestSeqId = function(name) {
     return Model.findOne({}).sort({seqid: 'desc'}).exec();
 };
 
-exports.remainingFromSeqId = function(name, fromSeqId) {
+exports.countFromSeqId = function(name, fromSeqId) {
     const Model = model.getAggregation(name);
     return Model.count({seqid: {$gt: fromSeqId}});
 };

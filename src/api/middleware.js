@@ -33,10 +33,10 @@ exports.getInfo = function * (next) {
 
     this.body = {
         data: {
-            remaining: yield aggregation.remainingFromSeqId(db, since),
+            remaining: yield aggregation.countFromSeqId(db, since),
             total: yield aggregation.count(db)
         }
     };
     this.status = 200;
     yield next;
-}
+};
