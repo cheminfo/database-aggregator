@@ -72,7 +72,7 @@ const doDateid = Promise.coroutine(function* (options) {
             delete row.PID;
             delete row.MODDATE;
             doc.data = row;
-            doc.sequentialID = yield seqid.getNextSequenceID('entry_' + collection);
+            doc.sequentialID = yield seqid.getNextSequenceID('source_' + collection);
             yield doc.save();
         }
     } while (rows.length > 0);

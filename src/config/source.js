@@ -6,21 +6,21 @@ const fs = require('fs');
 const path = require('path');
 
 
-module.exports = {copy: {}};
-const dbConfig = module.exports.copy;
+module.exports = {source: {}};
+const dbConfig = module.exports.source;
 const homeDir = require('./home').config.homeDir;
 
 if (!homeDir) {
     return;
 }
 
-const copyDir = `${homeDir}/copy`;
+const sourceDir = `${homeDir}/source`;
 
 try {
-    const databases = fs.readdirSync(copyDir);
+    const databases = fs.readdirSync(sourceDir);
     for (const database of databases) {
         let databaseConfig;
-        let configPath = path.resolve(copyDir, database);
+        let configPath = path.resolve(sourceDir, database);
         let parsedConfigPath = path.parse(configPath);
         if (parsedConfigPath.ext !== '.js') {
             continue;
