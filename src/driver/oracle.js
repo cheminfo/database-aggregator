@@ -67,7 +67,7 @@ const doDateid = Promise.coroutine(function* (options) {
                 doc._id = row.ID;
                 doc.commonID = row.PID;
             }
-            doc.date = row.MODDATE;
+            doc.date = row.MODDATE || new Date(0);
             delete row.ID;
             delete row.PID;
             delete row.MODDATE;
