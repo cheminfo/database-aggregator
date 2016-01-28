@@ -6,11 +6,11 @@ const defaultConfig = require('./default');
 const homeConfig = require('./home').config;
 const envConfig = require('./env');
 const aggregationConfig = require('./aggregation');
+const sourceConfig = require('./source');
 
 exports.getConfig = function (customConfig) {
     debug.trace('get config');
-    console.log(Object.assign({}, defaultConfig, homeConfig, aggregationConfig, envConfig, customConfig))
-    return Object.assign({}, defaultConfig, homeConfig, aggregationConfig, envConfig, customConfig);
+    return Object.assign({}, defaultConfig, homeConfig, aggregationConfig, sourceConfig, envConfig, customConfig);
 };
 
 exports.globalConfig = exports.getConfig();
