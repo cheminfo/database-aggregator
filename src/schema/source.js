@@ -9,10 +9,16 @@ module.exports = new Schema({
     },
     commonID:  {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     sequentialID: {
         type: Number,
+        required: true,
+        index: true
+    },
+    date: {
+        type: Date,
         required: true
     },
     data: Object
