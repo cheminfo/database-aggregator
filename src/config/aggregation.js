@@ -2,22 +2,21 @@
 
 'use strict';
 
-const fs = require('fs');
+const find= require('find');
 const path = require('path');
 
 
 module.exports = {aggregation: {}};
 const dbConfig = module.exports.aggregation;
-const homeDir = require('./home').config.homeDir;
-console.log(homeDir)
+const homeDir = require('./home').homeDir;
 if (!homeDir) {
     return;
 }
 
-const aggregationDir = `${homeDir}/aggregation`;
+const aggregationDir = path.join(homeDir, 'aggregation');
 
 try {
-    const databases = fs.readdirSync(aggregationDir);
+    const databases = find.fileSync(/\.js$/, aggregationDir);
     for (const database of databases) {
         let databaseConfig;
         let configPath = path.resolve(aggregationDir, database);
@@ -39,6 +38,4 @@ try {
 
 
     }
-} catch (e) {
-    console.error(e);
-}
+} catch (e) {}

@@ -5,22 +5,23 @@ const path = require('path');
 
 const debug = require('../util/debug')('config:home');
 
-const mainConfigPath =
-    process.env.DATABASE_AGGREGATOR_CONFIG ||
-    path.resolve(require('os').homedir(), '.database-aggregator-config');
+const homeDir = process.env.DATABASE_AGGREGATOR_HOME_DIR;
 
-debug(`main config path is ${mainConfigPath}`);
+if (!homeDir) {
+    debug('no home dir');
+    exports.config = {};
+    return;
+}
 
-exports.CONFIG_FILE = mainConfigPath;
+debug(`home dir is ${homeDir}`);
+
+exports.homeDir = homeDir;
 exports.config = getHomeConfig();
 
 function getHomeConfig() {
     try {
-        const config = JSON.parse(fs.readFileSync(mainConfigPath, 'utf8'));
-        if (config.homeDir) {
-            config.homeDir = path.resolve(mainConfigPath, '..', config.homeDir);
-            debug(`homeDir is ${config.homeDir}`);
-        }
+        const config = JSON.parse(fs.readFileSync(path.resolve(homeDir, 'config.js'), 'utf8'));
+        debug('loaded main config file');
         return config;
     } catch (e) {
         if (e.code === 'ENOENT') {
@@ -31,17 +32,3 @@ function getHomeConfig() {
         return {};
     }
 }
-
-exports.get = function (key) {
-    return exports.config[key];
-};
-
-exports.set = function (key, value) {
-    if (!key) {
-        throw new Error('key is mandatory');
-    }
-    const currentConfig = getHomeConfig();
-    currentConfig[key] = value;
-    fs.writeFileSync(mainConfigPath, JSON.stringify(currentConfig));
-    exports.config = currentConfig;
-};
