@@ -1,6 +1,7 @@
 'use strict';
 
 const model = require('../mongo/model');
+const aggregation = require('../mongo/models/aggregation');
 
 exports.getData = function* (next) {
     console.log('request');
@@ -24,3 +25,18 @@ exports.getData = function* (next) {
 
     yield next;
 };
+
+exports.getInfo = function * (next) {
+    const since = +this.query.since || 0;
+    const db = this.params.name;
+
+
+    this.body = {
+        data: {
+            remaining: yield aggregation.remainingFromSeqId(db, since),
+            total: yield aggregation.count(db)
+        }
+    };
+    this.status = 200;
+    yield next;
+}

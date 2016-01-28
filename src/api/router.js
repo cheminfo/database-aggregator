@@ -8,6 +8,6 @@ const router = new Router();
 
 router.get('/db/:name', middleware.getData);
 
-//router.get('/db/:name/info', middleware.getInfo);
+router.get('/db/:name/info', middleware.getInfo);
 
 module.exports = router;
