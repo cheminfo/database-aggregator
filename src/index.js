@@ -50,6 +50,7 @@ module.exports = {
                             obj.action = 'update';
                             obj.date = Date.now();
                             obj.value = aggregate(data, conf.sources);
+                            if(obj.value === null) return;
                             return seqId.getNextSequenceID(aggregateDB).then(seqid => {
                                 obj.seqid = seqid;
                                 return aggregation.save(aggregateDB, obj);
@@ -76,10 +77,17 @@ function setFromCommonIds(commonIds) {
 
 function aggregate(data, filter) {
     var result = {};
+    var accept = true;
     for (var key in filter) {
         if (data[key]) {
-            filter[key].call(null, data[key], result);
+            accept = filter[key].call(null, data[key], result);
+            if(accept === false) {
+                break;
+            }
         }
+    }
+    if(!accept) {
+        return null;
     }
     return result;
 }
