@@ -3,7 +3,21 @@
 const model = require('./../model');
 
 exports.save = function (name, data) {
-    const Model = model.getAggregation(name);
     let m = new Model(data);
     return m.save();
+};
+
+exports.findAll = function(name) {
+    const Model = model.getAggregation(name);
+    return Model.find({});
+};
+
+exports.getLatestSeqId = function(name) {
+    const Model = model.getAggregation(name);
+    return Model.findOne({}).sort({seqid: 'desc'}).exec();
+};
+
+exports.remainingFromSeqId = function(name, fromSeqId) {
+    const Model = model.getAggregation(name);
+    return Model.query({seqid: {$gt: fromSeqId}}).count();
 };

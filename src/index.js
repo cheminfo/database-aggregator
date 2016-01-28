@@ -50,6 +50,7 @@ module.exports = {
                             obj.action = 'update';
                             obj.date = Date.now();
                             obj.value = aggregate(data, conf.sources);
+
                             if(obj.value === null) return;
                             return seqId.getNextSequenceID(aggregateDB).then(seqid => {
                                 obj.seqid = seqid;
@@ -86,7 +87,7 @@ function aggregate(data, filter) {
             }
         }
     }
-    if(!accept) {
+    if(accept === false) {
         return null;
     }
     return result;
