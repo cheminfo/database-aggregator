@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 module.exports = new Schema({
     seqid:  {
         type: Number,
-        required: true
+        required: true,
+        index: true
     },
     value: {
         type: Object,
@@ -20,6 +21,7 @@ module.exports = new Schema({
     },
     id: {
         type: String,
-        required: true
+        required: true,
+        index: true
     }
 });

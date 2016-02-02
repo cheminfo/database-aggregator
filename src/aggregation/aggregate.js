@@ -18,6 +18,7 @@ module.exports = function (aggregateDB) {
 
     return seqIdTrack.getLastSeqIds(aggregateDB)
         .then(seqIds => {
+            debug.trace(`last seq ids ${JSON.stringify(seqIds)}`);
             seqIds = seqIds || {};
             // Get commonID of entries that have seqid > seqId
             return Promise.all(sourceNames.map(sourceName => {
@@ -31,6 +32,7 @@ module.exports = function (aggregateDB) {
         .then(setFromCommonIds)
         .then(commonIds => {
             commonIds = Array.from(commonIds);
+            debug(`found commonIds that changed, ${commonIds}`);
             var prom = Promise.resolve();
             for (let i = 0; i < commonIds.length; i++) {
                 let commonId = commonIds[i];
