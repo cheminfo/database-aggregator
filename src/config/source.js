@@ -25,9 +25,10 @@ try {
 
         try {
             const cfg = require(configPath);
-            if (!cfg.disabled) {
-                databaseConfig = cfg;
+            if (cfg.disabled) {
+                continue;
             }
+            databaseConfig = cfg;
         } catch (e) {
             console.error('could not open source config', configPath)
             continue;
