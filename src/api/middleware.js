@@ -11,7 +11,7 @@ exports.getData = function* (next) {
     const Model = model.getAggregation(db);
     const d = yield Model.find({seqid: {$gt: since}})
         .sort({seqid: 'asc'})
-        .select({seqid: 1, value: 1})
+        .select({_id: -1, __v: -1})
         .limit(limit).exec();
 
     var body = {
