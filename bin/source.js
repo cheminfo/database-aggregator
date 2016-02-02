@@ -25,6 +25,10 @@ const config = require('../src/config/config').globalConfig;
 const source = config.source;
 const sources = Object.keys(source);
 
+if (sources.length === 0) {
+    console.log('no source found in config');
+}
+
 Promise.coroutine(function* () {
     for (const collection of sources) {
         const options = source[collection];
