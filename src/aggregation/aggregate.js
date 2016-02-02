@@ -6,6 +6,7 @@ const aggregation = require('./../mongo/models/aggregation');
 const source = require('./../mongo/models/source');
 const debug = require('./../util/debug')('aggregation');
 const seqId = require('./../mongo/models/seqIdCount');
+const connection = require('../mongo/connection');
 
 module.exports = function (aggregateDB) {
     debug.trace('get common ids');
@@ -16,54 +17,56 @@ module.exports = function (aggregateDB) {
     var sourceNames = Object.keys(conf.sources);
     var maxSeqIds = {};
 
-    return seqIdTrack.getLastSeqIds(aggregateDB)
-        .then(seqIds => {
-            debug.trace(`last seq ids ${JSON.stringify(seqIds)}`);
-            seqIds = seqIds || {};
-            // Get commonID of entries that have seqid > seqId
-            return Promise.all(sourceNames.map(sourceName => {
-                return source.getCommonIds(sourceName, seqIds[sourceName] || 0)
-                    .then(commonIds => {
-                        maxSeqIds[sourceName] = commonIds[commonIds.length - 1].sequentialID;
-                        return commonIds.map(commonId => commonId.commonID);
-                    });
-            }));
-        })
-        .then(setFromCommonIds)
-        .then(commonIds => {
-            commonIds = Array.from(commonIds);
-            debug(`found commonIds that changed, ${commonIds}`);
-            var prom = Promise.resolve();
-            for (let i = 0; i < commonIds.length; i++) {
-                let commonId = commonIds[i];
-                prom = prom.then(() => {
-                    return Promise.all(sourceNames.map(sourceName => {
-                        return source.getByCommonId(sourceName, commonId);
-                    })).then(data => {
-                        var obj = {};
-                        for (let j = 0; j < data.length; j++) {
-                            obj[sourceNames[j]] = data[j];
-                        }
-                        return obj;
-                    }).then(data => {
-                        let obj = {};
-                        obj.id = commonId;
-                        obj.action = 'update';
-                        obj.date = Date.now();
-                        obj.value = aggregate(data, conf.sources);
+    return connection().then(() => {
+        return seqIdTrack.getLastSeqIds(aggregateDB)
+            .then(seqIds => {
+                debug.trace(`last seq ids ${JSON.stringify(seqIds)}`);
+                seqIds = seqIds || {};
+                // Get commonID of entries that have seqid > seqId
+                return Promise.all(sourceNames.map(sourceName => {
+                    return source.getCommonIds(sourceName, seqIds[sourceName] || 0)
+                        .then(commonIds => {
+                            maxSeqIds[sourceName] = commonIds[commonIds.length - 1].sequentialID;
+                            return commonIds.map(commonId => commonId.commonID);
+                        });
+                }));
+            })
+            .then(setFromCommonIds)
+            .then(commonIds => {
+                commonIds = Array.from(commonIds);
+                debug(`found commonIds that changed, ${commonIds}`);
+                var prom = Promise.resolve();
+                for (let i = 0; i < commonIds.length; i++) {
+                    let commonId = commonIds[i];
+                    prom = prom.then(() => {
+                        return Promise.all(sourceNames.map(sourceName => {
+                            return source.getByCommonId(sourceName, commonId);
+                        })).then(data => {
+                            var obj = {};
+                            for (let j = 0; j < data.length; j++) {
+                                obj[sourceNames[j]] = data[j];
+                            }
+                            return obj;
+                        }).then(data => {
+                            let obj = {};
+                            obj.id = commonId;
+                            obj.action = 'update';
+                            obj.date = Date.now();
+                            obj.value = aggregate(data, conf.sources);
 
-                        if (obj.value === null) return;
-                        return seqId.getNextSequenceID(aggregateDB).then(seqid => {
-                            obj.seqid = seqid;
-                            return aggregation.save(aggregateDB, obj);
+                            if (obj.value === null) return;
+                            return seqId.getNextSequenceID(aggregateDB).then(seqid => {
+                                obj.seqid = seqid;
+                                return aggregation.save(aggregateDB, obj);
+                            });
                         });
                     });
-                });
-            }
-            return prom;
-        }).then(() => {
-            return seqIdTrack.setSeqIds(aggregateDB, maxSeqIds);
-        })
+                }
+                return prom;
+            }).then(() => {
+                return seqIdTrack.setSeqIds(aggregateDB, maxSeqIds);
+            })
+    });
 };
 
 function setFromCommonIds(commonIds) {
