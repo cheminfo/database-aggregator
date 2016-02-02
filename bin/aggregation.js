@@ -2,23 +2,17 @@
 
 const Promise = require('bluebird');
 const pid = require('../src/util/pid');
-
 pid.start();
 
-const copy = require('../src/source/copy');
+const aggregate = require('../src/aggregation/aggregate');
 const config = require('../src/config/config').globalConfig;
 
-const source = config.source;
-const sources = Object.keys(source);
-
-if (sources.length === 0) {
-    console.log('no source found in config');
-}
+const aggregation = config.aggregation;
+const aggregations = Object.keys(aggregation);
 
 Promise.coroutine(function* () {
-    for (const collection of sources) {
-        const options = source[collection];
-        yield copy.copy(Object.assign({collection}, options));
+    for (const collection of aggregations) {
+        yield aggregate(collection);
     }
 })().then(function () {
     console.log('finished');
@@ -27,3 +21,6 @@ Promise.coroutine(function* () {
     console.error(e);
     return 1;
 }).then(pid.stop);
+
+
+
