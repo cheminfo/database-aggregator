@@ -53,8 +53,13 @@ const doDateid = Promise.coroutine(function* (options) {
 
     // This clause is very important for incremental updates
     query = `${query}\nORDER BY moddate ASC`;
+    
+    debug(query);
 
     const resultSet = yield oracleConn.execute(query);
+    
+    debug('result set ready');
+    
     let rows;
     do {
         rows = yield resultSet.getRows(100);
