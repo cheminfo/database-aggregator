@@ -20,7 +20,7 @@ exports.config = getHomeConfig();
 
 function getHomeConfig() {
     try {
-        const config = JSON.parse(fs.readFileSync(path.resolve(homeDir, 'config.js'), 'utf8'));
+        const config = require(path.resolve(homeDir, 'config.js'), 'utf8');
         debug('loaded main config file');
         return config;
     } catch (e) {
