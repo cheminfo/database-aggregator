@@ -15,8 +15,8 @@ exports.getData = function* (next) {
         .limit(limit).exec();
 
     var body = {
-        lastSeqId: d.length ? d[d.length-1].seqid : undefined,
-        data: d.map(d => d.value)
+        lastSeqId: d.length ? d[d.length-1].seqid : 0,
+        data: d
     };
 
     this.body = body;
