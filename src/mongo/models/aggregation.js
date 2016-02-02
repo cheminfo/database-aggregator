@@ -18,6 +18,11 @@ exports.getLatestSeqId = function(name) {
     return Model.findOne({}).sort({seqid: 'desc'}).exec();
 };
 
+exports.findById = function (name, id) {
+    const Model = model.getAggregation(name);
+    return Model.findOne({id: id}).exec();
+};
+
 exports.countFromSeqId = function(name, fromSeqId) {
     const Model = model.getAggregation(name);
     return Model.count({seqid: {$gt: fromSeqId}});

@@ -1,5 +1,6 @@
 'use strict';
 
+const Promise = require('bluebird');
 const seqIdTrack = require('./../mongo/models/seqIdAggregated');
 const config = require('./../config/config').globalConfig;
 const aggregation = require('./../mongo/models/aggregation');
@@ -7,6 +8,7 @@ const source = require('./../mongo/models/source');
 const debug = require('./../util/debug')('aggregation');
 const seqId = require('./../mongo/models/seqIdCount');
 const connection = require('../mongo/connection');
+const isequal = require('lodash.isequal');
 
 module.exports = function (aggregateDB) {
     debug.trace('get common ids');
@@ -16,6 +18,7 @@ module.exports = function (aggregateDB) {
 
     var sourceNames = Object.keys(conf.sources);
     var maxSeqIds = {};
+
 
     return connection().then(() => {
         return seqIdTrack.getLastSeqIds(aggregateDB)
@@ -54,10 +57,18 @@ module.exports = function (aggregateDB) {
                             obj.date = Date.now();
                             obj.value = aggregate(data, conf.sources);
 
+
                             if (obj.value === null) return;
-                            return seqId.getNextSequenceID(aggregateDB).then(seqid => {
-                                obj.seqid = seqid;
-                                return aggregation.save(aggregateDB, obj);
+                            return aggregation.findById(aggregateDB, commonId).then(oldEntry => {
+                                oldEntry = oldEntry || {};
+                                if(isequal(obj.value, oldEntry.value)) {
+                                    debug.debug(`Not saving ${commonId} because has not changed`);
+                                    return;
+                                }
+                                return seqId.getNextSequenceID(aggregateDB).then(seqid => {
+                                    obj.seqid = seqid;
+                                    return aggregation.save(aggregateDB, obj);
+                                });
                             });
                         });
                     });
