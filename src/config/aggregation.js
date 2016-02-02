@@ -27,12 +27,7 @@ try {
             continue;
         }
 
-        try {
-            databaseConfig = require(configPath);
-        } catch (e) {
-            // database config is not mandatory
-            continue;
-        }
+        databaseConfig = require(configPath);
         if (!databaseConfig.sources) {
             continue;
         }
