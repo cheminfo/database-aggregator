@@ -24,7 +24,10 @@ try {
         }
 
         try {
-            databaseConfig = require(configPath);
+            const cfg = require(configPath);
+            if (!cfg.disabled) {
+                databaseConfig = cfg;
+            }
         } catch (e) {
             // database config is not mandatory
             continue;
