@@ -40,7 +40,7 @@ module.exports = function (aggregateDB) {
                     })).then(data => {
                         var obj = {};
                         for (let j = 0; j < data.length; j++) {
-                            obj[sourceNames[j]] = data[j].map(d => d.data);
+                            obj[sourceNames[j]] = data[j];
                         }
                         return obj;
                     }).then(data => {
@@ -79,7 +79,13 @@ function aggregate(data, filter) {
     var accept = true;
     for (var key in filter) {
         if (data[key]) {
-            accept = filter[key].call(null, data[key], result);
+            accept = filter[key].call(
+                null,
+                data[key].map(d => d.data),
+                result,
+                data[key].length ? data[key][0].commonID : null,
+                data[key].map(d => d._id));
+
             if (accept === false) {
                 break;
             }
