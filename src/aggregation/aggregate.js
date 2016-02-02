@@ -22,10 +22,8 @@ module.exports = function (aggregateDB) {
 
     return Promise.coroutine(function * () {
         yield connection();
-        console.log('connected');
         let seqIds = yield seqIdTrack.getLastSeqIds(aggregateDB);
         seqIds = seqIds || {};
-        console.log(seqIds)
         let commonIds = [];
         for(let i=0; i<sourceNames.length ;i++) {
             let sourceName = sourceNames[i];
@@ -36,7 +34,6 @@ module.exports = function (aggregateDB) {
         }
 
         commonIds = new Set(commonIds);
-        console.log(commonIds);
 
         for(let commonId of commonIds) {
             let data = {};
@@ -65,80 +62,7 @@ module.exports = function (aggregateDB) {
             yield aggregation.save(aggregateDB, obj);
         }
     })();
-
-
-    //return connection().then(() => {
-    //    return seqIdTrack.getLastSeqIds(aggregateDB)
-    //        .then(seqIds => {
-    //            debug.trace(`last seq ids ${JSON.stringify(seqIds)}`);
-    //            seqIds = seqIds || {};
-    //            // Get commonID of entries that have seqid > seqId
-    //            return Promise.all(sourceNames.map(sourceName => {
-    //                return source.getCommonIds(sourceName, seqIds[sourceName] || 0)
-    //                    .then(commonIds => {
-    //                        maxSeqIds[sourceName] = commonIds[commonIds.length - 1].sequentialID;
-    //                        return commonIds.map(commonId => commonId.commonID);
-    //                    });
-    //            }));
-    //        })
-    //        .then(setFromCommonIds)
-    //        .then(commonIds => {
-    //            commonIds = Array.from(commonIds);
-    //            debug(`found commonIds that changed, ${commonIds}`);
-    //            var prom = Promise.resolve();
-    //            for (let i = 0; i < commonIds.length; i++) {
-    //                let commonId = commonIds[i];
-    //                prom = prom.then(() => {
-    //                    return Promise.all(sourceNames.map(sourceName => {
-    //                        return source.getByCommonId(sourceName, commonId);
-    //                    })).then(data => {
-    //                        var obj = {};
-    //                        for (let j = 0; j < data.length; j++) {
-    //                            obj[sourceNames[j]] = data[j];
-    //                        }
-    //                        return obj;
-    //                    }).then(data => {
-    //                        let obj = {};
-    //                        obj.id = commonId;
-    //                        obj._id = commonId;
-    //                        obj.action = 'update';
-    //                        obj.date = Date.now();
-    //                        obj.value = aggregate(data, conf.sources);
-    //
-    //
-    //                        if (obj.value === null) return;
-    //                        return aggregation.findById(aggregateDB, commonId).then(oldEntry => {
-    //                            oldEntry = oldEntry || {};
-    //                            console.log('old entry', oldEntry.value);
-    //                            console.log('new entry', obj.value);
-    //                            if(isequal(obj.value, oldEntry.value)) {
-    //                                debug.debug(`Not saving ${aggregateDB}:${commonId} because has not changed`);
-    //                                return;
-    //                            }
-    //                            return seqId.getNextSequenceID('aggregation_' + aggregateDB).then(seqid => {
-    //                                obj.seqid = seqid;
-    //                                return aggregation.save(aggregateDB, obj);
-    //                            });
-    //                        });
-    //                    });
-    //                });
-    //            }
-    //            return prom;
-    //        }).then(() => {
-    //            return seqIdTrack.setSeqIds(aggregateDB, maxSeqIds);
-    //        })
-    //});
 };
-
-function setFromCommonIds(commonIds) {
-    var s = new Set();
-    for (let i = 0; i < commonIds.length; i++) {
-        for (let j = 0; j < commonIds[i].length; j++) {
-            s.add(commonIds[i][j]);
-        }
-    }
-    return s;
-}
 
 function aggregate(data, filter) {
     var result = {};
