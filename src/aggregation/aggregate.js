@@ -63,7 +63,7 @@ module.exports = function (aggregateDB) {
                 //console.log('old entry ' + oldEntry.id, oldEntry.value);
                 //console.log('new entry ' + obj.id, obj.value);
                 if (isequal(obj.value, oldEntry.value)) {
-                    debug.debug(`Not saving ${aggregateDB}:${commonId} because has not changed`);
+                    debug.trace(`Not saving ${aggregateDB}:${commonId} because has not changed`);
                 } else {
                     obj.seqid = yield seqId.getNextSequenceID('aggregation_' + aggregateDB);
                     yield aggregation.save(aggregateDB, obj);
