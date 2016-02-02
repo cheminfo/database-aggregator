@@ -9,7 +9,7 @@ exports.getLastSeqIds = function (name) {
 
 exports.setSeqIds = function(name, seqIds) {
 
-    return Model.findByIdAndUpdate(name, {seq: seqIds}, {new: true, upsert: true})
+    return Model.findByIdAndUpdate(name, seqIds, {new: true, upsert: true})
         .exec()
         .then(result => result.seq);
 };
