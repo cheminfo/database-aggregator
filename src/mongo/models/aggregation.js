@@ -1,11 +1,14 @@
 'use strict';
 
 const model = require('./../model');
+const debug = require('../../util/debug')('model:aggregation');
 
 exports.save = function (name, data) {
+    debug.trace(`save to ${name}: ${data.id}`);
+
     const Model = model.getAggregation(name);
-    let m = new Model(data);
-    return m.save();
+    return Model.findByIdAndUpdate(data._id, data, {new: true, upsert: true})
+        .exec()
 };
 
 exports.findAll = function(name) {
@@ -14,13 +17,14 @@ exports.findAll = function(name) {
 };
 
 exports.getLatestSeqId = function(name) {
+    debug(`get latest seq id from ${name}`);
     const Model = model.getAggregation(name);
     return Model.findOne({}).sort({seqid: 'desc'}).exec();
 };
 
 exports.findById = function (name, id) {
     const Model = model.getAggregation(name);
-    return Model.findOne({id: id}).exec();
+    return Model.findById(id).exec();
 };
 
 exports.countFromSeqId = function(name, fromSeqId) {

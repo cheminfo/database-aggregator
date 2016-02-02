@@ -2,6 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 module.exports = new Schema({
+    _id: {
+        type: String,
+        required: true,
+        unique: true,
+        index: true
+    },
     seqid:  {
         type: Number,
         required: true,
@@ -21,7 +27,6 @@ module.exports = new Schema({
     },
     id: {
         type: String,
-        required: true,
-        index: true
+        required: true
     }
 });

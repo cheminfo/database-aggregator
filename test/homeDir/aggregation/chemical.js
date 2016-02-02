@@ -11,7 +11,6 @@ module.exports = {
                 result.mf.mw=value.mw;
                 result.info={};
                 result.info.rn=value.rn;
-                result.molfile=value.molfile;
             }
         },
         prices(values, result) {
