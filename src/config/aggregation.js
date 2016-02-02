@@ -2,7 +2,7 @@
 
 'use strict';
 
-const find= require('find');
+const find = require('find');
 const path = require('path');
 const debug = require('../util/debug')('config:aggregation');
 
@@ -14,27 +14,28 @@ if (!homeDir) {
 }
 
 const aggregationDir = path.join(homeDir, 'aggregation');
-
+var databases;
 try {
 
     debug.trace('Searching aggregation configurations in ' + aggregationDir);
-    const databases = find.fileSync(/\.js$/, aggregationDir);
-    for (const database of databases) {
-        let databaseConfig;
-        let configPath = path.resolve(aggregationDir, database);
-        let parsedConfigPath = path.parse(configPath);
-        if (parsedConfigPath.ext !== '.js') {
-            continue;
-        }
-
-        databaseConfig = require(configPath);
-        if (!databaseConfig.sources) {
-            continue;
-        }
-        dbConfig[parsedConfigPath.name] = databaseConfig;
-
-
-    }
+    databases = find.fileSync(/\.js$/, aggregationDir);
 } catch (e) {
     debug.debug('No aggregation directory found');
 }
+databases = databases || [];
+
+for (const database of databases) {
+    let databaseConfig;
+    let configPath = path.resolve(aggregationDir, database);
+    let parsedConfigPath = path.parse(configPath);
+    if (parsedConfigPath.ext !== '.js') {
+        continue;
+    }
+
+    databaseConfig = require(configPath);
+    if (!databaseConfig.sources) {
+        continue;
+    }
+    dbConfig[parsedConfigPath.name] = databaseConfig;
+}
+
