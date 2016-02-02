@@ -3,12 +3,12 @@
 const model = require('./../model');
 const debug = require('../../util/debug')('model:source');
 
-exports.getCommonIds = function (name, fromSeq) {
+exports.getCommonIds = function (name, fromSeq, toSeq) {
     debug.trace(`getCommonIds for source ${name} from seq ${fromSeq}`);
     fromSeq = fromSeq || 0;
     var Model = model.getSource(name);
     return Model
-        .find({sequentialID: {$gt: fromSeq}})
+        .find({sequentialID: {$gt: fromSeq, $lte: toSeq}})
         .select({commonID: 1, sequentialID: 1})
         .sort({_id: 'asc'})
         .exec();

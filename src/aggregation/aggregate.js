@@ -9,6 +9,7 @@ const debug = require('./../util/debug')('aggregation');
 const seqId = require('./../mongo/models/seqIdCount');
 const connection = require('../mongo/connection');
 const isequal = require('lodash.isequal');
+const chunkSize = 1000;
 
 module.exports = function (aggregateDB) {
     debug.trace('get common ids');
@@ -18,49 +19,59 @@ module.exports = function (aggregateDB) {
 
     var sourceNames = Object.keys(conf.sources);
     var maxSeqIds = {};
+    var commonIdsSet;
 
 
     return Promise.coroutine(function * () {
         yield connection();
-        let seqIds = yield seqIdTrack.getLastSeqIds(aggregateDB);
-        seqIds = seqIds || {};
-        let commonIds = [];
-        for(let i=0; i<sourceNames.length ;i++) {
-            let sourceName = sourceNames[i];
-            maxSeqIds[sourceName] = yield source.getLastSeqId(sourceName);
-            let cids = yield source.getCommonIds(sourceName, seqIds[sourceName] || 0);
-            cids = cids.map(commonId => commonId.commonID);
-            commonIds = commonIds.concat(cids);
-        }
 
-        commonIds = new Set(commonIds);
+        do {
+            let seqIds = yield seqIdTrack.getLastSeqIds(aggregateDB);
+            seqIds = seqIds || {};
+            let commonIds = [];
 
-        for(let commonId of commonIds) {
-            let data = {};
-            for(let i=0; i<sourceNames.length; i++) {
+            for (let i = 0; i < sourceNames.length; i++) {
                 let sourceName = sourceNames[i];
-                data[sourceName] = yield source.getByCommonId(sourceName, commonId);
+                //maxSeqIds[sourceName] = (yield source.getLastSeqId(sourceName)).sequentialID;
+                let firstSeqId = seqIds[sourceName] || 0;
+                let lastSeqId = firstSeqId + chunkSize;
+                maxSeqIds[sourceName] = Math.min(lastSeqId, (yield source.getLastSeqId(sourceName)).sequentialID);
+                let cids = yield source.getCommonIds(sourceName, firstSeqId, lastSeqId);
+                cids = cids.map(commonId => commonId.commonID);
+                commonIds = commonIds.concat(cids);
             }
-            let obj = {};
-            obj.id = commonId;
-            obj._id = commonId;
-            obj.action = 'update';
-            obj.date = Date.now();
-            obj.value = aggregate(data, conf.sources);
 
-            if (obj.value === null) return;
+            commonIdsSet = new Set(commonIds);
 
-            let oldEntry = yield aggregation.findById(aggregateDB, commonId);
-            oldEntry = oldEntry || {};
-            //console.log('old entry ' + oldEntry.id, oldEntry.value);
-            //console.log('new entry ' + obj.id, obj.value);
-            if(isequal(obj.value, oldEntry.value)) {
-                debug.debug(`Not saving ${aggregateDB}:${commonId} because has not changed`);
-                return;
+            for (let commonId of commonIdsSet) {
+                let data = {};
+                for (let i = 0; i < sourceNames.length; i++) {
+                    let sourceName = sourceNames[i];
+                    data[sourceName] = yield source.getByCommonId(sourceName, commonId);
+                }
+                let obj = {};
+                obj.id = commonId;
+                obj._id = commonId;
+                obj.action = 'update';
+                obj.date = Date.now();
+                obj.value = aggregate(data, conf.sources);
+
+                if (obj.value === null) return;
+
+                let oldEntry = yield aggregation.findById(aggregateDB, commonId);
+                oldEntry = oldEntry || {};
+                //console.log('old entry ' + oldEntry.id, oldEntry.value);
+                //console.log('new entry ' + obj.id, obj.value);
+                if (isequal(obj.value, oldEntry.value)) {
+                    debug.debug(`Not saving ${aggregateDB}:${commonId} because has not changed`);
+                } else {
+                    obj.seqid = yield seqId.getNextSequenceID('aggregation_' + aggregateDB);
+                    yield aggregation.save(aggregateDB, obj);
+                }
+
             }
-            obj.seqid = yield seqId.getNextSequenceID('aggregation_' + aggregateDB);
-            yield aggregation.save(aggregateDB, obj);
-        }
+            yield seqIdTrack.setSeqIds(aggregateDB, maxSeqIds);
+        } while (commonIdsSet.size);
     })();
 };
 
