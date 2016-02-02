@@ -29,7 +29,7 @@ try {
                 databaseConfig = cfg;
             }
         } catch (e) {
-            // database config is not mandatory
+            console.error('could not open source config', configPath)
             continue;
         }
         if (!databaseConfig.driver) {
