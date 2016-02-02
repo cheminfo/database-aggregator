@@ -26,7 +26,7 @@ function getHomeConfig() {
         debug('loaded main config file');
         return config;
     } catch (e) {
-        if (e.code === 'ENOENT') {
+        if (e.code === 'MODULE_NOT_FOUND') {
             debug('no main config found');
         } else {
             debug.error('Error while reading and parsing config file' + '\n' + e);

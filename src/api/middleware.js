@@ -4,7 +4,6 @@ const model = require('../mongo/model');
 const aggregation = require('../mongo/models/aggregation');
 
 exports.getData = function* (next) {
-    console.log('request');
     const since = +this.query.since || 0;
     const limit = +this.query.limit || 100;
     const db = this.params.name;

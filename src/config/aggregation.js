@@ -4,7 +4,7 @@
 
 const find= require('find');
 const path = require('path');
-
+const debug = require('../util/debug')('config:aggregation');
 
 module.exports = {aggregation: {}};
 const dbConfig = module.exports.aggregation;
@@ -16,6 +16,8 @@ if (!homeDir) {
 const aggregationDir = path.join(homeDir, 'aggregation');
 
 try {
+
+    debug.trace('Searching aggregation configurations in ' + aggregationDir);
     const databases = find.fileSync(/\.js$/, aggregationDir);
     for (const database of databases) {
         let databaseConfig;
@@ -38,4 +40,6 @@ try {
 
 
     }
-} catch (e) {}
+} catch (e) {
+    debug.debug('No aggregation directory found');
+}

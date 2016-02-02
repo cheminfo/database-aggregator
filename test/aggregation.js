@@ -8,8 +8,4 @@ describe('Aggregation', function () {
     it('Should create aggregated collection', function () {
         return aggregate('chemical');
     });
-
-    it('Should reject if configuration does not exist', function () {
-
-    })
 });

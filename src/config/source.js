@@ -2,12 +2,13 @@
 
 const find = require('find');
 const path = require('path');
-
+const debug = require('../util/debug');
 module.exports = {source: {}};
 const dbConfig = module.exports.source;
 const homeDir = require('./home').homeDir;
 
 if (!homeDir) {
+    debug.debug(`no home dir`);
     return;
 }
 
