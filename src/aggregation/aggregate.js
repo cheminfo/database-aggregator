@@ -56,19 +56,18 @@ module.exports = function (aggregateDB) {
                 obj.date = Date.now();
                 obj.value = aggregate(data, conf.sources);
 
-                if (obj.value === null) return;
-
-                let oldEntry = yield aggregation.findById(aggregateDB, commonId);
-                oldEntry = oldEntry || {};
-                //console.log('old entry ' + oldEntry.id, oldEntry.value);
-                //console.log('new entry ' + obj.id, obj.value);
-                if (isequal(obj.value, oldEntry.value)) {
-                    debug.trace(`Not saving ${aggregateDB}:${commonId} because has not changed`);
-                } else {
-                    obj.seqid = yield seqId.getNextSequenceID('aggregation_' + aggregateDB);
-                    yield aggregation.save(aggregateDB, obj);
+                if(obj.value) {
+                    let oldEntry = yield aggregation.findById(aggregateDB, commonId);
+                    oldEntry = oldEntry || {};
+                    //console.log('old entry ' + oldEntry.id, oldEntry.value);
+                    //console.log('new entry ' + obj.id, obj.value);
+                    if (isequal(obj.value, oldEntry.value)) {
+                        debug.trace(`Not saving ${aggregateDB}:${commonId} because has not changed`);
+                    } else {
+                        obj.seqid = yield seqId.getNextSequenceID('aggregation_' + aggregateDB);
+                        yield aggregation.save(aggregateDB, obj);
+                    }
                 }
-
             }
             yield seqIdTrack.setSeqIds(aggregateDB, maxSeqIds);
         } while (commonIdsSet.size);
