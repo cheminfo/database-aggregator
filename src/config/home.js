@@ -5,13 +5,15 @@ const path = require('path');
 
 const debug = require('../util/debug')('config:home');
 
-const homeDir = process.env.DATABASE_AGGREGATOR_HOME_DIR;
+let homeDir = process.env.DATABASE_AGGREGATOR_HOME_DIR;
 
 if (!homeDir) {
     debug('no home dir');
     exports.config = {};
     return;
 }
+
+homeDir = path.resolve(homeDir);
 
 debug(`home dir is ${homeDir}`);
 
@@ -20,7 +22,7 @@ exports.config = getHomeConfig();
 
 function getHomeConfig() {
     try {
-        const config = require(path.resolve(homeDir, 'config.js'), 'utf8');
+        const config = require(path.join(homeDir, 'config.js'), 'utf8');
         debug('loaded main config file');
         return config;
     } catch (e) {
