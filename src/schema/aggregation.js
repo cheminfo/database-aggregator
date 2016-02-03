@@ -5,8 +5,7 @@ module.exports = new Schema({
     _id: {
         type: String,
         required: true,
-        unique: true,
-        index: true
+        unique: true
     },
     seqid:  {
         type: Number,
