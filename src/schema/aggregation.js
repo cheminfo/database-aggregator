@@ -4,8 +4,7 @@ var Schema = mongoose.Schema;
 module.exports = new Schema({
     _id: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     seqid:  {
         type: Number,
