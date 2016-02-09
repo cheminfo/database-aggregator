@@ -74,7 +74,7 @@ module.exports = function (aggregateDB) {
     })();
 };
 
-function*aggregate(data, filter) {
+var aggregate = Promise.coroutine(function*aggregate(data, filter) {
     var result = {};
     var accept = true;
     for (var key in filter) {
@@ -95,4 +95,4 @@ function*aggregate(data, filter) {
         return null;
     }
     return result;
-}
+});

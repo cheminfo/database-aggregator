@@ -2,7 +2,7 @@
 
 const find = require('find');
 const path = require('path');
-const debug = require('../util/debug');
+const debug = require('../util/debug')('config:source');
 module.exports = {source: {}};
 const dbConfig = module.exports.source;
 const homeDir = require('./home').homeDir;
