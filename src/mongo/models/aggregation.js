@@ -5,9 +5,10 @@ const debug = require('../../util/debug')('model:aggregation');
 
 exports.save = function (name, data) {
     debug.trace(`save to ${name}: ${data.id}`);
-
+    const id = data._id;
+    delete data._id;
     const Model = model.getAggregation(name);
-    return Model.findByIdAndUpdate(data._id, data, {new: true, upsert: true})
+    return Model.findByIdAndUpdate(id, data, {new: true, upsert: true})
         .exec()
 };
 
