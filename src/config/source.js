@@ -31,7 +31,7 @@ try {
             }
             databaseConfig = cfg;
         } catch (e) {
-            console.error('could not open source config', configPath)
+            console.error('could not open source config', configPath, 'with error', e);
             continue;
         }
         if (!databaseConfig.driver) {
