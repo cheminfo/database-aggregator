@@ -54,7 +54,7 @@ module.exports = function (aggregateDB) {
                 obj._id = commonId;
                 obj.action = 'update';
                 obj.date = Date.now();
-                obj.value = yield aggregate(data, conf.sources);
+                obj.value = yield aggregate(data, conf.sources, commonId);
 
                 if(obj.value) {
                     let oldEntry = yield aggregation.findById(aggregateDB, commonId);
@@ -74,7 +74,7 @@ module.exports = function (aggregateDB) {
     })();
 };
 
-var aggregate = Promise.coroutine(function*aggregate(data, filter) {
+var aggregate = Promise.coroutine(function*aggregate(data, filter, commonId) {
     var result = {};
     var accept = true;
     for (var key in filter) {
@@ -83,7 +83,7 @@ var aggregate = Promise.coroutine(function*aggregate(data, filter) {
                 null,
                 data[key].map(d => d.data),
                 result,
-                data[key].length ? data[key][0].commonID : null,
+                commonId,
                 data[key].map(d => d._id)));
 
             if (accept === false) {
