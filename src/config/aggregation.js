@@ -33,7 +33,7 @@ for (const database of databases) {
     }
 
     databaseConfig = require(configPath);
-    if (!databaseConfig.sources) {
+    if (!databaseConfig.sources || databaseConfig.disabled === true) {
         continue;
     }
     dbConfig[parsedConfigPath.name] = databaseConfig;
