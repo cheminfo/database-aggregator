@@ -4,7 +4,7 @@ const koa = require('koa');
 const router = require('./router');
 const bodyParser = require('koa-body');
 const kcors = require('kcors');
-const config = require('../config/config');
+const config = require('../config/config').globalConfig;
 
 const app = koa();
 app.use(kcors());
