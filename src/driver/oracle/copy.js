@@ -2,12 +2,12 @@
 
 const Promise = require('bluebird');
 const isequal = require('lodash.isequal');
-const oracledb = require('../oracledb');
-const mongodb = require('../mongo/connection');
-const model = require('../mongo/model');
-const seqid = require('../mongo/models/seqIdCount');
-const sqlUtil = require('../util/sql');
-const debug = require('../util/debug')('driver:oracle');
+const oracledb = require('../../oracledb');
+const mongodb = require('../../mongo/connection');
+const model = require('../../mongo/model');
+const seqid = require('../../mongo/models/seqIdCount');
+const sqlUtil = require('../../util/sql');
+const debug = require('../../util/debug')('driver:oracle');
 
 module.exports = function (options) {
     if (!options.connectString) {

@@ -46,39 +46,68 @@ module.exports = function (aggregateDB) {
                     let sourceName = sourceNames[i];
                     data[sourceName] = yield source.getByCommonId(sourceName, commonId);
                 }
+                var exists = checkExists(data);
                 let obj = {};
                 obj.id = commonId;
                 obj._id = commonId;
-                obj.action = 'update';
                 obj.date = Date.now();
-                obj.value = yield aggregate(data, conf.sources, commonId);
-
-                if(obj.value) {
-                    let oldEntry = yield aggregation.findById(aggregateDB, commonId);
-                    oldEntry = oldEntry || {};
-                    //console.log('old entry ' + oldEntry.id, oldEntry.value);
-                    //console.log('new entry ' + obj.id, obj.value);
-                    if (isequal(obj.value, oldEntry.value)) {
-                        debug.trace(`Not saving ${aggregateDB}:${commonId} because has not changed`);
+                if (!exists) {
+                    obj.action = 'delete';
+                    obj.value = null;
+                } else {
+                    // aggregate will return null if config scripts decided
+                    // it should not be saved
+                    obj.value = yield aggregate(data, conf.sources, commonId);
+                    if (obj.value === null) {
+                        obj.action = 'delete';
                     } else {
-                        obj.seqid = yield seqId.getNextSequenceID('aggregation_' + aggregateDB);
-                        yield aggregation.save(aggregateDB, obj);
+                        obj.action = 'update';
                     }
                 }
+
+                let oldEntry = yield aggregation.findById(aggregateDB, commonId);
+                if(!oldEntry && obj.action === 'delete') {
+                    // Nothing to do, the data was deleted from sources and does not
+                    // exist in aggregation
+                    debug.trace(`Ignoring ${aggregateDB}:${commonId}, which ought to be deleted but does not exist`);
+                    continue;
+                }
+                oldEntry = oldEntry || {};
+                if (isequal(obj.value, oldEntry.value)) {
+                    // Don't save if has not changed
+                    debug.trace(`Not saving ${aggregateDB}:${commonId} because has not changed`);
+                } else {
+                    // Save with next seqid
+                    debug.trace(`Saving ${aggregateDB}:${commonId} with new seqid`);
+                    obj.seqid = yield seqId.getNextSequenceID('aggregation_' + aggregateDB);
+                    yield aggregation.save(aggregateDB, obj);
+                }
             }
+            debug.trace(`Setting seq id counts of ${agggregateDB} for each source`);
             yield seqIdTrack.setSeqIds(aggregateDB, maxSeqIds);
         } while (commonIdsSet.size);
     })();
 };
+
+function checkExists(data) {
+    for (let source in data) {
+        if (data[source].data.length !== 0) {
+            return true;
+        }
+    }
+    return false;
+}
 
 var aggregate = Promise.coroutine(function*aggregate(data, filter, commonId) {
     var result = {};
     var accept = true;
     for (var key in filter) {
         if (data[key]) {
+            // Don't include deleted data
+            let fdata = data[key].filter(d => d.data === null);
             accept = yield Promise.resolve(filter[key].call(
                 null,
-                data[key].map(d => d.data),
+                fdata.map(d => d.data),
                 result,
                 commonId,
                 data[key].map(d => d._id)));

@@ -6,11 +6,10 @@ const connection = require('../src/mongo/connection');
 
 pid.start();
 
-const copy = require('../src/source/copy');
+const source = require('../src/source/source');
 const config = require('../src/config/config').globalConfig;
 
-const source = config.source;
-const sources = Object.keys(source);
+const sources = Object.keys(config.source);
 
 if (sources.length === 0) {
     console.log('no source found in config');
@@ -19,8 +18,8 @@ if (sources.length === 0) {
 Promise.coroutine(function* () {
     yield connection();
     for (const collection of sources) {
-        const options = source[collection];
-        yield copy.copy(Object.assign({collection}, options));
+        const options = config.source[collection];
+        yield source.copy(Object.assign({collection}, options));
     }
 })().then(function () {
     console.log('finished');

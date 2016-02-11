@@ -7,7 +7,14 @@ module.exports = new Schema({
     type: {
         type: String,
         enum: ['source', 'aggregation'],
-        index: true
+        index: true,
+        required: true
+    },
+    operation: {
+        type: String,
+        enum: ['update', 'delete'],
+        index: true,
+        required: true
     },
     status: String,
     date: {
