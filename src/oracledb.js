@@ -3,6 +3,8 @@
 const OracleDB = require('oracledb');
 const Promise = require('bluebird');
 
+global.oracledb = module.exports;
+
 exports.getConnection = function (options) {
     return new Promise(function (resolve, reject) {
         OracleDB.getConnection(options, function (err, conn) {
