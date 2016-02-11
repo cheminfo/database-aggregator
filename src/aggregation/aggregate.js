@@ -83,7 +83,6 @@ module.exports = function (aggregateDB) {
                     yield aggregation.save(aggregateDB, obj);
                 }
             }
-            debug.trace(`Setting seq id counts of ${agggregateDB} for each source`);
             yield seqIdTrack.setSeqIds(aggregateDB, maxSeqIds);
         } while (commonIdsSet.size);
     })();
@@ -91,7 +90,7 @@ module.exports = function (aggregateDB) {
 
 function checkExists(data) {
     for (let source in data) {
-        if (data[source].data.length !== 0) {
+        if (data[source].length !== 0) {
             return true;
         }
     }

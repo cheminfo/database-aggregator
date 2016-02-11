@@ -49,10 +49,12 @@ const doDelete = Promise.coroutine(function* (options) {
 
     // Element that are found in copied source but not in original source ought to be deleted
     // We do this by setting data to null, so that aggregation knows about the deletion
-    const deleted = yield Model.find({_id: { $nin: rows}}).exec();
+    const deleted = yield Model.find({_id: { $nin: rows}, data: {$neq: null}}).exec();
     for(let i=0; i<deleted.length; i++) {
         let del = deleted[i];
+        debug.trace(`delete ${del._id} from ${collection}`);
         del.data = null;
+        del.date = new Date();
         del.sequentialID = yield seqid.getNextSequenceID('source_' + collection);
         yield del.save();
     }
