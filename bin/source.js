@@ -2,6 +2,7 @@
 
 const Promise = require('bluebird');
 const pid = require('../src/util/pid');
+const connection = require('../src/mongo/connection');
 
 pid.start();
 
@@ -16,6 +17,7 @@ if (sources.length === 0) {
 }
 
 Promise.coroutine(function* () {
+    yield connection();
     for (const collection of sources) {
         const options = source[collection];
         yield copy.copy(Object.assign({collection}, options));

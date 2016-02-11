@@ -2,6 +2,7 @@
 
 const Promise = require('bluebird');
 const pid = require('../src/util/pid');
+const connection = require('../src/mongo/connection');
 pid.start();
 
 const aggregate = require('../src/aggregation/aggregate');
@@ -11,6 +12,7 @@ const aggregation = config.aggregation;
 const aggregations = Object.keys(aggregation);
 
 Promise.coroutine(function* () {
+    yield connection();
     for (const collection of aggregations) {
         yield aggregate(collection);
     }

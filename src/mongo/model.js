@@ -5,6 +5,7 @@ const sourceSchema = require('../schema/source');
 const aggregationSchema = require('../schema/aggregation');
 const seqIdCountSchema = require('../schema/seqIdCount');
 const seqIdAggregatedSchema = require('../schema/seqIdAggregated');
+const syncHistorySchema = require('../schema/syncHistory');
 
 const models = new Map();
 
@@ -22,6 +23,10 @@ exports.getSeqIdCount = function () {
 
 exports.getSeqIdAggregated = function () {
     return getModel('_', 'seqIdAggregated', seqIdAggregatedSchema);
+};
+
+exports.getSyncHistory = function () {
+    return getModel('_', 'syncHistory', syncHistorySchema);
 };
 
 

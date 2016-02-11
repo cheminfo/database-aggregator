@@ -7,7 +7,6 @@ const aggregation = require('./../mongo/models/aggregation');
 const source = require('./../mongo/models/source');
 const debug = require('./../util/debug')('aggregation');
 const seqId = require('./../mongo/models/seqIdCount');
-const connection = require('../mongo/connection');
 const isequal = require('lodash.isequal');
 const chunkSize = 1000;
 
@@ -23,8 +22,6 @@ module.exports = function (aggregateDB) {
 
 
     return Promise.coroutine(function * () {
-        yield connection();
-
         do {
             let seqIds = yield seqIdTrack.getLastSeqIds(aggregateDB);
             seqIds = seqIds || {};
