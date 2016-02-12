@@ -22,7 +22,7 @@ exports.config = getHomeConfig();
 
 function getHomeConfig() {
     try {
-        const config = require(path.join(homeDir, 'config.js'), 'utf8');
+        const config = require(path.join(homeDir, 'config.js'));
         debug('loaded main config file');
         return config;
     } catch (e) {
