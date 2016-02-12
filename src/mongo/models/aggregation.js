@@ -26,7 +26,7 @@ exports.getLatestSeqId = function(name) {
 exports.findById = function (name, id) {
     const Model = model.getAggregation(name);
     // Don't return deleted entries
-    return Model.findById(id).where({action: {$neq: 'delete'}}).exec();
+    return Model.findById(id).where({action: {$ne: 'delete'}}).exec();
 };
 
 exports.countFromSeqId = function(name, fromSeqId) {
