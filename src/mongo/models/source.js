@@ -22,5 +22,6 @@ exports.getLastSeqId = function (name) {
 exports.getByCommonId = function (name, commonId) {
     debug.trace(`get source ${name}, commonID: ${commonId}`);
     var Model = model.getSource(name);
-    return Model.find({commonID: commonId}).exec();
+    // Don't include deleted data
+    return Model.find({commonID: commonId, data: { $neq: null }}).exec();
 };

@@ -68,8 +68,8 @@ module.exports = function (aggregateDB) {
                 let oldEntry = yield aggregation.findById(aggregateDB, commonId);
                 if(!oldEntry && obj.action === 'delete') {
                     // Nothing to do, the data was deleted from sources and does not
-                    // exist in aggregation
-                    debug.trace(`Ignoring ${aggregateDB}:${commonId}, which ought to be deleted but does not exist`);
+                    // exist or was deleted in aggregation
+                    debug.trace(`Ignoring ${aggregateDB}:${commonId}, which ought to be deleted but does not exist or was already deleted`);
                     continue;
                 }
                 oldEntry = oldEntry || {};
@@ -102,11 +102,9 @@ var aggregate = Promise.coroutine(function*aggregate(data, filter, commonId) {
     var accept = true;
     for (var key in filter) {
         if (data[key]) {
-            // Don't include deleted data
-            let fdata = data[key].filter(d => d.data === null);
             accept = yield Promise.resolve(filter[key].call(
                 null,
-                fdata.map(d => d.data),
+                data[key].map(d => d.data),
                 result,
                 commonId,
                 data[key].map(d => d._id)));
