@@ -47,7 +47,7 @@ const doOne = Promise.coroutine(function * (type, operation, collection) {
         }
     } catch(e) {
         debug.error(`Error syncing source ${collection}: ${e}`);
-        yield syncHistory.save('source', collection, 'failure: ' + e.message);
+        yield syncHistory.save('source', operation, collection, 'failure: ' + e.message);
     }
 });
 
