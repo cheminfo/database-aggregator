@@ -12,7 +12,7 @@ exports.getData = function* (next) {
     const d = yield Model.find({seqid: {$gt: since}})
         .sort({seqid: 'asc'})
         .select({_id: 0, __v: 0})
-        .limit(limit).exec();
+        .limit(limit).lean(true).exec();
 
     var body = {
         lastSeqId: d.length ? d[d.length-1].seqid : 0,
