@@ -9,7 +9,8 @@ module.exports = new Schema({
     seqid:  {
         type: Number,
         required: true,
-        index: true
+        index: true,
+        unique: true
     },
     value: {
         type: Object,
