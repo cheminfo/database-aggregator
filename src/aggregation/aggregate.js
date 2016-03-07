@@ -8,7 +8,7 @@ const source = require('./../mongo/models/source');
 const debug = require('./../util/debug')('aggregation');
 const seqId = require('./../mongo/models/seqIdCount');
 const isequal = require('lodash.isequal');
-const chunkSize = 1000;
+const defaultChunkSize = 1000;
 
 module.exports = function (aggregateDB) {
     debug.trace('get common ids');
@@ -19,7 +19,8 @@ module.exports = function (aggregateDB) {
     var sourceNames = Object.keys(conf.sources);
     var maxSeqIds = {};
     var commonIdsSet;
-
+    var chunkSize = conf.chunkSize || defaultChunkSize;
+    
 
     return Promise.coroutine(function * () {
         do {
