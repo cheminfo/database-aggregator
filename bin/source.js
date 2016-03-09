@@ -19,7 +19,11 @@ Promise.coroutine(function* () {
     yield connection();
     for (const collection of sources) {
         const options = config.source[collection];
-        yield source.copy(Object.assign({collection}, options));
+        try{
+            yield source.copy(Object.assign({collection}, options));
+        }catch(e){
+            console.error(e);
+        }
     }
 })().then(function () {
     console.log('finished');
