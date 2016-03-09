@@ -14,7 +14,11 @@ const aggregations = Object.keys(aggregation);
 Promise.coroutine(function* () {
     yield connection();
     for (const collection of aggregations) {
-        yield aggregate(collection);
+        try{
+            yield aggregate(collection);
+        }catch(e){
+            console.error(e);
+        }
     }
 })().then(function () {
     console.log('finished');
