@@ -3,6 +3,7 @@
 const Promise = require('bluebird');
 const pid = require('../src/util/pid');
 const connection = require('../src/mongo/connection');
+const debug = require('../src/util/debug')('bin:source');
 
 pid.start();
 
@@ -18,12 +19,14 @@ if (sources.length === 0) {
 Promise.coroutine(function* () {
     yield connection();
     for (const collection of sources) {
+        debug.step(`Begin sourcing of ${collection}`);
         const options = config.source[collection];
         try{
             yield source.copy(Object.assign({collection}, options));
         }catch(e){
             console.error(e);
         }
+        debug.step(`End sourcing of ${collection}`);
     }
 })().then(function () {
     console.log('finished');
