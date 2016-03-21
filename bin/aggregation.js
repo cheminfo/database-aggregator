@@ -3,6 +3,8 @@
 const Promise = require('bluebird');
 const pid = require('../src/util/pid');
 const connection = require('../src/mongo/connection');
+const debug = require('../src/util/debug')('bin:aggregate');
+
 pid.start();
 
 const aggregate = require('../src/aggregation/aggregate');
@@ -14,11 +16,13 @@ const aggregations = Object.keys(aggregation);
 Promise.coroutine(function* () {
     yield connection();
     for (const collection of aggregations) {
+        debug.step(`Begin aggregate of ${collection}`);
         try{
             yield aggregate(collection);
         }catch(e){
             console.error(e);
         }
+        debug.step(`End aggregate of ${collection}`);
     }
 })().then(function () {
     console.log('finished');
