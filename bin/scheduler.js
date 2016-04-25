@@ -9,13 +9,11 @@ const connection = require('../src/mongo/connection');
 const config = require('../src/config/config').globalConfig;
 const sources = Object.keys(config.source);
 const aggregations = Object.keys(config.aggregation);
-console.log(sources);
-console.log(aggregations);
 
 const syncHistory = require('../src/mongo/models/syncHistory');
 const schedulerLog = require('../src/mongo/models/schedulerLog');
 
-const processScheduler = require('process-scheduler');
+const ProcessScheduler = require('process-scheduler');
 
 Promise.coroutine(function* () {
     //yield connection();
@@ -70,6 +68,12 @@ Promise.coroutine(function* () {
             }
         }
 
-    console.log(schedule);
+    var scheduler = new ProcessScheduler(schedulerConfig);
+    scheduler.on('change', function(data) {
+       schedulerLog.save(data).then(function() {
+           console.log('scheduler logged successfully');
+       });
+    });
+    scheduler.schedule(schedule);
 
 })();
