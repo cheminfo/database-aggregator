@@ -14,7 +14,7 @@ exports.save = function (obj) {
         stderr: obj.stderr
     };
 
-    return Model.findOneAndUpdate({pid: obj.id}, {
+    return Model.findOneAndUpdate({pid: obj.pid}, {
         $push: {state: stat},
         taskId: obj.id,
         date: new Date(),
