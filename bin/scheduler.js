@@ -32,6 +32,7 @@ Promise.coroutine(function* () {
                 immediate: false,
                 cronRule: config.source[collection].copyCronRule,
                 deps: [],
+                noConcurrency: [],
                 arg: config.source[collection]
             });
             schedule.push({
