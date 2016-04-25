@@ -32,7 +32,7 @@
     "koa-router": "^5.3.0",
     "lodash.isequal": "^4.0.0",
     "mongoose": "^4.3.7",
-    "process-scheduler": "git@github.com:cheminfo/process-scheduler.git#8536bc09d5b8cce3e49d26c06cd15da00abc7076"
+    "process-scheduler": "git@github.com:cheminfo/process-scheduler.git#516f9df2a8ce769e82f126980192986b270fba63"
   },
   "optionalDependencies": {
     "oracledb": "^1.5.0"
