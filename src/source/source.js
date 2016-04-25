@@ -12,7 +12,6 @@ exports.copy = function (options) {
 exports.remove = function(options) {
     try {
         var remove = require(`../driver/${options.driver}/remove`);
-        return copy(options);
     } catch(e) {
         onError(options);
     }
