@@ -18,7 +18,7 @@ exports.save = function (obj) {
         $push: {state: stat},
         taskId: obj.id,
         date: new Date(),
-        pid: obj.id
+        pid: obj.pid
     }, {upsert: true, new: true}).exec();
 };
 
