@@ -16,7 +16,7 @@ const schedulerLog = require('../src/mongo/models/schedulerLog');
 const ProcessScheduler = require('process-scheduler');
 
 Promise.coroutine(function* () {
-    //yield connection();
+    yield connection();
     const schedulerConfig = {
         threads: 4
     };
