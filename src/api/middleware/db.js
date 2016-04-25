@@ -1,7 +1,7 @@
 'use strict';
 
-const model = require('../mongo/model');
-const aggregation = require('../mongo/models/aggregation');
+const model = require('../../mongo/model');
+const aggregation = require('../../mongo/models/aggregation');
 
 exports.getData = function* (next) {
     const since = +this.query.since || 0;
