@@ -18,14 +18,23 @@ module.exports = new Schema({
         required: true,
         index: true
     },
-    status: {
-        type: String,
-        required: true,
-        index: true
-    },
-    stdout: String,
-    stderr: String,
-    message: String,
+    state: [
+        {
+            status: {
+                type: String,
+                required: true,
+                index: true
+            },
+            date: {
+                type: Date,
+                required: true,
+                index: true
+            },
+            stdout: String,
+            stderr: String,
+            message: String
+        }
+    ],
     date: {
         type: Date,
         required: true,

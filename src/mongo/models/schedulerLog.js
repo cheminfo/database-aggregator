@@ -4,16 +4,21 @@ const model = require('./../model');
 const debug = require('../../util/debug')('model:schedulerLog');
 const Model = model.getSchedulerLog();
 
-exports.saveStatus = function (obj) {
-    var model = new Model({
-        stdout: obj.stdout,
-        stderr: obj.stderr,
-        pid: obj.pid,
-        message: obj.message,
-        status: obj.status,
-        taskId: obj.id,
-        date: new Date()
-    });
+exports.save = function (obj) {
 
-    return model.save();
+    var stat = {
+        status: obj.status,
+        date: new Date(),
+        message: obj.message,
+        stdout: obj.stdout,
+        stderr: obj.stderr
+    };
+
+    return Model.findOneAndUpdate({pid: obj.id}, {
+        $push: {state: stat},
+        taskId: obj.id,
+        date: new Date(),
+        pid: obj.id
+    }, {upsert: true, new: true}).exec();
 };
+
