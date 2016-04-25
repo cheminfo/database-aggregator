@@ -70,9 +70,8 @@ Promise.coroutine(function* () {
 
     var scheduler = new ProcessScheduler(schedulerConfig);
     scheduler.on('change', function(data) {
-       schedulerLog.save(data).then(function() {
-           console.log('scheduler logged successfully');
-       });
+        console.log('scheduler', data.id, data.status);
+        schedulerLog.save(data);
     });
     scheduler.schedule(schedule);
 
