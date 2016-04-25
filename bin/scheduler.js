@@ -30,7 +30,7 @@ Promise.coroutine(function* () {
                 immediate: false,
                 cronRule: config.source[collection].copyCronRule,
                 deps: [],
-                noConcurrency: [],
+                noConcurrency: ['source_remove_' + collection],
                 arg: config.source[collection]
             });
             schedule.push({
@@ -70,7 +70,7 @@ Promise.coroutine(function* () {
 
     var scheduler = new ProcessScheduler(schedulerConfig);
     scheduler.on('change', function(data) {
-        console.log('scheduler', data.id, data.status);
+        console.log(new Date(), data.id, data.status);
         schedulerLog.save(data);
     });
     scheduler.schedule(schedule);
