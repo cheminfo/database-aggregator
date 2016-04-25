@@ -71,6 +71,7 @@ Promise.coroutine(function* () {
     var scheduler = new ProcessScheduler(schedulerConfig);
     scheduler.on('change', function(data) {
         console.log(new Date(), data.id, data.status);
+        if(data.status === 'error') console.log(data.stderr);
         schedulerLog.save(data);
     });
     scheduler.schedule(schedule);
