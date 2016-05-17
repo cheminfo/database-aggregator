@@ -8,20 +8,23 @@ exports.getData = function* (next) {
     const limit = +this.query.limit || 100;
     const db = this.params.name;
 
-    const Model = model.getAggregation(db);
-    const d = yield Model.find({seqid: {$gt: since}})
-        .sort({seqid: 'asc'})
-        .select({_id: 0, __v: 0})
-        .limit(limit).lean(true).exec();
-
-    var body = {
-        lastSeqId: d.length ? d[d.length-1].seqid : 0,
-        data: d
-    };
-
-    this.body = body;
-    this.status = 200;
-
+    if(model.existAggregation(db)){
+        const Model = model.getAggregation(db);
+        const d = yield Model.find({seqid: {$gt: since}})
+            .sort({seqid: 'asc'})
+            .select({_id: 0, __v: 0})
+            .limit(limit).lean(true).exec();
+    
+        this.body = {
+            lastSeqId: d.length ? d[d.length-1].seqid : 0,
+            data: d
+        };
+        this.status = 200;
+    }else{
+        this.status = 400;
+        this.body = {error:'this collection not exist'};
+    }
+    
     yield next;
 };
 

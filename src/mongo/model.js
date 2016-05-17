@@ -10,6 +10,13 @@ const schedulerLogSchema = require('../schema/schedulerLog');
 
 const models = new Map();
 
+exports.existAggregation = function(name) {
+    if (models.has(`aggregation_${name}`)) {
+        return true;
+    }
+    return false;
+};
+
 exports.getSource = function (name) {
     return getModel('source', name, sourceSchema);
 };
