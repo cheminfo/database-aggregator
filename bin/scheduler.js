@@ -18,7 +18,8 @@ const ProcessScheduler = require('process-scheduler');
 Promise.coroutine(function* () {
     yield connection();
     const schedulerConfig = {
-        threads: 4
+        source: 4,
+        aggregation: 4
     };
 
     const schedule = [];
@@ -31,7 +32,8 @@ Promise.coroutine(function* () {
                 cronRule: config.source[collection].copyCronRule,
                 deps: [],
                 noConcurrency: ['source_remove_' + collection],
-                arg: config.source[collection]
+                arg: config.source[collection],
+                type: 'source'
             });
             schedule.push({
                 id: 'source_remove_' + collection,
@@ -40,7 +42,8 @@ Promise.coroutine(function* () {
                 cronRule: config.source[collection].removeCronRule,
                 deps: [],
                 noConcurrency: [],
-                arg: config.source[collection]
+                arg: config.source[collection],
+                type: 'source'
             });
         }
 
@@ -50,7 +53,8 @@ Promise.coroutine(function* () {
                 id: aggId,
                 worker: path.join(__dirname, '../src/aggregation/worker.js'),
                 immediate: false,
-                arg: collection
+                arg: collection,
+                type: 'aggregation'
             });
 
             let sources = Object.keys(config.aggregation[collection].sources);
