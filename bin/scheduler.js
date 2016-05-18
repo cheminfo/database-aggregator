@@ -18,8 +18,10 @@ const ProcessScheduler = require('process-scheduler');
 Promise.coroutine(function* () {
     yield connection();
     const schedulerConfig = {
-        source: 4,
-        aggregation: 4
+        threads: {
+            source: 4,
+            aggregation: 4
+        }
     };
 
     const schedule = [];
