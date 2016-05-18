@@ -2,10 +2,14 @@
 
 const Debug = require('debug');
 
-const error = Debug('aggregate:error');
-const warn = Debug('aggregate:warn');
-const debug = Debug('aggregate:debug');
-const trace = Debug('aggregate:trace');
+var error = Debug('aggregate:error');
+var warn = Debug('aggregate:warn');
+var debug = Debug('aggregate:debug');
+var trace = Debug('aggregate:trace');
+
+warn.log = console.warn.bind(console);
+debug.log = console.log.bind(console);
+trace.log = console.log.bind(console);
 
 module.exports = function (prefix) {
     const func = message => debug(`(${prefix}) ${message}`);
