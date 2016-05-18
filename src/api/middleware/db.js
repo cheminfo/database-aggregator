@@ -7,12 +7,13 @@ exports.getData = function* (next) {
     const since = +this.query.since || 0;
     const limit = +this.query.limit || 100;
     const db = this.params.name;
-
-    const Model = model.getAggregation(db);
-    const d = yield Model.find({seqid: {$gt: since}})
+    
+    const Model = model.getAggregation(db, true);
+    const d = Model ? yield Model.find({seqid: {$gt: since}})
         .sort({seqid: 'asc'})
         .select({_id: 0, __v: 0})
-        .limit(limit).lean(true).exec();
+        .limit(limit).lean(true).exec()
+        :[];
 
     var body = {
         lastSeqId: d.length ? d[d.length-1].seqid : 0,

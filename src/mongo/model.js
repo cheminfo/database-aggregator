@@ -14,8 +14,8 @@ exports.getSource = function (name) {
     return getModel('source', name, sourceSchema);
 };
 
-exports.getAggregation = function(name) {
-    return getModel('aggregation', name, aggregationSchema);
+exports.getAggregation = function(name, notCreate) {
+    return getModel('aggregation', name, aggregationSchema, notCreate);
 };
 
 exports.getSeqIdCount = function () {
@@ -35,12 +35,15 @@ exports.getSchedulerLog = function () {
 };
 
 
-function getModel(prefix, name, schema) {
+function getModel(prefix, name, schema, notCreate) {
     const coll_name = `${prefix}_${name}`;
-    if (models.has(coll_name)) {
+    if (models.has(coll_name)) {//if the model already exist
         return models.get(coll_name);
+    }else if(notCreate){//do not create the model if not exist
+        return false;
+    }else{//create the model in mongoDb and in the Map array
+        const model = mongoose.model(coll_name, schema, coll_name);
+        models.set(coll_name, model);
+        return model;
     }
-    const model = mongoose.model(coll_name, schema, coll_name);
-    models.set(coll_name, model);
-    return model;
 }
