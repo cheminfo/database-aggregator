@@ -7,6 +7,7 @@ const seqIdCountSchema = require('../schema/seqIdCount');
 const seqIdAggregatedSchema = require('../schema/seqIdAggregated');
 const syncHistorySchema = require('../schema/syncHistory');
 const schedulerLogSchema = require('../schema/schedulerLog');
+const connection = require('../mongo/connection');
 
 const models = new Map();
 
@@ -16,6 +17,10 @@ exports.getSource = function (name) {
 
 exports.getAggregation = function(name) {
     return getModel('aggregation', name, aggregationSchema);
+};
+
+exports.getAggregationIfExists = function (name) {
+    return getModelIfExists('aggregation', name, aggregationSchema);
 };
 
 exports.getSeqIdCount = function () {
@@ -36,11 +41,27 @@ exports.getSchedulerLog = function () {
 
 
 function getModel(prefix, name, schema) {
-    const coll_name = `${prefix}_${name}`;
-    if (models.has(coll_name)) {
-        return models.get(coll_name);
+    const collName = `${prefix}_${name}`;
+    if (models.has(collName)) {
+        return models.get(collName);
     }
-    const model = mongoose.model(coll_name, schema, coll_name);
-    models.set(coll_name, model);
+    const model = mongoose.model(collName, schema, collName);
+    models.set(collName, model);
     return model;
+}
+
+function getModelIfExists(prefix, name, schema) {
+    return Promise.resolve().then(() => {
+        const collName = `${prefix}_${name}`;
+        if (models.has(collName)) {
+            return models.get(collName);
+        } else {
+            return connection.hasCollection(collName).then(hasCol => {
+                if(!hasCol) return;
+                const model = mongoose.model(collName, schema, collName);
+                models.set(collName, model);
+                return model;
+            })
+        }
+    });
 }

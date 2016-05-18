@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const config = require('../config/config').globalConfig;
 var _connection;
-module.exports = function () {
+function connection() {
     if(_connection) return _connection;
 
     _connection = new Promise(function(resolve, reject) {
@@ -14,3 +14,16 @@ module.exports = function () {
     });
     return _connection;
 };
+
+connection.hasCollection = function (colName) {
+    return connection().then(() => {
+        return mongoose.connection.db.listCollections().toArray().then(collections => {
+            collections = collections.map(col => {
+                return col.name;
+            });
+            return collections.indexOf(colName) > -1;
+        });
+    })
+};
+
+module.exports = connection;
