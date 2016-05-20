@@ -19,8 +19,8 @@ Promise.coroutine(function* () {
     yield connection();
     const schedulerConfig = {
         threads: {
-            source: 4,
-            aggregation: 4
+            source: config.schedulerThreadsSource,
+            aggregation: config.schedulerThreadsAggregation
         }
     };
 
