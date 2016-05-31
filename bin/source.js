@@ -23,7 +23,7 @@ Promise.coroutine(function* () {
         debug(`Begin sourcing of ${collection}`);
         const options = config.source[collection];
         try{
-            yield source.copy(Object.assign({collection}, options));
+            yield source.copy(options);
         }catch(e){
             console.error(e);
         }

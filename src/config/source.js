@@ -37,6 +37,7 @@ try {
         if (!databaseConfig.driver) {
             continue;
         }
+        databaseConfig.collection = parsedConfigPath.name;
         dbConfig[parsedConfigPath.name] = databaseConfig;
 
 
