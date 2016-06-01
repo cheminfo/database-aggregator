@@ -10,7 +10,6 @@ const config = require('../src/config/config').globalConfig;
 const sources = Object.keys(config.source);
 const aggregations = Object.keys(config.aggregation);
 
-const syncHistory = require('../src/mongo/models/syncHistory');
 const schedulerLog = require('../src/mongo/models/schedulerLog');
 
 const ProcessScheduler = require('process-scheduler');
