@@ -10,7 +10,7 @@ pm2.connect(function () {
             throw err;
         }
         scheduler = res.find(function(r) {
-            return r.name === 'database-aggregator-pm2-manager';
+            return r.name === 'database-aggregator-scheduler';
         });
     });
 
