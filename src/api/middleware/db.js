@@ -45,8 +45,10 @@ exports.getInfo = function * (next) {
         }
     } else {
         this.body = {
-            remaining: yield Model.count({seqid: {$gt: since}}),
-            total: yield Model.count()
+            data: {
+                remaining: yield Model.count({seqid: {$gt: since}}),
+                total: yield Model.count()
+            }
         }
     }
 
