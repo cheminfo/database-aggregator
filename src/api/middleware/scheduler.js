@@ -14,6 +14,16 @@ scheduler.all = function * () {
     }
 };
 
+scheduler.trigger = function * () {
+    process.send({
+        type: 'scheduler:trigger',
+        data: this.params
+    });
+
+    this.status = 200;
+    this.body = 'ok';
+};
+
 function handleError(e) {
     this.status = 500;
     this.body = 'Internal server error';

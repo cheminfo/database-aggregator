@@ -73,12 +73,24 @@ Promise.coroutine(function* () {
             }
         }
 
+    debug.trace('scheduler config' + schedulerConfig);
     var scheduler = new ProcessScheduler(schedulerConfig);
+
+
     scheduler.on('change', function(data) {
-        console.log(new Date(), data.id, data.status);
-        if(data.status === 'error') console.log(data.stderr);
         schedulerLog.save(data);
     });
     scheduler.schedule(schedule);
+
+    process.on('message', function(packet) {
+        switch(packet.type) {
+            case 'scheduler:trigger':
+                debug.trace('scheduler:trigger message received' + packet);
+                if(packet.data.taskId) {
+                    scheduler.trigger(packet.data.taskId);
+                }
+                break;
+        }
+    });
 
 })();
