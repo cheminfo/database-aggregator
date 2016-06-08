@@ -11,5 +11,7 @@ router.get('/db/:name', db.getData);
 router.get('/db/:name/info', db.getInfo);
 router.get('/scheduler/all', scheduler.all);
 router.get('/scheduler/trigger/:taskId', scheduler.trigger);
+router.get('/scheduler/tasks', scheduler.tasks);
+
 
 module.exports = router;
