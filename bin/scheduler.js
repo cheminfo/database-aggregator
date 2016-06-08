@@ -41,7 +41,7 @@ Promise.coroutine(function* () {
                 worker: path.join(__dirname, '../src/source/removeWorker.js'),
                 immediate: false,
                 cronRule: config.source[collection].removeCronRule,
-                deps: [],
+                deps: ['source_copy_' + collection],
                 noConcurrency: [],
                 arg: config.source[collection],
                 type: 'source'
