@@ -41,7 +41,7 @@ Promise.coroutine(function* () {
                 worker: path.join(__dirname, '../src/source/removeWorker.js'),
                 immediate: false,
                 cronRule: config.source[collection].removeCronRule,
-                deps: ['source_copy_' + collection],
+                deps: [],
                 noConcurrency: [],
                 arg: config.source[collection],
                 type: 'source'
@@ -60,7 +60,12 @@ Promise.coroutine(function* () {
 
             let sources = Object.keys(config.aggregation[collection].sources);
             for(const source of sources) {
-                let s = schedule.find(s => s.id === 'source_remove_' + source);
+                let s = schedule.find(s => s.id === 'source_copy_' + source);
+                if(s) {
+                    s.deps.push(aggId);
+                    s.noConcurrency.push(aggId);
+                }
+                s = schedule.find(s => s.id === 'source_remove_' + source);
                 if(s) {
                     s.deps.push(aggId);
                     s.noConcurrency.push(aggId);
