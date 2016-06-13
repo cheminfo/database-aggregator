@@ -38,25 +38,30 @@ const doDelete = Promise.coroutine(function* (options) {
 
     debug('result set ready');
 
+    var sourceIds = new Map();
     let rows;
-    let allRows = [];
     do {
         rows = yield resultSet.getRows(1000);
-        allRows = allRows.concat(rows.map(row => row.ID));
+        for(let i=0; i<rows.length; i++) {
+            sourceIds.set(rows[i].ID, true);
+        }
     } while (rows.length > 0);
     yield resultSet.close();
     yield oracleConn.release();
 
     // Element that are found in copied source but not in original source ought to be deleted
     // We do this by setting data to null, so that aggregation knows about the deletion
-    const deleted = yield Model.find({_id: { $nin: allRows}, data: {$ne: null}}).exec();
-    for(let i=0; i<deleted.length; i++) {
-        let del = deleted[i];
-        debug.trace(`delete ${del._id} from ${collection}`);
-        del.data = null;
-        del.date = new Date();
-        del.sequentialID = yield seqid.getNextSequenceID('source_' + collection);
-        yield del.save();
+    const copiedIds = yield Model.find({}, {_id: 1}).exec();
+    for(let i=0; i<copiedIds.length; i++) {
+        let id = copiedIds[i]._id;
+        if(!sourceIds.get(id)) {
+            debug.trace(`delete ${id} from ${collection}`);
+            yield Model.findByIdAndUpdate(id, {$set: {
+                data: null,
+                date: new Date(),
+                sequentialID: yield seqid.getNextSequenceID('source_' + collection)
+            }}).exec();
+        }
     }
 });
 
