@@ -28,6 +28,7 @@
     "koa": "^1.1.2",
     "koa-body": "^1.4.0",
     "koa-compress": "^1.0.9",
+    "koa-json-body": "^4.0.0",
     "koa-response-time": "^1.0.2",
     "koa-router": "^5.3.0",
     "lodash.isequal": "^4.0.0",
