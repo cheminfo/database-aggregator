@@ -33,18 +33,14 @@ exports.getInfo = function *() {
     const Model = yield model.getAggregationIfExists(db);
     if(!Model) {
         this.body = {
-            data: {
-                remaining: 0,
-                total: 0
-            }
-        }
+            remaining: 0,
+            total: 0
+        };
     } else {
         this.body = {
-            data: {
-                remaining: yield Model.count({seqid: {$gt: since}}),
-                total: yield Model.count()
-            }
-        }
+            remaining: yield Model.count({seqid: {$gt: since}}),
+            total: yield Model.count()
+        };
     }
 };
 
