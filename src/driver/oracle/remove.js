@@ -41,7 +41,7 @@ const doDelete = Promise.coroutine(function* (options) {
     var sourceIds = new Map();
     let rows;
     do {
-        rows = yield resultSet.getRows(1000);
+        rows = yield resultSet.getRows(100);
         for(let i=0; i<rows.length; i++) {
             sourceIds.set(rows[i].ID, true);
         }
