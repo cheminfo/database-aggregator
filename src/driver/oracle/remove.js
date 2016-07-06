@@ -51,7 +51,7 @@ const doDelete = Promise.coroutine(function* (options) {
 
     // Element that are found in copied source but not in original source ought to be deleted
     // We do this by setting data to null, so that aggregation knows about the deletion
-    const copiedIds = yield Model.find({}, {_id: 1}).lean().exec();
+    const copiedIds = yield Model.find({ "data": { $ne: null } }, {_id: 1}).lean().exec();
     for(let i=0; i<copiedIds.length; i++) {
         let id = copiedIds[i]._id;
         if(!sourceIds.get(id)) {
