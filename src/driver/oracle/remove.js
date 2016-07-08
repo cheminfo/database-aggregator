@@ -43,7 +43,7 @@ const doDelete = Promise.coroutine(function* (options) {
     do {
         rows = yield resultSet.getRows(100);
         for(let i=0; i<rows.length; i++) {
-            sourceIds.set(rows[i].ID, true);
+            sourceIds.set(rows[i].ID.toString(), true);
         }
     } while (rows.length > 0);
     yield resultSet.close();
