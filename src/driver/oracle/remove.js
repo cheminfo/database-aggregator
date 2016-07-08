@@ -54,7 +54,7 @@ const doDelete = Promise.coroutine(function* (options) {
     const copiedIds = yield Model.find({ "data": { $ne: null } }, {_id: 1}).lean().exec();
     for(let i=0; i<copiedIds.length; i++) {
         let id = copiedIds[i]._id;
-        if(!sourceIds.get(id.toString())) {
+        if(!sourceIds.get(id)) {
             debug.trace(`delete ${id} from ${collection}`);
             yield Model.findByIdAndUpdate(id, {$set: {
                 data: null,
