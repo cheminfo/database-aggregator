@@ -43,7 +43,7 @@ const doDelete = Promise.coroutine(function* (options) {
     do {
         rows = yield resultSet.getRows(100);
         for(let i=0; i<rows.length; i++) {
-            sourceIds.set(rows[i].ID, true);
+            sourceIds.set(rows[i].ID.toString(), true);
         }
     } while (rows.length > 0);
     yield resultSet.close();
@@ -54,7 +54,7 @@ const doDelete = Promise.coroutine(function* (options) {
     const copiedIds = yield Model.find({ "data": { $ne: null } }, {_id: 1}).lean().exec();
     for(let i=0; i<copiedIds.length; i++) {
         let id = copiedIds[i]._id;
-        if(!sourceIds.get(id)) {
+        if(!sourceIds.get(id.toString())) {
             debug.trace(`delete ${id} from ${collection}`);
             yield Model.findByIdAndUpdate(id, {$set: {
                 data: null,
