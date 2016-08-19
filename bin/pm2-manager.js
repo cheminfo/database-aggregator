@@ -23,7 +23,7 @@ pm2.connect(function () {
                     data: packet.data
                 }, function(err, res) {
                     if(err) {
-                        debug.error(err);
+                        debug.error(err.message);
                     } {
                         debug.trace('sent data successfully to scheduler');
                         debug.trace(res);
