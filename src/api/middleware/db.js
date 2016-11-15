@@ -4,6 +4,26 @@ const model = require('../../mongo/model');
 const aggregation = require('../../mongo/models/aggregation');
 const seqid = require('../../mongo/models/seqIdCount');
 
+exports.getDataById = function *() {
+    const db = this.params.name;
+    const id = this.params.id;
+
+    const Model = yield model.getAggregationIfExists(db);
+    var d;
+    if(!Model) {
+        d = [];
+    } else {
+        console.log("{id: id}",{id: id})
+        d = yield Model.find({id: id})
+            .select({_id: 0, __v: 0})
+            .limit(1).lean(true).exec();
+    }
+
+    this.body = {
+        data: d
+    };
+};
+
 exports.getData = function *() {
     const since = +this.query.since || 0;
     const limit = +this.query.limit || 100;
