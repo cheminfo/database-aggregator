@@ -11,11 +11,15 @@ exports.getDataById = function *() {
     const Model = yield model.getAggregationIfExists(db);
     var d;
     if(!Model) {
-        d = [];
+        d = null;
     } else {
-        d = yield Model.find({id: id})
+        d = yield Model.findOne({id: id})
             .select({_id: 0, __v: 0})
-            .limit(1).lean(true).exec();
+            .lean(true).exec();
+    }
+
+    if(d === null){
+        this.status = 404;
     }
 
     this.body = {
