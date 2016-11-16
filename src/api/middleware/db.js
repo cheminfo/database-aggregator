@@ -13,7 +13,6 @@ exports.getDataById = function *() {
     if(!Model) {
         d = [];
     } else {
-        console.log("{id: id}",{id: id})
         d = yield Model.find({id: id})
             .select({_id: 0, __v: 0})
             .limit(1).lean(true).exec();
