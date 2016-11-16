@@ -4,6 +4,29 @@ const model = require('../../mongo/model');
 const aggregation = require('../../mongo/models/aggregation');
 const seqid = require('../../mongo/models/seqIdCount');
 
+exports.getDataById = function *() {
+    const db = this.params.name;
+    const id = this.params.id;
+
+    const Model = yield model.getAggregationIfExists(db);
+    var d;
+    if(!Model) {
+        d = null;
+    } else {
+        d = yield Model.findOne({id: id})
+            .select({_id: 0, __v: 0})
+            .lean(true).exec();
+    }
+
+    if(d === null){
+        this.status = 404;
+    }
+
+    this.body = {
+        data: d
+    };
+};
+
 exports.getData = function *() {
     const since = +this.query.since || 0;
     const limit = +this.query.limit || 100;
