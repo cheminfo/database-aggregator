@@ -26,6 +26,7 @@ Promise.coroutine(function* () {
     const schedule = [];
     // Create configuration
         for (const collection of sources) {
+            const options = config.source[collection];
             schedule.push({
                 id: 'source_copy_' + collection,
                 worker: path.join(__dirname, '../src/source/copyWorker.js'),
@@ -33,7 +34,7 @@ Promise.coroutine(function* () {
                 cronRule: config.source[collection].copyCronRule,
                 deps: [],
                 noConcurrency: ['source_remove_' + collection],
-                arg: config.source[collection],
+                arg: Object.assign({collection}, options),
                 type: 'source'
             });
             schedule.push({
@@ -43,7 +44,7 @@ Promise.coroutine(function* () {
                 cronRule: config.source[collection].removeCronRule,
                 deps: [],
                 noConcurrency: [],
-                arg: config.source[collection],
+                arg: Object.assign({collection}, options),
                 type: 'source'
             });
         }
