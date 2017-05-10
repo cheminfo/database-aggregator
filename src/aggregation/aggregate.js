@@ -33,7 +33,8 @@ module.exports = function (aggregateDB) {
                 //maxSeqIds[sourceName] = (yield source.getLastSeqId(sourceName)).sequentialID;
                 let firstSeqId = seqIds[sourceName] || 0;
                 let lastSeqId = firstSeqId + chunkSize;
-                maxSeqIds[sourceName] = Math.min(lastSeqId, (yield source.getLastSeqId(sourceName)).sequentialID);
+                let lastSourceSeq = yield source.getLastSeqId(sourceName);
+                maxSeqIds[sourceName] = Math.min(lastSeqId, (lastSourceSeq ? lastSourceSeq.sequentialID : 0));
                 let cids = yield source.getCommonIds(sourceName, firstSeqId, lastSeqId);
                 cids = cids.map(commonId => commonId.commonID);
                 commonIds = commonIds.concat(cids);
