@@ -41,7 +41,7 @@ const doDateid = Promise.coroutine(function* (options) {
     const oracleConn = connections[0];
 
     // search for latest document in Mongo
-    const latest = yield Model.findOne().sort('-date').exec();
+    const latest = yield Model.findOne({"date": { $lte: new Date() } }).sort('-date').exec();
     let query = options.query;
 
     query = 'SELECT * FROM (\n' + query + '\n) inner_table';
