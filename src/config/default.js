@@ -5,5 +5,6 @@ module.exports = {
     database: 'test',
     port: 6768,
     schedulerThreadsSource: 4,
-    schedulerThreadsAggregation: 4
+    schedulerThreadsAggregation: 4,
+    removeThreshold: 0.01
 };

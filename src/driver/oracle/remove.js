@@ -38,12 +38,12 @@ const doDelete = Promise.coroutine(function* (options) {
 
     debug('result set ready');
 
-    var sourceIds = new Map();
+    var sourceIds = new Set();
     let rows;
     do {
         rows = yield resultSet.getRows(100);
-        for(let i=0; i<rows.length; i++) {
-            sourceIds.set(rows[i].ID.toString(), true);
+        for (let i = 0; i < rows.length; i++) {
+            sourceIds.add(rows[i].ID.toString());
         }
     } while (rows.length > 0);
     yield resultSet.close();
@@ -51,17 +51,31 @@ const doDelete = Promise.coroutine(function* (options) {
 
     // Element that are found in copied source but not in original source ought to be deleted
     // We do this by setting data to null, so that aggregation knows about the deletion
-    const copiedIds = yield Model.find({ "data": { $ne: null } }, {_id: 1}).lean().exec();
-    for(let i=0; i<copiedIds.length; i++) {
+    const copiedIds = yield Model.find({ "data": { $ne: null } }, { _id: 1 }).lean().exec();
+    const idsToDelete = new Set();
+
+    for (let i = 0; i < copiedIds.length; i++) {
         let id = copiedIds[i]._id;
-        if(!sourceIds.get(id)) {
-            debug.trace(`delete ${id} from ${collection}`);
-            yield Model.findByIdAndUpdate(id, {$set: {
+        if (!sourceIds.has(id)) {
+            idsToDelete.add(id);
+        }
+    }
+    const removeThreshold = options.removeThreshold === undefined ? 0.01 : options.removeThreshold;
+    const percentToDelete = idsToDelete.size / copiedIds.length;
+    if (percentToDelete > removeThreshold) {
+        debug.warn(`removal of data from ${collection} cancelled (maximum: ${removeThreshold * 100}%, actual: ${percentToDelete * 100}%)`);
+        return;
+    }
+
+    for (const id of idsToDelete) {
+        debug.trace(`delete ${id} from ${collection}`);
+        yield Model.findByIdAndUpdate(id, {
+            $set: {
                 data: null,
                 date: new Date(),
                 sequentialID: yield seqid.getNextSequenceID('source_' + collection)
-            }}).exec();
-        }
+            }
+        }).exec();
     }
 });
 
