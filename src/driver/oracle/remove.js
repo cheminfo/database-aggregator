@@ -1,21 +1,13 @@
 'use strict';
 
 const Promise = require('bluebird');
-const isequal = require('lodash.isequal');
-const oracledb = require('../../oracledb');
-const mongodb = require('../../mongo/connection');
 const seqid = require('../../mongo/models/seqIdCount');
 const model = require('../../mongo/model');
 const debug = require('../../util/debug')('driver:oracle');
+const common = require('./common');
 
 module.exports = function (options) {
-    if (!options.connectString) {
-        throw new Error('connectString option is mandatory');
-    }
-    if (!options.query) {
-        throw new Error('query option is mandatory');
-    }
-
+    common.checkOptions(['connectString', 'query'], options);
     return doDelete(options);
 };
 
@@ -25,33 +17,18 @@ const doDelete = Promise.coroutine(function* (options) {
     const Model = model.getSource(collection);
 
     // connect to Oracle
-    const connections = yield connect(options);
-    const oracleConn = connections[0];
+    const oracleConn = yield common.connect(options);
 
     let query = options.query;
 
     query = 'SELECT id FROM (\n' + query + '\n) inner_table';
 
-    debug(query);
-
-    const resultSet = yield oracleConn.execute(query);
-
-    debug('result set ready');
-
-    var sourceIds = new Set();
-    let rows;
-    do {
-        rows = yield resultSet.getRows(100);
-        for (let i = 0; i < rows.length; i++) {
-            sourceIds.add(rows[i].ID.toString());
-        }
-    } while (rows.length > 0);
-    yield resultSet.close();
+    const sourceIds = yield common.getIDs(oracleConn, query);
     yield oracleConn.release();
 
     // Element that are found in copied source but not in original source ought to be deleted
     // We do this by setting data to null, so that aggregation knows about the deletion
-    const copiedIds = yield Model.find({ "data": { $ne: null } }, { _id: 1 }).lean().exec();
+    const copiedIds = yield Model.find({data: {$ne: null}}, {_id: 1}).lean().exec();
     const idsToDelete = new Set();
 
     for (let i = 0; i < copiedIds.length; i++) {
@@ -79,6 +56,3 @@ const doDelete = Promise.coroutine(function* (options) {
     }
 });
 
-function connect(options) {
-    return Promise.all([oracledb.getConnection(options), mongodb()]);
-}
