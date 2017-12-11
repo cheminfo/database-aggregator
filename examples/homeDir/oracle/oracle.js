@@ -19,8 +19,8 @@ class Connection {
 
     execute(query, options) {
         options = options || {
-                resultSet: true
-            };
+            resultSet: true
+        };
         return new Promise((resolve, reject) => {
             this._conn.execute(query, {}, {
                 outFormat: OracleDB.OBJECT,

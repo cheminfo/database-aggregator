@@ -38,8 +38,8 @@ scheduler.tasks = function*(next) {
         let tasksList = yield Model.find().distinct('taskId');
         for (var i = 0; i < tasksList.length; i++) {
             let history = yield Model.find({
-                    taskId: tasksList[i]
-                })
+                taskId: tasksList[i]
+            })
                 .sort({
                     date: -1
                 })
@@ -55,7 +55,7 @@ scheduler.tasks = function*(next) {
         this.body = results;
         yield next;
     } catch (e) {
-        console.log(e)
+        console.log(e);
         handleError.call(this, e);
     }
 };

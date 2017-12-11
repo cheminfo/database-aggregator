@@ -20,7 +20,7 @@ module.exports = function (aggregateDB) {
     var maxSeqIds = {};
     var commonIdsSet;
     var chunkSize = conf.chunkSize || defaultChunkSize;
-    
+
 
     return Promise.coroutine(function * () {
         do {
@@ -68,7 +68,7 @@ module.exports = function (aggregateDB) {
                 }
 
                 let oldEntry = yield aggregation.findById(aggregateDB, commonId);
-                if(!oldEntry && obj.action === 'delete') {
+                if (!oldEntry && obj.action === 'delete') {
                     // Nothing to do, the data was deleted from sources and does not
                     // exist or was deleted in aggregation
                     debug.trace(`Ignoring ${aggregateDB}:${commonId}, which ought to be deleted but does not exist or was already deleted`);

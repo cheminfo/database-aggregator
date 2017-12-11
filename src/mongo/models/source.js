@@ -23,5 +23,5 @@ exports.getByCommonId = function (name, commonId) {
     debug.trace(`get source ${name}, commonID: ${commonId}`);
     var Model = model.getSource(name);
     // Don't include deleted data
-    return Model.find({commonID: commonId, data: { $ne: null }}).exec();
+    return Model.find({commonID: commonId, data: {$ne: null}}).exec();
 };

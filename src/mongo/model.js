@@ -14,7 +14,7 @@ exports.getSource = function (name) {
     return getModel('source', name, sourceSchema);
 };
 
-exports.getAggregation = function(name) {
+exports.getAggregation = function (name) {
     return getModel('aggregation', name, aggregationSchema);
 };
 
@@ -52,11 +52,11 @@ function getModelIfExists(prefix, name, schema) {
             return models.get(collName);
         } else {
             return connection.hasCollection(collName).then(hasCol => {
-                if(!hasCol) return;
+                if (!hasCol) return;
                 const model = mongoose.model(collName, schema, collName);
                 models.set(collName, model);
                 return model;
-            })
+            });
         }
     });
 }

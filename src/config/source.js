@@ -8,7 +8,7 @@ const dbConfig = module.exports.source;
 const homeDir = require('./home').homeDir;
 
 if (!homeDir) {
-    debug.debug(`no home dir`);
+    debug.debug('no home dir');
     return;
 }
 

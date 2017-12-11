@@ -1,6 +1,5 @@
 'use strict';
 
-'use strict';
 
 const find = require('find');
 const path = require('path');

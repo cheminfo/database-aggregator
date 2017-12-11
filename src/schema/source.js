@@ -6,7 +6,7 @@ module.exports = new Schema({
         type: String,
         required: true
     },
-    commonID:  {
+    commonID: {
         type: String,
         required: true,
         index: true

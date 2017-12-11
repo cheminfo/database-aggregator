@@ -9,20 +9,20 @@ pm2.connect(function () {
         if (err) {
             throw err;
         }
-        scheduler = res.find(function(r) {
+        scheduler = res.find(function (r) {
             return r.name === 'database-aggregator-scheduler';
         });
     });
 
     pm2.launchBus(function (err, bus) {
         bus.on('scheduler:trigger', function (packet) {
-            if(scheduler) {
+            if (scheduler) {
                 pm2.sendDataToProcessId(scheduler.pm2_env.pm_id, {
                     topic: 'action',
                     type: 'scheduler:trigger',
                     data: packet.data
-                }, function(err, res) {
-                    if(err) {
+                }, function (err, res) {
+                    if (err) {
                         debug.error(err.message);
                     } {
                         debug.trace('sent data successfully to scheduler');

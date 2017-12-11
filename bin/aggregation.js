@@ -18,9 +18,9 @@ Promise.coroutine(function* () {
     for (const collection of aggregations) {
         let start = new Date().getTime();
         debug(`Begin aggregate of ${collection}`);
-        try{
+        try {
             yield aggregate(collection);
-        }catch(e){
+        } catch (e) {
             console.error(e);
         }
         let end = new Date().getTime();
@@ -34,6 +34,4 @@ Promise.coroutine(function* () {
     console.error(e);
     return 1;
 }).then(pid.stop);
-
-
 

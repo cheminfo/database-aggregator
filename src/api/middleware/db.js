@@ -10,7 +10,7 @@ exports.getDataById = function *() {
 
     const Model = yield model.getAggregationIfExists(db);
     var d;
-    if(!Model) {
+    if (!Model) {
         d = null;
     } else {
         d = yield Model.findOne({id: id})
@@ -18,7 +18,7 @@ exports.getDataById = function *() {
             .lean(true).exec();
     }
 
-    if(d === null){
+    if (d === null) {
         this.status = 404;
     }
 
@@ -34,7 +34,7 @@ exports.getData = function *() {
 
     const Model = yield model.getAggregationIfExists(db);
     var d;
-    if(!Model) {
+    if (!Model) {
         d = [];
     } else {
         d = yield Model.find({seqid: {$gt: since}})
@@ -44,7 +44,7 @@ exports.getData = function *() {
     }
 
     this.body = {
-        lastSeqId: d.length ? d[d.length-1].seqid : 0,
+        lastSeqId: d.length ? d[d.length - 1].seqid : 0,
         data: d
     };
 };
@@ -54,7 +54,7 @@ exports.getInfo = function *() {
     const db = this.params.name;
 
     const Model = yield model.getAggregationIfExists(db);
-    if(!Model) {
+    if (!Model) {
         this.body = {
             remaining: 0,
             total: 0

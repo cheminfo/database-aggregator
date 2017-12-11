@@ -1,0 +1,4 @@
+extends: cheminfo
+
+rules: 
+  no-console: 0

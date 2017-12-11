@@ -15,5 +15,5 @@ process.on('message', aggregateDB => {
         }
         process.exit(0);
     })();
-    
+
 });

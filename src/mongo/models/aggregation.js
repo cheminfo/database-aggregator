@@ -9,15 +9,15 @@ exports.save = function (name, data) {
     delete data._id;
     const Model = model.getAggregation(name);
     return Model.findByIdAndUpdate(id, data, {new: true, upsert: true})
-        .exec()
+        .exec();
 };
 
-exports.findAll = function(name) {
+exports.findAll = function (name) {
     const Model = model.getAggregation(name);
     return Model.find({});
 };
 
-exports.getLatestSeqId = function(name) {
+exports.getLatestSeqId = function (name) {
     debug(`get latest seq id from ${name}`);
     const Model = model.getAggregation(name);
     return Model.findOne({}).sort({seqid: 'desc'}).exec();
@@ -29,12 +29,12 @@ exports.findById = function (name, id) {
     return Model.findById(id).where({action: {$ne: 'delete'}}).exec();
 };
 
-exports.countFromSeqId = function(name, fromSeqId) {
+exports.countFromSeqId = function (name, fromSeqId) {
     const Model = model.getAggregation(name);
     return Model.count({seqid: {$gt: fromSeqId}});
 };
 
-exports.count = function(name) {
+exports.count = function (name) {
     const Model = model.getAggregation(name);
     return Model.count();
 };

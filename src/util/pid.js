@@ -9,7 +9,7 @@ let _started;
 
 module.exports = {
     start: function () {
-        if(_started) return;
+        if (_started) return;
         try {
             const pid = fs.readFileSync(pidFile, 'utf8');
             if (isRunning(pid)) {

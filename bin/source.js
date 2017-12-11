@@ -22,9 +22,9 @@ Promise.coroutine(function* () {
         let start = new Date().getTime();
         debug(`Begin sourcing of ${collection}`);
         const options = config.source[collection];
-        try{
+        try {
             yield source.copy(options);
-        }catch(e){
+        } catch (e) {
             console.error(e);
         }
         let end = new Date().getTime();

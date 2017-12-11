@@ -9,7 +9,7 @@ process.on('message', options => {
         try {
             yield connection();
             yield source.remove(options);
-        } catch(e) {
+        } catch (e) {
             console.error(e);
             return process.exit(1);
         }

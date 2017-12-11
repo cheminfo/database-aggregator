@@ -2,7 +2,7 @@
 
 /*
   This request returns something:
-  
+
   Common ID is pid
   Unique id is id
   value1 is name of row
@@ -21,7 +21,7 @@ const config = {
     driver: 'oracle',
     query: sql,
     mode: 'dateid',
-    copyCronRule: '* * * * *',//each minute
+    copyCronRule: '* * * * *', //each minute
     removeCronRule: '* * * * *'//each minute
     // ,disabled: false
 };

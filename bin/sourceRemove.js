@@ -22,9 +22,9 @@ Promise.coroutine(function* () {
         let start = new Date().getTime();
         debug(`Begin remove source of ${collection}`);
         const options = config.source[collection];
-        try{
+        try {
             yield source.remove(options);
-        }catch(e){
+        } catch (e) {
             console.error(e);
         }
         let end = new Date().getTime();
