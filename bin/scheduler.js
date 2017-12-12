@@ -14,6 +14,10 @@ const schedulerLog = require('../src/mongo/models/schedulerLog');
 
 const ProcessScheduler = require('process-scheduler');
 
+const REMOVE_ID = 'source_remove_';
+const COPY_ID = 'source_copy_';
+const COPY_MISSING_ID = 'source_copy_missing_ids_';
+
 Promise.coroutine(function* () {
     yield connection();
     const schedulerConfig = {
@@ -27,18 +31,18 @@ Promise.coroutine(function* () {
     // Create configuration
     for (const collection of sources) {
         schedule.push({
-            id: 'source_copy_' + collection,
+            id: COPY_ID + collection,
             worker: path.join(__dirname, '../src/source/copyWorker.js'),
             immediate: false,
             cronRule: config.source[collection].copyCronRule,
             deps: [],
-            noConcurrency: ['source_remove_' + collection, 'source_copy_missing_ids' + collection],
+            noConcurrency: [REMOVE_ID + collection, COPY_MISSING_ID + collection],
             arg: config.source[collection],
             type: 'source'
         });
         // copy missing ids
         schedule.push({
-            id: 'source_copy_missing_ids' + collection,
+            id: COPY_MISSING_ID + collection,
             worker: path.join(__dirname, '../src/source/copyMissingIdsWorker.js'),
             immediate: false,
             cronRule: config.source[collection].copyMissingIdsCronRule,
@@ -48,7 +52,7 @@ Promise.coroutine(function* () {
             type: 'source'
         });
         schedule.push({
-            id: 'source_remove_' + collection,
+            id: REMOVE_ID + collection,
             worker: path.join(__dirname, '../src/source/removeWorker.js'),
             immediate: false,
             cronRule: config.source[collection].removeCronRule,
@@ -71,9 +75,9 @@ Promise.coroutine(function* () {
 
         let sources = Object.keys(config.aggregation[collection].sources);
         for (const source of sources) {
-            setDeps('source_copy_' + source, aggId);
-            setDeps('source_remove_' + source, aggId);
-            setDeps('source_copy_missing_ids_' + source, aggId);
+            setDeps(COPY_ID + source, aggId);
+            setDeps(REMOVE_ID + source, aggId);
+            setDeps(COPY_MISSING_ID + source, aggId);
         }
     }
 
