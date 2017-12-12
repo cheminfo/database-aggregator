@@ -2,6 +2,7 @@
 
 const Promise = require('bluebird');
 const model = require('../../mongo/model');
+const sqlUtil = require('../../util/sql');
 const common = require('./common');
 
 // In a similar fashion to how remove works, finds all the ids
@@ -23,6 +24,8 @@ const doSync = Promise.coroutine(function* (options) {
 
     const query = options.query;
     const idQuery = 'SELECT id FROM (\n' + query + '\n) inner_table';
+
+    const latest = yield Model.findOne().sort('-date').exec();
 
 
     // Get all ids from original source
@@ -46,12 +49,11 @@ const doSync = Promise.coroutine(function* (options) {
         SELECT * FROM (
             ${query}
         ) inner_table
-        WHERE ID IN ('${[...idsToCopy].join("','")}')
+        WHERE moddate < ${sqlUtil.formatTimestamp(latest.date)}
+        AND WHERE ID IN ('${[...idsToCopy].join("','")}')
     `;
 
 
-    yield common.copyEntries(oracleConn, copyQuery, collection, {
-        resetDate: true
-    });
+    yield common.copyEntries(oracleConn, copyQuery, collection);
     yield oracleConn.release();
 });
