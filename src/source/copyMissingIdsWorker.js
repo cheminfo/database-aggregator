@@ -5,10 +5,10 @@ const Promise = require('bluebird');
 const connection = require('../mongo/connection');
 
 process.on('message', options => {
-    Promise.coroutine(function* () {
+    Promise.coroutine(function * () {
         try {
             yield connection();
-            yield source.sync(options);
+            yield source.copyMissingIds(options);
         } catch (e) {
             console.error(e);
             return process.exit(1);
