@@ -41,7 +41,7 @@ Promise.coroutine(function* () {
             id: 'source_copy_missing_ids' + collection,
             worker: path.join(__dirname, '../src/source/copyMissingIdsWorker.js'),
             immediate: false,
-            cronRule: config.source[collection].copyMissingIdsRule,
+            cronRule: config.source[collection].copyMissingIdsCronRule,
             deps: [],
             noConcurrency: [],
             arg: config.source[collection],
