@@ -20,7 +20,8 @@ module.exports = {
             }
         });
     },
-    copyEntries: Promise.coroutine(function * (oracleConn, query, collection) {
+    copyEntries: Promise.coroutine(function * (oracleConn, query, collection, options) {
+        options = options || {};
         debug(query);
         const resultSet = yield oracleConn.execute(query);
 
@@ -30,13 +31,14 @@ module.exports = {
         do {
             rows = yield resultSet.getRows(100);
             for (let i = 0; i < rows.length; i++) {
-                yield module.exports.copyEntry(rows[i], collection);
+                yield module.exports.copyEntry(rows[i], collection, options);
             }
         } while (rows.length > 0);
         yield resultSet.close();
 
     }),
-    copyEntry: Promise.coroutine(function * (row, collection) {
+    copyEntry: Promise.coroutine(function * (row, collection, options) {
+        options = options || {};
         const Model = model.getSource(collection);
         let doc = yield Model.findById(row.ID);
         if (!doc) {
@@ -45,7 +47,12 @@ module.exports = {
             doc.commonID = row.PID;
         }
 
-        const date = row.MODDATE || new Date(0);
+        let date;
+        if (options.resetDate) {
+            date = new Date(0);
+        } else {
+            date = row.MODDATE || new Date(0);
+        }
 
         delete row.ID;
         delete row.PID;
