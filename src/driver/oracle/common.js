@@ -1,7 +1,7 @@
 'use strict';
 
 const isequal = require('lodash.isequal');
-const debug = require('debug');
+const debug = require('../../util/debug')('driver:oracle');
 const model = require('../../mongo/model');
 const seqid = require('../../mongo/models/seqIdCount');
 const oracledb = require('../../oracledb');
