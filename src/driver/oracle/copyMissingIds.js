@@ -9,7 +9,7 @@ const common = require('./common');
 // and copies those to the target
 
 module.exports = function (options) {
-    common.checkOptions(['connectString', 'idQuery', 'copyQuery'], options);
+    common.checkOptions(['connectString', 'query'], options);
     return doSync(options);
 };
 
@@ -21,10 +21,8 @@ const doSync = Promise.coroutine(function* (options) {
     // connect to Oracle
     const oracleConn = yield common.connect(options);
 
-    let idQuery = options.query;
-    idQuery = 'SELECT id FROM (\n' + idQuery + '\n) inner_table';
-    let copyQuery = options.copyQuery;
-    copyQuery = 'SELECT * FROM (\n' + copyQuery + '\n) inner_table';
+    const query = options.query;
+    const idQuery = 'SELECT id FROM (\n' + query + '\n) inner_table';
 
 
     // Get all ids from original source
@@ -44,7 +42,14 @@ const doSync = Promise.coroutine(function* (options) {
         }
     }
 
-    copyQuery = `${copyQuery}\nWHERE ID in ('${[...idsToCopy].join("','")}')`;
+    let copyQuery = `
+        SELECT * FROM (
+            ${query}
+        ) inner_table
+        WHERE ID IN ('${[...idsToCopy].join("','")}')
+    `;
+
+
     yield common.copyEntries(oracleConn, copyQuery, collection, {
         resetDate: true
     });
