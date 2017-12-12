@@ -44,7 +44,9 @@ const doSync = Promise.coroutine(function* (options) {
         }
     }
 
-    copyQuery = `${copyQuery}\nWHERE ID in {${[...idsToCopy].join(',')}}`;
-    yield common.copyEntries(oracleConn, copyQuery, collection);
+    copyQuery = `${copyQuery}\nWHERE ID in ('${[...idsToCopy].join("','")}')`;
+    yield common.copyEntries(oracleConn, copyQuery, collection, {
+        resetDate: true
+    });
     yield oracleConn.release();
 });
