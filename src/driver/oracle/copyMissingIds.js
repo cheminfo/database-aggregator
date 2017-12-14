@@ -1,9 +1,13 @@
 'use strict';
 
 const Promise = require('bluebird');
+const debug = require('../../util/debug')('driver:oracle');
 const model = require('../../mongo/model');
 const sqlUtil = require('../../util/sql');
 const common = require('./common');
+const chunk = require('lodash.chunk');
+
+const MAX_ELEMENTS_ID_CLAUSE = 999;
 
 // In a similar fashion to how remove works, finds all the ids
 // that are present in the source but missing in the target
@@ -45,15 +49,19 @@ const doSync = Promise.coroutine(function* (options) {
         }
     }
 
-    let copyQuery = `
-        SELECT * FROM (
-            ${query}
-        ) inner_table
-        WHERE moddate < ${sqlUtil.formatTimestamp(latest.date)}
-        AND ID IN ('${[...idsToCopy].join("','")}')
-    `;
 
+    debug(`adding ${idsToCopy.size} missing entries`);
+    const chunks = chunk([...idsToCopy], MAX_ELEMENTS_ID_CLAUSE);
+    for (let chunk of chunks) {
+        let copyQuery = `
+            SELECT * FROM (
+                ${query}
+            ) inner_table
+            WHERE moddate < ${sqlUtil.formatTimestamp(latest.date)}
+            AND ID IN ('${chunk.join("','")}')
+        `;
+        yield common.copyEntries(oracleConn, copyQuery, collection);
+    }
 
-    yield common.copyEntries(oracleConn, copyQuery, collection);
     yield oracleConn.release();
 });
