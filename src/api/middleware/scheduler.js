@@ -60,7 +60,7 @@ scheduler.tasks = function*(next) {
     }
 };
 
-function handleError(e) {
+function handleError() {
     this.status = 500;
     this.body = 'Internal server error';
 }

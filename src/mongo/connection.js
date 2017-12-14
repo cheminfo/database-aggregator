@@ -9,8 +9,7 @@ function connection() {
 
     _connection = new Promise(function (resolve, reject) {
         mongoose.connect(`${config.url}/${config.database}`, function (err) {
-            if (err) return reject(err);
-            resolve();
+            return err ? reject(err) : resolve();
         });
     });
     return _connection;

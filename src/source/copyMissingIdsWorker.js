@@ -11,7 +11,8 @@ process.on('message', options => {
             yield source.copyMissingIds(options);
         } catch (e) {
             console.error(e);
-            return process.exit(1);
+            process.exit(1);
+            return;
         }
         process.exit(0);
     })();

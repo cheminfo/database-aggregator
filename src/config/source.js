@@ -42,4 +42,8 @@ try {
 
 
     }
-} catch (e) {}
+} catch (e) {
+    debug.error('there was an error reading the source config');
+    debug.error(e);
+    debug.error(e.stack);
+}

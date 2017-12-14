@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --timeout 5000 --require should --require ./test/setup --reporter mocha-better-spec-reporter --recursive"
+    "test": "mocha --timeout 5000 --require should --require ./test/setup --reporter mocha-better-spec-reporter --recursive",
+    "eslint": "eslint src",
+    "eslint-fix": "eslint src --fix"
   },
   "repository": {
     "type": "git",

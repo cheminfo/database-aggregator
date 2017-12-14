@@ -52,7 +52,7 @@ function getModelIfExists(prefix, name, schema) {
             return models.get(collName);
         } else {
             return connection.hasCollection(collName).then(hasCol => {
-                if (!hasCol) return;
+                if (!hasCol) return null;
                 const model = mongoose.model(collName, schema, collName);
                 models.set(collName, model);
                 return model;

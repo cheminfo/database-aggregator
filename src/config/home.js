@@ -1,6 +1,5 @@
 'use strict';
 
-const fs = require('fs');
 const path = require('path');
 
 const debug = require('../util/debug')('config:home');
@@ -29,7 +28,7 @@ function getHomeConfig() {
         if (e.code === 'MODULE_NOT_FOUND') {
             debug('no main config found');
         } else {
-            debug.error('Error while reading and parsing config file' + '\n' + e);
+            debug.error('Error while reading and parsing config file\n' + e);
         }
         return {};
     }

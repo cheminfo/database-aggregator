@@ -1,7 +1,6 @@
 'use strict';
 
 const model = require('../../mongo/model');
-const aggregation = require('../../mongo/models/aggregation');
 const seqid = require('../../mongo/models/seqIdCount');
 
 exports.getDataById = function *() {
@@ -67,7 +66,7 @@ exports.getInfo = function *() {
     }
 };
 
-exports.updateData = function *() {
+exports.updateData = function * () {
     if (!this.request.body || (typeof this.request.body !== 'object')) {
         return error(this, 'body is not an object');
     }
@@ -96,13 +95,14 @@ exports.updateData = function *() {
             id: docID
         });
         yield newDoc.save();
-        return this.body = {success: true, seqid: newDoc.seqid};
+        this.body = {success: true, seqid: newDoc.seqid};
     } else if (doc.seqid === body.seqid) {
         doc.value = body.value;
         doc.date = body.date;
         doc.seqid = yield seqid.getNextSequenceID('aggregation_' + db);
         yield doc.save();
-        return this.body = {success: true, seqid: doc.seqid};
+        this.body = {success: true, seqid: doc.seqid};
+
     } else {
         this.status = 409;
         this.body = {error: true, reason: 'conflict'};
@@ -111,5 +111,5 @@ exports.updateData = function *() {
 
 function error(ctx, reason) {
     ctx.status = 400;
-    return ctx.body = {error: true, reason};
+    ctx.body = {error: true, reason};
 }

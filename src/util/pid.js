@@ -18,7 +18,13 @@ module.exports = {
             }
             console.log('pid file is here but process died');
             fs.unlinkSync(pidFile);
-        } catch (e) {}
+        } catch (e) {
+            if (e.code === 'ENOENT') {
+                console.log('pid file does not exist yet');
+            } else {
+                throw e;
+            }
+        }
         const currentPid = process.pid;
         fs.writeFileSync(pidFile, String(currentPid));
     },
