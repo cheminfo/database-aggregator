@@ -50,7 +50,7 @@ const doSync = Promise.coroutine(function* (options) {
             ${query}
         ) inner_table
         WHERE moddate < ${sqlUtil.formatTimestamp(latest.date)}
-        AND WHERE ID IN ('${[...idsToCopy].join("','")}')
+        AND ID IN ('${[...idsToCopy].join("','")}')
     `;
 
 
