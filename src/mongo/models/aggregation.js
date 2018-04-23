@@ -20,9 +20,12 @@ exports.findAll = function (name) {
 exports.findById = function (name, id) {
   const Model = model.getAggregation(name);
   // Don't return deleted entries
-  return Model.findById(id)
-    .where({ value: { $ne: null } })
-    .exec();
+  return Model.findById(id).exec();
+};
+
+exports.deleteById = function (name, id) {
+  const Model = model.getAggregation(name);
+  return Model.deleteOne({ _id: id });
 };
 
 exports.count = function (name) {

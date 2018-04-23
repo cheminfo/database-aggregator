@@ -65,28 +65,32 @@ module.exports = function (aggregateDB) {
         }
 
         let oldEntry = await aggregation.findById(aggregateDB, commonId);
-        if (!oldEntry && obj.value === null) {
-          // Nothing to do, the data was deleted from sources and does not
-          // exist or was deleted in aggregation
-          debug.trace(
-            `Ignoring ${aggregateDB}:${commonId}, which ought to be deleted but does not exist or was already deleted`
-          );
-          continue;
-        }
-        oldEntry = oldEntry || {};
-        if (isequal(obj.value, oldEntry.value)) {
-          // Don't save if has not changed
-          debug.trace(
-            `Not saving ${aggregateDB}:${commonId} because has not changed`
-          );
+        if (obj.value === null) {
+          if (oldEntry) {
+            await aggregation.deleteById(aggregateDB, commonId);
+          } else {
+            // Nothing to do, the data was deleted from sources and does not
+            // exist or was deleted in aggregation
+            debug.trace(
+              `Ignoring ${aggregateDB}:${commonId}, which ought to be deleted but does not exist or was already deleted`
+            );
+          }
         } else {
-          // Save document
-          debug.trace(`Saving ${aggregateDB}:${commonId}`);
-          await aggregation.save(aggregateDB, obj);
+          oldEntry = oldEntry || {};
+          if (isequal(obj.value, oldEntry.value)) {
+            // Don't save if has not changed
+            debug.trace(
+              `Not saving ${aggregateDB}:${commonId} because has not changed`
+            );
+          } else {
+            // Save document
+            debug.trace(`Saving ${aggregateDB}:${commonId}`);
+            await aggregation.save(aggregateDB, obj);
+          }
         }
       }
       await aggregationSequence.setSeqIds(aggregateDB, maxSeqIds);
-    } while (commonIdsSet.size);
+    } while (commonIdsSet.size > 0);
   })();
 };
 
