@@ -5,8 +5,9 @@ const isequal = require('lodash.isequal');
 const debug = require('../../util/debug')('driver:oracle');
 const model = require('../../mongo/model');
 const seqid = require('../../mongo/models/seqIdCount');
-const oracledb = require('../../oracledb');
 const mongodb = require('../../mongo/connection');
+
+const oracledb = require('./oracledb');
 
 module.exports = {
   async connect(options) {
