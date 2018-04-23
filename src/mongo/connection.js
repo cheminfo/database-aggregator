@@ -1,5 +1,7 @@
 'use strict';
 
+const { URL } = require('url');
+
 const mongoose = require('mongoose');
 
 const config = require('../config/config').globalConfig;
@@ -7,7 +9,9 @@ const config = require('../config/config').globalConfig;
 var _connection;
 function connection() {
   if (!_connection) {
-    _connection = mongoose.connect(`${config.url}/${config.database}`);
+    const url = new URL(config.url);
+    url.pathname = config.database;
+    _connection = mongoose.connect(url.href);
   }
   return _connection;
 }
