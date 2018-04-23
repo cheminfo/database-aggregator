@@ -6,9 +6,9 @@ var mongoose = new Mongoose();
 var mockgoose = new Mockgoose(mongoose);
 
 before(function () {
-  return mockgoose
-    .prepareStorage()
-    .then(() => console.log('prepare storage done'));
+  return mockgoose.prepareStorage().then(() => {
+    return mockgoose.helper.reset();
+  });
 });
 const sources = require('../src/mongo/models/source');
 

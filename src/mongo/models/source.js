@@ -8,7 +8,14 @@ exports.getCommonIds = function (name, fromSeq, toSeq) {
   debug.trace(`getCommonIds for source ${name} from seq ${fromSeq}`);
   fromSeq = fromSeq || 0;
   var Model = model.getSource(name);
-  return Model.find({ sequentialID: { $gt: fromSeq, $lte: toSeq } })
+  const query = { sequentialID: {} };
+  if (fromSeq !== undefined) {
+    query.sequentialID.$gt = fromSeq;
+  }
+  if (toSeq !== undefined) {
+    query.sequentialID.$lte = toSeq;
+  }
+  return Model.find(query)
     .select({ commonID: 1, sequentialID: 1 })
     .sort({ _id: 'asc' })
     .exec();
