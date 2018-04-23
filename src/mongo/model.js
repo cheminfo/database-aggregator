@@ -24,17 +24,16 @@ exports.getAggregationIfExists = function (name) {
 };
 
 exports.getSeqIdCount = function () {
-  return getModel('_', 'seqIdCount', seqIdCountSchema);
+  return getModel('meta', 'seqIdCount', seqIdCountSchema);
 };
 
 exports.getSeqIdAggregated = function () {
-  return getModel('_', 'seqIdAggregated', seqIdAggregatedSchema);
+  return getModel('meta', 'seqIdAggregated', seqIdAggregatedSchema);
 };
 
 exports.getSchedulerLog = function () {
-  return getModel('_', 'schedulerLog', schedulerLogSchema);
+  return getModel('meta', 'schedulerLog', schedulerLogSchema);
 };
-
 
 function getModel(prefix, name, schema) {
   const collName = `${prefix}_${name}`;
@@ -46,18 +45,15 @@ function getModel(prefix, name, schema) {
   return model;
 }
 
-function getModelIfExists(prefix, name, schema) {
-  return Promise.resolve().then(() => {
-    const collName = `${prefix}_${name}`;
-    if (models.has(collName)) {
-      return models.get(collName);
-    } else {
-      return connection.hasCollection(collName).then((hasCol) => {
-        if (!hasCol) return null;
-        const model = mongoose.model(collName, schema, collName);
-        models.set(collName, model);
-        return model;
-      });
-    }
-  });
+async function getModelIfExists(prefix, name, schema) {
+  const collName = `${prefix}_${name}`;
+  if (models.has(collName)) {
+    return models.get(collName);
+  } else {
+    const hasCol = await connection.hasCollection(collName);
+    if (!hasCol) return null;
+    const model = mongoose.model(collName, schema, collName);
+    models.set(collName, model);
+    return model;
+  }
 }
