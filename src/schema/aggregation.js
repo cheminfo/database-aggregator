@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 module.exports = new Schema({
+  // Unique identifier for this record.
   _id: {
     type: String,
     required: true
@@ -15,10 +16,6 @@ module.exports = new Schema({
   },
   date: {
     type: Number,
-    required: true
-  },
-  action: {
-    type: String,
     required: true
   },
   id: {

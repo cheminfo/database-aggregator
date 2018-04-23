@@ -58,21 +58,15 @@ module.exports = function (aggregateDB) {
         obj._id = commonId;
         obj.date = Date.now();
         if (!exists) {
-          obj.action = 'delete';
           obj.value = null;
         } else {
           // aggregate will return null if config scripts decided
           // it should not be saved
           obj.value = await aggregate(data, conf.sources, commonId);
-          if (obj.value === null) {
-            obj.action = 'delete';
-          } else {
-            obj.action = 'update';
-          }
         }
 
         let oldEntry = await aggregation.findById(aggregateDB, commonId);
-        if (!oldEntry && obj.action === 'delete') {
+        if (!oldEntry && obj.value === null) {
           // Nothing to do, the data was deleted from sources and does not
           // exist or was deleted in aggregation
           debug.trace(
