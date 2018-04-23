@@ -9,12 +9,14 @@ const oracledb = require('../../oracledb');
 const mongodb = require('../../mongo/connection');
 
 module.exports = {
-  connect: function (options) {
-    return Promise.all([oracledb.getConnection(options), mongodb()]).then(
-      (connections) => connections[0]
-    );
+  async connect(options) {
+    const [connection] = await Promise.all([
+      oracledb.getConnection(options),
+      mongodb()
+    ]);
+    return connection;
   },
-  checkOptions: function (mandatory, options) {
+  checkOptions(mandatory, options) {
     mandatory.forEach((mandatory) => {
       if (!options[mandatory]) {
         throw new Error(`${mandatory} option is mandatory`);

@@ -4,17 +4,19 @@ const model = require('./../model');
 
 const Model = model.getSeqIdAggregated();
 
-exports.getLastSeqIds = function (name) {
-  return Model.findById(name).exec().then((result) => {
-    if (result) return result.seq;
-    return null;
-  });
+exports.getLastSeqIds = async function (name) {
+  const result = await Model.findById(name).exec();
+  if (result) return result.seq;
+  return null;
 };
 
-exports.setSeqIds = function (name, seqIds) {
-  return Model.findByIdAndUpdate(name, { seq: seqIds }, { new: true, upsert: true })
-    .exec()
-    .then((result) => result.seq);
+exports.setSeqIds = async function (name, seqIds) {
+  const result = await Model.findByIdAndUpdate(
+    name,
+    { seq: seqIds },
+    { new: true, upsert: true }
+  ).exec();
+  return result.seq;
 };
 
 exports.clear = function () {
