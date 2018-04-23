@@ -2,7 +2,7 @@
 
 const koa = require('koa');
 const router = require('./router');
-const bodyParser = require('koa-body');
+const bodyParser = require('koa-bodyparser');
 const compress = require('koa-compress');
 const responseTime = require('koa-response-time');
 const kcors = require('kcors');
