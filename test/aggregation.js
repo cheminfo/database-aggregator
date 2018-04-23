@@ -1,11 +1,12 @@
 'use strict';
 
-const data = require('./data/data');
 const aggregate = require('../src/aggregation/aggregate');
 
+const data = require('./data/data');
+
 describe('Aggregation', function () {
-    before(data);
-    it('Should create aggregated collection', function () {
-        return aggregate('chemical');
-    });
+  beforeEach(data);
+  it('Should create aggregated collection', function () {
+    return aggregate('chemical');
+  });
 });

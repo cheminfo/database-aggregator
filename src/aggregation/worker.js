@@ -1,20 +1,17 @@
 'use strict';
 
-const aggregate = require('./aggregate');
-const Promise = require('bluebird');
 const connection = require('../mongo/connection');
 
-process.on('message', aggregateDB => {
-    Promise.coroutine(function* () {
-        try {
-            yield connection();
-            yield aggregate(aggregateDB);
-        } catch (e) {
-            console.error(e);
-            process.exit(1);
-            return;
-        }
-        process.exit(0);
-    })();
+const aggregate = require('./aggregate');
 
+process.on('message', (aggregateDB) => {
+  (async function () {
+    try {
+      await connection();
+      await aggregate(aggregateDB);
+    } catch (e) {
+      console.error(e);
+      process.exitCode = 1;
+    }
+  })();
 });

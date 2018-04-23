@@ -7,9 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --timeout 5000 --require should --require ./test/setup --reporter mocha-better-spec-reporter --recursive",
-    "eslint": "eslint src",
-    "eslint-fix": "eslint src --fix"
+    "test":
+      "mocha --timeout 5000 --require should --require ./test/setup --reporter mocha-better-spec-reporter --recursive",
+    "eslint": "eslint bin examples src test",
+    "eslint-fix": "npm run eslint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -22,11 +23,7 @@
   },
   "homepage": "https://github.com/cheminfo/database-aggregator#readme",
   "dependencies": {
-    "bluebird": "^3.1.5",
     "debug": "^3.1.0",
-    "eslint": "^4.13.0",
-    "eslint-config-cheminfo": "^1.9.1",
-    "eslint-plugin-no-only-tests": "^2.0.0",
     "find": "^0.2.4",
     "is-running": "^2.0.0",
     "kcors": "^2.2.1",
@@ -45,6 +42,10 @@
     "oracledb": "^2.1.2"
   },
   "devDependencies": {
+    "eslint": "^4.13.0",
+    "eslint-config-cheminfo": "^1.9.1",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.15.1",
     "mocha": "^5.1.1",
     "mocha-better-spec-reporter": "^3.0.1",
     "should": "^13.2.1"

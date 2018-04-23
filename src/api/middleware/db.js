@@ -3,113 +3,118 @@
 const model = require('../../mongo/model');
 const seqid = require('../../mongo/models/seqIdCount');
 
-exports.getDataById = function *() {
-    const db = this.params.name;
-    const id = this.params.id;
+exports.getDataById = async function (ctx) {
+  const db = ctx.params.name;
+  const id = ctx.params.id;
 
-    const Model = yield model.getAggregationIfExists(db);
-    var d;
-    if (!Model) {
-        d = null;
-    } else {
-        d = yield Model.findOne({id: id})
-            .select({_id: 0, __v: 0})
-            .lean(true).exec();
-    }
+  const Model = await model.getAggregationIfExists(db);
+  var d;
+  if (!Model) {
+    d = null;
+  } else {
+    d = await Model.findOne({ id: id })
+      .select({ _id: 0, __v: 0 })
+      .lean(true)
+      .exec();
+  }
 
-    if (d === null) {
-        this.status = 404;
-    }
+  if (d === null) {
+    ctx.status = 404;
+  }
 
-    this.body = {
-        data: d
+  ctx.body = {
+    data: d
+  };
+};
+
+exports.getData = async function (ctx) {
+  const since = +ctx.query.since || 0;
+  const limit = +ctx.query.limit || 100;
+  const db = ctx.params.name;
+
+  const Model = await model.getAggregationIfExists(db);
+  var d;
+  if (!Model) {
+    d = [];
+  } else {
+    d = await Model.find({ seqid: { $gt: since } })
+      .sort({ seqid: 'asc' })
+      .select({ _id: 0, __v: 0 })
+      .limit(limit)
+      .lean(true)
+      .exec();
+  }
+
+  ctx.body = {
+    lastSeqId: d.length ? d[d.length - 1].seqid : 0,
+    data: d
+  };
+};
+
+exports.getInfo = async function (ctx) {
+  const since = +ctx.query.since || 0;
+  const db = ctx.params.name;
+
+  const Model = await model.getAggregationIfExists(db);
+  if (!Model) {
+    ctx.body = {
+      remaining: 0,
+      total: 0
     };
-};
-
-exports.getData = function *() {
-    const since = +this.query.since || 0;
-    const limit = +this.query.limit || 100;
-    const db = this.params.name;
-
-    const Model = yield model.getAggregationIfExists(db);
-    var d;
-    if (!Model) {
-        d = [];
-    } else {
-        d = yield Model.find({seqid: {$gt: since}})
-            .sort({seqid: 'asc'})
-            .select({_id: 0, __v: 0})
-            .limit(limit).lean(true).exec();
-    }
-
-    this.body = {
-        lastSeqId: d.length ? d[d.length - 1].seqid : 0,
-        data: d
+  } else {
+    ctx.body = {
+      remaining: await Model.count({ seqid: { $gt: since } }),
+      total: await Model.count()
     };
+  }
 };
 
-exports.getInfo = function *() {
-    const since = +this.query.since || 0;
-    const db = this.params.name;
+exports.updateData = async function (ctx) {
+  if (!ctx.request.body || typeof ctx.request.body !== 'object') {
+    error(ctx, 'body is not an object');
+    return;
+  }
+  const body = ctx.request.body;
+  const docID = body.id;
+  const date = body.date;
+  const value = body.value;
+  if (!docID || !date || !value) {
+    error(ctx, 'missing ID, date or value');
+    return;
+  }
 
-    const Model = yield model.getAggregationIfExists(db);
-    if (!Model) {
-        this.body = {
-            remaining: 0,
-            total: 0
-        };
-    } else {
-        this.body = {
-            remaining: yield Model.count({seqid: {$gt: since}}),
-            total: yield Model.count()
-        };
-    }
-};
+  const db = ctx.params.name;
+  const Model = await model.getAggregationIfExists(db);
+  if (!Model) {
+    error(ctx, `unknown database: ${db}`);
+    return;
+  }
 
-exports.updateData = function * () {
-    if (!this.request.body || (typeof this.request.body !== 'object')) {
-        return error(this, 'body is not an object');
-    }
-    const body = this.request.body;
-    const docID = body.id;
-    const date = body.date;
-    const value = body.value;
-    if (!docID || !date || !value) {
-        return error(this, 'missing ID, date or value');
-    }
-
-    const db = this.params.name;
-    const Model = yield model.getAggregationIfExists(db);
-    if (!Model) {
-        return error(this, 'unknown database: ' + db);
-    }
-
-    const doc = yield Model.findById(docID);
-    if (doc === null) {
-        let newDoc = new Model({
-            _id: docID,
-            seqid: yield seqid.getNextSequenceID('aggregation_' + db),
-            value,
-            date,
-            action: 'update',
-            id: docID
-        });
-        yield newDoc.save();
-        this.body = {success: true, seqid: newDoc.seqid};
-    } else if (doc.seqid === body.seqid) {
-        doc.value = body.value;
-        doc.date = body.date;
-        doc.seqid = yield seqid.getNextSequenceID('aggregation_' + db);
-        yield doc.save();
-        this.body = {success: true, seqid: doc.seqid};
-
-    } else {
-        this.status = 409;
-        this.body = {error: true, reason: 'conflict'};
-    }
+  const doc = await Model.findById(docID);
+  if (doc === null) {
+    let newDoc = new Model({
+      _id: docID,
+      seqid: await seqid.getNextSequenceID(`aggregation_${db}`),
+      value,
+      date,
+      action: 'update',
+      id: docID
+    });
+    await newDoc.save();
+    ctx.body = { success: true, seqid: newDoc.seqid };
+  } else if (doc.seqid === body.seqid) {
+    doc.value = body.value;
+    doc.date = body.date;
+    doc.seqid = await seqid.getNextSequenceID(`aggregation_${db}`);
+    await doc.save();
+    ctx.body = { success: true, seqid: doc.seqid };
+  } else {
+    ctx.status = 409;
+    ctx.body = { error: true, reason: 'conflict' };
+  }
 };
 
 function error(ctx, reason) {
-    ctx.status = 400;
-    ctx.body = {error: true, reason};
+  ctx.status = 400;
+  ctx.body = { error: true, reason };
 }

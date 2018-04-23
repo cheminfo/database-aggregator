@@ -12,10 +12,10 @@ debug.log = console.log.bind(console);
 trace.log = console.log.bind(console);
 
 module.exports = function (prefix) {
-    const func = message => debug(`(${prefix}) ${message}`);
-    func.error = message => error(`(${prefix}) ${message}`);
-    func.warn = message => warn(`(${prefix}) ${message}`);
-    func.debug = func;
-    func.trace = message => trace(`(${prefix}) ${message}`);
-    return func;
+  const func = (message) => debug(`(${prefix}) ${message}`);
+  func.error = (message) => error(`(${prefix}) ${message}`);
+  func.warn = (message) => warn(`(${prefix}) ${message}`);
+  func.debug = func;
+  func.trace = (message) => trace(`(${prefix}) ${message}`);
+  return func;
 };

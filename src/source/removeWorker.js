@@ -1,20 +1,17 @@
 'use strict';
 
-const source = require('./source');
-const Promise = require('bluebird');
 const connection = require('../mongo/connection');
 
-process.on('message', options => {
-    Promise.coroutine(function* () {
-        try {
-            yield connection();
-            yield source.remove(options);
-        } catch (e) {
-            console.error(e);
-            process.exit(1);
-            return;
-        }
-        process.exit(0);
-    })();
+const source = require('./source');
 
+process.on('message', (options) => {
+  (async function () {
+    try {
+      await connection();
+      await source.remove(options);
+    } catch (e) {
+      console.error(e);
+      process.exitCode = 1;
+    }
+  })();
 });
