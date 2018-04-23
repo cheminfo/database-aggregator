@@ -1,7 +1,6 @@
 'use strict';
 
 const model = require('../../mongo/model');
-const sourceSequence = require('../../mongo/models/sourceSequence');
 
 exports.getDataById = async function (ctx) {
   const db = ctx.params.name;
@@ -68,53 +67,3 @@ exports.getInfo = async function (ctx) {
     };
   }
 };
-
-exports.updateData = async function (ctx) {
-  if (!ctx.request.body || typeof ctx.request.body !== 'object') {
-    error(ctx, 'body is not an object');
-    return;
-  }
-  const body = ctx.request.body;
-  const docID = body.id;
-  const date = body.date;
-  const value = body.value;
-  if (!docID || !date || !value) {
-    error(ctx, 'missing ID, date or value');
-    return;
-  }
-
-  const db = ctx.params.name;
-  const Model = await model.getAggregationIfExists(db);
-  if (!Model) {
-    error(ctx, `unknown database: ${db}`);
-    return;
-  }
-
-  const doc = await Model.findById(docID);
-  if (doc === null) {
-    let newDoc = new Model({
-      _id: docID,
-      seqid: await sourceSequence.getNextSequenceID(`aggregation_${db}`),
-      value,
-      date,
-      action: 'update',
-      id: docID
-    });
-    await newDoc.save();
-    ctx.body = { success: true, seqid: newDoc.seqid };
-  } else if (doc.seqid === body.seqid) {
-    doc.value = body.value;
-    doc.date = body.date;
-    doc.seqid = await sourceSequence.getNextSequenceID(`aggregation_${db}`);
-    await doc.save();
-    ctx.body = { success: true, seqid: doc.seqid };
-  } else {
-    ctx.status = 409;
-    ctx.body = { error: true, reason: 'conflict' };
-  }
-};
-
-function error(ctx, reason) {
-  ctx.status = 400;
-  ctx.body = { error: true, reason };
-}

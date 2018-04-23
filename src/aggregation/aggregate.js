@@ -88,11 +88,8 @@ module.exports = function (aggregateDB) {
             `Not saving ${aggregateDB}:${commonId} because has not changed`
           );
         } else {
-          // Save with next seqid
-          debug.trace(`Saving ${aggregateDB}:${commonId} with new seqid`);
-          obj.seqid = await sourceSequence.getNextSequenceID(
-            `aggregation_${aggregateDB}`
-          );
+          // Save document
+          debug.trace(`Saving ${aggregateDB}:${commonId}`);
           await aggregation.save(aggregateDB, obj);
         }
       }

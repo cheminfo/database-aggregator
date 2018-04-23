@@ -58,9 +58,7 @@ module.exports = {
       debug.trace('rows are not equal');
       doc.data = row;
       doc.date = date;
-      doc.sequentialID = await sourceSequence.getNextSequenceID(
-        `source_${collection}`
-      );
+      doc.sequentialID = await sourceSequence.getNextSequenceID(collection);
       await doc.save();
     } else {
       debug.trace('rows are equal');

@@ -55,9 +55,7 @@ async function doDelete(options) {
       $set: {
         data: null,
         date: new Date(),
-        sequentialID: await sourceSequence.getNextSequenceID(
-          `source_${collection}`
-        )
+        sequentialID: await sourceSequence.getNextSequenceID(collection)
       }
     }).exec();
   }
