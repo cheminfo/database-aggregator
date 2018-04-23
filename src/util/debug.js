@@ -2,10 +2,10 @@
 
 const Debug = require('debug');
 
-var error = Debug('aggregate:error');
-var warn = Debug('aggregate:warn');
-var debug = Debug('aggregate:debug');
-var trace = Debug('aggregate:trace');
+var error = Debug('aggregator:error');
+var warn = Debug('aggregator:warn');
+var debug = Debug('aggregator:debug');
+var trace = Debug('aggregator:trace');
 
 warn.log = console.warn.bind(console);
 debug.log = console.log.bind(console);
