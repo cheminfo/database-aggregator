@@ -32,7 +32,7 @@ exports.getAggregationSequence = function () {
 };
 
 exports.getSchedulerLog = function () {
-  return getModel('meta', 'schedulerLog', schedulerLogSchema);
+  return getModel('meta', 'scheduler_log', schedulerLogSchema);
 };
 
 function getModel(prefix, name, schema) {
