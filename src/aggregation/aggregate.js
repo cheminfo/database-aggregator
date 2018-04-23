@@ -2,12 +2,11 @@
 
 const isequal = require('lodash.isequal');
 
-const seqIdTrack = require('./../mongo/models/seqIdAggregated');
+const aggregationSequence = require('./../mongo/models/aggregationSequence');
 const config = require('./../config/config').globalConfig;
 const aggregation = require('./../mongo/models/aggregation');
 const source = require('./../mongo/models/source');
 const debug = require('./../util/debug')('aggregation');
-const sourceSequence = require('./../mongo/models/sourceSequence');
 
 const defaultChunkSize = 1000;
 
@@ -27,7 +26,7 @@ module.exports = function (aggregateDB) {
 
   return (async function () {
     do {
-      let seqIds = await seqIdTrack.getLastSeqIds(aggregateDB);
+      let seqIds = await aggregationSequence.getLastSeqIds(aggregateDB);
       seqIds = seqIds || {};
       let commonIds = [];
 
@@ -93,7 +92,7 @@ module.exports = function (aggregateDB) {
           await aggregation.save(aggregateDB, obj);
         }
       }
-      await seqIdTrack.setSeqIds(aggregateDB, maxSeqIds);
+      await aggregationSequence.setSeqIds(aggregateDB, maxSeqIds);
     } while (commonIdsSet.size);
   })();
 };

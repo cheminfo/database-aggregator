@@ -8,7 +8,7 @@ const model = require('../../src/mongo/model');
 module.exports = function () {
   return connection()
     .then(() => model.getSourceSequence().remove({}))
-    .then(() => model.getSeqIdAggregated().remove({}))
+    .then(() => model.getAggregationSequence().remove({}))
     .then(() => {
       // Drop collections
       return Promise.all(

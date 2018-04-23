@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const sourceSchema = require('../schema/source');
 const aggregationSchema = require('../schema/aggregation');
 const sourceSequenceSchema = require('../schema/sourceSequence');
-const seqIdAggregatedSchema = require('../schema/seqIdAggregated');
+const aggregationSequenceSchema = require('../schema/aggregationSequence');
 const schedulerLogSchema = require('../schema/schedulerLog');
 const connection = require('../mongo/connection');
 
@@ -27,8 +27,8 @@ exports.getSourceSequence = function () {
   return getModel('meta', 'source_sequence', sourceSequenceSchema);
 };
 
-exports.getSeqIdAggregated = function () {
-  return getModel('meta', 'seqIdAggregated', seqIdAggregatedSchema);
+exports.getAggregationSequence = function () {
+  return getModel('meta', 'aggregation_sequence', aggregationSequenceSchema);
 };
 
 exports.getSchedulerLog = function () {

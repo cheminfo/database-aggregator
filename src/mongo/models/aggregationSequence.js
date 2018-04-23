@@ -2,21 +2,21 @@
 
 const model = require('./../model');
 
-const Model = model.getSeqIdAggregated();
+const Model = model.getAggregationSequence();
 
 exports.getLastSeqIds = async function (name) {
   const result = await Model.findById(name).exec();
-  if (result) return result.seq;
+  if (result) return result.sourceSeq;
   return null;
 };
 
 exports.setSeqIds = async function (name, seqIds) {
   const result = await Model.findByIdAndUpdate(
     name,
-    { seq: seqIds },
+    { sourceSeq: seqIds },
     { new: true, upsert: true }
   ).exec();
-  return result.seq;
+  return result.sourceSeq;
 };
 
 exports.clear = function () {

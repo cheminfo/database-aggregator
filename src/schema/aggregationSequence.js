@@ -9,7 +9,7 @@ module.exports = new Schema({
     type: String,
     required: true
   },
-  seq: {
+  sourceSeq: {
     type: Object,
     default: {}
   }
