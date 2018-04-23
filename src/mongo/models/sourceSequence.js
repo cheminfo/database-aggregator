@@ -1,8 +1,8 @@
 'use strict';
 
-const model = require('./../model');
+const model = require('../model');
 
-const Model = model.getSeqIdCount();
+const Model = model.getSourceSequence();
 
 exports.getNextSequenceID = async function (name) {
   const result = await Model.findByIdAndUpdate(

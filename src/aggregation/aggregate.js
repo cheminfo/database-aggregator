@@ -7,7 +7,7 @@ const config = require('./../config/config').globalConfig;
 const aggregation = require('./../mongo/models/aggregation');
 const source = require('./../mongo/models/source');
 const debug = require('./../util/debug')('aggregation');
-const seqId = require('./../mongo/models/seqIdCount');
+const sourceSequence = require('./../mongo/models/sourceSequence');
 
 const defaultChunkSize = 1000;
 
@@ -90,7 +90,7 @@ module.exports = function (aggregateDB) {
         } else {
           // Save with next seqid
           debug.trace(`Saving ${aggregateDB}:${commonId} with new seqid`);
-          obj.seqid = await seqId.getNextSequenceID(
+          obj.seqid = await sourceSequence.getNextSequenceID(
             `aggregation_${aggregateDB}`
           );
           await aggregation.save(aggregateDB, obj);

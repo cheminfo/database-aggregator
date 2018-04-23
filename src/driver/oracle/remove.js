@@ -1,6 +1,6 @@
 'use strict';
 
-const seqid = require('../../mongo/models/seqIdCount');
+const sourceSequence = require('../../mongo/models/sourceSequence');
 const model = require('../../mongo/model');
 const debug = require('../../util/debug')('driver:oracle');
 
@@ -55,7 +55,9 @@ async function doDelete(options) {
       $set: {
         data: null,
         date: new Date(),
-        sequentialID: await seqid.getNextSequenceID(`source_${collection}`)
+        sequentialID: await sourceSequence.getNextSequenceID(
+          `source_${collection}`
+        )
       }
     }).exec();
   }

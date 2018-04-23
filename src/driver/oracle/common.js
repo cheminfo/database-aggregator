@@ -4,7 +4,7 @@ const isequal = require('lodash.isequal');
 
 const debug = require('../../util/debug')('driver:oracle');
 const model = require('../../mongo/model');
-const seqid = require('../../mongo/models/seqIdCount');
+const sourceSequence = require('../../mongo/models/sourceSequence');
 const mongodb = require('../../mongo/connection');
 
 const oracledb = require('./oracledb');
@@ -58,7 +58,9 @@ module.exports = {
       debug.trace('rows are not equal');
       doc.data = row;
       doc.date = date;
-      doc.sequentialID = await seqid.getNextSequenceID(`source_${collection}`);
+      doc.sequentialID = await sourceSequence.getNextSequenceID(
+        `source_${collection}`
+      );
       await doc.save();
     } else {
       debug.trace('rows are equal');

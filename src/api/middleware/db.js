@@ -1,7 +1,7 @@
 'use strict';
 
 const model = require('../../mongo/model');
-const seqid = require('../../mongo/models/seqIdCount');
+const sourceSequence = require('../../mongo/models/sourceSequence');
 
 exports.getDataById = async function (ctx) {
   const db = ctx.params.name;
@@ -94,7 +94,7 @@ exports.updateData = async function (ctx) {
   if (doc === null) {
     let newDoc = new Model({
       _id: docID,
-      seqid: await seqid.getNextSequenceID(`aggregation_${db}`),
+      seqid: await sourceSequence.getNextSequenceID(`aggregation_${db}`),
       value,
       date,
       action: 'update',
@@ -105,7 +105,7 @@ exports.updateData = async function (ctx) {
   } else if (doc.seqid === body.seqid) {
     doc.value = body.value;
     doc.date = body.date;
-    doc.seqid = await seqid.getNextSequenceID(`aggregation_${db}`);
+    doc.seqid = await sourceSequence.getNextSequenceID(`aggregation_${db}`);
     await doc.save();
     ctx.body = { success: true, seqid: doc.seqid };
   } else {
