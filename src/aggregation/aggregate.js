@@ -54,7 +54,6 @@ module.exports = function (aggregateDB) {
         }
         var exists = checkExists(data);
         let obj = {};
-        obj.id = commonId;
         obj._id = commonId;
         obj.date = Date.now();
         if (!exists) {

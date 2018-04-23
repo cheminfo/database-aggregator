@@ -10,16 +10,14 @@ module.exports = new Schema({
     type: String,
     required: true
   },
-  value: {
-    type: Object,
-    required: true
-  },
+  // Date of last update.
   date: {
     type: Number,
     required: true
   },
-  id: {
-    type: String,
+  // Result of the aggregation.
+  value: {
+    type: Object,
     required: true
   }
 });
