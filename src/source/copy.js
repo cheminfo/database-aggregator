@@ -10,6 +10,9 @@ async function copy(config) {
   const driver = getDriver(config.driver);
 
   const collection = config.collection;
+  if (typeof collection !== 'string' || collection === '') {
+    throw new TypeError('collection must be a string');
+  }
   const Model = model.getSource(collection);
 
   await mongodbConnect();

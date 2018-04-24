@@ -1,24 +1,15 @@
 'use strict';
 
 async function getData(config, callback, options) {
-  const { ids, latestDate } = options;
-  if (ids) {
-    return callback([
-      {
-        id: 'test5',
-        commonID: 'test5',
-        modificationDate: new Date(1800),
-        data: { x: 10, y: 11 }
-      }
-    ]);
-  }
+  const { driverValue } = config;
+  const { latestDate } = options;
   if (latestDate === null) {
     return callback([
       {
         id: 'test1',
         commonID: 'test1',
         modificationDate: new Date(1000),
-        data: { x: 1, y: 2 }
+        data: { x: 1, y: 2, driverValue }
       }
     ]);
   } else if (latestDate.getTime() === 1000) {
@@ -33,7 +24,7 @@ async function getData(config, callback, options) {
         id: 'test2',
         commonID: 'test2',
         modificationDate: new Date(1600),
-        data: { x: 4, y: 5 }
+        data: { x: 4, y: 5, driverValue }
       }
     ]);
 

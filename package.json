@@ -10,8 +10,8 @@
     "eslint": "eslint bin examples src test",
     "eslint-fix": "npm run eslint -- --fix",
     "test": "npm run test-only && npm run eslint",
-    "test-coverage": "jest --coverage",
-    "test-only": "jest"
+    "test-coverage": "jest --runInBand --coverage",
+    "test-only": "jest --runInBand"
   },
   "jest": {
     "setupFiles": ["./test/setup.js"],
