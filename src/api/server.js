@@ -1,6 +1,6 @@
 'use strict';
 
-const koa = require('koa');
+const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const compress = require('koa-compress');
 const responseTime = require('koa-response-time');
@@ -10,13 +10,23 @@ const config = require('../config/config').globalConfig;
 
 const router = require('./router');
 
-const app = koa();
+const app = new Koa();
 app.use(compress());
 app.use(responseTime());
-app.use(kcors(Object.assign({}, { credentials: true }, config.server ? config.server.cors : null)));
-app.use(bodyParser({
-  jsonLimit: '100mb'
-}));
+app.use(
+  kcors(
+    Object.assign(
+      {},
+      { credentials: true },
+      config.server ? config.server.cors : null
+    )
+  )
+);
+app.use(
+  bodyParser({
+    jsonLimit: '100mb'
+  })
+);
 
 if (config.server && config.server.middleware) {
   config.server.middleware.forEach((middleware) => app.use(middleware));
