@@ -7,10 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --exit --timeout 5000 --require should --require ./test/setup --reporter mocha-better-spec-reporter --recursive",
     "eslint": "eslint bin examples src test",
     "eslint-fix": "npm run eslint -- --fix",
-    "prepare": "node bin/prepareTests"
+    "prepare": "node bin/prepareTests",
+    "test": "npm run test-only && npm run eslint",
+    "test-only": "mocha --exit --timeout 5000 --require should --require ./test/setup --reporter mocha-better-spec-reporter --recursive"
   },
   "repository": {
     "type": "git",
