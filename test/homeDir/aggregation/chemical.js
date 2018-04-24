@@ -17,9 +17,7 @@ module.exports = {
       result.prices = values;
     },
     names(values, result) {
-      result.names = values.map(
-        (value) => value.name
-      );
+      result.names = values.map((value) => value.name);
     }
   }
 };

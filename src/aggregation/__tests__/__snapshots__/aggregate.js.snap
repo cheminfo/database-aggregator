@@ -1,0 +1,1290 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`source copy aggregate chemical 1`] = `
+Array [
+  Object {
+    "__v": 0,
+    "_id": "2925038",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 918025,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "tert-Butyldimethylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 3120,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 41.8,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 3.12,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 4.23,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2926713",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 15673004,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "3,3-Dimethylbutylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 57200,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 131,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 55.4,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 13.3,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "5033827",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 921040,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "N,N-dimethylbutan-2-amine",
+        "N,N-dimethylbutan-2-amine",
+        "dimethyl(sec-butyl)amine",
+      ],
+      "prices": Array [],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "9682820",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 13364164,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "1-Amino-2-methylpentane",
+        "1-Pentanamine, 2-methyl-",
+        "2-Methyl-1-pentylamine",
+        "2-Methylamylamine",
+        "2-Methylpentylamine",
+        "Nsc163973",
+        "Pentylamine, 2-methyl-",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 91900000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 91900,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 91.9,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9300,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "9736385",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 7239249,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "1-Propanamine, N,N,2-trimethyl-",
+        "Einecs 230-639-2",
+        "N,N-Dimethylisobutylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 65300,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 65.3,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 65.3,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 6.61,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "9742097",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 16751589,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "3-Aminohexane",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 687000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 367,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 367,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 37.1,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "9744414",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 21968172,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "Einecs 244-688-2",
+        "N-Isopropylpropylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 82900,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 164,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 0.345,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 16.6,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "9744654",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 21035449,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "2-Butanamine, N-ethyl-",
+        "Einecs 244-159-6",
+        "N-Ethyl-1-methylpropylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 378000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 98.7,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 0.359,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9.98,
+          "quantity": "1mmol",
+        },
+        Object {
+          "currency": "USD",
+          "price": 378000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 98.7,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 0.359,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9.98,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "9890062",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 35399816,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "1,2-Dimethylbutylamine",
+        "Einecs 252-544-5",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 812000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 812,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 812,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 82.2,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "13734173",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 4104443,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "N-Methylisoamylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 21800,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 154,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 21.8,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 15.5,
+          "quantity": "1mmol",
+        },
+        Object {
+          "currency": "USD",
+          "price": 21800,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 154,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 21.8,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 15.5,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "17515344",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 22431103,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "N-Methylpentane-2-amine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 91900000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 91900,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 91.9,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9300,
+          "quantity": "1mmol",
+        },
+        Object {
+          "currency": "USD",
+          "price": 91900000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 91900,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 91.9,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9300,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "17515360",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 22526472,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "(S)-3,3-Dimethyl-2-butylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 17300,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 140,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 17.3,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 14.2,
+          "quantity": "1mmol",
+        },
+        Object {
+          "currency": "USD",
+          "price": 17300,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 140,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 17.3,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 14.2,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "17524220",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 66228317,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "(R)-3,3-Dimethyl-2-butylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 15100,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 232,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 15.1,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 23.4,
+          "quantity": "1mmol",
+        },
+        Object {
+          "currency": "USD",
+          "price": 15100,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 232,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 15.1,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 23.4,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "17524691",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 70095408,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "(S)-2-Aminohexane",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 30600,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 71.8,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 30.6,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 7.27,
+          "quantity": "1mmol",
+        },
+        Object {
+          "currency": "USD",
+          "price": 30600,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 71.8,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 30.6,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 7.27,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "17524747",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 70492670,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "REF DUPL: (S)-2-Aminohexane",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 188000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 71.8,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 71.8,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 7.27,
+          "quantity": "1mmol",
+        },
+        Object {
+          "currency": "USD",
+          "price": 188000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 71.8,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 71.8,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 7.27,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "17540576",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 287476146,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "Hexylamine-15n",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 9250000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9250,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9.25,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 936,
+          "quantity": "1mmol",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9250000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9250,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9.25,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 936,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "17555206",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 17440812,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "Triethylammonium cation",
+      ],
+      "prices": Array [],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2907915",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 617798,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "2-Ethylbutylamine",
+        "2-Ethylbutylamin",
+        "3-(Aminomethyl)-pentan",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 2340,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 90.7,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 1.57,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 9.18,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2911670",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 108189,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "Diisopropylamine",
+        "Diisopropylamin",
+        "(N-(1-Methylethyl)-2)propanamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 120,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 10.7,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 3.91,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 1.08,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2913321",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 142847,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "Dipropylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 34.3,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 34.3,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 0.102,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 3.47,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2915338",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 121448,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "Triethylamine",
+        "TETN",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 189,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 3.73,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 0.839,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 0.377,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2917517",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 111262,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "Hexylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 158,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 53.2,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 0.08,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 5.39,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "9767152",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 25419061,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "Einecs 246-966-9",
+        "N-Methylpentylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 31000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 102,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 102,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 10.3,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "10034719",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 5329793,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "2-Aminohexane",
+        "2-Hexylamine",
+        "1-Methylpentylamine",
+        "Pentylamine, 1-methyl-",
+        "2-Hexanamine",
+      ],
+      "prices": Array [],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2912269",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 108098,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "1,3-Dimethylbutylamine",
+        "4-Methyl-2-pentylamin",
+        "1,3-Dimethylbutylamin",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 11400,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 182,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 11.4,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 18.4,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2912272",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 3850304,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "2-Amino-3,3-dimethylbutane",
+        "2-Amino-3,3-dimethylbutan",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 44900,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 109,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 109,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 11,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2915364",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 13360639,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "N-Ethyl-n-butylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 312,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 45.4,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 0.571,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 4.59,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2919336",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 927628,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "N,N-Dimethylaminobutane",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 250,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 6.59,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 0.25,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 0.667,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "17552062",
+    "date": null,
+    "value": Object {
+      "info": Object {
+        "rn": 4432773,
+      },
+      "mf": Object {
+        "exactMass": 101.120449,
+        "mw": 101.1918,
+        "value": "C6H15N",
+      },
+      "names": Array [
+        "N-tert-Butylethylamine",
+      ],
+      "prices": Array [
+        Object {
+          "currency": "USD",
+          "price": 30000,
+          "quantity": "1kg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 245,
+          "quantity": "1g",
+        },
+        Object {
+          "currency": "USD",
+          "price": 27.9,
+          "quantity": "1mg",
+        },
+        Object {
+          "currency": "USD",
+          "price": 24.8,
+          "quantity": "1mmol",
+        },
+      ],
+    },
+  },
+]
+`;

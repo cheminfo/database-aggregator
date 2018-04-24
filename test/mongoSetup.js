@@ -22,8 +22,12 @@ async function disconnect() {
 }
 
 async function insertData(filename) {
+  const parsedFilename = path.parse(filename);
+  if (!parsedFilename.ext) {
+    filename = `${filename}.yaml`;
+  }
   const data = await readFile(
-    path.join(__dirname, 'mongo-data', `${filename}.yaml`),
+    path.join(__dirname, 'mongo-data', filename),
     'utf8'
   );
   const parsed = yaml.safeLoad(data);
