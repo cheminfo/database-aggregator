@@ -3,6 +3,7 @@
 const path = require('path');
 
 const ProcessScheduler = require('process-scheduler');
+const pm2Bridge = require('pm2-bridge');
 
 const debug = require('../src/util/debug')('bin:schedule');
 const connection = require('../src/mongo/connection');
@@ -98,13 +99,26 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
   });
   scheduler.schedule(schedule);
 
-  process.on('message', function (packet) {
-    // When sending trigger requests form the web...
-    switch (packet.type) {
+  pm2Bridge.onMessage(function (message, context) {
+    const data = message.data;
+    switch (data.type) {
       case 'scheduler:trigger':
-        debug.trace(`scheduler:trigger message received${packet}`);
-        if (packet.data.taskId) {
-          scheduler.trigger(packet.data.taskId);
+        debug.trace(`scheduler:trigger message received${data.data}`);
+        if (data.data.taskId) {
+          const status = scheduler.trigger(data.data.taskId);
+          if (status) {
+            context.reply({
+              error: 'process id was not found'
+            });
+          } else {
+            context.reply({
+              ok: true
+            });
+          }
+        } else {
+          context.reply({
+            error: 'taskId parameter is mandatory'
+          });
         }
         break;
       default:

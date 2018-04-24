@@ -42,6 +42,12 @@ Start the server:
 $ node /labs/database-aggregator/bin/server.js
 ```
 
+# Enable communication between scheduler and server processes
+
+```bash
+$ pm2 install pm2-bridge
+```
+
 ## License
 
 [MIT](LICENSE)
