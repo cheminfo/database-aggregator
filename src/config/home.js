@@ -10,15 +10,14 @@ let homeDir = process.env.DATABASE_AGGREGATOR_HOME_DIR;
 if (!homeDir) {
   debug('no home dir');
   exports.config = {};
-  return;
+} else {
+  homeDir = path.resolve(homeDir);
+
+  debug(`home dir is ${homeDir}`);
+
+  exports.homeDir = homeDir;
+  exports.config = getHomeConfig();
 }
-
-homeDir = path.resolve(homeDir);
-
-debug(`home dir is ${homeDir}`);
-
-exports.homeDir = homeDir;
-exports.config = getHomeConfig();
 
 function getHomeConfig() {
   try {

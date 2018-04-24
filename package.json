@@ -13,6 +13,7 @@
     "test-only": "jest"
   },
   "jest": {
+    "setupFiles": ["./test/setup.js"],
     "testEnvironment": "node"
   },
   "repository": {

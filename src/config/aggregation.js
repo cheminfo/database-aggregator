@@ -11,32 +11,30 @@ const dbConfig = module.exports.aggregation;
 // eslint-disable-next-line import/no-dynamic-require
 const homeDir = require('./home').homeDir;
 
-if (!homeDir) {
-  return;
-}
-
-const aggregationDir = path.join(homeDir, 'aggregation');
-var databases;
-try {
-  debug.trace(`Searching aggregation configurations in ${aggregationDir}`);
-  databases = find.fileSync(/\.js$/, aggregationDir);
-} catch (e) {
-  debug.debug('No aggregation directory found');
-}
-databases = databases || [];
-
-for (const database of databases) {
-  let databaseConfig;
-  let configPath = path.resolve(aggregationDir, database);
-  let parsedConfigPath = path.parse(configPath);
-  if (parsedConfigPath.ext !== '.js') {
-    continue;
+if (homeDir) {
+  const aggregationDir = path.join(homeDir, 'aggregation');
+  var databases;
+  try {
+    debug.trace(`Searching aggregation configurations in ${aggregationDir}`);
+    databases = find.fileSync(/\.js$/, aggregationDir);
+  } catch (e) {
+    debug.debug('No aggregation directory found');
   }
+  databases = databases || [];
 
-  // eslint-disable-next-line import/no-dynamic-require
-  databaseConfig = require(configPath);
-  if (!databaseConfig.sources || databaseConfig.disabled === true) {
-    continue;
+  for (const database of databases) {
+    let databaseConfig;
+    let configPath = path.resolve(aggregationDir, database);
+    let parsedConfigPath = path.parse(configPath);
+    if (parsedConfigPath.ext !== '.js') {
+      continue;
+    }
+
+    // eslint-disable-next-line import/no-dynamic-require
+    databaseConfig = require(configPath);
+    if (!databaseConfig.sources || databaseConfig.disabled === true) {
+      continue;
+    }
+    dbConfig[parsedConfigPath.name] = databaseConfig;
   }
-  dbConfig[parsedConfigPath.name] = databaseConfig;
 }
