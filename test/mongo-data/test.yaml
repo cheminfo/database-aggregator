@@ -4,4 +4,4 @@ test:
     xxx: 'yyyy'
   - _id: 2
     value: 5
-    yyy: 'xxx
+    yyy: 'xxx'
