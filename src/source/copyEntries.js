@@ -26,7 +26,6 @@ async function copyEntries(entries, options) {
     let doc = await Model.findById(entry.id);
 
     let mustSave = false;
-    let needSeq = true;
     if (!doc) {
       doc = new Model();
       doc._id = entry.id;
@@ -44,14 +43,11 @@ async function copyEntries(entries, options) {
       }
       if (!isequal(doc.date, entry.modificationDate)) {
         mustSave = true;
-        needSeq = false;
       }
     }
 
-    if (needSeq) {
-      doc.sequentialID = await sourceSequence.getNextSequenceID(collection);
-    }
     if (mustSave) {
+      doc.sequentialID = await sourceSequence.getNextSequenceID(collection);
       doc.date = entry.modificationDate;
       await doc.save();
     }

@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`source copy 1 should copy the data 1`] = `
+Array [
+  Object {
+    "__v": 0,
+    "_id": "test1",
+    "commonID": "test1",
+    "data": Object {
+      "driverValue": 2,
+      "x": 1,
+      "y": 2,
+    },
+    "date": 1970-01-01T00:00:01.000Z,
+    "sequentialID": 1,
+  },
+]
+`;
+
+exports[`source copy 1 should copy the data 2`] = `
+Array [
+  Object {
+    "__v": 0,
+    "_id": "test1",
+    "commonID": "test1",
+    "data": Object {
+      "x": 2,
+      "y": 3,
+    },
+    "date": 1970-01-01T00:00:01.500Z,
+    "sequentialID": 2,
+  },
+  Object {
+    "__v": 0,
+    "_id": "test2",
+    "commonID": "test2",
+    "data": Object {
+      "driverValue": 2,
+      "x": 4,
+      "y": 5,
+    },
+    "date": 1970-01-01T00:00:01.600Z,
+    "sequentialID": 3,
+  },
+  Object {
+    "__v": 0,
+    "_id": "test4",
+    "commonID": "test4",
+    "data": Object {
+      "x": 8,
+      "y": 9,
+    },
+    "date": 1970-01-01T00:00:01.600Z,
+    "sequentialID": 4,
+  },
+]
+`;
+
+exports[`source copy 1 should copy the data 3`] = `
+Array [
+  Object {
+    "__v": 0,
+    "_id": "test1",
+    "commonID": "test1",
+    "data": Object {
+      "x": 2,
+      "y": 3,
+    },
+    "date": 1970-01-01T00:00:01.500Z,
+    "sequentialID": 2,
+  },
+  Object {
+    "__v": 0,
+    "_id": "test2",
+    "commonID": "test2",
+    "data": Object {
+      "driverValue": 2,
+      "x": 4,
+      "y": 5,
+    },
+    "date": 1970-01-01T00:00:01.600Z,
+    "sequentialID": 3,
+  },
+  Object {
+    "__v": 0,
+    "_id": "test4",
+    "commonID": "test4",
+    "data": Object {
+      "x": 8,
+      "y": 9,
+    },
+    "date": 1970-01-01T00:00:01.600Z,
+    "sequentialID": 4,
+  },
+  Object {
+    "__v": 0,
+    "_id": "test3",
+    "commonID": "test3",
+    "data": Object {
+      "x": 6,
+      "y": 7,
+    },
+    "date": 1970-01-01T00:00:02.000Z,
+    "sequentialID": 5,
+  },
+]
+`;
