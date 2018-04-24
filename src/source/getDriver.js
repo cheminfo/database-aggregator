@@ -4,7 +4,7 @@ const path = require('path');
 
 function getDriver(driver) {
   if (!path.isAbsolute(driver)) {
-    driver = path.join('../driver', driver);
+    driver = path.resolve('../driver', driver);
   }
   try {
     // eslint-disable-next-line import/no-dynamic-require
