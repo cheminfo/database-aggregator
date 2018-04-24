@@ -48,6 +48,16 @@ $ node /labs/database-aggregator/bin/server.js
 $ pm2 install pm2-bridge
 ```
 
+## Testing
+
+### Setup environment with Docker (for runnings tests)
+
+```bash
+docker pull mongo
+docker create -p 27017:27017 --name mongo mongo
+docker start mongo
+```
+
 ## License
 
 [MIT](LICENSE)
