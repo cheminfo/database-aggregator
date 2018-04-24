@@ -7,8 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test":
-      "mocha --exit --timeout 5000 --require should --require ./test/setup --reporter mocha-better-spec-reporter --recursive",
+    "test": "mocha --exit --timeout 120000 --require should --require ./test/setup --reporter mocha-better-spec-reporter --recursive",
     "eslint": "eslint bin examples src test",
     "eslint-fix": "npm run eslint -- --fix"
   },
