@@ -10,6 +10,7 @@
     "eslint": "eslint bin examples src test",
     "eslint-fix": "npm run eslint -- --fix",
     "test": "npm run test-only && npm run eslint",
+    "test-coverage": "jest --coverage",
     "test-only": "jest"
   },
   "jest": {
