@@ -38,7 +38,7 @@
     "mongoose": "^5.0.15",
     "pm2": "^2.10.2",
     "pm2-bridge": "^2.0.1",
-    "process-scheduler": "^0.0.3"
+    "process-scheduler": "^0.0.4"
   },
   "optionalDependencies": {
     "oracledb": "^2.1.2"
