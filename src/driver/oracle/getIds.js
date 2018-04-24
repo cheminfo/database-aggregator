@@ -4,11 +4,11 @@ const debug = require('../../util/debug')('driver:oracle');
 
 const common = require('./common');
 
-async function getIds(options) {
-  common.checkOptions(['connectString', 'query'], options);
-  const oracleConn = await common.connect(options);
+async function getIds(config) {
+  common.checkOptions(['connectString', 'query'], config);
+  const oracleConn = await common.connect(config);
 
-  let query = options.query;
+  let query = config.query;
   query = `SELECT id FROM (\n${query}\n) inner_table`;
   debug(query);
 

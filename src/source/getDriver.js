@@ -2,16 +2,16 @@
 
 const path = require('path');
 
-function getDriverFunction(driver, name) {
+function getDriver(driver) {
   if (!path.isAbsolute(driver)) {
     driver = path.join('../driver', driver);
   }
   try {
     // eslint-disable-next-line import/no-dynamic-require
-    return require(path.join(driver, name));
+    return require(driver);
   } catch (e) {
     throw new Error(`driver not found: ${driver}`);
   }
 }
 
-module.exports = getDriverFunction;
+module.exports = getDriver;

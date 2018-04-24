@@ -5,10 +5,11 @@ const debug = require('../../util/debug')('oracle:getSourceData');
 
 const common = require('./common');
 
-async function getSourceData(options, callback, latestDate, before, ids) {
-  const oracleConn = await common.connect(options);
+async function getData(config, callback, options) {
+  const { latestDate, ids } = options;
+  const oracleConn = await common.connect(config);
 
-  const query = options.query;
+  const query = config.query;
 
   let dataQuery = `
     SELECT * FROM (
@@ -17,7 +18,7 @@ async function getSourceData(options, callback, latestDate, before, ids) {
     WHERE 1=1
   `;
   if (latestDate) {
-    if (before) {
+    if (ids) {
       dataQuery += `\nAND moddate < ${sqlUtil.formatTimestamp(latestDate)}`;
     } else {
       dataQuery += `\nAND moddate >= ${sqlUtil.formatTimestamp(latestDate)}`;
@@ -61,4 +62,4 @@ function convert(row) {
   return obj;
 }
 
-module.exports = getSourceData;
+module.exports = getData;

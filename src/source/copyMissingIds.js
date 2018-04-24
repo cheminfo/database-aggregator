@@ -6,7 +6,7 @@ const model = require('../mongo/model');
 const mongodbConnect = require('../mongo/connection');
 const debug = require('../util/debug')('source:copyMissingIds');
 
-const getDriverFunction = require('./getDriverFunction');
+const getDriver = require('./getDriver');
 const copyEntries = require('./copyEntries');
 
 const MAX_ELEMENTS_ID_CLAUSE = 999;
@@ -14,19 +14,15 @@ const MAX_ELEMENTS_ID_CLAUSE = 999;
 // In a similar fashion to how remove works, finds all the ids
 // that are present in the source but missing in the target
 // and copies those to the target
-async function copyMissingIds(options) {
-  const driverGetIds = getDriverFunction(options.driver, 'getIds');
-  const driverGetSourceData = getDriverFunction(
-    options.driver,
-    'getSourceData'
-  );
+async function copyMissingIds(config) {
+  const driver = getDriver(config.driver);
 
-  let sourceIds = await driverGetIds(options);
+  let sourceIds = await driver.getIds(config);
   if (!(sourceIds instanceof Set)) {
     sourceIds = new Set(sourceIds);
   }
 
-  const collection = options.collection;
+  const collection = config.collection;
   const Model = model.getSource(collection);
 
   await mongodbConnect();
@@ -54,12 +50,10 @@ async function copyMissingIds(options) {
   const chunks = chunk([...idsToCopy], MAX_ELEMENTS_ID_CLAUSE);
 
   for (let chunk of chunks) {
-    await driverGetSourceData(
-      options,
-      (data) => copyEntries(data, options),
-      latest.date,
-      chunk
-    );
+    await driver.getData(config, (data) => copyEntries(data, config), {
+      latestDate: latest && latest.date,
+      ids: chunk
+    });
   }
 }
 

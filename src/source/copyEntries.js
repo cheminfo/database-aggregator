@@ -10,34 +10,50 @@ async function copyEntries(entries, options) {
   const Model = model.getSource(collection);
 
   for (const entry of entries) {
-    if (
-      !entry.id ||
-      !entry.commonID ||
-      !entry.modificationDate ||
-      !entry.data
-    ) {
-      throw new Error(
-        'entries must have the following properties: id, commonID, modificationDate, data'
-      );
+    if (typeof entry.id !== 'string') {
+      throw new TypeError('entry.id must be a string');
+    }
+    if (typeof entry.commonID !== 'string') {
+      throw new TypeError('entry.commonID must be a string');
+    }
+    if (!(entry.modificationDate instanceof Date)) {
+      throw new TypeError('entry.modificationDate must be a Date object');
+    }
+    if (typeof entry.data !== 'object' || entry.data === null) {
+      throw new TypeError('entry.data must be an object');
     }
 
     let doc = await Model.findById(entry.id);
+
+    let mustSave = false;
+    let needSeq = true;
     if (!doc) {
       doc = new Model();
       doc._id = entry.id;
       doc.commonID = entry.commonID;
+      doc.data = entry.data;
+      mustSave = true;
+    } else {
+      if (doc.commonID !== entry.commonID) {
+        doc.commonID = entry.commonID;
+        mustSave = true;
+      }
+      if (!isequal(doc.data, entry.data)) {
+        doc.data = entry.data;
+        mustSave = true;
+      }
+      if (!isequal(doc.date, entry.modificationDate)) {
+        mustSave = true;
+        needSeq = false;
+      }
     }
 
-    if (!isequal(doc.data, entry.data)) {
-      doc.data = entry.data;
-      doc.date = entry.date;
+    if (needSeq) {
       doc.sequentialID = await sourceSequence.getNextSequenceID(collection);
+    }
+    if (mustSave) {
+      doc.date = entry.modificationDate;
       await doc.save();
-    } else {
-      if (!isequal(doc.date, entry.date)) {
-        doc.date = entry.date;
-        await doc.save();
-      }
     }
   }
 }

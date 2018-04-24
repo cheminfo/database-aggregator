@@ -2,13 +2,13 @@
 
 const oracledb = require('./oracledb');
 
-function connect(options) {
-  return oracledb.getConnection(options);
+function connect(config) {
+  return oracledb.getConnection(config);
 }
 
-function checkOptions(mandatory, options) {
+function checkOptions(mandatory, config) {
   mandatory.forEach((mandatory) => {
-    if (!options[mandatory]) {
+    if (!config[mandatory]) {
       throw new Error(`${mandatory} option is mandatory`);
     }
   });

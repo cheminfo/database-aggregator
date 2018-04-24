@@ -5,13 +5,13 @@ const model = require('../mongo/model');
 const sourceSequence = require('../mongo/models/sourceSequence');
 const debug = require('../util/debug')('source:remove');
 
-const getDriverFunction = require('./getDriverFunction');
+const getDriver = require('./getDriver');
 
 async function remove(options) {
-  const driverGetIds = getDriverFunction(options.driver, 'getIds');
+  const driver = getDriver(options.driver);
 
   // Get complete list of source Ids
-  let sourceIds = await driverGetIds(options);
+  let sourceIds = await driver.getIds(options);
   if (!(sourceIds instanceof Set)) {
     sourceIds = new Set(sourceIds);
   }

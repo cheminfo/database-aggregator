@@ -1,9 +1,9 @@
 'use strict';
 
 const connection = require('../../src/mongo/connection');
+const model = require('../../src/mongo/model');
 
 const collections = ['miscelaneous', 'names', 'prices'];
-const model = require('../../src/mongo/model');
 
 module.exports = function () {
   return connection()
@@ -23,6 +23,7 @@ module.exports = function () {
       ).then(() => {
         return Promise.all(
           collections.map((collection) => {
+            // eslint-disable-next-line import/no-dynamic-require
             var data = require(`./${collection}.json`);
             return Promise.all(
               data.map((source) => {

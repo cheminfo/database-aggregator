@@ -4,6 +4,7 @@ const path = require('path');
 
 const debug = require('../util/debug')('config:home');
 
+// eslint-disable-next-line no-process-env
 let homeDir = process.env.DATABASE_AGGREGATOR_HOME_DIR;
 
 if (!homeDir) {

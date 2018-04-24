@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-disable no-process-env */
+
 const prefix = 'DATABASE_AGGREGATOR_';
 
 const envConfig = {};
