@@ -3,7 +3,7 @@
 const pid = require('../src/util/pid');
 const connection = require('../src/mongo/connection');
 const debug = require('../src/util/debug')('bin:source');
-const source = require('../src/source/source');
+const copy = require('../src/source/copy');
 const config = require('../src/config/config').globalConfig;
 
 pid.start();
@@ -21,7 +21,7 @@ if (sources.length === 0) {
     debug(`Begin sourcing of ${collection}`);
     const options = config.source[collection];
     try {
-      await source.copy(options);
+      await copy(options);
     } catch (e) {
       console.error(e);
     }

@@ -30,7 +30,7 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
   for (const collection of sources) {
     schedule.push({
       id: COPY_ID + collection,
-      worker: path.join(__dirname, '../src/source/copyWorker.js'),
+      worker: path.join(__dirname, '../src/source/workers/copyWorker.js'),
       immediate: false,
       cronRule: config.source[collection].copyCronRule,
       deps: [],
@@ -41,7 +41,10 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
     // copy missing ids
     schedule.push({
       id: COPY_MISSING_ID + collection,
-      worker: path.join(__dirname, '../src/source/copyMissingIdsWorker.js'),
+      worker: path.join(
+        __dirname,
+        '../src/source/workers/copyMissingIdsWorker.js'
+      ),
       immediate: false,
       cronRule: config.source[collection].copyMissingIdsCronRule,
       deps: [],
@@ -51,7 +54,7 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
     });
     schedule.push({
       id: REMOVE_ID + collection,
-      worker: path.join(__dirname, '../src/source/removeWorker.js'),
+      worker: path.join(__dirname, '../src/source/workers/removeWorker.js'),
       immediate: false,
       cronRule: config.source[collection].removeCronRule,
       deps: [],

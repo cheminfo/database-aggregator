@@ -3,7 +3,7 @@
 const pid = require('../src/util/pid');
 const connection = require('../src/mongo/connection');
 const debug = require('../src/util/debug')('bin:source');
-const source = require('../src/source/source');
+const remove = require('../src/source/remove');
 const config = require('../src/config/config').globalConfig;
 
 pid.start();
@@ -21,7 +21,7 @@ if (sources.length === 0) {
     debug(`Begin remove source of ${collection}`);
     const options = config.source[collection];
     try {
-      await source.remove(options);
+      await remove(options);
     } catch (e) {
       console.error(e);
     }
