@@ -9,9 +9,11 @@
   "scripts": {
     "eslint": "eslint bin examples src test",
     "eslint-fix": "npm run eslint -- --fix",
-    "prepare": "node bin/prepareTests",
     "test": "npm run test-only && npm run eslint",
-    "test-only": "mocha --exit --timeout 5000 --require should --require ./test/setup --reporter mocha-better-spec-reporter --recursive"
+    "test-only": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "repository": {
     "type": "git",
@@ -48,9 +50,7 @@
     "eslint-config-cheminfo": "^1.9.1",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jest": "^21.15.1",
-    "mocha": "^5.1.1",
-    "mocha-better-spec-reporter": "^3.0.1",
-    "mockgoose": "^7.3.5",
-    "should": "^13.2.1"
+    "jest": "^22.4.3",
+    "js-yaml": "^3.11.0"
   }
 }
