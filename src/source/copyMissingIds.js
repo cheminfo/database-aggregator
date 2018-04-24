@@ -3,7 +3,7 @@
 const chunk = require('lodash.chunk');
 
 const model = require('../mongo/model');
-const mongodbConnect = require('../mongo/connection');
+const { connect } = require('../mongo/connection');
 const debug = require('../util/debug')('source:copyMissingIds');
 
 const getDriver = require('./getDriver');
@@ -25,7 +25,7 @@ async function copyMissingIds(config) {
   const collection = config.collection;
   const Model = model.getSource(collection);
 
-  await mongodbConnect();
+  await connect();
 
   // Get all ids from copied source
   const targetIds = new Set(

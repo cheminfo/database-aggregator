@@ -1,7 +1,7 @@
 'use strict';
 
 const model = require('../mongo/model');
-const mongodbConnect = require('../mongo/connection');
+const { connect } = require('../mongo/connection');
 
 const copyEntries = require('./copyEntries');
 const getDriver = require('./getDriver');
@@ -15,7 +15,7 @@ async function copy(config) {
   }
   const Model = model.getSource(collection);
 
-  await mongodbConnect();
+  await connect();
 
   const latest = await Model.findOne()
     .sort('-date')

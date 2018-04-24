@@ -1,13 +1,13 @@
 'use strict';
 
-const connection = require('../mongo/connection');
+const { connect } = require('../mongo/connection');
 
 const aggregate = require('./aggregate');
 
 process.on('message', (aggregateDB) => {
   (async function () {
     try {
-      await connection();
+      await connect();
       await aggregate(aggregateDB);
     } catch (e) {
       console.error(e);

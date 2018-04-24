@@ -7,6 +7,8 @@ const util = require('util');
 const yaml = require('js-yaml');
 const mongoose = require('mongoose');
 
+const { disconnect: mongoDisconnect } = require('../src/mongo/connection');
+
 const readFile = util.promisify(fs.readFile);
 
 const mongoURL = 'mongodb://localhost/__database-aggregator-test-db';
@@ -19,6 +21,7 @@ async function connect() {
 async function disconnect() {
   await mongoose.connection.db.dropDatabase();
   await mongoose.connection.close();
+  await mongoDisconnect();
 }
 
 async function insertData(filename) {

@@ -1,6 +1,6 @@
 'use strict';
 
-const mongodbConnect = require('../mongo/connection');
+const { connect } = require('../mongo/connection');
 const model = require('../mongo/model');
 const sourceSequence = require('../mongo/models/sourceSequence');
 const debug = require('../util/debug')('source:remove');
@@ -19,7 +19,7 @@ async function remove(options) {
   const collection = options.collection;
   const Model = model.getSource(collection);
 
-  await mongodbConnect();
+  await connect();
 
   // Element that are found in copied source but not in original source ought to be deleted
   // We do this by setting data to null, so that aggregation knows about the deletion

@@ -1,12 +1,12 @@
 'use strict';
 
-const connection = require('../../mongo/connection');
+const { connect } = require('../../mongo/connection');
 const remove = require('../remove');
 
 process.on('message', (options) => {
   (async function () {
     try {
-      await connection();
+      await connect();
       await remove(options);
     } catch (e) {
       console.error(e);

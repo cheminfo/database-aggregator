@@ -7,7 +7,7 @@ const aggregationSchema = require('../schema/aggregation');
 const sourceSequenceSchema = require('../schema/sourceSequence');
 const aggregationSequenceSchema = require('../schema/aggregationSequence');
 const schedulerLogSchema = require('../schema/schedulerLog');
-const connection = require('../mongo/connection');
+const { hasCollection } = require('../mongo/connection');
 
 const models = new Map();
 
@@ -50,7 +50,7 @@ async function getModelIfExists(prefix, name, schema) {
   if (models.has(collName)) {
     return models.get(collName);
   } else {
-    const hasCol = await connection.hasCollection(collName);
+    const hasCol = await hasCollection(collName);
     if (!hasCol) return null;
     const model = mongoose.model(collName, schema, collName);
     models.set(collName, model);
