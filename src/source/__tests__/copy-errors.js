@@ -21,7 +21,6 @@ const driver = {
 function getEntryCopy(entry) {
   return copy({
     driver,
-    testCase: 'entry',
     collection: 'test',
     entry
   });

@@ -34,8 +34,7 @@ async function copyEntries(entries, options) {
       mustSave = true;
     } else {
       if (doc.commonID !== entry.commonID) {
-        doc.commonID = entry.commonID;
-        mustSave = true;
+        throw new Error('commonID may not be changed');
       }
       if (!isequal(doc.data, entry.data)) {
         doc.data = entry.data;

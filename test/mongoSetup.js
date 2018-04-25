@@ -25,15 +25,22 @@ async function disconnect() {
 }
 
 async function insertData(filename) {
-  const parsedFilename = path.parse(filename);
-  if (!parsedFilename.ext) {
-    filename = `${filename}.yaml`;
+  let parsed;
+  if (typeof filename === 'string') {
+    const parsedFilename = path.parse(filename);
+    if (!parsedFilename.ext) {
+      filename = `${filename}.yaml`;
+    }
+    const data = await readFile(
+      path.join(__dirname, 'mongo-data', filename),
+      'utf8'
+    );
+    parsed = yaml.safeLoad(data);
+  } else if (typeof filename === 'object' && filename !== null) {
+    parsed = filename;
+  } else {
+    throw new Error('argument must be a filename or data object');
   }
-  const data = await readFile(
-    path.join(__dirname, 'mongo-data', filename),
-    'utf8'
-  );
-  const parsed = yaml.safeLoad(data);
   for (const collName in parsed) {
     const collection = mongoose.connection.collection(collName);
     await collection.insertMany(parsed[collName]);

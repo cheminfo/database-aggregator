@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`source copy updates should not allow to change the commonID 1`] = `
+Object {
+  "_id": "test1",
+  "commonID": "test1",
+  "data": Object {},
+  "date": 1970-01-01T00:00:00.000Z,
+  "sequentialID": 0,
+}
+`;
