@@ -1,7 +1,9 @@
 'use strict';
 
+/* eslint-disable no-process-env */
 process.env.DATABASE_AGGREGATOR_CUSTOM_PROP = 'test custom prop';
 process.env.DATABASE_AGGREGATOR_HOME_DIR = `${__dirname}/../../../test/homeDir`;
+/* eslint-enable */
 
 const config = require('../config');
 

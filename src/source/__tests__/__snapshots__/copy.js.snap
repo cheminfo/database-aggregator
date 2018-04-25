@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`source copy 1 should copy the data 1`] = `
+exports[`source copy should copy the data 1`] = `
 Array [
   Object {
     "__v": 0,
@@ -17,7 +17,7 @@ Array [
 ]
 `;
 
-exports[`source copy 1 should copy the data 2`] = `
+exports[`source copy should copy the data 2`] = `
 Array [
   Object {
     "__v": 0,
@@ -56,7 +56,7 @@ Array [
 ]
 `;
 
-exports[`source copy 1 should copy the data 3`] = `
+exports[`source copy should copy the data 3`] = `
 Array [
   Object {
     "__v": 0,

@@ -45,7 +45,7 @@ describe('source copy errors', () => {
 
   it('should throw if collection is not in config', () => {
     return expect(
-      copy({ driver: getDriverPath('source-1'), collection: null })
+      copy({ driver: getDriverPath('source-copy'), collection: null })
     ).rejects.toThrow(/^collection must be a string$/);
   });
 });

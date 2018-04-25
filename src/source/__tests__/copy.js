@@ -7,11 +7,11 @@ const copy = require('../copy');
 beforeAll(mongoSetup.connect);
 afterAll(mongoSetup.disconnect);
 
-describe('source copy 1', () => {
+describe('source copy', () => {
   it('should copy the data', async () => {
     const collection = getCollection('source_test');
     const config = {
-      driver: getDriverPath('source-1'),
+      driver: getDriverPath('source-copy'),
       driverValue: 2,
       collection: 'test'
     };

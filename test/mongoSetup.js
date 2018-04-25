@@ -19,9 +19,13 @@ async function connect() {
 }
 
 async function disconnect() {
-  await mongoose.connection.db.dropDatabase();
+  await dropDatabase();
   await mongoose.connection.close();
   await mongoDisconnect();
+}
+
+function dropDatabase() {
+  return mongoose.connection.db.dropDatabase();
 }
 
 async function insertData(filename) {
@@ -50,5 +54,6 @@ async function insertData(filename) {
 module.exports = {
   connect,
   disconnect,
+  dropDatabase,
   insertData
 };
