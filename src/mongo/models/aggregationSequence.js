@@ -18,7 +18,3 @@ exports.setSeqIds = async function (name, seqIds) {
   ).exec();
   return result.sourceSeq;
 };
-
-exports.clear = function () {
-  return Model.remove({});
-};
