@@ -1,26 +1,21 @@
 'use strict';
 
-const path = require('path');
-
 const driverMethods = ['getData', 'getIds'];
 
 function getDriver(driver) {
   if (typeof driver !== 'string' || driver === '') {
     throw new TypeError('driver is missing in config');
   }
-  if (!path.isAbsolute(driver)) {
-    driver = path.resolve('../driver', driver);
-  }
-  let driverModule;
+
+  let driverLocation;
   try {
-    // eslint-disable-next-line import/no-dynamic-require
-    driverModule = require(driver);
+    driverLocation = require.resolve(driver);
   } catch (e) {
-    if (e.code === 'MODULE_NOT_FOUND') {
-      throw new Error(`driver not found: ${driver}`);
-    }
-    throw e;
+    throw new Error(`could not resolve driver location: ${driver}`);
   }
+
+  // eslint-disable-next-line import/no-dynamic-require
+  const driverModule = require(driverLocation);
 
   if (typeof driverModule !== 'object' || driverModule === null) {
     throw new TypeError('driver must be an object');

@@ -12,7 +12,7 @@ describe('source copy errors', () => {
 
   it('should fail to get inexistant driver', () => {
     return expect(copy({ driver: 'notfound' })).rejects.toThrow(
-      /^driver not found: .*driver\/notfound$/
+      /^could not resolve driver location: notfound$/
     );
   });
 
