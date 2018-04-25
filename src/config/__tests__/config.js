@@ -42,7 +42,7 @@ test('load configuration', function () {
         param2: 200,
         collection: 'test2_001'
       },
-      test: { driver: 'driverXYZ', param1: 1, param2: 2, collection: 'test' }
+      test0: { driver: 'driverXYZ', param1: 1, param2: 2, collection: 'test0' }
     },
     // Environment variables
     customProp: 'test custom prop'
