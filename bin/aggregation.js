@@ -17,7 +17,8 @@ const aggregations = Object.keys(aggregation);
     let start = new Date().getTime();
     debug(`Begin aggregate of ${collection}`);
     try {
-      await aggregate(collection);
+      const conf = config.aggregation[collection];
+      await aggregate(conf);
     } catch (e) {
       console.error(e);
     }

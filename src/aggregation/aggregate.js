@@ -3,19 +3,18 @@
 const isequal = require('lodash.isequal');
 
 const aggregationSequence = require('./../mongo/models/aggregationSequence');
-const config = require('./../config/config').globalConfig;
 const aggregation = require('./../mongo/models/aggregation');
 const source = require('./../mongo/models/source');
 const debug = require('./../util/debug')('aggregation');
 
 const defaultChunkSize = 1000;
 
-module.exports = function (aggregateDB) {
+module.exports = function (conf) {
+  const aggregateDB = conf.name;
   debug.trace('get common ids');
-  var conf = config.aggregation[aggregateDB];
   if (!conf) {
     return Promise.reject(
-      new Error(`No aggregation configuration for ${aggregateDB}`)
+      new Error('Invalid aggregation configuration object passed')
     );
   }
 
