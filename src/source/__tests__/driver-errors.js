@@ -6,7 +6,7 @@ const copy = require('../copy');
 describe('source copy errors', () => {
   it('shoud fail when driver config is missing', () => {
     return expect(copy({ driver: undefined })).rejects.toThrow(
-      /^driver is missing in config$/
+      /^driver must be a string or object$/
     );
   });
 
@@ -25,16 +25,19 @@ describe('source copy errors', () => {
   it('should fail if driver does not export an object', async () => {
     await expect(
       copy({ driver: getDriverPath('source-error/number') })
-    ).rejects.toThrow(/^driver must be an object$/);
+    ).rejects.toThrow(/^driver module must be an object$/);
     await expect(
       copy({ driver: getDriverPath('source-error/null') })
-    ).rejects.toThrow(/^driver must be an object$/);
+    ).rejects.toThrow(/^driver module must be an object$/);
   });
 
   it('should fail if driver forgets to export methods', async () => {
     await expect(
       copy({ driver: getDriverPath('source-error/missing-getdata') })
     ).rejects.toThrow(/^driver must provide a method named "getData"$/);
+    await expect(copy({ driver: {} })).rejects.toThrow(
+      /^driver must provide a method named "getData"$/
+    );
     await expect(
       copy({ driver: getDriverPath('source-error/missing-getids') })
     ).rejects.toThrow(/^driver must provide a method named "getIds"$/);

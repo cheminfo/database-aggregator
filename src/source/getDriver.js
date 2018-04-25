@@ -3,22 +3,23 @@
 const driverMethods = ['getData', 'getIds'];
 
 function getDriver(driver) {
-  if (typeof driver !== 'string' || driver === '') {
-    throw new TypeError('driver is missing in config');
-  }
+  let driverModule = driver;
 
-  let driverLocation;
-  try {
-    driverLocation = require.resolve(driver);
-  } catch (e) {
-    throw new Error(`could not resolve driver location: ${driver}`);
-  }
+  if (typeof driver === 'string') {
+    let driverLocation;
+    try {
+      driverLocation = require.resolve(driver);
+    } catch (e) {
+      throw new Error(`could not resolve driver location: ${driver}`);
+    }
 
-  // eslint-disable-next-line import/no-dynamic-require
-  const driverModule = require(driverLocation);
-
-  if (typeof driverModule !== 'object' || driverModule === null) {
-    throw new TypeError('driver must be an object');
+    // eslint-disable-next-line import/no-dynamic-require
+    driverModule = require(driverLocation);
+    if (typeof driverModule !== 'object' || driverModule === null) {
+      throw new TypeError('driver module must be an object');
+    }
+  } else if (typeof driverModule !== 'object' || driverModule === null) {
+    throw new TypeError('driver must be a string or object');
   }
 
   for (const method of driverMethods) {
