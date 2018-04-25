@@ -10,7 +10,7 @@ const debug = require('./../util/debug')('aggregation');
 const defaultChunkSize = 1000;
 
 module.exports = function (conf) {
-  const aggregateDB = conf.name;
+  const aggregateDB = conf.collection;
   debug.trace('get common ids');
   if (!conf) {
     return Promise.reject(

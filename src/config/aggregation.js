@@ -35,7 +35,7 @@ if (homeDir) {
     if (!databaseConfig.sources || databaseConfig.disabled === true) {
       continue;
     }
-    databaseConfig.name = parsedConfigPath.name;
+    databaseConfig.collection = parsedConfigPath.name;
     dbConfig[parsedConfigPath.name] = databaseConfig;
   }
 }

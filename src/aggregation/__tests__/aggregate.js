@@ -12,7 +12,7 @@ describe('source copy', () => {
   beforeEach(() => mongoSetup.insertData('chemicals.json'));
   it('aggregate chemical', async () => {
     const conf = {
-      name: 'chemical',
+      collection: 'chemical',
       sources: {
         miscelaneous(values, result) {
           if (values && values[0]) {

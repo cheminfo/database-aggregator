@@ -26,7 +26,7 @@ test('load configuration', function () {
     schedulerThreadsSource: 4,
     schedulerThreadsAggregation: 4,
     removeThreshold: 0.01,
-    aggregation: { chemical: { name: 'chemical' } },
+    aggregation: { chemical: { collection: 'chemical' } },
     source: {
       // eslint-disable-next-line camelcase
       test1_001: {
