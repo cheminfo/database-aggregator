@@ -18,7 +18,7 @@ async function aggregate(conf) {
   if (typeof collection !== 'string') {
     throw new TypeError('config.collection must be a string');
   }
-  if (typeof sources !== 'object' || sources === 'null') {
+  if (typeof sources !== 'object' || sources === null) {
     throw new TypeError('config.sources must be an object');
   }
   if (!Number.isInteger(chunkSize) || chunkSize < 1) {
