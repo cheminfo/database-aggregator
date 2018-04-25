@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`source copyMissingIds should copy missing entries 1`] = `
+Array [
+  Object {
+    "_id": "test1",
+    "commonID": "test1",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 1,
+  },
+  Object {
+    "_id": "test2",
+    "commonID": "test2",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 2,
+  },
+  Object {
+    "__v": 0,
+    "_id": "test3",
+    "commonID": "test3",
+    "data": Object {
+      "test": 3,
+    },
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 3,
+  },
+]
+`;
+
+exports[`source copyMissingIds should copy missing entries when driver returns a set 1`] = `
+Array [
+  Object {
+    "_id": "test1",
+    "commonID": "test1",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 1,
+  },
+  Object {
+    "_id": "test2",
+    "commonID": "test2",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 2,
+  },
+  Object {
+    "__v": 0,
+    "_id": "test3",
+    "commonID": "test3",
+    "data": Object {
+      "test": 3,
+    },
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 3,
+  },
+]
+`;

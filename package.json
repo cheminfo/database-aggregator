@@ -14,9 +14,8 @@
     "test-only": "jest --runInBand"
   },
   "jest": {
-    "setupFiles": [
-      "./test/setup.js"
-    ],
+    "coveragePathIgnorePatterns": ["/node_modules/", "<rootDir>/test/"],
+    "setupFiles": ["./test/setup.js"],
     "testEnvironment": "node"
   },
   "repository": {
