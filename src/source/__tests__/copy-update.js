@@ -51,4 +51,29 @@ describe('source copy updates', () => {
     const mongoEntry = await getCollection('source_test1').findOne();
     expect(mongoEntry).toMatchSnapshot();
   });
+
+  it('should not save if nothing changed', async () => {
+    await mongoSetup.insertData({
+      // eslint-disable-next-line camelcase
+      source_test2: [
+        {
+          _id: 'test2',
+          commonID: 'test2',
+          sequentialID: 0,
+          data: {},
+          date: new Date(0)
+        }
+      ]
+    });
+
+    await getEntryCopy('test2', {
+      id: 'test2',
+      commonID: 'test2',
+      data: {},
+      modificationDate: new Date(0)
+    });
+
+    const mongoEntry = await getCollection('source_test2').findOne();
+    expect(mongoEntry).toMatchSnapshot();
+  });
 });
