@@ -5,12 +5,12 @@ const aggregate = require('../aggregate');
 
 const aggregation = require('./../../mongo/models/aggregation');
 
-beforeAll(mongoSetup.connect);
-afterAll(mongoSetup.disconnect);
+beforeEach(mongoSetup.connect);
+afterEach(mongoSetup.disconnect);
 
-describe('source copy', () => {
-  beforeEach(() => mongoSetup.insertData('chemicals.json'));
-  it('aggregate chemical', async () => {
+describe('aggregation', () => {
+  it('one-shot chemical sources aggregation', async () => {
+    await mongoSetup.insertData('chemicals.json');
     const conf = {
       collection: 'chemical',
       sources: {

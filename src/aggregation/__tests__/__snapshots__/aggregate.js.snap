@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`source copy aggregate chemical 1`] = `
+exports[`aggregation one-shot chemical sources aggregation 1`] = `
 Array [
   Object {
     "__v": 0,
