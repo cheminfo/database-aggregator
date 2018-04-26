@@ -1288,3 +1288,107 @@ Array [
   },
 ]
 `;
+
+exports[`aggregation various steps of aggregation 1`] = `
+Array [
+  Object {
+    "__v": 0,
+    "_id": "1",
+    "date": null,
+    "value": Object {
+      "values": Array [
+        1,
+        2,
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2",
+    "date": null,
+    "value": Object {
+      "values": Array [
+        3,
+      ],
+    },
+  },
+]
+`;
+
+exports[`aggregation various steps of aggregation 2`] = `
+Array [
+  Object {
+    "__v": 0,
+    "_id": "1",
+    "date": null,
+    "value": Object {
+      "values": Array [
+        3,
+        2,
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2",
+    "date": null,
+    "value": Object {
+      "values": Array [
+        3,
+      ],
+    },
+  },
+]
+`;
+
+exports[`aggregation various steps of aggregation 3`] = `
+Array [
+  Object {
+    "__v": 0,
+    "_id": "1",
+    "date": null,
+    "value": Object {
+      "values": Array [
+        4,
+        2,
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "2",
+    "date": null,
+    "value": Object {
+      "values": Array [
+        3,
+        5,
+      ],
+    },
+  },
+  Object {
+    "__v": 0,
+    "_id": "3",
+    "date": null,
+    "value": Object {
+      "values": Array [
+        6,
+      ],
+    },
+  },
+]
+`;
+
+exports[`aggregation various steps of aggregation 4`] = `
+Array [
+  Object {
+    "__v": 0,
+    "_id": "2",
+    "date": null,
+    "value": Object {
+      "values": Array [
+        5,
+      ],
+    },
+  },
+]
+`;

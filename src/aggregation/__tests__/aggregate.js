@@ -40,4 +40,49 @@ describe('aggregation', () => {
     });
     expect(data).toMatchSnapshot();
   });
+
+  it('various steps of aggregation', async function () {
+    const conf = {
+      collection: 'sourceAgg',
+      sources: {
+        // eslint-disable-next-line camelcase
+        source_test(values, result) {
+          result.values = values.slice();
+        }
+      }
+    };
+
+    let data;
+
+    // Init step
+    await mongoSetup.insertData('sources1', { drop: true });
+    await aggregate(conf);
+    data = await aggregation.findAll('sourceAgg');
+    aggSnapshot(data);
+
+    // Update data step
+    await mongoSetup.insertData('sources2', { drop: true });
+    await aggregate(conf);
+    data = await aggregation.findAll('sourceAgg');
+    aggSnapshot(data);
+
+    // Add data step
+    await mongoSetup.insertData('sources3', { drop: true });
+    await aggregate(conf);
+    data = await aggregation.findAll('sourceAgg');
+    aggSnapshot(data);
+
+    // Delete step
+    await mongoSetup.insertData('sources4', { drop: true });
+    await aggregate(conf);
+    data = await aggregation.findAll('sourceAgg');
+    aggSnapshot(data);
+  });
 });
+
+function aggSnapshot(data) {
+  data.forEach((d) => {
+    d.date = null;
+  });
+  expect(data).toMatchSnapshot();
+}

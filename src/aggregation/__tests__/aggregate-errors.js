@@ -44,4 +44,6 @@ describe('aggregate errors', () => {
       aggregate({ collection: 'dummy', sources: {} })
     ).rejects.toThrow(/^config\.sources must have at least one source$/);
   });
+
+  // it('should throw if sources properties are not functions', () => {});
 });

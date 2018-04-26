@@ -28,7 +28,7 @@ function dropDatabase() {
   return mongoose.connection.db.dropDatabase();
 }
 
-async function insertData(filename) {
+async function insertData(filename, options = {}) {
   let parsed;
   if (typeof filename === 'string') {
     const parsedFilename = path.parse(filename);
@@ -46,14 +46,27 @@ async function insertData(filename) {
     throw new Error('argument must be a filename or data object');
   }
   for (const collName in parsed) {
+    if (options.drop) {
+      try {
+        await mongoose.connection.dropCollection(collName);
+      } catch (e) {
+        if (e.code !== 26) throw e;
+      }
+    }
     const collection = mongoose.connection.collection(collName);
     await collection.insertMany(parsed[collName]);
   }
 }
 
+// async function dropSource(name) {
+//   const source = model.getSource(name);
+//   await source.collection.drop();
+// }
+
 module.exports = {
   connect,
   disconnect,
   dropDatabase,
+  // dropSource,
   insertData
 };
