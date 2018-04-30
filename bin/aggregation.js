@@ -1,7 +1,7 @@
 'use strict';
 
 const pid = require('../src/util/pid');
-const connection = require('../src/mongo/connection');
+const { connect } = require('../src/mongo/connection');
 const debug = require('../src/util/debug')('bin:aggregate');
 const aggregate = require('../src/aggregation/aggregate');
 const config = require('../src/config/config').globalConfig;
@@ -12,7 +12,7 @@ const aggregation = config.aggregation;
 const aggregations = Object.keys(aggregation);
 
 (async function () {
-  await connection();
+  await connect();
   for (const collection of aggregations) {
     let start = new Date().getTime();
     debug(`Begin aggregate of ${collection}`);

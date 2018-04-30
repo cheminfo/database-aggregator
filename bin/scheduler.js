@@ -6,7 +6,7 @@ const ProcessScheduler = require('process-scheduler');
 const pm2Bridge = require('pm2-bridge');
 
 const debug = require('../src/util/debug')('bin:schedule');
-const connection = require('../src/mongo/connection');
+const { connect } = require('../src/mongo/connection');
 const config = require('../src/config/config').globalConfig;
 const schedulerLog = require('../src/mongo/models/schedulerLog');
 
@@ -18,7 +18,7 @@ const COPY_ID = 'source_copy_';
 const COPY_MISSING_ID = 'source_copy_missing_ids_';
 
 (async function () {
-  await connection();
+  await connect();
   const schedulerConfig = {
     threads: {
       source: config.schedulerThreadsSource,

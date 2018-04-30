@@ -1,7 +1,7 @@
 'use strict';
 
 const pid = require('../src/util/pid');
-const connection = require('../src/mongo/connection');
+const { connect } = require('../src/mongo/connection');
 const debug = require('../src/util/debug')('bin:source');
 const copyMissingIds = require('../src/source/copyMissingIds');
 const config = require('../src/config/config').globalConfig;
@@ -15,7 +15,7 @@ if (sources.length === 0) {
 }
 
 (async function () {
-  await connection();
+  await connect();
   for (const collection of sources) {
     let start = new Date().getTime();
     debug(`Begin coy missing ids of ${collection}`);
