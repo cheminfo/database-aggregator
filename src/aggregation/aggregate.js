@@ -21,8 +21,17 @@ async function aggregate(conf) {
   if (typeof sources !== 'object' || sources === null) {
     throw new TypeError('config.sources must be an object');
   }
+
   if (!Number.isInteger(chunkSize) || chunkSize < 1) {
     throw new TypeError('config.chunkSize must be a positive integer');
+  }
+
+  for (let source in sources) {
+    if (typeof sources[source] !== 'function') {
+      throw new Error(
+        `all sources in the aggregation config should be functions (${source})`
+      );
+    }
   }
 
   const sourceNames = Object.keys(sources);
