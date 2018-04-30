@@ -10,7 +10,8 @@ process.on('message', (options) => {
       await remove(options);
     } catch (e) {
       console.error(e);
-      process.exitCode = 1;
+      process.exit(1);
     }
+    process.exit(0);
   })();
 });

@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-disable no-process-exit */
+
 const { connect } = require('../mongo/connection');
 const config = require('../config/config').globalConfig;
 
@@ -12,7 +14,8 @@ process.on('message', (aggregateDB) => {
       await aggregate(config.aggregation[aggregateDB]);
     } catch (e) {
       console.error(e);
-      process.exitCode = 1;
+      process.exit(1);
     }
+    process.exit(0);
   })();
 });
