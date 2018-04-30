@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`source remove should ignore remove if threshold is too low 1`] = `
+Array [
+  Object {
+    "_id": "test1",
+    "commonID": "test1",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 1,
+  },
+  Object {
+    "_id": "test2",
+    "commonID": "test2",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 2,
+  },
+  Object {
+    "_id": "test3",
+    "commonID": "test3",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 3,
+  },
+]
+`;
+
+exports[`source remove should remove if threshold is high enough 1`] = `
+Array [
+  Object {
+    "_id": "test1",
+    "commonID": "test1",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 1,
+  },
+  Object {
+    "_id": "test2",
+    "commonID": "test2",
+    "data": null,
+    "sequentialID": 4,
+  },
+  Object {
+    "_id": "test3",
+    "commonID": "test3",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 3,
+  },
+]
+`;
+
+exports[`source remove should remove when driver returns a set 1`] = `
+Array [
+  Object {
+    "_id": "test1",
+    "commonID": "test1",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 1,
+  },
+  Object {
+    "_id": "test2",
+    "commonID": "test2",
+    "data": null,
+    "sequentialID": 4,
+  },
+  Object {
+    "_id": "test3",
+    "commonID": "test3",
+    "data": Object {},
+    "date": 1970-01-01T00:00:00.000Z,
+    "sequentialID": 3,
+  },
+]
+`;

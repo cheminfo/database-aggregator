@@ -1,4 +1,4 @@
 extends: cheminfo
-
 rules: 
-  no-console: 0
+  no-console: off
+  no-await-in-loop: off

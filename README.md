@@ -1,47 +1,63 @@
 # database-aggregator
-Map sql collections to MongoDB
 
 ## Quick Start
-```bash 
+
+```bash
 $ git clone https://github.com/cheminfo/database-aggregator.git
 ```
 
 Install dependencies:
+
 ```bash
 $ npm install
 ```
 
-  Set your debug level:
-  
+Set your debug level:
+
 ```bash
 $ DEBUG=*
-```  
- 
+```
+
 Set your home directory (see examples directory for create the basic structure):
 
- ```bash
+```bash
 $ DATABASE_AGGREGATOR_HOME_DIR=/labs/homeDir
-```  
- 
+```
+
 Sourcing from Oracle:
+
 ```bash
 $ node /labs/database-aggregator/bin/source.js
 ```
 
- Aggregation:
+Aggregation:
+
 ```bash
 $ node /labs/database-aggregator/bin/aggregation.js
 ```
 
- Start the server:
+Start the server:
 
 ```bash
 $ node /labs/database-aggregator/bin/server.js
 ```
 
-## People
-[List of all contributors](https://github.com/cheminfo/database-aggregator/graphs/contributors)
+# Enable communication between scheduler and server processes
+
+```bash
+$ pm2 install pm2-bridge
+```
+
+## Testing
+
+### Setup environment with Docker (for runnings tests)
+
+```bash
+docker pull mongo
+docker create -p 27017:27017 --name mongo mongo
+docker start mongo
+```
 
 ## License
-[MIT](LICENSE)
 
+[MIT](LICENSE)

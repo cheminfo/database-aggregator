@@ -18,12 +18,12 @@ var sql = `
 const credentials = require('../oracle/credentials').mydb;
 
 const config = {
-    driver: 'oracle',
-    query: sql,
-    mode: 'dateid',
-    copyCronRule: '* * * * *', //each minute
-    removeCronRule: '* * * * *'//each minute
-    // ,disabled: false
+  driver: 'oracle',
+  query: sql,
+  mode: 'dateid',
+  copyCronRule: '* * * * *', // each minute
+  removeCronRule: '* * * * *'// each minute
+  // ,disabled: false
 };
 
 module.exports = Object.assign(config, credentials);
