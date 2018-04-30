@@ -6,52 +6,52 @@ const model = require('../../mongo/model');
 
 const Model = model.getSchedulerLog();
 
-var scheduler = (module.exports = {});
+var scheduler = module.exports;
 
-scheduler.all = async function () {
-  const since = +this.query.since || 0;
-  const limit = +this.query.limit || 50;
+scheduler.all = async function (ctx) {
+  const since = +ctx.query.since || 0;
+  const limit = +ctx.query.limit || 50;
   try {
-    this.status = 200;
-    this.body = await Model.find({})
+    ctx.status = 200;
+    ctx.body = await Model.find({})
       .skip(since)
       .limit(limit)
       .lean(true)
       .exec();
   } catch (e) {
-    handleError.call(this, e);
+    handleError.call(ctx, e);
   }
 };
 
-scheduler.trigger = function () {
+scheduler.trigger = function (ctx) {
   pm2Bridge
     .send({
       to: 'database-aggregator-scheduler',
       data: {
         type: 'scheduler:trigger',
-        data: this.params
+        data: ctx.params
       }
     })
     .then((response) => {
       if (response.error) {
-        this.status = 400;
-        this.body = response.error;
+        ctx.status = 400;
+        ctx.body = response.error;
       } else {
-        this.status = 200;
-        this.body = 'ok';
+        ctx.status = 200;
+        ctx.body = 'ok';
       }
     })
     .catch((e) => {
-      this.status = 500;
-      this.body = e.message;
+      ctx.status = 500;
+      ctx.body = e.message;
     });
 };
 
-scheduler.tasks = async function (next) {
-  const since = +this.query.since || 0;
-  const limit = +this.query.limit || 1;
+scheduler.tasks = async function (ctx, next) {
+  const since = +ctx.query.since || 0;
+  const limit = +ctx.query.limit || 1;
   try {
-    this.status = 200;
+    ctx.status = 200;
     var results = [];
     let tasksList = await Model.find().distinct('taskId');
     for (var i = 0; i < tasksList.length; i++) {
@@ -70,15 +70,15 @@ scheduler.tasks = async function (next) {
         history: history
       });
     }
-    this.body = results;
-    await next;
+    ctx.body = results;
+    await next();
   } catch (e) {
     console.log(e);
-    handleError.call(this, e);
+    handleError(ctx, e);
   }
 };
 
-function handleError() {
-  this.status = 500;
-  this.body = 'Internal server error';
+function handleError(ctx) {
+  ctx.status = 500;
+  ctx.body = 'Internal server error';
 }
