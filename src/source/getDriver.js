@@ -16,10 +16,12 @@ function getDriver(driver) {
         // ignore
       }
     }
-    try {
-      driverLocation = require.resolve(driver);
-    } catch (e) {
-      throw new Error(`could not resolve driver location: ${driver}`);
+    if (!driverLocation) {
+      try {
+        driverLocation = require.resolve(driver);
+      } catch (e) {
+        throw new Error(`could not resolve driver location: ${driver}`);
+      }
     }
 
     // eslint-disable-next-line import/no-dynamic-require
