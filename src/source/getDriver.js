@@ -7,6 +7,15 @@ function getDriver(driver) {
 
   if (typeof driver === 'string') {
     let driverLocation;
+    if (!driver.includes('/')) {
+      try {
+        driverLocation = require.resolve(
+          `database-aggregator-driver-${driver}`
+        );
+      } catch (e) {
+        // ignore
+      }
+    }
     try {
       driverLocation = require.resolve(driver);
     } catch (e) {
