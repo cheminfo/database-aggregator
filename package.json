@@ -6,6 +6,10 @@
   "directories": {
     "test": "test"
   },
+  "files": [
+    "bin",
+    "src"
+  ],
   "scripts": {
     "eslint": "eslint bin examples src test",
     "eslint-fix": "npm run eslint -- --fix",
