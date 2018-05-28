@@ -23,28 +23,26 @@ scheduler.all = async function (ctx) {
   }
 };
 
-scheduler.trigger = function (ctx) {
-  pm2Bridge
-    .send({
+scheduler.trigger = async function (ctx) {
+  try {
+    const response = await pm2Bridge.send({
       to: 'database-aggregator-scheduler',
       data: {
         type: 'scheduler:trigger',
         data: ctx.params
       }
-    })
-    .then((response) => {
-      if (response.error) {
-        ctx.status = 400;
-        ctx.body = response.error;
-      } else {
-        ctx.status = 200;
-        ctx.body = 'ok';
-      }
-    })
-    .catch((e) => {
-      ctx.status = 500;
-      ctx.body = e.message;
     });
+    if (response.error) {
+      ctx.status = 400;
+      ctx.body = response.error;
+    } else {
+      ctx.status = 200;
+      ctx.body = 'ok';
+    }
+  } catch (e) {
+    ctx.status = 500;
+    ctx.body = e.message;
+  }
 };
 
 scheduler.tasks = async function (ctx, next) {
