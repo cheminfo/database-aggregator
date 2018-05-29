@@ -12,7 +12,19 @@ function getCollection(name) {
   return mongoose.connection.collection(name);
 }
 
+function clean(data) {
+  if (Array.isArray(data)) {
+    data.forEach((item) => {
+      delete item._id;
+    });
+  } else {
+    delete data._id;
+  }
+  return data;
+}
+
 module.exports = {
   getDriverPath,
-  getCollection
+  getCollection,
+  clean
 };

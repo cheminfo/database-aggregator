@@ -72,7 +72,7 @@ async function aggregate(conf) {
       }
       var exists = checkExists(data);
       let obj = {};
-      obj._id = commonId;
+      obj.id = commonId;
       obj.date = Date.now();
       if (!exists) {
         obj.value = null;
@@ -131,7 +131,7 @@ async function aggregateValue(data, filter, commonId) {
           data[key].map((d) => d.data),
           result,
           commonId,
-          data[key].map((d) => d._id)
+          data[key].map((d) => d.id)
         )
       );
 

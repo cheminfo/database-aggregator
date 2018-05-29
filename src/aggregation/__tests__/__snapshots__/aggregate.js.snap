@@ -4,8 +4,8 @@ exports[`aggregation one-shot chemical sources aggregation 1`] = `
 Array [
   Object {
     "__v": 0,
-    "_id": "2925038",
     "date": null,
+    "id": "2925038",
     "value": Object {
       "info": Object {
         "rn": 918025,
@@ -44,8 +44,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2926713",
     "date": null,
+    "id": "2926713",
     "value": Object {
       "info": Object {
         "rn": 15673004,
@@ -84,8 +84,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "5033827",
     "date": null,
+    "id": "5033827",
     "value": Object {
       "info": Object {
         "rn": 921040,
@@ -105,8 +105,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "9682820",
     "date": null,
+    "id": "9682820",
     "value": Object {
       "info": Object {
         "rn": 13364164,
@@ -151,8 +151,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "9736385",
     "date": null,
+    "id": "9736385",
     "value": Object {
       "info": Object {
         "rn": 7239249,
@@ -193,8 +193,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "9742097",
     "date": null,
+    "id": "9742097",
     "value": Object {
       "info": Object {
         "rn": 16751589,
@@ -233,8 +233,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "9744414",
     "date": null,
+    "id": "9744414",
     "value": Object {
       "info": Object {
         "rn": 21968172,
@@ -274,8 +274,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "9744654",
     "date": null,
+    "id": "9744654",
     "value": Object {
       "info": Object {
         "rn": 21035449,
@@ -336,8 +336,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "9890062",
     "date": null,
+    "id": "9890062",
     "value": Object {
       "info": Object {
         "rn": 35399816,
@@ -377,8 +377,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "13734173",
     "date": null,
+    "id": "13734173",
     "value": Object {
       "info": Object {
         "rn": 4104443,
@@ -437,8 +437,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "17515344",
     "date": null,
+    "id": "17515344",
     "value": Object {
       "info": Object {
         "rn": 22431103,
@@ -497,8 +497,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "17515360",
     "date": null,
+    "id": "17515360",
     "value": Object {
       "info": Object {
         "rn": 22526472,
@@ -557,8 +557,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "17524220",
     "date": null,
+    "id": "17524220",
     "value": Object {
       "info": Object {
         "rn": 66228317,
@@ -617,8 +617,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "17524691",
     "date": null,
+    "id": "17524691",
     "value": Object {
       "info": Object {
         "rn": 70095408,
@@ -677,8 +677,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "17524747",
     "date": null,
+    "id": "17524747",
     "value": Object {
       "info": Object {
         "rn": 70492670,
@@ -737,8 +737,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "17540576",
     "date": null,
+    "id": "17540576",
     "value": Object {
       "info": Object {
         "rn": 287476146,
@@ -797,8 +797,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "17555206",
     "date": null,
+    "id": "17555206",
     "value": Object {
       "info": Object {
         "rn": 17440812,
@@ -816,8 +816,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2907915",
     "date": null,
+    "id": "2907915",
     "value": Object {
       "info": Object {
         "rn": 617798,
@@ -858,8 +858,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2911670",
     "date": null,
+    "id": "2911670",
     "value": Object {
       "info": Object {
         "rn": 108189,
@@ -900,8 +900,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2913321",
     "date": null,
+    "id": "2913321",
     "value": Object {
       "info": Object {
         "rn": 142847,
@@ -940,8 +940,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2915338",
     "date": null,
+    "id": "2915338",
     "value": Object {
       "info": Object {
         "rn": 121448,
@@ -981,8 +981,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2917517",
     "date": null,
+    "id": "2917517",
     "value": Object {
       "info": Object {
         "rn": 111262,
@@ -1021,8 +1021,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "9767152",
     "date": null,
+    "id": "9767152",
     "value": Object {
       "info": Object {
         "rn": 25419061,
@@ -1062,8 +1062,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "10034719",
     "date": null,
+    "id": "10034719",
     "value": Object {
       "info": Object {
         "rn": 5329793,
@@ -1085,8 +1085,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2912269",
     "date": null,
+    "id": "2912269",
     "value": Object {
       "info": Object {
         "rn": 108098,
@@ -1127,8 +1127,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2912272",
     "date": null,
+    "id": "2912272",
     "value": Object {
       "info": Object {
         "rn": 3850304,
@@ -1168,8 +1168,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2915364",
     "date": null,
+    "id": "2915364",
     "value": Object {
       "info": Object {
         "rn": 13360639,
@@ -1208,8 +1208,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2919336",
     "date": null,
+    "id": "2919336",
     "value": Object {
       "info": Object {
         "rn": 927628,
@@ -1248,8 +1248,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "17552062",
     "date": null,
+    "id": "17552062",
     "value": Object {
       "info": Object {
         "rn": 4432773,
@@ -1293,8 +1293,8 @@ exports[`aggregation various steps of aggregation 1`] = `
 Array [
   Object {
     "__v": 0,
-    "_id": "1",
     "date": null,
+    "id": "1",
     "value": Object {
       "values": Array [
         1,
@@ -1304,8 +1304,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2",
     "date": null,
+    "id": "2",
     "value": Object {
       "values": Array [
         3,
@@ -1319,8 +1319,8 @@ exports[`aggregation various steps of aggregation 2`] = `
 Array [
   Object {
     "__v": 0,
-    "_id": "1",
     "date": null,
+    "id": "1",
     "value": Object {
       "values": Array [
         3,
@@ -1330,8 +1330,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2",
     "date": null,
+    "id": "2",
     "value": Object {
       "values": Array [
         3,
@@ -1345,8 +1345,8 @@ exports[`aggregation various steps of aggregation 3`] = `
 Array [
   Object {
     "__v": 0,
-    "_id": "1",
     "date": null,
+    "id": "1",
     "value": Object {
       "values": Array [
         4,
@@ -1356,8 +1356,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "2",
     "date": null,
+    "id": "2",
     "value": Object {
       "values": Array [
         3,
@@ -1367,8 +1367,8 @@ Array [
   },
   Object {
     "__v": 0,
-    "_id": "3",
     "date": null,
+    "id": "3",
     "value": Object {
       "values": Array [
         6,
@@ -1382,8 +1382,8 @@ exports[`aggregation various steps of aggregation 4`] = `
 Array [
   Object {
     "__v": 0,
-    "_id": "2",
     "date": null,
+    "id": "2",
     "value": Object {
       "values": Array [
         5,

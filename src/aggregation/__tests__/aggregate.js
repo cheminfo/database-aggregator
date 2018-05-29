@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoSetup = require('../../../test/mongoSetup');
+const { clean } = require('../../../test/util');
 const aggregate = require('../aggregate');
 
 const aggregation = require('./../../mongo/models/aggregation');
@@ -34,11 +35,11 @@ describe('aggregation', () => {
       }
     };
     await aggregate(conf);
-    let data = await aggregation.findAll('chemical');
+    let data = await aggregation.findAll('chemical').lean();
     data.forEach((d) => {
       d.date = null;
     });
-    expect(data).toMatchSnapshot();
+    expect(clean(data)).toMatchSnapshot();
   });
 
   it('various steps of aggregation', async function () {
@@ -57,25 +58,25 @@ describe('aggregation', () => {
     // Init step
     await mongoSetup.insertData('sources1', { drop: true });
     await aggregate(conf);
-    data = await aggregation.findAll('sourceAgg');
+    data = await aggregation.findAll('sourceAgg').lean();
     aggSnapshot(data);
 
     // Update data step
     await mongoSetup.insertData('sources2', { drop: true });
     await aggregate(conf);
-    data = await aggregation.findAll('sourceAgg');
+    data = await aggregation.findAll('sourceAgg').lean();
     aggSnapshot(data);
 
     // Add data step
     await mongoSetup.insertData('sources3', { drop: true });
     await aggregate(conf);
-    data = await aggregation.findAll('sourceAgg');
+    data = await aggregation.findAll('sourceAgg').lean();
     aggSnapshot(data);
 
     // Delete step
     await mongoSetup.insertData('sources4', { drop: true });
     await aggregate(conf);
-    data = await aggregation.findAll('sourceAgg');
+    data = await aggregation.findAll('sourceAgg').lean();
     aggSnapshot(data);
   });
 });
@@ -84,5 +85,5 @@ function aggSnapshot(data) {
   data.forEach((d) => {
     d.date = null;
   });
-  expect(data).toMatchSnapshot();
+  expect(clean(data)).toMatchSnapshot();
 }

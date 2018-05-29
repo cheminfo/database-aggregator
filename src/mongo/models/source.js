@@ -17,7 +17,6 @@ exports.getCommonIds = function (name, fromSeq, toSeq) {
   }
   return Model.find(query)
     .select({ commonID: 1, sequentialID: 1 })
-    .sort({ _id: 'asc' })
     .exec();
 };
 

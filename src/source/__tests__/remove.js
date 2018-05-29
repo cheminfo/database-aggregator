@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoSetup = require('../../../test/mongoSetup');
-const { getCollection } = require('../../../test/util');
+const { getCollection, clean } = require('../../../test/util');
 const remove = require('../remove');
 
 beforeAll(mongoSetup.connect);
@@ -33,21 +33,21 @@ const testData = {
   // eslint-disable-next-line camelcase
   source_test: [
     {
-      _id: 'test1',
+      id: 'test1',
       commonID: 'test1',
       date: new Date(0),
       sequentialID: 1,
       data: {}
     },
     {
-      _id: 'test2',
+      id: 'test2',
       commonID: 'test2',
       date: new Date(0),
       sequentialID: 2,
       data: {}
     },
     {
-      _id: 'test3',
+      id: 'test3',
       commonID: 'test3',
       date: new Date(0),
       sequentialID: 3,
@@ -65,7 +65,7 @@ describe('source remove', () => {
     await remove(config);
     const data = await collection.find().toArray();
     expect(data[1].data).toEqual({});
-    expect(data).toMatchSnapshot();
+    expect(clean(data)).toMatchSnapshot();
   });
 
   it('should remove if threshold is high enough', async () => {
@@ -73,7 +73,7 @@ describe('source remove', () => {
     const data = await collection.find().toArray();
     expect(data[1].data).toBeNull();
     delete data[1].date;
-    expect(data).toMatchSnapshot();
+    expect(clean(data)).toMatchSnapshot();
   });
 
   it('should remove when driver returns a set', async () => {
@@ -81,6 +81,6 @@ describe('source remove', () => {
     const data = await collection.find().toArray();
     expect(data[1].data).toBeNull();
     delete data[1].date;
-    expect(data).toMatchSnapshot();
+    expect(clean(data)).toMatchSnapshot();
   });
 });

@@ -23,12 +23,12 @@ async function copyEntries(entries, options) {
       throw new TypeError('entry.data must be an object');
     }
 
-    let doc = await Model.findById(entry.id);
+    let doc = await Model.findOne({ id: entry.id });
 
     let mustSave = false;
     if (!doc) {
       doc = new Model();
-      doc._id = entry.id;
+      doc.id = entry.id;
       doc.commonID = entry.commonID;
       doc.data = entry.data;
       mustSave = true;
