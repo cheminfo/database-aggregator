@@ -36,4 +36,16 @@ describe('source copy', () => {
     const dataAfter = await collection.find().toArray();
     expect(clean(dataAfter)).toEqual(data);
   });
+
+  it('should allow copy with big id', async () => {
+    const collection = getCollection('source_test_big');
+    const config = {
+      driver: getDriverPath('source-copy-big'),
+      collection: 'test_big'
+    };
+
+    await copy(config);
+    const data = await collection.find().toArray();
+    expect(clean(data)).toMatchSnapshot();
+  });
 });
