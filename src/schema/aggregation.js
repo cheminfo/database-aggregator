@@ -6,9 +6,10 @@ var Schema = mongoose.Schema;
 
 module.exports = new Schema({
   // Unique identifier for this record.
-  _id: {
+  id: {
     type: String,
-    required: true
+    required: true,
+    index: 'hashed'
   },
   // Date of last update.
   date: {

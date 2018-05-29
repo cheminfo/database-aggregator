@@ -23,13 +23,13 @@ async function remove(options) {
 
   // Element that are found in copied source but not in original source ought to be deleted
   // We do this by setting data to null, so that aggregation knows about the deletion
-  const copiedIds = await Model.find({ data: { $ne: null } }, { _id: 1 })
+  const copiedIds = await Model.find({ data: { $ne: null } }, { id: 1 })
     .lean()
     .exec();
   const idsToDelete = new Set();
 
   for (let i = 0; i < copiedIds.length; i++) {
-    let id = copiedIds[i]._id;
+    let id = copiedIds[i].id;
     if (!sourceIds.has(id)) {
       idsToDelete.add(id);
     }
@@ -47,13 +47,16 @@ async function remove(options) {
 
   for (const id of idsToDelete) {
     debug.trace(`delete ${id} from ${collection}`);
-    await Model.findByIdAndUpdate(id, {
-      $set: {
-        data: null,
-        date: new Date(),
-        sequentialID: await sourceSequence.getNextSequenceID(collection)
+    await Model.update(
+      { id },
+      {
+        $set: {
+          data: null,
+          date: new Date(),
+          sequentialID: await sourceSequence.getNextSequenceID(collection)
+        }
       }
-    }).exec();
+    ).exec();
   }
 }
 

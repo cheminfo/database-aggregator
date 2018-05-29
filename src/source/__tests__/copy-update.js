@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoSetup = require('../../../test/mongoSetup');
-const { getCollection } = require('../../../test/util');
+const { getCollection, clean } = require('../../../test/util');
 const copy = require('../copy');
 
 beforeAll(mongoSetup.connect);
@@ -30,7 +30,7 @@ describe('source copy updates', () => {
       // eslint-disable-next-line camelcase
       source_test1: [
         {
-          _id: 'test1',
+          id: 'test1',
           commonID: 'test1',
           sequentialID: 0,
           data: {},
@@ -49,7 +49,7 @@ describe('source copy updates', () => {
     ).rejects.toThrow(/^commonID may not be changed$/);
 
     const mongoEntry = await getCollection('source_test1').findOne();
-    expect(mongoEntry).toMatchSnapshot();
+    expect(clean(mongoEntry)).toMatchSnapshot();
   });
 
   it('should not save if nothing changed', async () => {
@@ -57,7 +57,7 @@ describe('source copy updates', () => {
       // eslint-disable-next-line camelcase
       source_test2: [
         {
-          _id: 'test2',
+          id: 'test2',
           commonID: 'test2',
           sequentialID: 0,
           data: {},
@@ -74,6 +74,6 @@ describe('source copy updates', () => {
     });
 
     const mongoEntry = await getCollection('source_test2').findOne();
-    expect(mongoEntry).toMatchSnapshot();
+    expect(clean(mongoEntry)).toMatchSnapshot();
   });
 });

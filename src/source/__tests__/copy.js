@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoSetup = require('../../../test/mongoSetup');
-const { getDriverPath, getCollection } = require('../../../test/util');
+const { getDriverPath, getCollection, clean } = require('../../../test/util');
 const copy = require('../copy');
 
 beforeAll(mongoSetup.connect);
@@ -15,22 +15,25 @@ describe('source copy', () => {
       driverValue: 2,
       collection: 'test'
     };
+
     await copy(config);
     await expect(collection.count()).resolves.toBe(1);
-    await expect(collection.find().toArray()).resolves.toMatchSnapshot();
+    let data = await collection.find().toArray();
+    expect(clean(data)).toMatchSnapshot();
 
     await copy(config);
     await expect(collection.count()).resolves.toBe(3);
-    await expect(collection.find().toArray()).resolves.toMatchSnapshot();
+    data = await collection.find().toArray();
+    expect(clean(data)).toMatchSnapshot();
 
     await copy(config);
     await expect(collection.count()).resolves.toBe(4);
-    const data = await collection.find().toArray();
-    expect(data).toMatchSnapshot();
+    data = await collection.find().toArray();
+    expect(clean(data)).toMatchSnapshot();
 
     await copy(config);
     await expect(collection.count()).resolves.toBe(4);
     const dataAfter = await collection.find().toArray();
-    expect(dataAfter).toEqual(data);
+    expect(clean(dataAfter)).toEqual(data);
   });
 });

@@ -11,7 +11,7 @@ exports.getDataById = async function (ctx) {
   if (!Model) {
     d = null;
   } else {
-    d = await Model.findOne({ _id: id })
+    d = await Model.findOne({ id })
       .select({ _id: 0, __v: 0 })
       .lean(true)
       .exec();

@@ -29,9 +29,9 @@ async function copyMissingIds(config) {
 
   // Get all ids from copied source
   const targetIds = new Set(
-    (await Model.find({ data: { $ne: null } }, { _id: 1 })
+    (await Model.find({ data: { $ne: null } }, { id: 1 })
       .lean()
-      .exec()).map((t) => t._id)
+      .exec()).map((t) => t.id)
   );
   const idsToCopy = new Set();
 

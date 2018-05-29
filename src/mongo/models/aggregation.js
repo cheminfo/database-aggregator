@@ -6,10 +6,11 @@ const model = require('./../model');
 
 exports.save = function (name, data) {
   debug.trace(`save to ${name}: ${data.id}`);
-  const id = data._id;
-  delete data._id;
   const Model = model.getAggregation(name);
-  return Model.findByIdAndUpdate(id, data, { new: true, upsert: true }).exec();
+  return Model.update({ id: data.id }, data, {
+    new: true,
+    upsert: true
+  }).exec();
 };
 
 exports.findAll = function (name) {
@@ -20,12 +21,12 @@ exports.findAll = function (name) {
 exports.findById = function (name, id) {
   const Model = model.getAggregation(name);
   // Don't return deleted entries
-  return Model.findById(id).exec();
+  return Model.findOne({ id }).exec();
 };
 
 exports.deleteById = function (name, id) {
   const Model = model.getAggregation(name);
-  return Model.deleteOne({ _id: id });
+  return Model.deleteOne({ id });
 };
 
 exports.count = function (name) {

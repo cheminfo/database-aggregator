@@ -6,17 +6,18 @@ var Schema = mongoose.Schema;
 
 module.exports = new Schema({
   // Unique identifier for this record.
-  _id: {
+  id: {
     type: String,
-    required: true
+    required: true,
+    index: 'hashed'
   },
-  // Common identifier. It is either equal to _id or a less unique value that
+  // Common identifier. It is either equal to id or a less unique value that
   // will be used by the aggregator to merge lines that belong to the same
   // common object.
   commonID: {
     type: String,
     required: true,
-    index: true
+    index: 'hashed'
   },
   // Sequence ID. Used by the aggregator to know where it has to continue
   // its next synchronization.

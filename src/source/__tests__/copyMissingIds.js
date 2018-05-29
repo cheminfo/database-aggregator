@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoSetup = require('../../../test/mongoSetup');
-const { getCollection } = require('../../../test/util');
+const { getCollection, clean } = require('../../../test/util');
 const copyMissingIds = require('../copyMissingIds');
 
 beforeAll(mongoSetup.connect);
@@ -46,14 +46,14 @@ const testData = {
   // eslint-disable-next-line camelcase
   source_test: [
     {
-      _id: 'test1',
+      id: 'test1',
       commonID: 'test1',
       date: new Date(0),
       sequentialID: 1,
       data: {}
     },
     {
-      _id: 'test2',
+      id: 'test2',
       commonID: 'test2',
       date: new Date(0),
       sequentialID: 2,
@@ -71,13 +71,13 @@ describe('source copyMissingIds', () => {
     await copyMissingIds(config);
     const data = await collection.find().toArray();
     expect(data[2].data).toEqual({ test: 3 });
-    expect(data).toMatchSnapshot();
+    expect(clean(data)).toMatchSnapshot();
   });
 
   it('should copy missing entries when driver returns a set', async () => {
     await copyMissingIds(Object.assign(config, { type: 'set' }));
     const data = await collection.find().toArray();
     expect(data[2].data).toEqual({ test: 3 });
-    expect(data).toMatchSnapshot();
+    expect(clean(data)).toMatchSnapshot();
   });
 });
