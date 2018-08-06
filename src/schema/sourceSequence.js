@@ -10,5 +10,9 @@ module.exports = new Schema({
   seq: {
     type: Number,
     default: 0
+  },
+  version: {
+    type: Number,
+    default: 0
   }
 });

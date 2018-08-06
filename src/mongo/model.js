@@ -7,36 +7,58 @@ const aggregationSchema = require('../schema/aggregation');
 const sourceSequenceSchema = require('../schema/sourceSequence');
 const aggregationSequenceSchema = require('../schema/aggregationSequence');
 const schedulerLogSchema = require('../schema/schedulerLog');
-const { hasCollection } = require('../mongo/connection');
+const { hasCollection, dropCollection } = require('../mongo/connection');
 
 const models = new Map();
 
+const AGGREGATION = 'aggregation';
+const SOURCE = 'source';
+const META = 'meta';
+
 exports.getSource = function (name) {
-  return getModel('source', name, sourceSchema);
+  return getModel(SOURCE, name, sourceSchema);
+};
+
+exports.dropSource = async function (name) {
+  const collName = exports.getSourceName(name);
+  await dropCollection(collName);
+};
+
+exports.getSourceName = function (name) {
+  return getModelName(SOURCE, name);
+};
+
+exports.getAggregationName = function (name) {
+  return getModelName(AGGREGATION, name);
 };
 
 exports.getAggregation = function (name) {
-  return getModel('aggregation', name, aggregationSchema);
+  return getModel(AGGREGATION, name, aggregationSchema);
+};
+
+exports.dropAggregation = async function (name) {
+  const collName = exports.getAggregationName(name);
+  await dropCollection(collName);
 };
 
 exports.getAggregationIfExists = function (name) {
-  return getModelIfExists('aggregation', name, aggregationSchema);
+  return getModelIfExists(AGGREGATION, name, aggregationSchema);
 };
 
 exports.getSourceSequence = function () {
-  return getModel('meta', 'source_sequence', sourceSequenceSchema);
+  return getModel(META, 'source_sequence', sourceSequenceSchema);
 };
 
 exports.getAggregationSequence = function () {
-  return getModel('meta', 'aggregation_sequence', aggregationSequenceSchema);
+  return getModel(META, 'aggregation_sequence', aggregationSequenceSchema);
 };
 
 exports.getSchedulerLog = function () {
-  return getModel('meta', 'scheduler_log', schedulerLogSchema);
+  return getModel(META, 'scheduler_log', schedulerLogSchema);
 };
 
 function getModel(prefix, name, schema) {
-  const collName = `${prefix}_${name}`;
+  const collName = getModelName(prefix, name);
   if (models.has(collName)) {
     return models.get(collName);
   }
@@ -45,8 +67,12 @@ function getModel(prefix, name, schema) {
   return model;
 }
 
+function getModelName(prefix, name) {
+  return `${prefix}_${name}`;
+}
+
 async function getModelIfExists(prefix, name, schema) {
-  const collName = `${prefix}_${name}`;
+  const collName = getModelName(prefix, name);
   if (models.has(collName)) {
     return models.get(collName);
   } else {

@@ -13,6 +13,15 @@ exports.getNextSequenceID = async function (name) {
   return result.seq;
 };
 
+exports.getSourceVersion = async function (name) {
+  const result = await Model.findById(name, { version: 1 }).exec();
+  return result.version;
+};
+
+exports.updateSourceVersion = function (name, newVersion) {
+  return Model.findByIdAndUpdate(name, { version: newVersion }).exec();
+};
+
 exports.clear = function () {
   return Model.remove({});
 };

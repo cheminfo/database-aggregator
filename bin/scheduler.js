@@ -9,6 +9,7 @@ const debug = require('../src/util/debug')('bin:schedule');
 const { connect } = require('../src/mongo/connection');
 const config = require('../src/config/config').globalConfig;
 const schedulerLog = require('../src/mongo/models/schedulerLog');
+const { sources: migrateSources } = require('../src/migration');
 
 const sources = Object.keys(config.source);
 const aggregations = Object.keys(config.aggregation);
@@ -26,10 +27,10 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
     }
   };
 
-  const schedule = [];
+  const scheduleDefinition = [];
   // Create configuration
   for (const collection of sources) {
-    schedule.push({
+    scheduleDefinition.push({
       id: COPY_ID + collection,
       worker: path.join(__dirname, '../src/source/workers/copyWorker.js'),
       immediate: false,
@@ -40,7 +41,7 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
       type: 'source'
     });
     // copy missing ids
-    schedule.push({
+    scheduleDefinition.push({
       id: COPY_MISSING_ID + collection,
       worker: path.join(
         __dirname,
@@ -53,7 +54,7 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
       arg: config.source[collection],
       type: 'source'
     });
-    schedule.push({
+    scheduleDefinition.push({
       id: REMOVE_ID + collection,
       worker: path.join(__dirname, '../src/source/workers/removeWorker.js'),
       immediate: false,
@@ -67,7 +68,7 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
 
   for (const collection of aggregations) {
     let aggId = `aggregation_${collection}`;
-    schedule.push({
+    scheduleDefinition.push({
       id: aggId,
       worker: path.join(__dirname, '../src/aggregation/worker.js'),
       immediate: false,
@@ -84,12 +85,15 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
   }
 
   function setDeps(name, aggId) {
-    let s = schedule.find((s) => s.id === name);
+    let s = scheduleDefinition.find((s) => s.id === name);
     if (s) {
       s.deps.push(aggId);
       s.noConcurrency.push(aggId);
     }
   }
+
+  // We run migration scripts before starting the scheduler
+  await migrateSources(config.source);
 
   debug.trace(`scheduler config${schedulerConfig}`);
   var scheduler = new ProcessScheduler(schedulerConfig);
@@ -97,7 +101,7 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
   scheduler.on('change', function (data) {
     schedulerLog.save(data);
   });
-  scheduler.schedule(schedule);
+  scheduler.schedule(scheduleDefinition);
 
   pm2Bridge.onMessage(function (message, context) {
     const data = message.data;

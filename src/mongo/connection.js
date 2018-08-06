@@ -28,8 +28,14 @@ async function hasCollection(colName) {
   return collections.indexOf(colName) > -1;
 }
 
+async function dropCollection(colName) {
+  await connect();
+  await mongoose.connection.dropCollection(colName);
+}
+
 module.exports = {
   connect,
   disconnect,
-  hasCollection
+  hasCollection,
+  dropCollection
 };

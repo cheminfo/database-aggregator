@@ -43,11 +43,12 @@ async function aggregate(conf) {
   var commonIdsSet;
 
   debug.trace('get common ids');
-  do {
+  do { // while commonIdsSet.size > 0
     let seqIds = await aggregationSequence.getLastSeqIds(collection);
     seqIds = seqIds || {};
     let commonIds = [];
 
+    // Iterate over dependees
     for (let i = 0; i < sourceNames.length; i++) {
       let sourceName = sourceNames[i];
       let firstSeqId = seqIds[sourceName] || 0;

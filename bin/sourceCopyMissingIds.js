@@ -18,7 +18,7 @@ if (sources.length === 0) {
   await connect();
   for (const collection of sources) {
     let start = new Date().getTime();
-    debug(`Begin coy missing ids of ${collection}`);
+    debug(`Begin copy missing ids of ${collection}`);
     const options = config.source[collection];
     try {
       await copyMissingIds(options);
