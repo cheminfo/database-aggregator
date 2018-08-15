@@ -2,6 +2,26 @@
 
 const validation = require('../validation');
 
+describe('source validation', () => {
+  it('should return a new object', () => {
+    const conf = {
+      version: 1
+    };
+    const validatedConfig = validation.source(conf);
+    expect(validatedConfig).toBeDefined();
+    expect(validatedConfig).not.toBe(conf);
+  });
+
+  it('version should be a integer or undefined', () => {
+    const conf = {
+      version: '1'
+    };
+    expect(() => validation.source(conf)).toThrow(
+      'source version must be a number'
+    );
+  });
+});
+
 describe('aggregation validation', () => {
   it('should throw on wrong config object', async () => {
     const err = /^aggregation configuration must be an object$/;
@@ -81,6 +101,6 @@ describe('aggregation validation', () => {
     };
     const validatedConfig = validation.aggregation(aggConfig);
     expect(validatedConfig).toBeDefined();
-    return expect(validatedConfig).not.toStrictEqual(aggConfig);
+    return expect(validatedConfig).not.toBe(aggConfig);
   });
 });
