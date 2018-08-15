@@ -15,6 +15,7 @@ exports.getNextSequenceID = async function (name) {
 
 exports.getSourceVersion = async function (name) {
   const result = await Model.findById(name, { version: 1 }).exec();
+  if (!result) return 0;
   return result.version;
 };
 

@@ -16,7 +16,10 @@ module.exports = {
         throw new Error(
           `source version is ${currentVersion} but version in source config is not defined`
         );
-      } else if (sourceConfig.version === undefined) {
+      } else if (
+        sourceConfig.version === undefined ||
+        sourceConfig.version === currentVersion
+      ) {
         continue;
       } else if (sourceConfig.version > currentVersion) {
         if (sourceConfig.migration) {
