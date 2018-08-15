@@ -10,9 +10,6 @@ module.exports = {
       let sourceConfig = sourceConfigs[sourceName];
       const currentVersion = await sourceSequence.getSourceVersion(sourceName);
       const configVersion = sourceConfig.version;
-      if (configVersion !== undefined && typeof configVersion !== 'number') {
-        throw new Error('source version must be a number');
-      }
       if (configVersion === undefined && currentVersion !== 0) {
         throw new Error(
           `source version is ${currentVersion} but version in source config is not defined`

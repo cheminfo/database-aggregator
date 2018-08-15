@@ -2,48 +2,23 @@
 
 const isequal = require('lodash.isequal');
 
-const aggregationSequence = require('./../mongo/models/aggregationSequence');
-const aggregation = require('./../mongo/models/aggregation');
-const source = require('./../mongo/models/source');
-const debug = require('./../util/debug')('aggregation');
+const aggregation = require('../mongo/models/aggregation');
+const source = require('../mongo/models/source');
+const validation = require('../config/validation');
+const debug = require('../util/debug')('aggregation');
 
-const defaultChunkSize = 1000;
+const aggregationSequence = require('./../mongo/models/aggregationSequence');
 
 async function aggregate(conf) {
-  if (typeof conf !== 'object' || conf === null) {
-    throw new TypeError('aggregation configuration must be an object');
-  }
-
-  const { collection, sources, chunkSize = defaultChunkSize } = conf;
-  if (typeof collection !== 'string') {
-    throw new TypeError('config.collection must be a string');
-  }
-  if (typeof sources !== 'object' || sources === null) {
-    throw new TypeError('config.sources must be an object');
-  }
-
-  if (!Number.isInteger(chunkSize) || chunkSize < 1) {
-    throw new TypeError('config.chunkSize must be a positive integer');
-  }
-
-  for (let source in sources) {
-    if (typeof sources[source] !== 'function') {
-      throw new Error(
-        `all sources in the aggregation config should be functions (${source})`
-      );
-    }
-  }
-
+  conf = validation.aggregation(conf);
+  const { collection, sources, chunkSize } = conf;
   const sourceNames = Object.keys(sources);
-  if (sourceNames.length === 0) {
-    throw new Error('config.sources must have at least one source');
-  }
-
   var maxSeqIds = {};
   var commonIdsSet;
 
   debug.trace('get common ids');
-  do { // while commonIdsSet.size > 0
+  do {
+    // while commonIdsSet.size > 0
     let seqIds = await aggregationSequence.getLastSeqIds(collection);
     seqIds = seqIds || {};
     let commonIds = [];
