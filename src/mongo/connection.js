@@ -10,7 +10,10 @@ async function connect() {
   if (mongoose.connection.readyState === 0) {
     const url = new URL(config.url);
     url.pathname = config.database;
-    await mongoose.connect(url.href);
+    await mongoose.connect(
+      url.href,
+      { useNewUrlParser: true }
+    );
   }
   return mongoose.connection;
 }

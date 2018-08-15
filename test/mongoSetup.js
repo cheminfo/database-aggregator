@@ -11,10 +11,13 @@ const { disconnect: mongoDisconnect } = require('../src/mongo/connection');
 
 const readFile = util.promisify(fs.readFile);
 
-const mongoURL = 'mongodb://localhost/__database-aggregator-test-db';
+const mongoURL = 'mongodb://localhost:27017/__database-aggregator-test-db';
 
 async function connect() {
-  await mongoose.connect(mongoURL);
+  await mongoose.connect(
+    mongoURL,
+    { useNewUrlParser: true }
+  );
   await mongoose.connection.db.dropDatabase();
 }
 
