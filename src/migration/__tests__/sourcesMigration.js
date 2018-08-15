@@ -65,4 +65,14 @@ describe('source migration', () => {
       )
     );
   });
+
+  it('no migration if config version in undefined', async () => {
+    const originalData = await getMiscData();
+    let conf = {
+      [MISCELANEOUS]: {}
+    };
+    await migration.sources(conf);
+    const data = await getMiscData();
+    expect(data).toEqual(originalData);
+  });
 });
