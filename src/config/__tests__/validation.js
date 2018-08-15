@@ -69,4 +69,18 @@ describe('aggregation validation', () => {
       'all sources in the aggregation config should be functions (source1)'
     );
   });
+
+  it('should return a new object', () => {
+    const aggConfig = {
+      collection: 'dummy',
+      sources: {
+        source1: () => {
+          // noop
+        }
+      }
+    };
+    const validatedConfig = validation.aggregation(aggConfig);
+    expect(validatedConfig).toBeDefined();
+    return expect(validatedConfig).not.toStrictEqual(aggConfig);
+  });
 });
