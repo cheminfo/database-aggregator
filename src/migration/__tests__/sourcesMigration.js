@@ -87,4 +87,19 @@ describe('source migration', () => {
       )
     );
   });
+
+  it('real migrations are not supported yet', () => {
+    let conf = {
+      [MISCELANEOUS]: {
+        version: 1,
+        migration: () => {
+          // noop
+        }
+      }
+    };
+
+    return expect(migration.sources(conf)).rejects.toThrow(
+      'migration scripts not implemented yet'
+    );
+  });
 });

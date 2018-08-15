@@ -2,9 +2,11 @@
 
 const sourceSequence = require('../mongo/models/sourceSequence');
 const { dropSource } = require('../mongo/model');
+const validation = require('../config/validation');
 
 module.exports = {
   sources: async function (sourceConfigs) {
+    sourceConfigs = validation.sources(sourceConfigs);
     const sourceNames = Object.keys(sourceConfigs);
     for (let sourceName of sourceNames) {
       let sourceConfig = sourceConfigs[sourceName];
