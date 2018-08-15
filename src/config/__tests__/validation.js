@@ -103,4 +103,21 @@ describe('aggregation validation', () => {
     expect(validatedConfig).toBeDefined();
     return expect(validatedConfig).not.toBe(aggConfig);
   });
+
+  it('should set the default chunkSize if not specified', () => {
+    let aggConfig = {
+      collection: 'dummy',
+      sources: {
+        source1: () => {
+          // noop
+        }
+      }
+    };
+    let validatedConfig = validation.aggregation(aggConfig);
+    expect(validatedConfig.chunkSize).toEqual(1000);
+
+    aggConfig.chunkSize = 10;
+    validatedConfig = validation.aggregation(aggConfig);
+    expect(validatedConfig.chunkSize).toEqual(10);
+  });
 });
