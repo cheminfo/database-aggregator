@@ -1,3 +1,5 @@
 meta_source_sequence:
   - _id: miscelaneous
     version: 0
+  - _id: names
+    version: 1

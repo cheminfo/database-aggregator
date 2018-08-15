@@ -16,6 +16,7 @@ const model = require('../../mongo/model');
 const sourceSequence = require('../../mongo/models/sourceSequence');
 
 const MISCELANEOUS = 'miscelaneous';
+const NAMES = 'names';
 
 function getMiscData() {
   const miscelaneous = model.getSource(MISCELANEOUS);
@@ -52,14 +53,14 @@ describe('source migration', () => {
     expect(data).toHaveLength(0);
   });
 
-  it('throw when config version is small than current version', async () => {
+  it('throw when config version is small than current version', () => {
     const conf = {
       [MISCELANEOUS]: {
         version: -1
       }
     };
 
-    expect(migration.sources(conf)).rejects.toEqual(
+    return expect(migration.sources(conf)).rejects.toEqual(
       new Error(
         'source version in config must be greater than current version. config version is -1 and current version is 0'
       )
@@ -74,5 +75,16 @@ describe('source migration', () => {
     await migration.sources(conf);
     const data = await getMiscData();
     expect(data).toEqual(originalData);
+  });
+
+  it('throw when version exists but is not defined in config', () => {
+    let conf = {
+      [NAMES]: {}
+    };
+    return expect(migration.sources(conf)).rejects.toEqual(
+      new Error(
+        'source version is 1 but version in source config is not defined'
+      )
+    );
   });
 });
