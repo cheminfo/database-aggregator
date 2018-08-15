@@ -17,22 +17,22 @@ describe('source copy', () => {
     };
 
     await copy(config);
-    await expect(collection.count()).resolves.toBe(1);
+    await expect(collection.countDocuments()).resolves.toBe(1);
     let data = await collection.find().toArray();
     expect(clean(data)).toMatchSnapshot();
 
     await copy(config);
-    await expect(collection.count()).resolves.toBe(3);
+    await expect(collection.countDocuments()).resolves.toBe(3);
     data = await collection.find().toArray();
     expect(clean(data)).toMatchSnapshot();
 
     await copy(config);
-    await expect(collection.count()).resolves.toBe(4);
+    await expect(collection.countDocuments()).resolves.toBe(4);
     data = await collection.find().toArray();
     expect(clean(data)).toMatchSnapshot();
 
     await copy(config);
-    await expect(collection.count()).resolves.toBe(4);
+    await expect(collection.countDocuments()).resolves.toBe(4);
     const dataAfter = await collection.find().toArray();
     expect(clean(dataAfter)).toEqual(data);
   });

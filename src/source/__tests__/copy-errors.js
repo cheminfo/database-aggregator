@@ -36,7 +36,7 @@ describe('source copy errors', () => {
       /^entry.id must be a string$/
     );
 
-    return expect(collection.count()).resolves.toBe(0);
+    return expect(collection.countDocuments()).resolves.toBe(0);
   });
 
   it('should throw if no commonID', async () => {
@@ -48,7 +48,7 @@ describe('source copy errors', () => {
       /^entry.commonID must be a string$/
     );
 
-    return expect(collection.count()).resolves.toBe(0);
+    return expect(collection.countDocuments()).resolves.toBe(0);
   });
 
   it('should throw if no modificationDate', async () => {
@@ -67,7 +67,7 @@ describe('source copy errors', () => {
       })
     ).rejects.toThrow(/^entry.modificationDate must be a Date object$/);
 
-    return expect(collection.count()).resolves.toBe(0);
+    return expect(collection.countDocuments()).resolves.toBe(0);
   });
 
   it('should throw if no data', async () => {
@@ -97,6 +97,6 @@ describe('source copy errors', () => {
       })
     ).rejects.toThrow(/^entry.data must be an object$/);
 
-    return expect(collection.count()).resolves.toBe(0);
+    return expect(collection.countDocuments()).resolves.toBe(0);
   });
 });
