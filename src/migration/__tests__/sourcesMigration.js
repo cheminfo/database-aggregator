@@ -5,7 +5,11 @@ const mongoSetup = require('../../../test/mongoSetup');
 // const { clean } = require('../../../test/util');
 const migration = require('..');
 
-beforeEach(mongoSetup.connect);
+beforeEach(async () => {
+  await mongoSetup.connect();
+  await mongoSetup.insertData('chemicals.json');
+  await mongoSetup.insertData('source_sequence.yaml');
+});
 afterEach(mongoSetup.disconnect);
 
 const model = require('../../mongo/model');
@@ -13,31 +17,32 @@ const sourceSequence = require('../../mongo/models/sourceSequence');
 
 const MISCELANEOUS = 'miscelaneous';
 
+function getMiscData() {
+  const miscelaneous = model.getSource(MISCELANEOUS);
+  return miscelaneous
+    .find({})
+    .lean()
+    .exec();
+}
+
 describe('source migration', () => {
-  it('drop database when version number is incremented', async () => {
-    const miscelaneous = model.getSource(MISCELANEOUS);
-    await mongoSetup.insertData('chemicals.json');
-    await mongoSetup.insertData('source_sequence.yaml');
-    let data = await miscelaneous
-      .find({})
-      .lean()
-      .exec();
-    expect(data.length).toBeGreaterThan(0);
+  it('no migration when version numbers are equal', async () => {
+    const originalData = await getMiscData();
     let conf = {
       miscelaneous: {
         version: 0
       }
     };
     await migration.sources(conf);
-    data = await miscelaneous
-      .find({})
-      .lean()
-      .exec();
-    expect(data.length).toBeGreaterThan(0);
+    const data = await getMiscData();
+    expect(data).toEqual(originalData);
+  });
+
+  it('drop database when version number is incremented', async () => {
     let dbVersion = await sourceSequence.getSourceVersion(MISCELANEOUS);
     expect(dbVersion).toEqual(0);
 
-    conf = {
+    const conf = {
       [MISCELANEOUS]: {
         version: 1
       }
@@ -46,10 +51,7 @@ describe('source migration', () => {
     await migration.sources(conf);
     dbVersion = await sourceSequence.getSourceVersion(MISCELANEOUS);
     expect(dbVersion).toEqual(1);
-    data = await miscelaneous
-      .find({})
-      .lean()
-      .exec();
+    const data = await getMiscData();
     expect(data).toHaveLength(0);
   });
 });
