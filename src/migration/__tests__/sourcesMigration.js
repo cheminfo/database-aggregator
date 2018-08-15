@@ -29,7 +29,7 @@ describe('source migration', () => {
   it('no migration when version numbers are equal', async () => {
     const originalData = await getMiscData();
     let conf = {
-      miscelaneous: {
+      [MISCELANEOUS]: {
         version: 0
       }
     };
@@ -39,9 +39,6 @@ describe('source migration', () => {
   });
 
   it('drop database when version number is incremented', async () => {
-    let dbVersion = await sourceSequence.getSourceVersion(MISCELANEOUS);
-    expect(dbVersion).toEqual(0);
-
     const conf = {
       [MISCELANEOUS]: {
         version: 1
@@ -49,9 +46,23 @@ describe('source migration', () => {
     };
 
     await migration.sources(conf);
-    dbVersion = await sourceSequence.getSourceVersion(MISCELANEOUS);
+    const dbVersion = await sourceSequence.getSourceVersion(MISCELANEOUS);
     expect(dbVersion).toEqual(1);
     const data = await getMiscData();
     expect(data).toHaveLength(0);
+  });
+
+  it('throw when config version is small than current version', async () => {
+    const conf = {
+      [MISCELANEOUS]: {
+        version: -1
+      }
+    };
+
+    expect(migration.sources(conf)).rejects.toEqual(
+      new Error(
+        'source version in config must be greater than current version. config version is -1 and current version is 0'
+      )
+    );
   });
 });
