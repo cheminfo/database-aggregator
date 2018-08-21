@@ -63,6 +63,9 @@ DEBUG=aggregator:warn,aggregator:error # activate warn and error debug levels
 
 The scheduler scripts reads the configuration files and schedules the source and aggregation scripts. Each source synchronization and aggregation is launched in a new child process. The scheduler keeps track of the status of each process and logs the information in the MongoDB database. The logged information is available to end users via the HTTP API. [Read here about how to write configuration files](./configuration.md)
 
+![image](https://user-images.githubusercontent.com/4118690/44406024-f4f2e980-a55a-11e8-8b10-fc689b4f3c87.png)
+[Edit diagram](https://sketchboard.me/vBbwNWFtkgIq#/)
+
 To start the schedule: `pm2 start scheduler.pm2.json`
 To start the server:
 
