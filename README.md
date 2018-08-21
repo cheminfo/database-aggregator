@@ -47,6 +47,8 @@ The server script launches a web server which provides:
 pm2 start server.pm2.json
 ```
 
+[HTTP API Documentation](./http_api.md)
+
 #### Environment variables
 
 `DEBUG` sets the level of information to log in the console. There are 4 levels of debug: trace, debug, warn, error.

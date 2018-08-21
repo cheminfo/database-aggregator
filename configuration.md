@@ -12,7 +12,7 @@ The `config.js` should be a commonjs module that exports the configuration objec
 
 - `url`- mongodb connection string
 - `database` - mongodb database name
-- `port` - Server port
+- `port` - Server port for the HTTP API
 - `schedulerThreadsSource` - Maximum number of parallel threds for source synchronization processen
 - `schedulerThreadsAggregation` - Maximum number of parallel threads for aggregation processes
 - `removeThreshold` - The percentage of deleted data to justify running the delete thread
