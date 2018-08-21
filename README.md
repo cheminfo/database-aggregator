@@ -6,13 +6,21 @@ The database aggregator collects data from various sources and puts them into a 
 
 ## Install
 
-Clone the repo: `git clone https://github.com/cheminfo/database-aggregator.git`
+Clone the repo:
 
-Install dependencies: `npm install`
+`git clone https://github.com/cheminfo/database-aggregator.git`
 
-Install pm2: `npm i -g pm2`
+Install dependencies:
 
-Install pm2-bridge : `pm2 install pm2-bridge`
+`npm install`
+
+Install pm2:
+
+`npm i -g pm2`
+
+Install pm2-bridge :
+
+`pm2 install pm2-bridge`
 
 Copy pm2 configuration files and launch pm2 processes
 
@@ -49,7 +57,7 @@ DEBUG=aggregator:* # activate all debug levels
 DEBUG=aggregator:warn,aggregator:error # activate warn and error debug levels
 ```
 
-`DATABASE_AGGREGATOR_HOME_DIR` sets the configuration directory where the configuration is located. Example:
+`DATABASE_AGGREGATOR_HOME_DIR` sets the configuration directory where the configuration is located
 
 ### Scheduler
 
@@ -62,36 +70,6 @@ To start the server:
 pm2 start scheduler.pm2.json
 ```
 
-Set your debug level:
-
-```bash
-$ DEBUG=*
-```
-
-Set your home directory (see examples directory for create the basic structure):
-
-```bash
-$ DATABASE_AGGREGATOR_HOME_DIR=/labs/homeDir
-```
-
-Sourcing from Oracle:
-
-```bash
-$ node /labs/database-aggregator/bin/source.js
-```
-
-Aggregation:
-
-```bash
-$ node /labs/database-aggregator/bin/aggregation.js
-```
-
-Start the server:
-
-```bash
-$ node /labs/database-aggregator/bin/server.js
-```
-
 ## Testing
 
 ### Setup environment with Docker (for runnings tests)
@@ -101,6 +79,10 @@ docker pull mongo
 docker create -p 27017:27017 --name mongo mongo
 docker start mongo
 ```
+
+### Run tests
+
+`npm test`
 
 ## License
 
