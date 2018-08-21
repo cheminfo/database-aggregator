@@ -43,6 +43,11 @@ if (!homeDir) {
         continue;
       }
       if (!databaseConfig.driver) {
+        debug.warn(
+          `Skipping source config ${
+            parsedConfigPath.name
+          } because driver is missing`
+        );
         continue;
       }
       databaseConfig.collection = parsedConfigPath.name;
