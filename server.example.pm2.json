@@ -1,0 +1,6 @@
+{
+  "script": "./bin/server.js",
+  "env": {
+    "DEBUG": "aggregator:*"
+  }
+}
