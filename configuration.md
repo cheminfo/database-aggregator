@@ -34,7 +34,7 @@ module.exports = {
 
 ## Source configuration directory
 
-The source directory should be located inside the home directory under the name `source`. The scheduler will recursively scan all subdirectories and load any javascript file. The js file should be commonjs modules that exports source configuration object. Example:
+The source directory should be located inside the home directory under the name `source`. The scheduler will recursively scan all subdirectories and load any javascript file. The name of the file is important and will be used to identify the collection in which the data is saved. The js file should be commonjs modules that exports source configuration object.
 
 ### Properties
 
@@ -44,6 +44,8 @@ The source directory should be located inside the home directory under the name 
 - `removeCronRule` -How often we should clean the target from deleted entries in cron rule format
 
 The cron rules are parsed using the [node-schedule npm package](https://github.com/node-schedule/node-schedule)
+
+### Example
 
 ```js
 'use strict';
@@ -60,7 +62,35 @@ The full source configuration will be passed to the driver, so the source config
 
 ## Aggregation configuration directory
 
-TODO
+The aggregation directory should be located inside the home directory. The scheduler will recursively search and load for `.js`. The js file should be a commonjs module and export an object.
+
+### Properties
+
+- `sources` - an object where each property represents a source dependency
+  - `[any key]` - Specifies the callback that should be called when the aggregation is triggered. The callback will be called once for each commonID. See example below with callback parameters
+    - ``
+
+Aggregations don't need to be scheduled, they will be triggered automatically everytime a source dependency has been updated.
+
+### Example
+
+```js
+'use strict';
+
+module.exports = {
+  sources: {
+    miscelaneous: function(data, result, commonID, ids) {
+      // data: array containing all source entries from miscelaneous for this commonID
+      // result: the aggregation result
+      // commonID: the aggregation entry id
+      // ids: the list of miscelaneous ids for this commonID
+    },
+    prices: function(data, result, commonID, ids) {
+      // Same as above, but for the prices source
+    }
+  }
+};
+```
 
 ## Drivers
 
@@ -71,13 +101,16 @@ Driver definition:
 'use strict';
 
 module.exports = {
-  getData: function getData(config, callback, meta) {
+  getData: async function getData(config, callback, meta) {
+    // Can be an async function / return a Promise
+    // The synchronization is considered finished when the returned promise is fulfilled
+    // It should resolve once all data has been synchronized
     // config contains the source configuration object that was loaded by the scheduler
     // meta contains information about the current state of the target database. It has 2 properties:
-    //   - latestDate: the last date of modification
+    //   - latestDate: the last date of modification - for the 1st synchronization, the date is January 1st, 1900
     //   - ids: the full list of ids
     // The goal of meta information is to allow incremental updates by retrieving only what has been changed or added since the last synchronization.
-    // callback is the function to call once the data has been retrieved
+    // callback can be called as many times as necessary
     // callback should be called with a well defined structure
     // ID uniquely identifies each source entry
     // commonID is used to identify the target entry in the aggregation collection
