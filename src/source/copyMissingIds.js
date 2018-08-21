@@ -51,7 +51,7 @@ async function copyMissingIds(config) {
 
   for (let chunk of chunks) {
     await driver.getData(config, (data) => copyEntries(data, config), {
-      latestDate: latest && latest.date,
+      latestDate: (latest && latest.date) || new Date('1900-01-01'),
       ids: chunk
     });
   }
