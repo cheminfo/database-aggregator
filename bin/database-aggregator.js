@@ -1,11 +1,14 @@
+#! env node
 'use strict';
 
 const app = require('../src/api/server');
 const config = require('../src/config/config').globalConfig;
 const debug = require('../src/util/debug')('bin:server');
 const { connect } = require('../src/mongo/connection');
+const { start } = require('../src/scheduler');
 
-connect();
+connect(); // Connect to mongodb database
+start(); // Start the scheduler
 
 if (config.ssl) {
   require('https')

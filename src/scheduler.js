@@ -3,13 +3,12 @@
 const path = require('path');
 
 const ProcessScheduler = require('process-scheduler');
-const pm2Bridge = require('pm2-bridge');
 
-const debug = require('../src/util/debug')('bin:schedule');
-const { connect } = require('../src/mongo/connection');
-const config = require('../src/config/config').globalConfig;
-const schedulerLog = require('../src/mongo/models/schedulerLog');
-const { sources: migrateSources } = require('../src/migration');
+const debug = require('./util/debug')('bin:schedule');
+const { connect } = require('./mongo/connection');
+const config = require('./config/config').globalConfig;
+const schedulerLog = require('./mongo/models/schedulerLog');
+const { sources: migrateSources } = require('./migration');
 
 const sources = Object.keys(config.source);
 const aggregations = Object.keys(config.aggregation);
@@ -18,7 +17,11 @@ const REMOVE_ID = 'source_remove_';
 const COPY_ID = 'source_copy_';
 const COPY_MISSING_ID = 'source_copy_missing_ids_';
 
-(async function () {
+let scheduler;
+let _started = false;
+
+async function start() {
+  if (_started) return;
   await connect();
   const schedulerConfig = {
     threads: {
@@ -96,38 +99,21 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
   await migrateSources(config.source);
 
   debug.trace(`scheduler config${schedulerConfig}`);
-  var scheduler = new ProcessScheduler(schedulerConfig);
+  scheduler = new ProcessScheduler(schedulerConfig);
 
   scheduler.on('change', function (data) {
     schedulerLog.save(data);
   });
   scheduler.schedule(scheduleDefinition);
 
-  pm2Bridge.onMessage(function (message, context) {
-    const data = message.data;
-    switch (data.type) {
-      case 'scheduler:trigger':
-        debug.trace(`scheduler:trigger message received${data.data}`);
-        if (data.data.taskId) {
-          const status = scheduler.trigger(data.data.taskId);
-          if (status) {
-            context.reply({
-              error: 'process id was not found'
-            });
-          } else {
-            context.reply({
-              ok: true
-            });
-          }
-        } else {
-          context.reply({
-            error: 'taskId parameter is mandatory'
-          });
-        }
-        break;
-      default:
-        debug.trace('unknown packet type sent to scheduler');
-        break;
-    }
-  });
-})();
+  _started = true;
+}
+
+function triggerTask(taskId) {
+  scheduler.trigger(taskId);
+}
+
+module.exports = {
+  start,
+  triggerTask
+};
