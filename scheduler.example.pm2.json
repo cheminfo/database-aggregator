@@ -1,6 +1,0 @@
-{
-  "script": "./bin/scheduler.js",
-  "env": {
-    "DEBUG": "aggregator:*"
-  }
-}

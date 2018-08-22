@@ -1,7 +1,6 @@
 'use strict';
 
-const pm2Bridge = require('pm2-bridge');
-
+const { triggerTask } = require('../../scheduler');
 const model = require('../../mongo/model');
 
 const Model = model.getSchedulerLog();
@@ -25,20 +24,7 @@ scheduler.all = async function (ctx) {
 
 scheduler.trigger = async function (ctx) {
   try {
-    const response = await pm2Bridge.send({
-      to: 'database-aggregator-scheduler',
-      data: {
-        type: 'scheduler:trigger',
-        data: ctx.params
-      }
-    });
-    if (response.error) {
-      ctx.status = 400;
-      ctx.body = response.error;
-    } else {
-      ctx.status = 200;
-      ctx.body = 'ok';
-    }
+    triggerTask(ctx.params.taskId);
   } catch (e) {
     ctx.status = 500;
     ctx.body = e.message;

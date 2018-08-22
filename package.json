@@ -10,6 +10,9 @@
     "bin",
     "src"
   ],
+  "bin": {
+    "database-aggregator": "./bin/database-aggregator.js"
+  },
   "scripts": {
     "eslint": "eslint bin examples src test",
     "eslint-fix": "npm run eslint -- --fix",
@@ -49,6 +52,7 @@
     "koa-router": "^7.4.0",
     "lodash.chunk": "^4.2.0",
     "lodash.isequal": "^4.5.0",
+    "make-promises-safe": "^1.1.0",
     "mongoose": "^5.2.9",
     "pm2-bridge": "^2.0.1",
     "process-scheduler": "^0.0.4"
