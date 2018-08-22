@@ -1,6 +1,7 @@
 #! env node
 'use strict';
 
+require('make-promises-safe');
 const app = require('../src/api/server');
 const config = require('../src/config/config').globalConfig;
 const debug = require('../src/util/debug')('bin:server');
