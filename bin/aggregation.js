@@ -3,7 +3,7 @@
 const pid = require('../src/util/pid');
 const { connect } = require('../src/mongo/connection');
 const debug = require('../src/util/debug')('bin:aggregate');
-const aggregate = require('../src/aggregation/aggregate');
+const aggregate = require('../lib/aggregation/aggregate');
 const config = require('../src/config/config').globalConfig;
 
 pid.start();
