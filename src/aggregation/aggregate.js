@@ -27,13 +27,13 @@ async function aggregate(conf) {
     for (let i = 0; i < sourceNames.length; i++) {
       let sourceName = sourceNames[i];
       let firstSeqId = seqIds[sourceName] || 0;
-      let lastSeqId = firstSeqId + chunkSize;
       let lastSourceSeq = await source.getLastSeqId(sourceName);
+      let cids = await source.getCommonIds(sourceName, firstSeqId, chunkSize);
+      const lastCid = cids[cids.length - 1];
       maxSeqIds[sourceName] = Math.min(
-        lastSeqId,
+        lastCid.sequentialID,
         lastSourceSeq ? lastSourceSeq.sequentialID : 0
       );
-      let cids = await source.getCommonIds(sourceName, firstSeqId, lastSeqId);
       cids = cids.map((commonId) => commonId.commonID);
       commonIds = commonIds.concat(cids);
     }
