@@ -31,7 +31,7 @@ async function aggregate(conf) {
       let cids = await source.getCommonIds(sourceName, firstSeqId, chunkSize);
       const lastCid = cids[cids.length - 1];
       maxSeqIds[sourceName] = Math.min(
-        lastCid.sequentialID,
+        lastCid ? lastCid.sequentialID : 0,
         lastSourceSeq ? lastSourceSeq.sequentialID : 0
       );
       cids = cids.map((commonId) => commonId.commonID);
