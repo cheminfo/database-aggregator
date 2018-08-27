@@ -1334,7 +1334,7 @@ Array [
     "id": "2",
     "value": Object {
       "values": Array [
-        3,
+        "3",
       ],
     },
   },

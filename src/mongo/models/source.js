@@ -4,7 +4,7 @@ const debug = require('../../util/debug')('model:source');
 
 const model = require('./../model');
 
-exports.getCommonIds = function (name, fromSeq, toSeq) {
+exports.getCommonIds = function (name, fromSeq, chunkSize) {
   debug.trace(`getCommonIds for source ${name} from seq ${fromSeq}`);
   fromSeq = fromSeq || 0;
   var Model = model.getSource(name);
@@ -12,12 +12,12 @@ exports.getCommonIds = function (name, fromSeq, toSeq) {
   if (fromSeq !== undefined) {
     query.sequentialID.$gt = fromSeq;
   }
-  if (toSeq !== undefined) {
-    query.sequentialID.$lte = toSeq;
+  const find = Model.find(query).select({ commonID: 1, sequentialID: 1 });
+  if (chunkSize !== undefined) {
+    find.limit(chunkSize);
   }
-  return Model.find(query)
-    .select({ commonID: 1, sequentialID: 1 })
-    .exec();
+  find.sort({ sequentialID: 1 });
+  return find.exec();
 };
 
 exports.getLastSeqId = function (name) {
