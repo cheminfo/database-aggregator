@@ -2,6 +2,7 @@
   "private": true,
   "name": "database-aggregator-api",
   "autoload": {
-    "App": "./app"
+    "App": "./app",
+    "Src": "../src"
   }
 }
