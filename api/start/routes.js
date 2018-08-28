@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +13,10 @@
 |
 */
 
-const Route = use('Route')
+const Router = use('Route');
 
-Route.get('/', ({ request }) => {
-  return { greeting: 'Hello world in JSON' }
-})
+Router.group(() => {
+  Router.get('all', 'SchedulerController.all');
+  Router.get('tasks', 'SchedulerController.tasks');
+  Router.post('trigger/:taskId', 'SchedulerController.trigger');
+}).prefix('scheduler');
