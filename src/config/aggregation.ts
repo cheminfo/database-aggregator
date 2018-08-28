@@ -1,3 +1,5 @@
+import { IAggregationConfig, IAggregationConfigElement } from '../types';
+
 'use strict';
 
 const path = require('path');
@@ -6,8 +8,8 @@ const find = require('find');
 
 const debug = require('../util/debug')('config:aggregation');
 
-module.exports = { aggregation: {} };
-const dbConfig = module.exports.aggregation;
+const dbConfig: IAggregationConfig = {};
+export const aggregationConfig = { aggregation: dbConfig };
 // eslint-disable-next-line import/no-dynamic-require
 const homeDir = require('./home').homeDir;
 
@@ -23,7 +25,6 @@ if (homeDir) {
   databases = databases || [];
 
   for (const database of databases) {
-    let databaseConfig;
     let configPath = path.resolve(aggregationDir, database);
     let parsedConfigPath = path.parse(configPath);
     if (parsedConfigPath.ext !== '.js') {
@@ -31,7 +32,7 @@ if (homeDir) {
     }
 
     // eslint-disable-next-line import/no-dynamic-require
-    databaseConfig = require(configPath);
+    const databaseConfig: IAggregationConfigElement = require(configPath);
     if (!databaseConfig.sources || databaseConfig.disabled === true) {
       continue;
     }

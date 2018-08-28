@@ -1,20 +1,19 @@
 'use strict';
 
-const model = require('./../model');
+import { getAggregationSequence } from '../model';
+const Model = getAggregationSequence();
 
-const Model = model.getAggregationSequence();
-
-exports.getLastSeqIds = async function (name) {
+export async function getLastSeqIds(name: string) {
   const result = await Model.findById(name).exec();
   if (result) return result.sourceSeq;
   return null;
-};
+}
 
-exports.setSeqIds = async function (name, seqIds) {
+export async function setSeqIds(name: string, seqIds: string) {
   const result = await Model.findByIdAndUpdate(
     name,
     { sourceSeq: seqIds },
     { new: true, upsert: true }
   ).exec();
   return result.sourceSeq;
-};
+}

@@ -1,8 +1,7 @@
 'use strict';
 
-const { Schema } = require('mongoose');
-
-module.exports = new Schema({
+import { Schema } from 'mongoose';
+export default new Schema({
   _id: {
     type: String,
     required: true

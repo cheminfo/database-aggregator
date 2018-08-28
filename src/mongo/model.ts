@@ -2,12 +2,14 @@
 
 const mongoose = require('mongoose');
 
-const sourceSchema = require('../schema/source');
-const aggregationSchema = require('../schema/aggregation');
-const sourceSequenceSchema = require('../schema/sourceSequence');
-const aggregationSequenceSchema = require('../schema/aggregationSequence');
-const schedulerLogSchema = require('../schema/schedulerLog');
-const { hasCollection, dropCollection } = require('../mongo/connection');
+import sourceSchema from '../schema/source';
+import aggregationSchema from '../schema/aggregation';
+import sourceSequenceSchema from '../schema/sourceSequence';
+import aggregationSequenceSchema from '../schema/aggregationSequence';
+import schedulerLogSchema from '../schema/schedulerLog';
+
+import { hasCollection, dropCollection } from '../mongo/connection';
+import { Schema } from 'mongoose';
 
 const models = new Map();
 
@@ -15,49 +17,49 @@ const AGGREGATION = 'aggregation';
 const SOURCE = 'source';
 const META = 'meta';
 
-exports.getSource = function (name) {
+export function getSource(name: string) {
   return getModel(SOURCE, name, sourceSchema);
-};
+}
 
-exports.dropSource = async function (name) {
+export async function dropSource(name: string) {
   const collName = exports.getSourceName(name);
   await dropCollection(collName);
-};
+}
 
-exports.getSourceName = function (name) {
+export function getSourceName(name: string) {
   return getModelName(SOURCE, name);
-};
+}
 
-exports.getAggregationName = function (name) {
+export function getAggregationName(name: string) {
   return getModelName(AGGREGATION, name);
-};
+}
 
-exports.getAggregation = function (name) {
+export function getAggregation(name: string) {
   return getModel(AGGREGATION, name, aggregationSchema);
-};
+}
 
-exports.dropAggregation = async function (name) {
-  const collName = exports.getAggregationName(name);
+export async function dropAggregation(name: string) {
+  const collName = getAggregationName(name);
   await dropCollection(collName);
-};
+}
 
-exports.getAggregationIfExists = function (name) {
+export function getAggregationIfExists(name: string) {
   return getModelIfExists(AGGREGATION, name, aggregationSchema);
-};
+}
 
-exports.getSourceSequence = function () {
+export function getSourceSequence() {
   return getModel(META, 'source_sequence', sourceSequenceSchema);
-};
+}
 
-exports.getAggregationSequence = function () {
+export function getAggregationSequence() {
   return getModel(META, 'aggregation_sequence', aggregationSequenceSchema);
-};
+}
 
-exports.getSchedulerLog = function () {
+export function getSchedulerLog() {
   return getModel(META, 'scheduler_log', schedulerLogSchema);
-};
+}
 
-function getModel(prefix, name, schema) {
+function getModel(prefix: string, name: string, schema: Schema) {
   const collName = getModelName(prefix, name);
   if (models.has(collName)) {
     return models.get(collName);
@@ -67,11 +69,11 @@ function getModel(prefix, name, schema) {
   return model;
 }
 
-function getModelName(prefix, name) {
+function getModelName(prefix: string, name: string) {
   return `${prefix}_${name}`;
 }
 
-async function getModelIfExists(prefix, name, schema) {
+async function getModelIfExists(prefix: string, name: string, schema: Schema) {
   const collName = getModelName(prefix, name);
   if (models.has(collName)) {
     return models.get(collName);

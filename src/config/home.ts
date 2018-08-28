@@ -1,22 +1,17 @@
-'use strict';
-
 const path = require('path');
 
 const debug = require('../util/debug')('config:home');
 
 // eslint-disable-next-line no-process-env
-let homeDir = process.env.DATABASE_AGGREGATOR_HOME_DIR;
-
+export let config = {};
+export let homeDir = process.env.DATABASE_AGGREGATOR_HOME_DIR;
 if (!homeDir) {
   debug('no home dir');
   exports.config = {};
 } else {
   homeDir = path.resolve(homeDir);
-
   debug(`home dir is ${homeDir}`);
-
-  exports.homeDir = homeDir;
-  exports.config = getHomeConfig();
+  config = getHomeConfig();
 }
 
 function getHomeConfig() {

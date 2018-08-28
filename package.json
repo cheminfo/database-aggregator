@@ -47,6 +47,7 @@
   },
   "homepage": "https://github.com/cheminfo/database-aggregator#readme",
   "dependencies": {
+    "@types/mongoose": "^5.2.7",
     "debug": "^3.1.0",
     "find": "^0.2.9",
     "is-running": "^2.1.0",

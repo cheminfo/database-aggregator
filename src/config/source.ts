@@ -1,13 +1,13 @@
 'use strict';
 
 const path = require('path');
-
 const find = require('find');
-
 const debug = require('../util/debug')('config:source');
 
-module.exports = { source: {} };
-const dbConfig = module.exports.source;
+import { ISourceConfig, ISourceConfigElement } from '../types';
+
+const dbConfig: ISourceConfig = {};
+export const sourceConfig = { source: dbConfig };
 // eslint-disable-next-line import/no-dynamic-require
 const homeDir = require('./home').homeDir;
 
@@ -19,7 +19,7 @@ if (!homeDir) {
   try {
     const databases = find.fileSync(/\.js$/, sourceDir);
     for (const database of databases) {
-      let databaseConfig;
+      let cfg;
       let configPath = path.resolve(sourceDir, database);
       let parsedConfigPath = path.parse(configPath);
       if (parsedConfigPath.ext !== '.js') {
@@ -28,11 +28,7 @@ if (!homeDir) {
 
       try {
         // eslint-disable-next-line import/no-dynamic-require
-        const cfg = require(configPath);
-        if (cfg.disabled) {
-          continue;
-        }
-        databaseConfig = cfg;
+        cfg = require(configPath);
       } catch (e) {
         console.error(
           'could not open source config',
@@ -40,6 +36,10 @@ if (!homeDir) {
           'with error',
           e
         );
+        continue;
+      }
+      const databaseConfig: ISourceConfigElement = cfg;
+      if (databaseConfig.disabled) {
         continue;
       }
       if (!databaseConfig.driver) {

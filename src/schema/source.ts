@@ -1,10 +1,8 @@
 'use strict';
 
-var mongoose = require('mongoose');
+import { Schema } from 'mongoose';
 
-var Schema = mongoose.Schema;
-
-module.exports = new Schema({
+export default new Schema({
   // Unique identifier for this record.
   id: {
     type: String,

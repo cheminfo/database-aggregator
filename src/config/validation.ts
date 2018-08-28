@@ -1,20 +1,28 @@
 'use strict';
 
-function config(config) {
+import {
+  IConfig,
+  ISourceConfig,
+  ISourceConfigElement,
+  IAggregationConfig,
+  IAggregationConfigElement
+} from '../types';
+
+function config(config: IConfig) {
   let validatedConfig = Object.assign({}, config);
   config.sources = sources(config.sources);
   config.aggregation = aggregations(config.aggregation);
   return validatedConfig;
 }
-function sources(sources) {
-  const validSources = {};
+function sources(sources: ISourceConfig) {
+  const validSources: ISourceConfig = {};
   for (let key of Object.keys(sources)) {
     validSources[key] = source(sources[key]);
   }
   return validSources;
 }
 
-function source(conf) {
+function source(conf: ISourceConfigElement) {
   const configVersion = conf.version;
   if (configVersion !== undefined && typeof configVersion !== 'number') {
     throw new Error('source version must be a number');
@@ -22,15 +30,15 @@ function source(conf) {
   return Object.assign({}, conf);
 }
 
-function aggregations(aggregations) {
-  const validAggregations = {};
+function aggregations(aggregations: IAggregationConfig) {
+  const validAggregations: IAggregationConfig = {};
   for (let key of Object.keys(aggregations)) {
     validAggregations[key] = aggregation(aggregations[key]);
   }
   return validAggregations;
 }
 
-function aggregation(conf) {
+function aggregation(conf: IAggregationConfigElement) {
   if (typeof conf !== 'object' || conf === null) {
     throw new TypeError('aggregation configuration must be an object');
   }

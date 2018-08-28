@@ -9,47 +9,20 @@ const debug = require('../util/debug')('aggregation');
 
 const aggregationSequence = require('./../mongo/models/aggregationSequence');
 
-interface IConfigAggregation {
-  sources: {
-    [key: string]: any;
-  };
-  collection: string;
-  chunkSize: number;
-}
+import {
+  ISourceBase,
+  IAggregationConfig,
+  IObject,
+  ISourceEntry,
+  IAggregationEntry,
+  IAggregationCallback
+} from '../types';
 
-type IAggregationCallback = (
-  data: ISourceEntry[],
-  result: object,
-  commonID: string,
-  ids: string[]
-) => undefined;
-
-interface ISourceMap<T> {
-  [key: string]: T;
-}
-
-interface IAggregationEntry {
-  id: string;
-  date: number;
-  value: any;
-}
-
-interface ISourceBase {
-  sequentialID: number;
-  commonID: string;
-}
-
-interface ISourceEntry extends ISourceBase {
-  id: String;
-  date: Date;
-  data: object | null;
-}
-
-async function aggregate(conf: IConfigAggregation) {
+async function aggregate(conf: IAggregationConfig) {
   conf = validation.aggregation(conf);
   const { collection, sources, chunkSize } = conf;
   const sourceNames = Object.keys(sources);
-  const maxSeqIds: ISourceMap<number> = {};
+  const maxSeqIds: IObject<number> = {};
   var commonIdsSet;
 
   debug.trace('get common ids');
@@ -74,14 +47,14 @@ async function aggregate(conf: IConfigAggregation) {
         firstSeqId,
         lastSeqId
       );
-      const cids = cidBases.map((commonId) => commonId.commonID);
+      const cids = cidBases.map(commonId => commonId.commonID);
       commonIds = commonIds.concat(cids);
     }
 
     commonIdsSet = new Set(commonIds);
 
     for (let commonId of commonIdsSet) {
-      let data: ISourceMap<ISourceEntry[]> = {};
+      let data: IObject<ISourceEntry[]> = {};
       for (let i = 0; i < sourceNames.length; i++) {
         let sourceName = sourceNames[i];
         data[sourceName] = await source.getByCommonId(sourceName, commonId);
@@ -128,7 +101,7 @@ async function aggregate(conf: IConfigAggregation) {
   } while (commonIdsSet.size > 0);
 }
 
-function checkExists(data: ISourceMap<any>) {
+function checkExists(data: IObject<any>) {
   for (let source in data) {
     if (data[source].length !== 0) {
       return true;
@@ -138,8 +111,8 @@ function checkExists(data: ISourceMap<any>) {
 }
 
 async function aggregateValue(
-  data: ISourceMap<ISourceEntry[]>,
-  filter: ISourceMap<IAggregationCallback>,
+  data: IObject<ISourceEntry[]>,
+  filter: IObject<IAggregationCallback>,
   commonId: string
 ) {
   var result = {};
@@ -149,10 +122,10 @@ async function aggregateValue(
       accept = await Promise.resolve(
         filter[key].call(
           null,
-          data[key].map((d) => d.data),
+          data[key].map(d => d.data),
           result,
           commonId,
-          data[key].map((d) => d.id)
+          data[key].map(d => d.id)
         )
       );
 
