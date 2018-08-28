@@ -19,7 +19,13 @@
 
 const path = require('path');
 
-const { Ignitor } = require('@adonisjs/ignitor');
+const { Ignitor, hooks } = require('@adonisjs/ignitor');
+
+const { connect } = require('../src/mongo/connection');
+
+hooks.before.httpServer(async () => {
+  await connect();
+});
 
 new Ignitor(require('@adonisjs/fold'))
   .appRoot(path.join(__dirname))

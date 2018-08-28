@@ -20,3 +20,7 @@ Router.group(() => {
   Router.get('tasks', 'SchedulerController.tasks');
   Router.post('trigger/:taskId', 'SchedulerController.trigger');
 }).prefix('scheduler');
+
+Router.group(() => {
+  Router.get('id/:id', 'DbController.getDataById');
+}).prefix('db/:name');
