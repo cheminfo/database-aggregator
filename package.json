@@ -14,9 +14,7 @@
     "database-aggregator": "./bin/database-aggregator.js"
   },
   "scripts": {
-    "eslint": "eslint bin examples src test",
-    "eslint-fix": "npm run eslint -- --fix",
-    "test": "npm run test-only && npm run eslint",
+    "test": "npm run test-only && npm run tslint",
     "test-coverage": "jest --runInBand --coverage",
     "test-only": "jest --runInBand",
     "clean": "rimraf lib lib-es6",
@@ -76,10 +74,6 @@
     "@types/debug": "0.0.30",
     "@types/jest": "^23.3.1",
     "@types/node": "^10.7.1",
-    "eslint": "^5.4.0",
-    "eslint-config-cheminfo": "^1.18.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^21.21.0",
     "jest": "^23.5.0",
     "js-yaml": "^3.12.0",
     "rimraf": "^2.6.2",

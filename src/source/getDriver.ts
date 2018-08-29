@@ -8,13 +8,10 @@ export function getDriver(
     throw new TypeError('driver must be a string or object');
   }
 
-  if (
-    typeof driverModule.getIds !== 'function' ||
-    typeof driverModule.getData !== 'function'
-  ) {
-    throw new TypeError(
-      `driver must provide a getIds and getData, which must be functions`
-    );
+  if (typeof driverModule.getData !== 'function') {
+    throw new TypeError(`driver must provide a method named "getData"`);
+  } else if (typeof driverModule.getIds !== 'function') {
+    throw new TypeError(`driver must provide a method named "getIds"`);
   }
 
   return driverModule;
