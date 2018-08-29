@@ -1,10 +1,9 @@
 'use strict';
 
-const model = use('Src/mongo/model');
+const model = use('Model');
 
 class DbController {
   async getDataById({ params, response }) {
-    debugger; //eslint-disable-line
     const db = params.name;
     const id = params.id;
 
