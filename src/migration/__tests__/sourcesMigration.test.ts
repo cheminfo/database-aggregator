@@ -42,7 +42,7 @@ describe('source migration', () => {
       }
     };
 
-    await migration.sources(conf);
+    await sources(conf);
     const dbVersion = await sourceSequence.getSourceVersion(MISCELANEOUS);
     expect(dbVersion).toEqual(1);
     const data = await getMiscData();
@@ -56,7 +56,7 @@ describe('source migration', () => {
       }
     };
 
-    return expect(migration.sources(conf)).rejects.toEqual(
+    return expect(sources(conf)).rejects.toEqual(
       new Error(
         'source version in config must be greater than current version. config version is -1 and current version is 0'
       )
@@ -68,7 +68,7 @@ describe('source migration', () => {
     let conf = {
       [MISCELANEOUS]: {}
     };
-    await migration.sources(conf);
+    await sources(conf);
     const data = await getMiscData();
     expect(data).toEqual(originalData);
   });
@@ -77,7 +77,7 @@ describe('source migration', () => {
     let conf = {
       [NAMES]: {}
     };
-    return expect(migration.sources(conf)).rejects.toEqual(
+    return expect(sources(conf)).rejects.toEqual(
       new Error(
         'source version is 1 but version in source config is not defined'
       )
@@ -94,7 +94,7 @@ describe('source migration', () => {
       }
     };
 
-    return expect(migration.sources(conf)).rejects.toThrow(
+    return expect(sources(conf)).rejects.toThrow(
       'migration scripts not implemented yet'
     );
   });

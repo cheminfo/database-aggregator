@@ -1,4 +1,5 @@
 import { connect, disconnect, insertData } from '../../../test/mongoSetup';
+import { clean } from '../../../test/util';
 import { aggregate } from '../aggregate';
 const aggregation = require('./../../mongo/models/aggregation');
 
@@ -52,25 +53,25 @@ describe('aggregation', () => {
     let data;
 
     // Init step
-    await mongoSetup.insertData('sources1', { drop: true });
+    await insertData('sources1', { drop: true });
     await aggregate(conf);
     data = await aggregation.findAll('sourceAgg').lean();
     aggSnapshot(data);
 
     // Update data step
-    await mongoSetup.insertData('sources2', { drop: true });
+    await insertData('sources2', { drop: true });
     await aggregate(conf);
     data = await aggregation.findAll('sourceAgg').lean();
     aggSnapshot(data);
 
     // Add data step
-    await mongoSetup.insertData('sources3', { drop: true });
+    await insertData('sources3', { drop: true });
     await aggregate(conf);
     data = await aggregation.findAll('sourceAgg').lean();
     aggSnapshot(data);
 
     // Delete step
-    await mongoSetup.insertData('sources4', { drop: true });
+    await insertData('sources4', { drop: true });
     await aggregate(conf);
     data = await aggregation.findAll('sourceAgg').lean();
     aggSnapshot(data);

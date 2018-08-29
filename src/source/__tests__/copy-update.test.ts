@@ -1,7 +1,7 @@
 import { connect, disconnect, insertData } from '../../../test/mongoSetup';
 import { getCollection, clean } from '../../../test/util';
 
-const copy = require('../copy');
+import { copy } from '../copy';
 
 beforeAll(connect);
 afterAll(disconnect);

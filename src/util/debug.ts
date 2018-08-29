@@ -11,9 +11,9 @@ trace.log = console.log.bind(console);
 
 export function debugUtil(prefix: string) {
   return {
-    error: (message: string) => error(`(${prefix}) ${message}`);
-    warn: (message: string) => warn(`(${prefix}) ${message}`);
-    debug: (message: string) =>debug(`(${prefix}) ${message}`);
-    trace: (message: string) => trace(`(${prefix}) ${message}`);
-  }
+    error: (message: string) => error(`(${prefix}) ${message}`),
+    warn: (message: string) => warn(`(${prefix}) ${message}`),
+    debug: (message: string) => debug(`(${prefix}) ${message}`),
+    trace: (message: string) => trace(`(${prefix}) ${message}`)
+  };
 }

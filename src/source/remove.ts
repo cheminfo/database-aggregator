@@ -4,8 +4,7 @@ import { getSource } from '../mongo/model';
 import { getNextSequenceID } from '../mongo/models/sourceSequence';
 import { ISourceConfigElement } from '../types';
 import { debugUtil } from '../util/debug';
-
-const getDriver = require('./getDriver');
+import { getDriver } from './getDriver';
 
 const debug = debugUtil('source:remove');
 

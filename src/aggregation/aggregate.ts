@@ -13,7 +13,7 @@ import {
   getByCommonId,
   getLastSeqId
 } from '../mongo/models/source';
-import { deleteById, save } from '../mongo/models/aggregation';
+import { deleteById, save, findById } from '../mongo/models/aggregation';
 import { debugUtil } from '../util/debug';
 const isequal = require('lodash.isequal');
 const debug = debugUtil('aggregation');

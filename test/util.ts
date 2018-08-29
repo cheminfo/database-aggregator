@@ -1,18 +1,18 @@
 const path = require('path');
 
-const mongoose = require('mongoose');
+import { connection } from 'mongoose';
 
 export function getDriverPath(name: string) {
   return path.join(__dirname, 'driver', name);
 }
 
 export function getCollection(name: string) {
-  return mongoose.connection.collection(name);
+  return connection.collection(name);
 }
 
 export function clean(data: any) {
   if (Array.isArray(data)) {
-    data.forEach((item) => {
+    data.forEach(item => {
       delete item._id;
     });
   } else {
