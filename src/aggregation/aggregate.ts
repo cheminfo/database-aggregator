@@ -1,25 +1,25 @@
-'use strict';
-
-const isequal = require('lodash.isequal');
-
-const aggregation = require('../mongo/models/aggregation');
-const source = require('../mongo/models/source');
-const validation = require('../config/validation');
-const debug = require('../util/debug')('aggregation');
-
-const aggregationSequence = require('./../mongo/models/aggregationSequence');
-
 import {
   ISourceBase,
-  IAggregationConfig,
   IObject,
   ISourceEntry,
   IAggregationEntry,
-  IAggregationCallback
+  IAggregationCallback,
+  IAggregationConfigElement
 } from '../types';
+import { setSeqIds, getLastSeqIds } from '../mongo/models/aggregationSequence';
+import { aggregation as aggregationValidation } from '../config/validation';
+import {
+  getCommonIds,
+  getByCommonId,
+  getLastSeqId
+} from '../mongo/models/source';
+import { deleteById, save } from '../mongo/models/aggregation';
+import { debugUtil } from '../util/debug';
+const isequal = require('lodash.isequal');
+const debug = debugUtil('aggregation');
 
-async function aggregate(conf: IAggregationConfig) {
-  conf = validation.aggregation(conf);
+export async function aggregate(conf: IAggregationConfigElement) {
+  conf = aggregationValidation(conf);
   const { collection, sources, chunkSize } = conf;
   const sourceNames = Object.keys(sources);
   const maxSeqIds: IObject<number> = {};
@@ -28,7 +28,7 @@ async function aggregate(conf: IAggregationConfig) {
   debug.trace('get common ids');
   do {
     // while commonIdsSet.size > 0
-    let seqIds = await aggregationSequence.getLastSeqIds(collection);
+    let seqIds = await getLastSeqIds(collection);
     seqIds = seqIds || {};
     let commonIds: string[] = [];
 
@@ -37,12 +37,12 @@ async function aggregate(conf: IAggregationConfig) {
       let sourceName = sourceNames[i];
       let firstSeqId = seqIds[sourceName] || 0;
       let lastSeqId = firstSeqId + chunkSize;
-      let lastSourceSeq = await source.getLastSeqId(sourceName);
+      let lastSourceSeq = await getLastSeqId(sourceName);
       maxSeqIds[sourceName] = Math.min(
         lastSeqId,
         lastSourceSeq ? lastSourceSeq.sequentialID : 0
       );
-      const cidBases: ISourceBase[] = await source.getCommonIds(
+      const cidBases: ISourceBase[] = await getCommonIds(
         sourceName,
         firstSeqId,
         lastSeqId
@@ -57,7 +57,7 @@ async function aggregate(conf: IAggregationConfig) {
       let data: IObject<ISourceEntry[]> = {};
       for (let i = 0; i < sourceNames.length; i++) {
         let sourceName = sourceNames[i];
-        data[sourceName] = await source.getByCommonId(sourceName, commonId);
+        data[sourceName] = await getByCommonId(sourceName, commonId);
       }
       var exists = checkExists(data);
       let obj: IAggregationEntry = {
@@ -72,10 +72,10 @@ async function aggregate(conf: IAggregationConfig) {
         obj.value = await aggregateValue(data, sources, commonId);
       }
 
-      let oldEntry = await aggregation.findById(collection, commonId);
+      let oldEntry = await findById(collection, commonId);
       if (obj.value === null) {
         if (oldEntry) {
-          await aggregation.deleteById(collection, commonId);
+          await deleteById(collection, commonId);
         } else {
           // Nothing to do, the data was deleted from sources and does not
           // exist or was deleted in aggregation
@@ -93,11 +93,11 @@ async function aggregate(conf: IAggregationConfig) {
         } else {
           // Save document
           debug.trace(`Saving ${collection}:${commonId}`);
-          await aggregation.save(collection, obj);
+          await save(collection, obj);
         }
       }
     }
-    await aggregationSequence.setSeqIds(collection, maxSeqIds);
+    await setSeqIds(collection, maxSeqIds);
   } while (commonIdsSet.size > 0);
 }
 
@@ -139,5 +139,3 @@ async function aggregateValue(
   }
   return result;
 }
-
-module.exports = aggregate;

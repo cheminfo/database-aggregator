@@ -5,11 +5,13 @@ import { getSource } from '../mongo/model';
 
 import { getNextSequenceID } from '../mongo/models/sourceSequence';
 import { ISourceConfigElement } from '../types';
-const debug = require('../util/debug')('source:remove');
+import { debugUtil } from '../util/debug';
 
 const getDriver = require('./getDriver');
 
-async function remove(options: ISourceConfigElement) {
+const debug = debugUtil('source:remove');
+
+export async function remove(options: ISourceConfigElement) {
   const driver = getDriver(options.driver);
 
   // Get complete list of source Ids
@@ -61,5 +63,3 @@ async function remove(options: ISourceConfigElement) {
     ).exec();
   }
 }
-
-module.exports = remove;

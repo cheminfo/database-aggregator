@@ -1,21 +1,21 @@
-'use strict';
+import { start, stop } from '../src/util/pid';
+import { connect } from '../src/mongo/connection';
+import { aggregate } from '../src/aggregation/aggregate';
+import { globalConfig as config } from '../src/config/config';
+import { debugUtil } from '../src/util/debug';
 
-const pid = require('../src/util/pid');
-const { connect } = require('../src/mongo/connection');
-const debug = require('../src/util/debug')('bin:aggregate');
-const aggregate = require('../lib/aggregation/aggregate');
-const config = require('../src/config/config').globalConfig;
+const debug = debugUtil('bin:aggregate');
 
-pid.start();
+start();
 
 const aggregation = config.aggregation;
 const aggregations = Object.keys(aggregation);
 
-(async function () {
+(async function() {
   await connect();
   for (const collection of aggregations) {
     let start = new Date().getTime();
-    debug(`Begin aggregate of ${collection}`);
+   debug.debug(`Begin aggregate of ${collection}`);
     try {
       const conf = config.aggregation[collection];
       await aggregate(conf);
@@ -24,17 +24,17 @@ const aggregations = Object.keys(aggregation);
     }
     let end = new Date().getTime();
     let time = end - start;
-    debug(`End aggregate of ${collection} in ${time}ms`);
+   debug.debug(`End aggregate of ${collection} in ${time}ms`);
   }
 })()
   .then(
-    function () {
+    function() {
       console.log('finished');
       return 0;
     },
-    function (e) {
+    function(e) {
       console.error(e);
       return 1;
     }
   )
-  .then(pid.stop);
+  .then(stop);

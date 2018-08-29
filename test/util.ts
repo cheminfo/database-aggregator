@@ -1,18 +1,16 @@
-'use strict';
-
 const path = require('path');
 
 const mongoose = require('mongoose');
 
-function getDriverPath(name) {
+export function getDriverPath(name: string) {
   return path.join(__dirname, 'driver', name);
 }
 
-function getCollection(name) {
+export function getCollection(name: string) {
   return mongoose.connection.collection(name);
 }
 
-function clean(data) {
+export function clean(data: any) {
   if (Array.isArray(data)) {
     data.forEach((item) => {
       delete item._id;
@@ -22,9 +20,3 @@ function clean(data) {
   }
   return data;
 }
-
-module.exports = {
-  getDriverPath,
-  getCollection,
-  clean
-};

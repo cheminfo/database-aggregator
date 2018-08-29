@@ -1,8 +1,9 @@
 'use strict';
 
-const debug = require('../../util/debug')('model:source');
-
 import { getSource } from '../model';
+import { debugUtil } from '../../util/debug';
+
+const debug = debugUtil('model:source');
 
 export function getCommonIds(name: string, fromSeq: number, toSeq: number) {
   debug.trace(`getCommonIds for source ${name} from seq ${fromSeq}`);

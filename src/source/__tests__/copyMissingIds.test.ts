@@ -1,11 +1,16 @@
 'use strict';
 
-const mongoSetup = require('../../../test/mongoSetup');
-const { getCollection, clean } = require('../../../test/util');
-const copyMissingIds = require('../copyMissingIds');
+import {
+  connect,
+  disconnect,
+  dropDatabase,
+  insertData
+} from '../../../test/mongoSetup';
+import { getCollection, clean } from '../../../test/util';
+import { copyMissingIds } from '../copyMissingIds';
 
-beforeAll(mongoSetup.connect);
-afterAll(mongoSetup.disconnect);
+beforeAll(connect);
+afterAll(disconnect);
 
 const collection = getCollection('source_test');
 const config = {
@@ -64,8 +69,8 @@ const testData = {
 
 describe('source copyMissingIds', () => {
   beforeEach(async () => {
-    await mongoSetup.dropDatabase();
-    await mongoSetup.insertData(testData);
+    await dropDatabase();
+    await insertData(testData);
   });
   it('should copy missing entries', async () => {
     await copyMissingIds(config);

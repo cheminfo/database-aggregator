@@ -4,18 +4,20 @@ const chunk = require('lodash.chunk');
 
 const model = require('../mongo/model');
 import { connect } from '../mongo/connection';
-const debug = require('../util/debug')('source:copyMissingIds');
 
 import { getDriver } from './getDriver';
 import { copyEntries } from './copyEntries';
 import { ISourceConfigElement } from '../types';
+import { debugUtil } from '../util/debug';
+
+const debug = debugUtil('source:copyMissingIds');
 
 const MAX_ELEMENTS_ID_CLAUSE = 999;
 
 // In a similar fashion to how remove works, finds all the ids
 // that are present in the source but missing in the target
 // and copies those to the target
-async function copyMissingIds(config: ISourceConfigElement) {
+export async function copyMissingIds(config: ISourceConfigElement) {
   const driver = getDriver(config.driver);
 
   let sourceIds = await driver.getIds(config);
@@ -47,7 +49,7 @@ async function copyMissingIds(config: ISourceConfigElement) {
     .sort('-date')
     .exec();
 
-  debug(`adding ${idsToCopy.size} missing entries`);
+ debug.debug(`adding ${idsToCopy.size} missing entries`);
   const chunks = chunk([...idsToCopy], MAX_ELEMENTS_ID_CLAUSE);
 
   for (let chunk of chunks) {
@@ -57,5 +59,3 @@ async function copyMissingIds(config: ISourceConfigElement) {
     });
   }
 }
-
-module.exports = copyMissingIds;

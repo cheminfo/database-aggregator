@@ -1,12 +1,12 @@
-'use strict';
+import { start } from '../src/util/pid';
+import { connect } from '../src/mongo/connection';
 
-const pid = require('../src/util/pid');
-const { connect } = require('../src/mongo/connection');
-const debug = require('../src/util/debug')('bin:source');
-const copyMissingIds = require('../src/source/copyMissingIds');
-const config = require('../src/config/config').globalConfig;
+const { copyMissingIds } = require('../src/source/copyMissingIds');
+import { globalConfig as config } from '../src/config/config';
+import { debugUtil } from '../src/util/debug';
 
-pid.start();
+const debug = debugUtil('bin:source');
+start();
 
 const sources = Object.keys(config.source);
 
@@ -14,11 +14,11 @@ if (sources.length === 0) {
   console.log('no source found in config');
 }
 
-(async function () {
+(async function() {
   await connect();
   for (const collection of sources) {
     let start = new Date().getTime();
-    debug(`Begin copy missing ids of ${collection}`);
+   debug.debug(`Begin copy missing ids of ${collection}`);
     const options = config.source[collection];
     try {
       await copyMissingIds(options);
@@ -27,17 +27,17 @@ if (sources.length === 0) {
     }
     let end = new Date().getTime();
     let time = end - start;
-    debug(`End copy missing ids of ${collection} in ${time}ms`);
+   debug.debug(`End copy missing ids of ${collection} in ${time}ms`);
   }
 })()
   .then(
-    function () {
+    function() {
       console.log('finished');
       return 0;
     },
-    function (e) {
+    function(e) {
       console.error(e);
       return 1;
     }
   )
-  .then(pid.stop);
+  .then(stop);

@@ -1,11 +1,12 @@
 'use strict';
 
-const mongoSetup = require('../../../test/mongoSetup');
-const { getCollection, clean } = require('../../../test/util');
+import { connect, disconnect, insertData } from '../../../test/mongoSetup';
+import { getCollection, clean } from '../../../test/util';
+
 const copy = require('../copy');
 
-beforeAll(mongoSetup.connect);
-afterAll(mongoSetup.disconnect);
+beforeAll(connect);
+afterAll(disconnect);
 
 const driver = {
   getData(config, callback) {
@@ -26,7 +27,7 @@ function getEntryCopy(collection, entry) {
 
 describe('source copy updates', () => {
   it('should not allow to change the commonID', async () => {
-    await mongoSetup.insertData({
+    await insertData({
       // eslint-disable-next-line camelcase
       source_test1: [
         {
@@ -53,7 +54,7 @@ describe('source copy updates', () => {
   });
 
   it('should not save if nothing changed', async () => {
-    await mongoSetup.insertData({
+    await insertData({
       // eslint-disable-next-line camelcase
       source_test2: [
         {

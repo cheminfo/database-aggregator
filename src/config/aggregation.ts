@@ -1,12 +1,11 @@
 import { IAggregationConfig, IAggregationConfigElement } from '../types';
-
-'use strict';
+import { debugUtil } from '../util/debug';
 
 const path = require('path');
 
 const find = require('find');
 
-const debug = require('../util/debug')('config:aggregation');
+const debug = debugUtil('config:aggregation');
 
 const dbConfig: IAggregationConfig = {};
 export const aggregationConfig = { aggregation: dbConfig };

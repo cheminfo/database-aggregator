@@ -1,12 +1,14 @@
 'use strict';
 
-const pid = require('../src/util/pid');
-const { connect } = require('../src/mongo/connection');
-const debug = require('../src/util/debug')('bin:source');
-const copy = require('../src/source/copy');
-const config = require('../src/config/config').globalConfig;
+import { start, stop } from '../src/util/pid';
+import { connect } from '../src/mongo/connection';
+import { copy } from '../src/source/copy';
+import { globalConfig as config } from '../src/config/config';
+import { debugUtil } from '../src/util/debug';
 
-pid.start();
+const debug = debugUtil('bin:source');
+
+start();
 
 const sources = Object.keys(config.source);
 
@@ -14,11 +16,11 @@ if (sources.length === 0) {
   console.log('no source found in config');
 }
 
-(async function () {
+(async function() {
   await connect();
   for (const collection of sources) {
     let start = new Date().getTime();
-    debug(`Begin sourcing of ${collection}`);
+   debug.debug(`Begin sourcing of ${collection}`);
     const options = config.source[collection];
     try {
       await copy(options);
@@ -27,17 +29,17 @@ if (sources.length === 0) {
     }
     let end = new Date().getTime();
     let time = end - start;
-    debug(`End sourcing of ${collection} in ${time}ms`);
+   debug.debug(`End sourcing of ${collection} in ${time}ms`);
   }
 })()
   .then(
-    function () {
+    function() {
       console.log('finished');
       return 0;
     },
-    function (e) {
+    function(e) {
       console.error(e);
       return 1;
     }
   )
-  .then(pid.stop);
+  .then(stop);

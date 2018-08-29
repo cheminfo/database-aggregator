@@ -5,15 +5,15 @@ const path = require('path');
 const util = require('util');
 
 const yaml = require('js-yaml');
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const { disconnect: mongoDisconnect } = require('../src/mongo/connection');
+import { disconnect as mongoDisconnect } from '../src/mongo/connection';
 
 const readFile = util.promisify(fs.readFile);
 
 const mongoURL = 'mongodb://localhost:27017/__database-aggregator-test-db';
 
-async function connect() {
+export async function connect() {
   await mongoose.connect(
     mongoURL,
     { useNewUrlParser: true }
@@ -21,17 +21,17 @@ async function connect() {
   await mongoose.connection.db.dropDatabase();
 }
 
-async function disconnect() {
+export async function disconnect() {
   await dropDatabase();
   await mongoose.connection.close();
   await mongoDisconnect();
 }
 
-function dropDatabase() {
+export function dropDatabase() {
   return mongoose.connection.db.dropDatabase();
 }
 
-async function insertData(filename, options = {}) {
+export async function insertData(filename, options = {}) {
   let parsed;
   if (typeof filename === 'string') {
     const parsedFilename = path.parse(filename);
@@ -60,16 +60,3 @@ async function insertData(filename, options = {}) {
     await collection.insertMany(parsed[collName]);
   }
 }
-
-// async function dropSource(name) {
-//   const source = model.getSource(name);
-//   await source.collection.drop();
-// }
-
-module.exports = {
-  connect,
-  disconnect,
-  dropDatabase,
-  // dropSource,
-  insertData
-};

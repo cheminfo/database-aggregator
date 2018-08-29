@@ -1,11 +1,16 @@
 'use strict';
 
-const mongoSetup = require('../../../test/mongoSetup');
+import {
+  connect,
+  disconnect,
+  dropDatabase,
+  insertData
+} from '../../../test/mongoSetup';
 const { getCollection, clean } = require('../../../test/util');
 const remove = require('../remove');
 
-beforeAll(mongoSetup.connect);
-afterAll(mongoSetup.disconnect);
+beforeAll(connect);
+afterAll(disconnect);
 
 const collection = getCollection('source_test');
 const config = {
@@ -58,8 +63,8 @@ const testData = {
 
 describe('source remove', () => {
   beforeEach(async () => {
-    await mongoSetup.dropDatabase();
-    await mongoSetup.insertData(testData);
+    await dropDatabase();
+    await insertData(testData);
   });
   it('should ignore remove if threshold is too low', async () => {
     await remove(config);

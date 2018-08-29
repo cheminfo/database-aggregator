@@ -1,14 +1,15 @@
 'use strict';
 
 const path = require('path');
-
 const ProcessScheduler = require('process-scheduler');
 
-const debug = require('./util/debug')('bin:schedule');
-const { connect } = require('./mongo/connection');
-const config = require('./config/config').globalConfig;
-const schedulerLog = require('./mongo/models/schedulerLog');
-const { sources: migrateSources } = require('./migration');
+import { connect } from './mongo/connection';
+import { globalConfig as config } from './config/config';
+import { save } from './mongo/models/schedulerLog';
+import { sources as migrateSources } from './migration';
+import { debugUtil } from './util/debug';
+
+const debug = debugUtil('bin:schedule');
 
 const sources = Object.keys(config.source);
 const aggregations = Object.keys(config.aggregation);
@@ -17,8 +18,11 @@ const REMOVE_ID = 'source_remove_';
 const COPY_ID = 'source_copy_';
 const COPY_MISSING_ID = 'source_copy_missing_ids_';
 
-let scheduler;
 let _started = false;
+let _resolveScheduler: (scheduler: any) => any;
+let _scheduler: Promise<any> = new Promise(resolve => {
+  _resolveScheduler = resolve;
+});
 
 async function start() {
   if (_started) return;
@@ -30,7 +34,7 @@ async function start() {
     }
   };
 
-  const scheduleDefinition = [];
+  const scheduleDefinition: any[] = [];
   // Create configuration
   for (const collection of sources) {
     scheduleDefinition.push({
@@ -87,8 +91,8 @@ async function start() {
     }
   }
 
-  function setDeps(name, aggId) {
-    let s = scheduleDefinition.find((s) => s.id === name);
+  function setDeps(name: string, aggId: string) {
+    let s = scheduleDefinition.find(s => s.id === name);
     if (s) {
       s.deps.push(aggId);
       s.noConcurrency.push(aggId);
@@ -99,17 +103,19 @@ async function start() {
   await migrateSources(config.source);
 
   debug.trace(`scheduler config${schedulerConfig}`);
-  scheduler = new ProcessScheduler(schedulerConfig);
+  const scheduler = new ProcessScheduler(schedulerConfig);
 
-  scheduler.on('change', function (data) {
-    schedulerLog.save(data);
+  scheduler.on('change', function(data: any) {
+    save(data);
   });
   scheduler.schedule(scheduleDefinition);
 
   _started = true;
+  _resolveScheduler(scheduler);
 }
 
-function triggerTask(taskId) {
+async function triggerTask(taskId: string) {
+  const scheduler = await _scheduler;
   scheduler.trigger(taskId);
 }
 

@@ -1,11 +1,11 @@
 'use strict';
 
-const mongoSetup = require('../../../test/mongoSetup');
-const { getCollection } = require('../../../test/util');
+import { connect, disconnect } from '../../../test/mongoSetup';
+import { getCollection } from '../../../test/util';
 const copy = require('../copy');
 
-beforeAll(mongoSetup.connect);
-afterAll(mongoSetup.disconnect);
+beforeAll(connect);
+afterAll(disconnect);
 
 const collection = getCollection('source_test');
 

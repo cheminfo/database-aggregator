@@ -1,7 +1,7 @@
 'use strict';
 
-const { getDriverPath } = require('../../../test/util');
-const copy = require('../copy');
+import { getDriverPath } from '../../../test/util';
+import { copy } from '../copy';
 
 describe('source copy errors', () => {
   it('shoud fail when driver config is missing', () => {

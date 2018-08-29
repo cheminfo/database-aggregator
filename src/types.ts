@@ -5,9 +5,10 @@ export interface IConfig {
   schedulerThreadsSource: number;
   schedulerThreadsAggregation: number;
   removeThreshold: number;
-  sources: ISourceConfig;
+  source: ISourceConfig;
   aggregation: IAggregationConfig;
   homeDir: string;
+  ssl?: boolean;
 }
 
 export interface ISourceDriverMeta {
@@ -32,6 +33,9 @@ export interface ISourceConfigElement {
   disabled?: boolean;
   version?: number;
   removeThreshold?: number;
+  copyMissingIdsCronRule?: string;
+  copyCronRule?: string;
+  removeCronRule?: string;
   migration?: () => Promise<any>;
 }
 

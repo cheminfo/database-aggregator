@@ -1,10 +1,10 @@
 'use strict';
-
 const path = require('path');
 const find = require('find');
-const debug = require('../util/debug')('config:source');
+const debug = debugUtil('config:source');
 
 import { ISourceConfig, ISourceConfigElement } from '../types';
+import { debugUtil } from '../util/debug';
 
 const dbConfig: ISourceConfig = {};
 export const sourceConfig = { source: dbConfig };

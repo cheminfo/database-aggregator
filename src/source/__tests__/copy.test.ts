@@ -1,11 +1,11 @@
 'use strict';
 
-const mongoSetup = require('../../../test/mongoSetup');
-const { getDriverPath, getCollection, clean } = require('../../../test/util');
-const copy = require('../copy');
+import { connect, disconnect } from '../../../test/mongoSetup';
+import { getCollection, getDriverPath, clean } from '../../../test/util';
+import { copy } from '../copy';
 
-beforeAll(mongoSetup.connect);
-afterAll(mongoSetup.disconnect);
+beforeAll(connect);
+afterAll(disconnect);
 
 describe('source copy', () => {
   it('should copy the data', async () => {
