@@ -1,13 +1,15 @@
 'use strict';
 
-const { connect } = require('../mongo/connection');
-const model = require('../mongo/model');
-const sourceSequence = require('../mongo/models/sourceSequence');
+import { connect } from '../mongo/connection';
+import { getSource } from '../mongo/model';
+
+import { getNextSequenceID } from '../mongo/models/sourceSequence';
+import { ISourceConfigElement } from '../types';
 const debug = require('../util/debug')('source:remove');
 
 const getDriver = require('./getDriver');
 
-async function remove(options) {
+async function remove(options: ISourceConfigElement) {
   const driver = getDriver(options.driver);
 
   // Get complete list of source Ids
@@ -17,7 +19,7 @@ async function remove(options) {
   }
 
   const collection = options.collection;
-  const Model = model.getSource(collection);
+  const Model = getSource(collection);
 
   await connect();
 
@@ -53,7 +55,7 @@ async function remove(options) {
         $set: {
           data: null,
           date: new Date(),
-          sequentialID: await sourceSequence.getNextSequenceID(collection)
+          sequentialID: await getNextSequenceID(collection)
         }
       }
     ).exec();

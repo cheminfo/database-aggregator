@@ -7,13 +7,32 @@ export interface IConfig {
   removeThreshold: number;
   sources: ISourceConfig;
   aggregation: IAggregationConfig;
+  homeDir: string;
+}
+
+export interface ISourceDriverMeta {
+  latestDate: Date;
+  ids?: string[];
+}
+
+export type SourceDriverCallback = (data: ISourceDriverEntry[]) => any;
+
+export interface ISourceDriverConfig {
+  getIds: (config: ISourceConfigElement) => string[] | Set<string>;
+  getData: (
+    config: ISourceConfigElement,
+    callback: SourceDriverCallback,
+    meta: ISourceDriverMeta
+  ) => Promise<any>;
 }
 
 export interface ISourceConfigElement {
   collection?: string;
-  driver: any;
+  driver: string;
   disabled?: boolean;
   version?: number;
+  removeThreshold?: number;
+  migration?: () => Promise<any>;
 }
 
 export type ISourceConfig = IObject<ISourceConfigElement>;
@@ -26,7 +45,7 @@ export interface IAggregationConfigElement {
   };
   collection?: string;
   disabled?: boolean;
-  chunkSize: number;
+  chunkSize?: number;
 }
 
 export type IAggregationCallback = (
@@ -55,6 +74,13 @@ export interface ISourceEntry extends ISourceBase {
   id: String;
   date: Date;
   data: object | null;
+}
+
+export interface ISourceDriverEntry {
+  commonID: string;
+  id: string;
+  modificationDate: Date;
+  data: object;
 }
 
 export interface SchedulerLogEntry {

@@ -5,10 +5,10 @@ process.env.DATABASE_AGGREGATOR_CUSTOM_PROP = 'test custom prop';
 process.env.DATABASE_AGGREGATOR_HOME_DIR = `${__dirname}/../../../test/homeDir`;
 /* eslint-enable */
 
-const config = require('../config');
+import { globalConfig } from '../config';
 
-test('load configuration', function () {
-  const conf = Object.assign({}, config.globalConfig);
+test('load configuration', function() {
+  const conf = Object.assign({}, globalConfig);
   delete conf.homeDir;
   // Convert all functions to strings
   expect(conf.aggregation).toHaveProperty('chemical');

@@ -2,12 +2,16 @@
 
 const isequal = require('lodash.isequal');
 
-const model = require('../mongo/model');
-const sourceSequence = require('../mongo/models/sourceSequence');
+import { getSource } from '../mongo/model';
+import { getNextSequenceID } from '../mongo/models/sourceSequence';
+import { ISourceDriverEntry, ISourceConfigElement } from '../types';
 
-async function copyEntries(entries, options) {
+export async function copyEntries(
+  entries: ISourceDriverEntry[],
+  options: ISourceConfigElement
+) {
   const collection = options.collection;
-  const Model = model.getSource(collection);
+  const Model = getSource(collection);
 
   for (const entry of entries) {
     if (typeof entry.id !== 'string') {
@@ -46,11 +50,9 @@ async function copyEntries(entries, options) {
     }
 
     if (mustSave) {
-      doc.sequentialID = await sourceSequence.getNextSequenceID(collection);
+      doc.sequentialID = await getNextSequenceID(collection);
       doc.date = entry.modificationDate;
       await doc.save();
     }
   }
 }
-
-module.exports = copyEntries;
