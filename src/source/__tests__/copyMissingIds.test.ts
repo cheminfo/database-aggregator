@@ -2,23 +2,26 @@ import {
   connect,
   disconnect,
   dropDatabase,
-  insertData,
+  insertData
 } from '../../../test/mongoSetup';
 import { clean, getCollection } from '../../../test/util';
 import { copyMissingIds } from '../copyMissingIds';
+import { ISourceConfigElement } from '../../types';
 
 beforeAll(connect);
 afterAll(disconnect);
 
 const collection = getCollection('source_test');
-const config = {
+const config: ISourceConfigElement = {
   driver: {
-    getIds(config) {
+    getIds(sourceConfig) {
       const data = ['test1', 'test2', 'test3'];
-      if (config.type === 'set') { return new Set(data); }
+      if (sourceConfig.type === 'set') {
+        return new Set(data);
+      }
       return data;
     },
-    getData(config, callback, options) {
+    getData(sourceConfig, callback, options) {
       if (!options.ids) {
         throw new Error('unexpected');
       }
@@ -30,12 +33,12 @@ const config = {
           id: 'test3',
           commonID: 'test3',
           modificationDate: new Date(0),
-          data: { test: 3 },
-        },
+          data: { test: 3 }
+        }
       ]);
-    },
+    }
   },
-  collection: 'test',
+  collection: 'test'
 };
 
 const testData = {
@@ -43,8 +46,8 @@ const testData = {
   meta_source_sequence: [
     {
       _id: 'test',
-      seq: 2,
-    },
+      seq: 2
+    }
   ],
   // eslint-disable-next-line camelcase
   source_test: [
@@ -53,16 +56,16 @@ const testData = {
       commonID: 'test1',
       date: new Date(0),
       sequentialID: 1,
-      data: {},
+      data: {}
     },
     {
       id: 'test2',
       commonID: 'test2',
       date: new Date(0),
       sequentialID: 2,
-      data: {},
-    },
-  ],
+      data: {}
+    }
+  ]
 };
 
 describe('source copyMissingIds', () => {

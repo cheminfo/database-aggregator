@@ -1,4 +1,4 @@
-const path = require('path');
+import { join } from 'path';
 const ProcessScheduler = require('process-scheduler');
 
 import { globalConfig as config } from './config/config';
@@ -16,20 +16,22 @@ const REMOVE_ID = 'source_remove_';
 const COPY_ID = 'source_copy_';
 const COPY_MISSING_ID = 'source_copy_missing_ids_';
 
-let _started = false;
-let _resolveScheduler: (scheduler: any) => any;
-const _scheduler: Promise<any> = new Promise((resolve) => {
-  _resolveScheduler = resolve;
+let hasStarted = false;
+let resolveScheduler: (scheduler: any) => any;
+const schedulerPromise: Promise<any> = new Promise(resolve => {
+  resolveScheduler = resolve;
 });
 
 async function start() {
-  if (_started) { return; }
+  if (hasStarted) {
+    return;
+  }
   await connect();
   const schedulerConfig = {
     threads: {
       source: config.schedulerThreadsSource,
-      aggregation: config.schedulerThreadsAggregation,
-    },
+      aggregation: config.schedulerThreadsAggregation
+    }
   };
 
   const scheduleDefinition: any[] = [];
@@ -37,37 +39,34 @@ async function start() {
   for (const collection of sources) {
     scheduleDefinition.push({
       id: COPY_ID + collection,
-      worker: path.join(__dirname, '../src/source/workers/copyWorker.js'),
+      worker: join(__dirname, '../src/source/workers/copyWorker.js'),
       immediate: false,
       cronRule: config.source[collection].copyCronRule,
       deps: [],
       noConcurrency: [REMOVE_ID + collection, COPY_MISSING_ID + collection],
       arg: config.source[collection],
-      type: 'source',
+      type: 'source'
     });
     // copy missing ids
     scheduleDefinition.push({
       id: COPY_MISSING_ID + collection,
-      worker: path.join(
-        __dirname,
-        '../src/source/workers/copyMissingIdsWorker.js',
-      ),
+      worker: join(__dirname, '../src/source/workers/copyMissingIdsWorker.js'),
       immediate: false,
       cronRule: config.source[collection].copyMissingIdsCronRule,
       deps: [],
       noConcurrency: [],
       arg: config.source[collection],
-      type: 'source',
+      type: 'source'
     });
     scheduleDefinition.push({
       id: REMOVE_ID + collection,
-      worker: path.join(__dirname, '../src/source/workers/removeWorker.js'),
+      worker: join(__dirname, '../src/source/workers/removeWorker.js'),
       immediate: false,
       cronRule: config.source[collection].removeCronRule,
       deps: [],
       noConcurrency: [],
       arg: config.source[collection],
-      type: 'source',
+      type: 'source'
     });
   }
 
@@ -75,14 +74,14 @@ async function start() {
     const aggId = `aggregation_${collection}`;
     scheduleDefinition.push({
       id: aggId,
-      worker: path.join(__dirname, '../src/aggregation/worker.js'),
+      worker: join(__dirname, '../src/aggregation/worker.js'),
       immediate: false,
       arg: collection,
-      type: 'aggregation',
+      type: 'aggregation'
     });
 
-    const sources = Object.keys(config.aggregation[collection].sources);
-    for (const source of sources) {
+    const aggSources = Object.keys(config.aggregation[collection].sources);
+    for (const source of aggSources) {
       setDeps(COPY_ID + source, aggId);
       setDeps(REMOVE_ID + source, aggId);
       setDeps(COPY_MISSING_ID + source, aggId);
@@ -90,10 +89,10 @@ async function start() {
   }
 
   function setDeps(name: string, aggId: string) {
-    const s = scheduleDefinition.find((s) => s.id === name);
-    if (s) {
-      s.deps.push(aggId);
-      s.noConcurrency.push(aggId);
+    const scheduleRule = scheduleDefinition.find(s => s.id === name);
+    if (scheduleRule) {
+      scheduleRule.deps.push(aggId);
+      scheduleRule.noConcurrency.push(aggId);
     }
   }
 
@@ -103,21 +102,21 @@ async function start() {
   debug.trace(`scheduler config${schedulerConfig}`);
   const scheduler = new ProcessScheduler(schedulerConfig);
 
-  scheduler.on('change', function(data: any) {
+  scheduler.on('change', (data: any) => {
     save(data);
   });
   scheduler.schedule(scheduleDefinition);
 
-  _started = true;
-  _resolveScheduler(scheduler);
+  hasStarted = true;
+  resolveScheduler(scheduler);
 }
 
 async function triggerTask(taskId: string) {
-  const scheduler = await _scheduler;
+  const scheduler = await schedulerPromise;
   scheduler.trigger(taskId);
 }
 
 module.exports = {
   start,
-  triggerTask,
+  triggerTask
 };

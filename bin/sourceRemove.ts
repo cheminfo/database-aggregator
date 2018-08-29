@@ -13,10 +13,10 @@ if (sources.length === 0) {
   console.log('no source found in config');
 }
 
-(async function() {
+(async () => {
   await connect();
   for (const collection of sources) {
-    const start = new Date().getTime();
+    const startTime = new Date().getTime();
     debug.debug(`Begin remove source of ${collection}`);
     const options = config.source[collection];
     try {
@@ -25,18 +25,18 @@ if (sources.length === 0) {
       console.error(e);
     }
     const end = new Date().getTime();
-    const time = end - start;
+    const time = end - startTime;
     debug.debug(`End remove source of ${collection} in ${time}ms`);
   }
 })()
   .then(
-    function() {
+    () => {
       console.log('finished');
       return 0;
     },
-    function(e) {
+    e => {
       console.error(e);
       return 1;
-    },
+    }
   )
   .then(stop);

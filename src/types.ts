@@ -23,20 +23,21 @@ export interface ISourceDriverConfig {
   getData: (
     config: ISourceConfigElement,
     callback: SourceDriverCallback,
-    meta: ISourceDriverMeta,
+    meta: ISourceDriverMeta
   ) => Promise<any>;
 }
 
 export interface ISourceConfigElement {
-  collection?: string;
-  driver: string;
+  collection: string;
+  driver: string | ISourceDriverConfig;
   disabled?: boolean;
   version?: number;
   removeThreshold?: number;
   copyMissingIdsCronRule?: string;
   copyCronRule?: string;
   removeCronRule?: string;
-  migration?: () => Promise<any>;
+  migration?: () => Promise<void>;
+  [key: string]: any;
 }
 
 export type ISourceConfig = IObject<ISourceConfigElement>;
@@ -47,16 +48,17 @@ export interface IAggregationConfigElement {
   sources: {
     [key: string]: any;
   };
-  collection?: string;
+  collection: string;
   disabled?: boolean;
   chunkSize?: number;
+  [key: string]: any;
 }
 
 export type IAggregationCallback = (
   data: ISourceEntry[],
   result: object,
   commonID: string,
-  ids: string[],
+  ids: string[]
 ) => undefined;
 
 export interface IObject<T> {
@@ -75,7 +77,7 @@ export interface ISourceBase {
 }
 
 export interface ISourceEntry extends ISourceBase {
-  id: String;
+  id: string;
   date: Date;
   data: object | null;
 }
@@ -87,7 +89,7 @@ export interface ISourceDriverEntry {
   data: object;
 }
 
-export interface SchedulerLogEntry {
+export interface ISchedulerLogEntry {
   id: string;
   pid: string;
   status: string;

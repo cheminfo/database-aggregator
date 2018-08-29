@@ -11,10 +11,10 @@ start();
 const aggregation = config.aggregation;
 const aggregations = Object.keys(aggregation);
 
-(async function() {
+(async () => {
   await connect();
   for (const collection of aggregations) {
-    const start = new Date().getTime();
+    const startTime = new Date().getTime();
     debug.debug(`Begin aggregate of ${collection}`);
     try {
       const conf = config.aggregation[collection];
@@ -23,18 +23,18 @@ const aggregations = Object.keys(aggregation);
       console.error(e);
     }
     const end = new Date().getTime();
-    const time = end - start;
+    const time = end - startTime;
     debug.debug(`End aggregate of ${collection} in ${time}ms`);
   }
 })()
   .then(
-    function() {
+    () => {
       console.log('finished');
       return 0;
     },
-    function(e) {
+    e => {
       console.error(e);
       return 1;
-    },
+    }
   )
   .then(stop);

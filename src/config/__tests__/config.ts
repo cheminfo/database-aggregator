@@ -5,7 +5,7 @@ process.env.DATABASE_AGGREGATOR_HOME_DIR = `${__dirname}/../../../test/homeDir`;
 
 import { globalConfig } from '../config';
 
-test('load configuration', function() {
+test('load configuration', () => {
   const conf = Object.assign({}, globalConfig);
   delete conf.homeDir;
   // Convert all functions to strings
@@ -33,18 +33,18 @@ test('load configuration', function() {
         driver: 'driverXYZ',
         param1: 10,
         param2: 20,
-        collection: 'test1_001',
+        collection: 'test1_001'
       },
       // eslint-disable-next-line camelcase
       test2_001: {
         driver: 'driverXYZ',
         param1: 100,
         param2: 200,
-        collection: 'test2_001',
+        collection: 'test2_001'
       },
-      test0: { driver: 'driverXYZ', param1: 1, param2: 2, collection: 'test0' },
+      test0: { driver: 'driverXYZ', param1: 1, param2: 2, collection: 'test0' }
     },
     // Environment variables
-    customProp: 'test custom prop',
+    customProp: 'test custom prop'
   });
 });

@@ -15,13 +15,13 @@ start(); // Start the scheduler
 if (config.ssl) {
   require('https')
     .createServer(config.ssl, app.callback())
-    .listen(config.port, function() {
+    .listen(config.port, () => {
       debug.warn(`running on https://localhost:${config.port}`);
     });
 } else {
   require('http')
     .createServer(app.callback())
-    .listen(config.port, function() {
+    .listen(config.port, () => {
       debug.warn(`running on http://localhost:${config.port}`);
     });
 }

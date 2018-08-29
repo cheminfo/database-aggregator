@@ -1,15 +1,13 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
-const util = require('util');
+import { readFile } from 'fs';
+import { parse, join } from 'path';
+import { promisify } from 'util';
 
 const yaml = require('js-yaml');
 import { connect as mongooseConnect, connection } from 'mongoose';
 
 import { disconnect as mongoDisconnect } from '../src/mongo/connection';
 
-const readFile = util.promisify(fs.readFile);
+const readFileAsync = promisify(readFile);
 
 const mongoURL = 'mongodb://localhost:27017/__database-aggregator-test-db';
 
@@ -31,13 +29,13 @@ export function dropDatabase() {
 export async function insertData(filename, options = {}) {
   let parsed;
   if (typeof filename === 'string') {
-    const parsedFilename = path.parse(filename);
+    const parsedFilename = parse(filename);
     if (!parsedFilename.ext) {
       filename = `${filename}.yaml`;
     }
-    const data = await readFile(
-      path.join(__dirname, 'mongo-data', filename),
-      'utf8',
+    const data = await readFileAsync(
+      join(__dirname, 'mongo-data', filename),
+      'utf8'
     );
     parsed = yaml.safeLoad(data);
   } else if (typeof filename === 'object' && filename !== null) {
@@ -45,12 +43,14 @@ export async function insertData(filename, options = {}) {
   } else {
     throw new Error('argument must be a filename or data object');
   }
-  for (const collName in parsed) {
+  for (const collName of Object.keys(parsed)) {
     if (options.drop) {
       try {
         await connection.dropCollection(collName);
       } catch (e) {
-        if (e.code !== 26) { throw e; }
+        if (e.code !== 26) {
+          throw e;
+        }
       }
     }
     const collection = connection.collection(collName);

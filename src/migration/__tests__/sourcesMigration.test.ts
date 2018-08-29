@@ -1,5 +1,7 @@
 import { sources } from '..';
 import { connect, disconnect, insertData } from '../../../test/mongoSetup';
+import { getSource } from '../../mongo/model';
+import { getSourceVersion } from '../../mongo/models/sourceSequence';
 
 beforeEach(async () => {
   await connect();
@@ -8,14 +10,11 @@ beforeEach(async () => {
 });
 afterEach(disconnect);
 
-const model = require('../../mongo/model');
-const sourceSequence = require('../../mongo/models/sourceSequence');
-
 const MISCELANEOUS = 'miscelaneous';
 const NAMES = 'names';
 
 function getMiscData() {
-  const miscelaneous = model.getSource(MISCELANEOUS);
+  const miscelaneous = getSource(MISCELANEOUS);
   return miscelaneous
     .find({})
     .lean()
@@ -26,9 +25,11 @@ describe('source migration', () => {
   it('no migration when version numbers are equal', async () => {
     const originalData = await getMiscData();
     const conf = {
-      [MISCELANEOUS]: {
-        version: 0,
-      },
+      miscelaneous: {
+        collection: 'none',
+        driver: 'none',
+        version: 0
+      }
     };
     await sources(conf);
     const data = await getMiscData();
@@ -38,12 +39,14 @@ describe('source migration', () => {
   it('drop database when version number is incremented', async () => {
     const conf = {
       [MISCELANEOUS]: {
-        version: 1,
-      },
+        collection: 'none',
+        driver: 'none',
+        version: 1
+      }
     };
 
     await sources(conf);
-    const dbVersion = await sourceSequence.getSourceVersion(MISCELANEOUS);
+    const dbVersion = await getSourceVersion(MISCELANEOUS);
     expect(dbVersion).toEqual(1);
     const data = await getMiscData();
     expect(data).toHaveLength(0);
@@ -52,21 +55,23 @@ describe('source migration', () => {
   it('throw when config version is small than current version', () => {
     const conf = {
       [MISCELANEOUS]: {
-        version: -1,
-      },
+        collection: 'none',
+        driver: 'none',
+        version: -1
+      }
     };
 
     return expect(sources(conf)).rejects.toEqual(
       new Error(
-        'source version in config must be greater than current version. config version is -1 and current version is 0',
-      ),
+        'source version in config must be greater than current version. config version is -1 and current version is 0'
+      )
     );
   });
 
-  it('no migration if config version in undefined', async () => {
+  it('no migration if config version is undefined', async () => {
     const originalData = await getMiscData();
     const conf = {
-      [MISCELANEOUS]: {},
+      [MISCELANEOUS]: {}
     };
     await sources(conf);
     const data = await getMiscData();
@@ -75,12 +80,12 @@ describe('source migration', () => {
 
   it('throw when version exists but is not defined in config', () => {
     const conf = {
-      [NAMES]: {},
+      [NAMES]: {}
     };
     return expect(sources(conf)).rejects.toEqual(
       new Error(
-        'source version is 1 but version in source config is not defined',
-      ),
+        'source version is 1 but version in source config is not defined'
+      )
     );
   });
 
@@ -90,12 +95,12 @@ describe('source migration', () => {
         version: 1,
         migration: () => {
           // noop
-        },
-      },
+        }
+      }
     };
 
     return expect(sources(conf)).rejects.toThrow(
-      'migration scripts not implemented yet',
+      'migration scripts not implemented yet'
     );
   });
 });

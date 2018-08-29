@@ -8,4 +8,5 @@ export let defaultConfig: IConfig = {
   removeThreshold: 0.01,
   source: {},
   aggregation: {},
+  homeDir: ''
 };

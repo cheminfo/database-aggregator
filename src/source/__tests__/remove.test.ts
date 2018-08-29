@@ -2,61 +2,62 @@ import {
   connect,
   disconnect,
   dropDatabase,
-  insertData,
+  insertData
 } from '../../../test/mongoSetup';
-const { getCollection, clean } = require('../../../test/util');
+import { getCollection, clean } from '../../../test/util';
 import { remove } from '../remove';
+import { ISourceConfigElement } from '../../types';
 
 beforeAll(connect);
 afterAll(disconnect);
 
 const collection = getCollection('source_test');
-const config = {
+const config: ISourceConfigElement = {
   driver: {
-    getIds(config) {
+    getIds(sourceConfig) {
       const data = ['test1', 'test3'];
-      if (config.type === 'set') { return new Set(data); }
+      if (sourceConfig.type === 'set') {
+        return new Set(data);
+      }
       return data;
     },
-    getData() {
+    getData(sourceConfig, () => {}) {
       // ignore
-    },
+    }
   },
-  collection: 'test',
+  collection: 'test'
 };
 
 const testData = {
-  // eslint-disable-next-line camelcase
   meta_source_sequence: [
     {
       _id: 'test',
-      seq: 3,
-    },
+      seq: 3
+    }
   ],
-  // eslint-disable-next-line camelcase
   source_test: [
     {
       id: 'test1',
       commonID: 'test1',
       date: new Date(0),
       sequentialID: 1,
-      data: {},
+      data: {}
     },
     {
       id: 'test2',
       commonID: 'test2',
       date: new Date(0),
       sequentialID: 2,
-      data: {},
+      data: {}
     },
     {
       id: 'test3',
       commonID: 'test3',
       date: new Date(0),
       sequentialID: 3,
-      data: {},
-    },
-  ],
+      data: {}
+    }
+  ]
 };
 
 describe('source remove', () => {

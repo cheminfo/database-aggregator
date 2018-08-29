@@ -27,27 +27,27 @@ describe('aggregation', () => {
           result.prices = values;
         },
         names(values, result) {
-          result.names = values.map((value) => value.name);
-        },
-      },
+          result.names = values.map(value => value.name);
+        }
+      }
     };
     await aggregate(conf);
     const data = await aggregation.findAll('chemical').lean();
-    data.forEach((d) => {
+    data.forEach(d => {
       d.date = null;
     });
     expect(clean(data)).toMatchSnapshot();
   });
 
-  it('various steps of aggregation', async function() {
+  it('various steps of aggregation', async () => {
     const conf = {
       collection: 'sourceAgg',
       sources: {
         // eslint-disable-next-line camelcase
         source_test(values, result) {
           result.values = values.slice();
-        },
-      },
+        }
+      }
     };
 
     let data;
@@ -79,7 +79,7 @@ describe('aggregation', () => {
 });
 
 function aggSnapshot(data) {
-  data.forEach((d) => {
+  data.forEach(d => {
     d.date = null;
   });
   expect(clean(data)).toMatchSnapshot();

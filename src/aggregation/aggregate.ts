@@ -4,7 +4,7 @@ import { getLastSeqIds, setSeqIds } from '../mongo/models/aggregationSequence';
 import {
   getByCommonId,
   getCommonIds,
-  getLastSeqId,
+  getLastSeqId
 } from '../mongo/models/source';
 import {
   IAggregationCallback,
@@ -12,7 +12,7 @@ import {
   IAggregationEntry,
   IObject,
   ISourceBase,
-  ISourceEntry,
+  ISourceEntry
 } from '../types';
 import { debugUtil } from '../util/debug';
 const isequal = require('lodash.isequal');
@@ -33,21 +33,20 @@ export async function aggregate(conf: IAggregationConfigElement) {
     let commonIds: string[] = [];
 
     // Iterate over dependees
-    for (let i = 0; i < sourceNames.length; i++) {
-      const sourceName = sourceNames[i];
+    for (const sourceName of sourceNames) {
       const firstSeqId = seqIds[sourceName] || 0;
       const lastSeqId = firstSeqId + chunkSize;
       const lastSourceSeq = await getLastSeqId(sourceName);
       maxSeqIds[sourceName] = Math.min(
         lastSeqId,
-        lastSourceSeq ? lastSourceSeq.sequentialID : 0,
+        lastSourceSeq ? lastSourceSeq.sequentialID : 0
       );
       const cidBases: ISourceBase[] = await getCommonIds(
         sourceName,
         firstSeqId,
-        lastSeqId,
+        lastSeqId
       );
-      const cids = cidBases.map((commonId) => commonId.commonID);
+      const cids = cidBases.map(commonId => commonId.commonID);
       commonIds = commonIds.concat(cids);
     }
 
@@ -55,15 +54,14 @@ export async function aggregate(conf: IAggregationConfigElement) {
 
     for (const commonId of commonIdsSet) {
       const data: IObject<ISourceEntry[]> = {};
-      for (let i = 0; i < sourceNames.length; i++) {
-        const sourceName = sourceNames[i];
+      for (const sourceName of sourceNames) {
         data[sourceName] = await getByCommonId(sourceName, commonId);
       }
       const exists = checkExists(data);
       const obj: IAggregationEntry = {
         id: commonId,
         date: Date.now(),
-        value: null,
+        value: null
       };
 
       if (exists) {
@@ -80,7 +78,7 @@ export async function aggregate(conf: IAggregationConfigElement) {
           // Nothing to do, the data was deleted from sources and does not
           // exist or was deleted in aggregation
           debug.trace(
-            `Ignoring ${collection}:${commonId}, which ought to be deleted but does not exist or was already deleted`,
+            `Ignoring ${collection}:${commonId}, which ought to be deleted but does not exist or was already deleted`
           );
         }
       } else {
@@ -88,7 +86,7 @@ export async function aggregate(conf: IAggregationConfigElement) {
         if (isequal(obj.value, oldEntry.value)) {
           // Don't save if has not changed
           debug.trace(
-            `Not saving ${collection}:${commonId} because has not changed`,
+            `Not saving ${collection}:${commonId} because has not changed`
           );
         } else {
           // Save document
@@ -113,7 +111,7 @@ function checkExists(data: IObject<any>) {
 async function aggregateValue(
   data: IObject<ISourceEntry[]>,
   filter: IObject<IAggregationCallback>,
-  commonId: string,
+  commonId: string
 ) {
   const result = {};
   let accept = true;
@@ -122,11 +120,11 @@ async function aggregateValue(
       accept = await Promise.resolve(
         filter[key].call(
           null,
-          data[key].map((d) => d.data),
+          data[key].map(d => d.data),
           result,
           commonId,
-          data[key].map((d) => d.id),
-        ),
+          data[key].map(d => d.id)
+        )
       );
 
       if (accept === false) {

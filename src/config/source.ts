@@ -1,28 +1,28 @@
 'use strict';
-const path = require('path');
+import { join, resolve, parse } from 'path';
 const find = require('find');
 
 import { ISourceConfig, ISourceConfigElement } from '../types';
 import { debugUtil } from '../util/debug';
+import { homeDir } from './home';
 
 const debug = debugUtil('config:source');
 
 const dbConfig: ISourceConfig = {};
 export const sourceConfig = { source: dbConfig };
 // eslint-disable-next-line import/no-dynamic-require
-const homeDir = require('./home').homeDir;
 
 if (!homeDir) {
   debug.debug('no home dir');
 } else {
-  const sourceDir = path.join(homeDir, 'source');
+  const sourceDir = join(homeDir, 'source');
 
   try {
     const databases = find.fileSync(/\.js$/, sourceDir);
     for (const database of databases) {
       let cfg;
-      const configPath = path.resolve(sourceDir, database);
-      const parsedConfigPath = path.parse(configPath);
+      const configPath = resolve(sourceDir, database);
+      const parsedConfigPath = parse(configPath);
       if (parsedConfigPath.ext !== '.js') {
         continue;
       }
@@ -35,7 +35,7 @@ if (!homeDir) {
           'could not open source config',
           configPath,
           'with error',
-          e,
+          e
         );
         continue;
       }
@@ -47,7 +47,7 @@ if (!homeDir) {
         debug.warn(
           `Skipping source config ${
             parsedConfigPath.name
-          } because driver is missing`,
+          } because driver is missing`
         );
         continue;
       }

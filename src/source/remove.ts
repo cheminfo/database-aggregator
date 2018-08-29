@@ -29,8 +29,7 @@ export async function remove(options: ISourceConfigElement) {
     .exec();
   const idsToDelete = new Set();
 
-  for (let i = 0; i < copiedIds.length; i++) {
-    const id = copiedIds[i].id;
+  for (const { id } of copiedIds) {
     if (!sourceIds.has(id)) {
       idsToDelete.add(id);
     }
@@ -41,7 +40,7 @@ export async function remove(options: ISourceConfigElement) {
   if (percentToDelete > removeThreshold) {
     debug.warn(
       `removal of data from ${collection} cancelled (maximum: ${removeThreshold *
-        100}%, actual: ${percentToDelete * 100}%)`,
+        100}%, actual: ${percentToDelete * 100}%)`
     );
     return;
   }
@@ -54,9 +53,9 @@ export async function remove(options: ISourceConfigElement) {
         $set: {
           data: null,
           date: new Date(),
-          sequentialID: await getNextSequenceID(collection),
-        },
-      },
+          sequentialID: await getNextSequenceID(collection)
+        }
+      }
     ).exec();
   }
 }

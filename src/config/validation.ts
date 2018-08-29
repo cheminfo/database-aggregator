@@ -3,19 +3,19 @@ import {
   IAggregationConfigElement,
   IConfig,
   ISourceConfig,
-  ISourceConfigElement,
+  ISourceConfigElement
 } from '../types';
 
-export function config(config: IConfig) {
-  const validatedConfig = Object.assign({}, config);
-  config.sources = sources(config.sources);
-  config.aggregation = aggregations(config.aggregation);
+export function config(configObject: IConfig) {
+  const validatedConfig = Object.assign({}, configObject);
+  configObject.source = sources(configObject.source);
+  configObject.aggregation = aggregations(configObject.aggregation);
   return validatedConfig;
 }
-export function sources(sources: ISourceConfig) {
+export function sources(sourcesConfig: ISourceConfig) {
   const validSources: ISourceConfig = {};
-  for (const key of Object.keys(sources)) {
-    validSources[key] = source(sources[key]);
+  for (const key of Object.keys(sourcesConfig)) {
+    validSources[key] = source(sourcesConfig[key]);
   }
   return validSources;
 }
@@ -28,10 +28,10 @@ export function source(conf: ISourceConfigElement) {
   return Object.assign({}, conf);
 }
 
-export function aggregations(aggregations: IAggregationConfig) {
+export function aggregations(aggregationsConfig: IAggregationConfig) {
   const validAggregations: IAggregationConfig = {};
-  for (const key of Object.keys(aggregations)) {
-    validAggregations[key] = aggregation(aggregations[key]);
+  for (const key of Object.keys(aggregationsConfig)) {
+    validAggregations[key] = aggregation(aggregationsConfig[key]);
   }
   return validAggregations;
 }
@@ -42,11 +42,11 @@ export function aggregation(conf: IAggregationConfigElement) {
   }
   const validatedConf = Object.assign({}, conf);
 
-  const { collection, sources, chunkSize = 1000 } = conf;
+  const { collection, sources: sourcesConfig, chunkSize = 1000 } = conf;
   if (typeof collection !== 'string') {
     throw new TypeError('config.collection must be a string');
   }
-  if (typeof sources !== 'object' || sources === null) {
+  if (typeof sourcesConfig !== 'object' || sourcesConfig === null) {
     throw new TypeError('config.sources must be an object');
   }
 
@@ -54,15 +54,15 @@ export function aggregation(conf: IAggregationConfigElement) {
     throw new TypeError('config.chunkSize must be a positive integer');
   }
 
-  for (const source in sources) {
-    if (typeof sources[source] !== 'function') {
+  for (const sourceName in sourcesConfig) {
+    if (typeof sourcesConfig[sourceName] !== 'function') {
       throw new Error(
-        `all sources in the aggregation config should be functions (${source})`,
+        `all sources in the aggregation config should be functions (${sourceName})`
       );
     }
   }
 
-  const sourceNames = Object.keys(sources);
+  const sourceNames = Object.keys(sourcesConfig);
   if (sourceNames.length === 0) {
     throw new Error('config.sources must have at least one source');
   }
