@@ -1,5 +1,3 @@
-'use strict';
-
 import * as Debug from 'debug';
 
 var error = Debug('aggregator:error');

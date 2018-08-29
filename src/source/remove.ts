@@ -1,5 +1,3 @@
-'use strict';
-
 import { connect } from '../mongo/connection';
 import { getSource } from '../mongo/model';
 

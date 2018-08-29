@@ -1,5 +1,3 @@
-'use strict';
-
 import {
   connect,
   disconnect,
@@ -7,7 +5,7 @@ import {
   insertData
 } from '../../../test/mongoSetup';
 const { getCollection, clean } = require('../../../test/util');
-const remove = require('../remove');
+import { remove } from '../remove';
 
 beforeAll(connect);
 afterAll(disconnect);

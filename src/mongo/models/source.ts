@@ -1,5 +1,3 @@
-'use strict';
-
 import { getSource } from '../model';
 import { debugUtil } from '../../util/debug';
 

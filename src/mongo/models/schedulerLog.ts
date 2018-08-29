@@ -1,5 +1,3 @@
-'use strict';
-
 import { getSchedulerLog } from '../model';
 import { SchedulerLogEntry } from '../../types';
 const Model = getSchedulerLog();

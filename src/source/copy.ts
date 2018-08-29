@@ -1,5 +1,3 @@
-'use strict';
-
 import { getSource } from '../mongo/model';
 import { connect } from '../mongo/connection';
 import { ISourceConfigElement } from '../types';

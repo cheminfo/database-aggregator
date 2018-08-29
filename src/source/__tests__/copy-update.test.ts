@@ -1,5 +1,3 @@
-'use strict';
-
 import { connect, disconnect, insertData } from '../../../test/mongoSetup';
 import { getCollection, clean } from '../../../test/util';
 

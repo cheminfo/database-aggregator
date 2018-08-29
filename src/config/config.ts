@@ -1,5 +1,3 @@
-'use strict';
-
 import { defaultConfig } from './default';
 import { config as homeConfig } from './home';
 import { envConfig } from './env';

@@ -1,5 +1,3 @@
-'use strict';
-
 import { start, stop } from '../src/util/pid';
 import { connect } from '../src/mongo/connection';
 import { copy } from '../src/source/copy';
@@ -20,7 +18,7 @@ if (sources.length === 0) {
   await connect();
   for (const collection of sources) {
     let start = new Date().getTime();
-   debug.debug(`Begin sourcing of ${collection}`);
+    debug.debug(`Begin sourcing of ${collection}`);
     const options = config.source[collection];
     try {
       await copy(options);
@@ -29,7 +27,7 @@ if (sources.length === 0) {
     }
     let end = new Date().getTime();
     let time = end - start;
-   debug.debug(`End sourcing of ${collection} in ${time}ms`);
+    debug.debug(`End sourcing of ${collection} in ${time}ms`);
   }
 })()
   .then(

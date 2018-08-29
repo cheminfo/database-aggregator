@@ -1,5 +1,3 @@
-'use strict';
-
 import { getAggregationSequence } from '../model';
 const Model = getAggregationSequence();
 

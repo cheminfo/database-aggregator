@@ -1,5 +1,3 @@
-'use strict';
-
 const chunk = require('lodash.chunk');
 
 const model = require('../mongo/model');
@@ -49,7 +47,7 @@ export async function copyMissingIds(config: ISourceConfigElement) {
     .sort('-date')
     .exec();
 
- debug.debug(`adding ${idsToCopy.size} missing entries`);
+  debug.debug(`adding ${idsToCopy.size} missing entries`);
   const chunks = chunk([...idsToCopy], MAX_ELEMENTS_ID_CLAUSE);
 
   for (let chunk of chunks) {

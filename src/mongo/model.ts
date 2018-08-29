@@ -1,5 +1,3 @@
-'use strict';
-
 const mongoose = require('mongoose');
 
 import sourceSchema from '../schema/source';

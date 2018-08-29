@@ -1,5 +1,3 @@
-'use strict';
-
 import { getDriverPath } from '../../../test/util';
 import { copy } from '../copy';
 

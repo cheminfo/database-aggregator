@@ -1,16 +1,12 @@
-'use strict';
-
-const mongoSetup = require('../../../test/mongoSetup');
-
-// const { clean } = require('../../../test/util');
-const migration = require('..');
+import { connect, disconnect, insertData } from '../../../test/mongoSetup';
+import { sources } from '..';
 
 beforeEach(async () => {
-  await mongoSetup.connect();
-  await mongoSetup.insertData('chemicals.json');
-  await mongoSetup.insertData('source_sequence.yaml');
+  await connect();
+  await insertData('chemicals.json');
+  await insertData('source_sequence.yaml');
 });
-afterEach(mongoSetup.disconnect);
+afterEach(disconnect);
 
 const model = require('../../mongo/model');
 const sourceSequence = require('../../mongo/models/sourceSequence');
@@ -34,7 +30,7 @@ describe('source migration', () => {
         version: 0
       }
     };
-    await migration.sources(conf);
+    await sources(conf);
     const data = await getMiscData();
     expect(data).toEqual(originalData);
   });

@@ -1,5 +1,3 @@
-'use strict';
-
 import { source, aggregation } from '../validation';
 
 describe('source validation', () => {

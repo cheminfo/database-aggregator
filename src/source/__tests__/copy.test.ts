@@ -1,5 +1,3 @@
-'use strict';
-
 import { connect, disconnect } from '../../../test/mongoSetup';
 import { getCollection, getDriverPath, clean } from '../../../test/util';
 import { copy } from '../copy';

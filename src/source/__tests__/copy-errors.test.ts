@@ -1,5 +1,3 @@
-'use strict';
-
 import { connect, disconnect } from '../../../test/mongoSetup';
 import { getCollection } from '../../../test/util';
 const copy = require('../copy');

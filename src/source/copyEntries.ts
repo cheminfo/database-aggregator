@@ -1,5 +1,3 @@
-'use strict';
-
 const isequal = require('lodash.isequal');
 
 import { getSource } from '../mongo/model';

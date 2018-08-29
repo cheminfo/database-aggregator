@@ -1,5 +1,3 @@
-'use strict';
-
 import { IConfig } from '../types';
 export let defaultConfig: IConfig = {
   url: 'mongodb://localhost:27017',
@@ -8,6 +6,6 @@ export let defaultConfig: IConfig = {
   schedulerThreadsSource: 4,
   schedulerThreadsAggregation: 4,
   removeThreshold: 0.01,
-  sources: {},
+  source: {},
   aggregation: {}
 };

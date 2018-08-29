@@ -1,17 +1,13 @@
-'use strict';
-
-const mongoSetup = require('../../../test/mongoSetup');
-const { clean } = require('../../../test/util');
-const aggregate = require('../aggregate');
-
+import { connect, disconnect, insertData } from '../../../test/mongoSetup';
+import { aggregate } from '../aggregate';
 const aggregation = require('./../../mongo/models/aggregation');
 
-beforeEach(mongoSetup.connect);
-afterEach(mongoSetup.disconnect);
+beforeEach(connect);
+afterEach(disconnect);
 
 describe('aggregation', () => {
   it('one-shot chemical sources aggregation', async () => {
-    await mongoSetup.insertData('chemicals.json');
+    await insertData('chemicals.json');
     const conf = {
       collection: 'chemical',
       sources: {
@@ -30,19 +26,19 @@ describe('aggregation', () => {
           result.prices = values;
         },
         names(values, result) {
-          result.names = values.map((value) => value.name);
+          result.names = values.map(value => value.name);
         }
       }
     };
     await aggregate(conf);
     let data = await aggregation.findAll('chemical').lean();
-    data.forEach((d) => {
+    data.forEach(d => {
       d.date = null;
     });
     expect(clean(data)).toMatchSnapshot();
   });
 
-  it('various steps of aggregation', async function () {
+  it('various steps of aggregation', async function() {
     const conf = {
       collection: 'sourceAgg',
       sources: {
@@ -82,7 +78,7 @@ describe('aggregation', () => {
 });
 
 function aggSnapshot(data) {
-  data.forEach((d) => {
+  data.forEach(d => {
     d.date = null;
   });
   expect(clean(data)).toMatchSnapshot();
