@@ -1,9 +1,9 @@
-import { SchedulerLogEntry } from "../../types";
-import { getSchedulerLog } from "../model";
+import { SchedulerLogEntry } from '../../types';
+import { getSchedulerLog } from '../model';
 const Model = getSchedulerLog();
 
 export function save(obj: SchedulerLogEntry) {
-  let stat = {
+  const stat = {
     status: obj.status,
     date: new Date(),
     message: obj.message,

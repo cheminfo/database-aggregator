@@ -1,8 +1,8 @@
-import { IAggregationEntry } from "../../types";
-import { debugUtil } from "../../util/debug";
-import { getAggregation } from "../model";
+import { IAggregationEntry } from '../../types';
+import { debugUtil } from '../../util/debug';
+import { getAggregation } from '../model';
 
-const debug = debugUtil("model:aggregation");
+const debug = debugUtil('model:aggregation');
 export function save(name: string, data: IAggregationEntry) {
   debug.trace(`save to ${name}: ${data.id}`);
   const Model = getAggregation(name);

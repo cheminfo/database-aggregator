@@ -1,4 +1,4 @@
-import { getAggregationSequence } from "../model";
+import { getAggregationSequence } from '../model';
 const Model = getAggregationSequence();
 
 export async function getLastSeqIds(name: string) {

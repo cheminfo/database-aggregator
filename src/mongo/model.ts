@@ -1,19 +1,19 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-import aggregationSchema from "../schema/aggregation";
-import aggregationSequenceSchema from "../schema/aggregationSequence";
-import schedulerLogSchema from "../schema/schedulerLog";
-import sourceSchema from "../schema/source";
-import sourceSequenceSchema from "../schema/sourceSequence";
+import aggregationSchema from '../schema/aggregation';
+import aggregationSequenceSchema from '../schema/aggregationSequence';
+import schedulerLogSchema from '../schema/schedulerLog';
+import sourceSchema from '../schema/source';
+import sourceSequenceSchema from '../schema/sourceSequence';
 
-import { Schema } from "mongoose";
-import { dropCollection, hasCollection } from "../mongo/connection";
+import { Schema } from 'mongoose';
+import { dropCollection, hasCollection } from '../mongo/connection';
 
 const models = new Map();
 
-const AGGREGATION = "aggregation";
-const SOURCE = "source";
-const META = "meta";
+const AGGREGATION = 'aggregation';
+const SOURCE = 'source';
+const META = 'meta';
 
 export function getSource(name: string) {
   return getModel(SOURCE, name, sourceSchema);
@@ -46,15 +46,15 @@ export function getAggregationIfExists(name: string) {
 }
 
 export function getSourceSequence() {
-  return getModel(META, "source_sequence", sourceSequenceSchema);
+  return getModel(META, 'source_sequence', sourceSequenceSchema);
 }
 
 export function getAggregationSequence() {
-  return getModel(META, "aggregation_sequence", aggregationSequenceSchema);
+  return getModel(META, 'aggregation_sequence', aggregationSequenceSchema);
 }
 
 export function getSchedulerLog() {
-  return getModel(META, "scheduler_log", schedulerLogSchema);
+  return getModel(META, 'scheduler_log', schedulerLogSchema);
 }
 
 function getModel(prefix: string, name: string, schema: Schema) {

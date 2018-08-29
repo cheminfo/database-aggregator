@@ -1,17 +1,17 @@
-import { connect } from "../src/mongo/connection";
-import { start } from "../src/util/pid";
+import { connect } from '../src/mongo/connection';
+import { start } from '../src/util/pid';
 
-const { copyMissingIds } = require("../src/source/copyMissingIds");
-import { globalConfig as config } from "../src/config/config";
-import { debugUtil } from "../src/util/debug";
+const { copyMissingIds } = require('../src/source/copyMissingIds');
+import { globalConfig as config } from '../src/config/config';
+import { debugUtil } from '../src/util/debug';
 
-const debug = debugUtil("bin:source");
+const debug = debugUtil('bin:source');
 start();
 
 const sources = Object.keys(config.source);
 
 if (sources.length === 0) {
-  console.log("no source found in config");
+  console.log('no source found in config');
 }
 
 (async function() {
@@ -32,7 +32,7 @@ if (sources.length === 0) {
 })()
   .then(
     function() {
-      console.log("finished");
+      console.log('finished');
       return 0;
     },
     function(e) {

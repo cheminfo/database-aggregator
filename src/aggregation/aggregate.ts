@@ -1,11 +1,11 @@
-import { aggregation as aggregationValidation } from "../config/validation";
-import { deleteById, findById, save } from "../mongo/models/aggregation";
-import { getLastSeqIds, setSeqIds } from "../mongo/models/aggregationSequence";
+import { aggregation as aggregationValidation } from '../config/validation';
+import { deleteById, findById, save } from '../mongo/models/aggregation';
+import { getLastSeqIds, setSeqIds } from '../mongo/models/aggregationSequence';
 import {
   getByCommonId,
   getCommonIds,
   getLastSeqId,
-} from "../mongo/models/source";
+} from '../mongo/models/source';
 import {
   IAggregationCallback,
   IAggregationConfigElement,
@@ -13,10 +13,10 @@ import {
   IObject,
   ISourceBase,
   ISourceEntry,
-} from "../types";
-import { debugUtil } from "../util/debug";
-const isequal = require("lodash.isequal");
-const debug = debugUtil("aggregation");
+} from '../types';
+import { debugUtil } from '../util/debug';
+const isequal = require('lodash.isequal');
+const debug = debugUtil('aggregation');
 
 export async function aggregate(conf: IAggregationConfigElement) {
   conf = aggregationValidation(conf);
@@ -25,7 +25,7 @@ export async function aggregate(conf: IAggregationConfigElement) {
   const maxSeqIds: IObject<number> = {};
   let commonIdsSet;
 
-  debug.trace("get common ids");
+  debug.trace('get common ids');
   do {
     // while commonIdsSet.size > 0
     let seqIds = await getLastSeqIds(collection);

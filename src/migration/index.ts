@@ -1,10 +1,10 @@
-import { dropSource } from "../mongo/model";
+import { dropSource } from '../mongo/model';
 import {
   getSourceVersion,
   updateSourceVersion,
-} from "../mongo/models/sourceSequence";
-import { ISourceConfig } from "../types";
-const validation = require("../config/validation");
+} from '../mongo/models/sourceSequence';
+import { ISourceConfig } from '../types';
+const validation = require('../config/validation');
 
 export async function sources(sourceConfigs: ISourceConfig) {
   sourceConfigs = validation.sources(sourceConfigs);
@@ -25,7 +25,7 @@ export async function sources(sourceConfigs: ISourceConfig) {
     } else if (configVersion > currentVersion) {
       if (sourceConfig.migration) {
         // TODO: implement migration scripts
-        throw new Error("migration scripts not implemented yet");
+        throw new Error('migration scripts not implemented yet');
       } else {
         // If the version was incremented but no migration script exist, we drop the source collection
         await dropSource(sourceName);

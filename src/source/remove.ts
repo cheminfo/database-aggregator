@@ -1,12 +1,12 @@
-import { connect } from "../mongo/connection";
-import { getSource } from "../mongo/model";
+import { connect } from '../mongo/connection';
+import { getSource } from '../mongo/model';
 
-import { getNextSequenceID } from "../mongo/models/sourceSequence";
-import { ISourceConfigElement } from "../types";
-import { debugUtil } from "../util/debug";
-import { getDriver } from "./getDriver";
+import { getNextSequenceID } from '../mongo/models/sourceSequence';
+import { ISourceConfigElement } from '../types';
+import { debugUtil } from '../util/debug';
+import { getDriver } from './getDriver';
 
-const debug = debugUtil("source:remove");
+const debug = debugUtil('source:remove');
 
 export async function remove(options: ISourceConfigElement) {
   const driver = getDriver(options.driver);

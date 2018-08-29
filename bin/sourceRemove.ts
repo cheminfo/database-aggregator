@@ -1,16 +1,16 @@
-import { globalConfig as config } from "../src/config/config";
-import { connect } from "../src/mongo/connection";
-import { remove } from "../src/source/remove";
-import { debugUtil } from "../src/util/debug";
-import { start, stop } from "../src/util/pid";
-const debug = debugUtil("bin:source");
+import { globalConfig as config } from '../src/config/config';
+import { connect } from '../src/mongo/connection';
+import { remove } from '../src/source/remove';
+import { debugUtil } from '../src/util/debug';
+import { start, stop } from '../src/util/pid';
+const debug = debugUtil('bin:source');
 
 start();
 
 const sources = Object.keys(config.source);
 
 if (sources.length === 0) {
-  console.log("no source found in config");
+  console.log('no source found in config');
 }
 
 (async function() {
@@ -31,7 +31,7 @@ if (sources.length === 0) {
 })()
   .then(
     function() {
-      console.log("finished");
+      console.log('finished');
       return 0;
     },
     function(e) {

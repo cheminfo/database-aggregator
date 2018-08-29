@@ -1,9 +1,9 @@
-import * as Debug from "debug";
+import * as Debug from 'debug';
 
-let error = Debug("aggregator:error");
-let warn = Debug("aggregator:warn");
-let debug = Debug("aggregator:debug");
-let trace = Debug("aggregator:trace");
+const error = Debug('aggregator:error');
+const warn = Debug('aggregator:warn');
+const debug = Debug('aggregator:debug');
+const trace = Debug('aggregator:trace');
 
 warn.log = console.warn.bind(console);
 debug.log = console.log.bind(console);

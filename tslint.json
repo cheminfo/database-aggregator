@@ -1,10 +1,10 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:recommended"],
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
-    "no-bitwise": false,
-    "variable-name": false
+    "object-literal-sort-keys": false,
+    "quotemark": [true, "single"]
   },
   "rulesDirectory": []
 }

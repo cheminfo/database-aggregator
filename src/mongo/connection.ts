@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
-const { URL } = require("url");
+const { URL } = require('url');
 
-import { connect as connectMongoose, connection } from "mongoose";
+import { connect as connectMongoose, connection } from 'mongoose';
 
-import { globalConfig as config } from "../config/config";
+import { globalConfig as config } from '../config/config';
 
 export async function connect() {
   if (connection.readyState === 0) {

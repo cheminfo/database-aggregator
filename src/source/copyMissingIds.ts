@@ -1,14 +1,14 @@
-const chunk = require("lodash.chunk");
+const chunk = require('lodash.chunk');
 
-const model = require("../mongo/model");
-import { connect } from "../mongo/connection";
+const model = require('../mongo/model');
+import { connect } from '../mongo/connection';
 
-import { ISourceConfigElement } from "../types";
-import { debugUtil } from "../util/debug";
-import { copyEntries } from "./copyEntries";
-import { getDriver } from "./getDriver";
+import { ISourceConfigElement } from '../types';
+import { debugUtil } from '../util/debug';
+import { copyEntries } from './copyEntries';
+import { getDriver } from './getDriver';
 
-const debug = debugUtil("source:copyMissingIds");
+const debug = debugUtil('source:copyMissingIds');
 
 const MAX_ELEMENTS_ID_CLAUSE = 999;
 
@@ -44,7 +44,7 @@ export async function copyMissingIds(config: ISourceConfigElement) {
   }
 
   const latest = await Model.findOne()
-    .sort("-date")
+    .sort('-date')
     .exec();
 
   debug.debug(`adding ${idsToCopy.size} missing entries`);
@@ -52,7 +52,7 @@ export async function copyMissingIds(config: ISourceConfigElement) {
 
   for (const chunk of chunks) {
     await driver.getData(config, (data) => copyEntries(data, config), {
-      latestDate: (latest && latest.date) || new Date("1900-01-01"),
+      latestDate: (latest && latest.date) || new Date('1900-01-01'),
       ids: chunk,
     });
   }

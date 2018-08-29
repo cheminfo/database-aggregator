@@ -1,13 +1,13 @@
-import { debugUtil } from "../util/debug";
+import { debugUtil } from '../util/debug';
 
-const path = require("path");
-const debug = debugUtil("config:home");
+const path = require('path');
+const debug = debugUtil('config:home');
 
 // eslint-disable-next-line no-process-env
 export let config = {};
 export let homeDir = process.env.DATABASE_AGGREGATOR_HOME_DIR;
 if (!homeDir) {
- debug.debug("no home dir");
+ debug.debug('no home dir');
  exports.config = {};
 } else {
   homeDir = path.resolve(homeDir);
@@ -18,12 +18,12 @@ if (!homeDir) {
 function getHomeConfig() {
   try {
     // eslint-disable-next-line import/no-dynamic-require
-    const config = require(path.join(homeDir, "config.js"));
-    debug.debug("loaded main config file");
+    const config = require(path.join(homeDir, 'config.js'));
+    debug.debug('loaded main config file');
     return config;
   } catch (e) {
-    if (e.code === "MODULE_NOT_FOUND") {
-     debug.debug("no main config found");
+    if (e.code === 'MODULE_NOT_FOUND') {
+     debug.debug('no main config found');
     } else {
       debug.error(`Error while reading and parsing config file\n${e}`);
     }

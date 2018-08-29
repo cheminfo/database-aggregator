@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-import { getSourceSequence } from "../model";
+import { getSourceSequence } from '../model';
 const Model = getSourceSequence();
 export async function getNextSequenceID(name: string) {
   const result = await Model.findByIdAndUpdate(

@@ -1,11 +1,11 @@
-import { Schema } from "mongoose";
+import { Schema } from 'mongoose';
 
 export default new Schema({
   // Unique identifier for this record.
   id: {
     type: String,
     required: true,
-    index: "hashed",
+    index: 'hashed',
   },
   // Common identifier. It is either equal to id or a less unique value that
   // will be used by the aggregator to merge lines that belong to the same
@@ -13,7 +13,7 @@ export default new Schema({
   commonID: {
     type: String,
     required: true,
-    index: "hashed",
+    index: 'hashed',
   },
   // Sequence ID. Used by the aggregator to know where it has to continue
   // its next synchronization.
