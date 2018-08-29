@@ -7,11 +7,11 @@
     "test": "test"
   },
   "files": [
-    "bin",
-    "src"
+    "lib",
+    "lib-es6"
   ],
   "bin": {
-    "database-aggregator": "./bin/database-aggregator.js"
+    "database-aggregator": "./lib/bin/database-aggregator.js"
   },
   "scripts": {
     "test": "npm run test-only && npm run tslint",

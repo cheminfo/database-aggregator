@@ -1,13 +1,13 @@
 import { dropSource } from '../mongo/model';
 import {
   getSourceVersion,
-  updateSourceVersion,
+  updateSourceVersion
 } from '../mongo/models/sourceSequence';
 import { ISourceConfig } from '../types';
-const validation = require('../config/validation');
+import { sources as sourcesValidation } from '../config/validation';
 
 export async function sources(sourceConfigs: ISourceConfig) {
-  sourceConfigs = validation.sources(sourceConfigs);
+  sourceConfigs = sourcesValidation(sourceConfigs);
   const sourceNames = Object.keys(sourceConfigs);
   for (const sourceName of sourceNames) {
     const sourceConfig = sourceConfigs[sourceName];
@@ -15,7 +15,7 @@ export async function sources(sourceConfigs: ISourceConfig) {
     const configVersion = sourceConfig.version;
     if (configVersion === undefined && currentVersion !== 0) {
       throw new Error(
-        `source version is ${currentVersion} but version in source config is not defined`,
+        `source version is ${currentVersion} but version in source config is not defined`
       );
     } else if (
       configVersion === undefined ||
@@ -33,9 +33,11 @@ export async function sources(sourceConfigs: ISourceConfig) {
       }
     } else {
       throw new Error(
-        `source version in config must be greater than current version. config version is ${configVersion} and current version is ${currentVersion}`,
+        `source version in config must be greater than current version. config version is ${configVersion} and current version is ${currentVersion}`
       );
     }
-    if (configVersion === undefined) { continue; }
+    if (configVersion === undefined) {
+      continue;
+    }
   }
 }
