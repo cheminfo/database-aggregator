@@ -1,12 +1,12 @@
-import { connect } from '../mongo/connection';
-import { getSource } from '../mongo/model';
+import { connect } from "../mongo/connection";
+import { getSource } from "../mongo/model";
 
-import { getNextSequenceID } from '../mongo/models/sourceSequence';
-import { ISourceConfigElement } from '../types';
-import { debugUtil } from '../util/debug';
-import { getDriver } from './getDriver';
+import { getNextSequenceID } from "../mongo/models/sourceSequence";
+import { ISourceConfigElement } from "../types";
+import { debugUtil } from "../util/debug";
+import { getDriver } from "./getDriver";
 
-const debug = debugUtil('source:remove');
+const debug = debugUtil("source:remove");
 
 export async function remove(options: ISourceConfigElement) {
   const driver = getDriver(options.driver);
@@ -30,7 +30,7 @@ export async function remove(options: ISourceConfigElement) {
   const idsToDelete = new Set();
 
   for (let i = 0; i < copiedIds.length; i++) {
-    let id = copiedIds[i].id;
+    const id = copiedIds[i].id;
     if (!sourceIds.has(id)) {
       idsToDelete.add(id);
     }
@@ -41,7 +41,7 @@ export async function remove(options: ISourceConfigElement) {
   if (percentToDelete > removeThreshold) {
     debug.warn(
       `removal of data from ${collection} cancelled (maximum: ${removeThreshold *
-        100}%, actual: ${percentToDelete * 100}%)`
+        100}%, actual: ${percentToDelete * 100}%)`,
     );
     return;
   }
@@ -54,9 +54,9 @@ export async function remove(options: ISourceConfigElement) {
         $set: {
           data: null,
           date: new Date(),
-          sequentialID: await getNextSequenceID(collection)
-        }
-      }
+          sequentialID: await getNextSequenceID(collection),
+        },
+      },
     ).exec();
   }
 }

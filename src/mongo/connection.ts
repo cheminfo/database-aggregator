@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const { URL } = require('url');
+const { URL } = require("url");
 
-import { connection, connect as connectMongoose } from 'mongoose';
+import { connect as connectMongoose, connection } from "mongoose";
 
-import { globalConfig as config } from '../config/config';
+import { globalConfig as config } from "../config/config";
 
 export async function connect() {
   if (connection.readyState === 0) {
@@ -24,7 +24,7 @@ export async function disconnect() {
 export async function hasCollection(colName: string) {
   await connect();
   let collections = await connection.db.listCollections().toArray();
-  collections = collections.map(col => col.name);
+  collections = collections.map((col) => col.name);
   return collections.indexOf(colName) > -1;
 }
 

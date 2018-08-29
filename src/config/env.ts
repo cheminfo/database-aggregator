@@ -1,5 +1,5 @@
-import { IObject } from '../types';
-const prefix = 'DATABASE_AGGREGATOR_';
+import { IObject } from "../types";
+const prefix = "DATABASE_AGGREGATOR_";
 
 export const envConfig: IObject<string | undefined> = {};
 for (const name in process.env) {

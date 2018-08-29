@@ -1,9 +1,9 @@
-const path = require('path');
+const path = require("path");
 
-import { connection } from 'mongoose';
+import { connection } from "mongoose";
 
 export function getDriverPath(name: string) {
-  return path.join(__dirname, 'driver', name);
+  return path.join(__dirname, "driver", name);
 }
 
 export function getCollection(name: string) {
@@ -12,7 +12,7 @@ export function getCollection(name: string) {
 
 export function clean(data: any) {
   if (Array.isArray(data)) {
-    data.forEach(item => {
+    data.forEach((item) => {
       delete item._id;
     });
   } else {

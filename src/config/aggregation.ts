@@ -1,32 +1,32 @@
-import { IAggregationConfig, IAggregationConfigElement } from '../types';
-import { debugUtil } from '../util/debug';
+import { IAggregationConfig, IAggregationConfigElement } from "../types";
+import { debugUtil } from "../util/debug";
 
-const path = require('path');
+const path = require("path");
 
-const find = require('find');
+const find = require("find");
 
-const debug = debugUtil('config:aggregation');
+const debug = debugUtil("config:aggregation");
 
 const dbConfig: IAggregationConfig = {};
 export const aggregationConfig = { aggregation: dbConfig };
 // eslint-disable-next-line import/no-dynamic-require
-const homeDir = require('./home').homeDir;
+const homeDir = require("./home").homeDir;
 
 if (homeDir) {
-  const aggregationDir = path.join(homeDir, 'aggregation');
-  var databases;
+  const aggregationDir = path.join(homeDir, "aggregation");
+  let databases;
   try {
     debug.trace(`Searching aggregation configurations in ${aggregationDir}`);
     databases = find.fileSync(/\.js$/, aggregationDir);
   } catch (e) {
-    debug.debug('No aggregation directory found');
+    debug.debug("No aggregation directory found");
   }
   databases = databases || [];
 
   for (const database of databases) {
-    let configPath = path.resolve(aggregationDir, database);
-    let parsedConfigPath = path.parse(configPath);
-    if (parsedConfigPath.ext !== '.js') {
+    const configPath = path.resolve(aggregationDir, database);
+    const parsedConfigPath = path.parse(configPath);
+    if (parsedConfigPath.ext !== ".js") {
       continue;
     }
 

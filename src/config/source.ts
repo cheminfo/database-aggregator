@@ -1,29 +1,29 @@
-'use strict';
-const path = require('path');
-const find = require('find');
+"use strict";
+const path = require("path");
+const find = require("find");
 
-import { ISourceConfig, ISourceConfigElement } from '../types';
-import { debugUtil } from '../util/debug';
+import { ISourceConfig, ISourceConfigElement } from "../types";
+import { debugUtil } from "../util/debug";
 
-const debug = debugUtil('config:source');
+const debug = debugUtil("config:source");
 
 const dbConfig: ISourceConfig = {};
 export const sourceConfig = { source: dbConfig };
 // eslint-disable-next-line import/no-dynamic-require
-const homeDir = require('./home').homeDir;
+const homeDir = require("./home").homeDir;
 
 if (!homeDir) {
-  debug.debug('no home dir');
+  debug.debug("no home dir");
 } else {
-  const sourceDir = path.join(homeDir, 'source');
+  const sourceDir = path.join(homeDir, "source");
 
   try {
     const databases = find.fileSync(/\.js$/, sourceDir);
     for (const database of databases) {
       let cfg;
-      let configPath = path.resolve(sourceDir, database);
-      let parsedConfigPath = path.parse(configPath);
-      if (parsedConfigPath.ext !== '.js') {
+      const configPath = path.resolve(sourceDir, database);
+      const parsedConfigPath = path.parse(configPath);
+      if (parsedConfigPath.ext !== ".js") {
         continue;
       }
 
@@ -32,10 +32,10 @@ if (!homeDir) {
         cfg = require(configPath);
       } catch (e) {
         console.error(
-          'could not open source config',
+          "could not open source config",
           configPath,
-          'with error',
-          e
+          "with error",
+          e,
         );
         continue;
       }
@@ -47,7 +47,7 @@ if (!homeDir) {
         debug.warn(
           `Skipping source config ${
             parsedConfigPath.name
-          } because driver is missing`
+          } because driver is missing`,
         );
         continue;
       }
@@ -55,7 +55,7 @@ if (!homeDir) {
       dbConfig[parsedConfigPath.name] = databaseConfig;
     }
   } catch (e) {
-    debug.error('there was an error reading the source config');
+    debug.error("there was an error reading the source config");
     debug.error(e);
     debug.error(e.stack);
   }

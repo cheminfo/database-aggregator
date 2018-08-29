@@ -1,12 +1,12 @@
-import { Schema } from 'mongoose';
+import { Schema } from "mongoose";
 
 export default new Schema({
   _id: {
     type: String,
-    required: true
+    required: true,
   },
   sourceSeq: {
     type: Object,
-    default: {}
-  }
+    default: {},
+  },
 });

@@ -1,17 +1,17 @@
-import { connect, disconnect } from '../../../test/mongoSetup';
-import { getCollection, getDriverPath, clean } from '../../../test/util';
-import { copy } from '../copy';
+import { connect, disconnect } from "../../../test/mongoSetup";
+import { clean, getCollection, getDriverPath } from "../../../test/util";
+import { copy } from "../copy";
 
 beforeAll(connect);
 afterAll(disconnect);
 
-describe('source copy', () => {
-  it('should copy the data', async () => {
-    const collection = getCollection('source_test');
+describe("source copy", () => {
+  it("should copy the data", async () => {
+    const collection = getCollection("source_test");
     const config = {
-      driver: getDriverPath('source-copy'),
+      driver: getDriverPath("source-copy"),
       driverValue: 2,
-      collection: 'test'
+      collection: "test",
     };
 
     await copy(config);
@@ -35,11 +35,11 @@ describe('source copy', () => {
     expect(clean(dataAfter)).toEqual(data);
   });
 
-  it('should allow copy with big id', async () => {
-    const collection = getCollection('source_test_big');
+  it("should allow copy with big id", async () => {
+    const collection = getCollection("source_test_big");
     const config = {
-      driver: getDriverPath('source-copy-big'),
-      collection: 'test_big'
+      driver: getDriverPath("source-copy-big"),
+      collection: "test_big",
     };
 
     await copy(config);

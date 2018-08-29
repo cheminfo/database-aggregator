@@ -2,76 +2,76 @@ import {
   connect,
   disconnect,
   dropDatabase,
-  insertData
-} from '../../../test/mongoSetup';
-const { getCollection, clean } = require('../../../test/util');
-import { remove } from '../remove';
+  insertData,
+} from "../../../test/mongoSetup";
+const { getCollection, clean } = require("../../../test/util");
+import { remove } from "../remove";
 
 beforeAll(connect);
 afterAll(disconnect);
 
-const collection = getCollection('source_test');
+const collection = getCollection("source_test");
 const config = {
   driver: {
     getIds(config) {
-      const data = ['test1', 'test3'];
-      if (config.type === 'set') return new Set(data);
+      const data = ["test1", "test3"];
+      if (config.type === "set") { return new Set(data); }
       return data;
     },
     getData() {
       // ignore
-    }
+    },
   },
-  collection: 'test'
+  collection: "test",
 };
 
 const testData = {
   // eslint-disable-next-line camelcase
   meta_source_sequence: [
     {
-      _id: 'test',
-      seq: 3
-    }
+      _id: "test",
+      seq: 3,
+    },
   ],
   // eslint-disable-next-line camelcase
   source_test: [
     {
-      id: 'test1',
-      commonID: 'test1',
+      id: "test1",
+      commonID: "test1",
       date: new Date(0),
       sequentialID: 1,
-      data: {}
+      data: {},
     },
     {
-      id: 'test2',
-      commonID: 'test2',
+      id: "test2",
+      commonID: "test2",
       date: new Date(0),
       sequentialID: 2,
-      data: {}
+      data: {},
     },
     {
-      id: 'test3',
-      commonID: 'test3',
+      id: "test3",
+      commonID: "test3",
       date: new Date(0),
       sequentialID: 3,
-      data: {}
-    }
-  ]
+      data: {},
+    },
+  ],
 };
 
-describe('source remove', () => {
+describe("source remove", () => {
   beforeEach(async () => {
     await dropDatabase();
     await insertData(testData);
   });
-  it('should ignore remove if threshold is too low', async () => {
+  it("should ignore remove if threshold is too low", async () => {
     await remove(config);
     const data = await collection.find().toArray();
     expect(data[1].data).toEqual({});
     expect(clean(data)).toMatchSnapshot();
   });
 
-  it('should remove if threshold is high enough', async () => {
+  it("should remove if threshold is high enough", async () => {
     await remove(Object.assign(config, { removeThreshold: 0.9 }));
     const data = await collection.find().toArray();
     expect(data[1].data).toBeNull();
@@ -79,8 +79,8 @@ describe('source remove', () => {
     expect(clean(data)).toMatchSnapshot();
   });
 
-  it('should remove when driver returns a set', async () => {
-    await remove(Object.assign(config, { type: 'set', removeThreshold: 0.9 }));
+  it("should remove when driver returns a set", async () => {
+    await remove(Object.assign(config, { type: "set", removeThreshold: 0.9 }));
     const data = await collection.find().toArray();
     expect(data[1].data).toBeNull();
     delete data[1].date;

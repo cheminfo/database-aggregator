@@ -23,7 +23,7 @@ export interface ISourceDriverConfig {
   getData: (
     config: ISourceConfigElement,
     callback: SourceDriverCallback,
-    meta: ISourceDriverMeta
+    meta: ISourceDriverMeta,
   ) => Promise<any>;
 }
 
@@ -56,7 +56,7 @@ export type IAggregationCallback = (
   data: ISourceEntry[],
   result: object,
   commonID: string,
-  ids: string[]
+  ids: string[],
 ) => undefined;
 
 export interface IObject<T> {

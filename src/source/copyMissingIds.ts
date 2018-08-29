@@ -1,14 +1,14 @@
-const chunk = require('lodash.chunk');
+const chunk = require("lodash.chunk");
 
-const model = require('../mongo/model');
-import { connect } from '../mongo/connection';
+const model = require("../mongo/model");
+import { connect } from "../mongo/connection";
 
-import { getDriver } from './getDriver';
-import { copyEntries } from './copyEntries';
-import { ISourceConfigElement } from '../types';
-import { debugUtil } from '../util/debug';
+import { ISourceConfigElement } from "../types";
+import { debugUtil } from "../util/debug";
+import { copyEntries } from "./copyEntries";
+import { getDriver } from "./getDriver";
 
-const debug = debugUtil('source:copyMissingIds');
+const debug = debugUtil("source:copyMissingIds");
 
 const MAX_ELEMENTS_ID_CLAUSE = 999;
 
@@ -32,11 +32,11 @@ export async function copyMissingIds(config: ISourceConfigElement) {
   const targetIds: Set<string> = new Set(
     (await Model.find({ data: { $ne: null } }, { id: 1 })
       .lean()
-      .exec()).map((t: any) => t.id)
+      .exec()).map((t: any) => t.id),
   );
   const idsToCopy = new Set();
 
-  for (let id of sourceIds) {
+  for (const id of sourceIds) {
     // add to list if exists in original source but not in copied source
     if (!targetIds.has(id)) {
       idsToCopy.add(id);
@@ -44,16 +44,16 @@ export async function copyMissingIds(config: ISourceConfigElement) {
   }
 
   const latest = await Model.findOne()
-    .sort('-date')
+    .sort("-date")
     .exec();
 
   debug.debug(`adding ${idsToCopy.size} missing entries`);
   const chunks = chunk([...idsToCopy], MAX_ELEMENTS_ID_CLAUSE);
 
-  for (let chunk of chunks) {
-    await driver.getData(config, data => copyEntries(data, config), {
-      latestDate: (latest && latest.date) || new Date('1900-01-01'),
-      ids: chunk
+  for (const chunk of chunks) {
+    await driver.getData(config, (data) => copyEntries(data, config), {
+      latestDate: (latest && latest.date) || new Date("1900-01-01"),
+      ids: chunk,
     });
   }
 }

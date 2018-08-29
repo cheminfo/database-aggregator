@@ -1,19 +1,19 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-import sourceSchema from '../schema/source';
-import aggregationSchema from '../schema/aggregation';
-import sourceSequenceSchema from '../schema/sourceSequence';
-import aggregationSequenceSchema from '../schema/aggregationSequence';
-import schedulerLogSchema from '../schema/schedulerLog';
+import aggregationSchema from "../schema/aggregation";
+import aggregationSequenceSchema from "../schema/aggregationSequence";
+import schedulerLogSchema from "../schema/schedulerLog";
+import sourceSchema from "../schema/source";
+import sourceSequenceSchema from "../schema/sourceSequence";
 
-import { hasCollection, dropCollection } from '../mongo/connection';
-import { Schema } from 'mongoose';
+import { Schema } from "mongoose";
+import { dropCollection, hasCollection } from "../mongo/connection";
 
 const models = new Map();
 
-const AGGREGATION = 'aggregation';
-const SOURCE = 'source';
-const META = 'meta';
+const AGGREGATION = "aggregation";
+const SOURCE = "source";
+const META = "meta";
 
 export function getSource(name: string) {
   return getModel(SOURCE, name, sourceSchema);
@@ -46,15 +46,15 @@ export function getAggregationIfExists(name: string) {
 }
 
 export function getSourceSequence() {
-  return getModel(META, 'source_sequence', sourceSequenceSchema);
+  return getModel(META, "source_sequence", sourceSequenceSchema);
 }
 
 export function getAggregationSequence() {
-  return getModel(META, 'aggregation_sequence', aggregationSequenceSchema);
+  return getModel(META, "aggregation_sequence", aggregationSequenceSchema);
 }
 
 export function getSchedulerLog() {
-  return getModel(META, 'scheduler_log', schedulerLogSchema);
+  return getModel(META, "scheduler_log", schedulerLogSchema);
 }
 
 function getModel(prefix: string, name: string, schema: Schema) {
@@ -77,7 +77,7 @@ async function getModelIfExists(prefix: string, name: string, schema: Schema) {
     return models.get(collName);
   } else {
     const hasCol = await hasCollection(collName);
-    if (!hasCol) return null;
+    if (!hasCol) { return null; }
     const model = mongoose.model(collName, schema, collName);
     models.set(collName, model);
     return model;

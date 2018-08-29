@@ -1,16 +1,16 @@
-import { ISourceDriverConfig } from '../types';
+import { ISourceDriverConfig } from "../types";
 
 export function getDriver(
-  driver: string | ISourceDriverConfig
+  driver: string | ISourceDriverConfig,
 ): ISourceDriverConfig {
   const driverModule = getDriverModule(driver);
-  if (typeof driverModule !== 'object' || driverModule === null) {
-    throw new TypeError('driver must be a string or object');
+  if (typeof driverModule !== "object" || driverModule === null) {
+    throw new TypeError("driver must be a string or object");
   }
 
-  if (typeof driverModule.getData !== 'function') {
+  if (typeof driverModule.getData !== "function") {
     throw new TypeError(`driver must provide a method named "getData"`);
-  } else if (typeof driverModule.getIds !== 'function') {
+  } else if (typeof driverModule.getIds !== "function") {
     throw new TypeError(`driver must provide a method named "getIds"`);
   }
 
@@ -18,14 +18,14 @@ export function getDriver(
 }
 
 function getDriverModule(
-  driver: string | ISourceDriverConfig
+  driver: string | ISourceDriverConfig,
 ): ISourceDriverConfig {
-  if (typeof driver === 'string') {
+  if (typeof driver === "string") {
     let driverLocation;
-    if (!driver.includes('/')) {
+    if (!driver.includes("/")) {
       try {
         driverLocation = require.resolve(
-          `database-aggregator-driver-${driver}`
+          `database-aggregator-driver-${driver}`,
         );
       } catch (e) {
         // ignore
@@ -41,8 +41,8 @@ function getDriverModule(
 
     // eslint-disable-next-line import/no-dynamic-require
     const driverModule: ISourceDriverConfig = require(driverLocation);
-    if (typeof driverModule !== 'object' || driverModule === null) {
-      throw new TypeError('driver module must be an object');
+    if (typeof driverModule !== "object" || driverModule === null) {
+      throw new TypeError("driver module must be an object");
     }
     return driverModule;
   } else {
