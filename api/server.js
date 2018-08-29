@@ -21,9 +21,21 @@ const path = require('path');
 
 const { Ignitor } = require('@adonisjs/ignitor');
 
-process.env.PORT = require('../src/config/config').globalConfig.port;
+const config = require('../src/config/config').globalConfig;
+
+process.env.PORT = config.port;
+
+function httpServerCallback(server) {
+  let instance;
+  if (config.ssl) {
+    instance = require('https').createServer(config.ssl, server);
+  } else {
+    instance = require('http').createServer(server);
+  }
+  return instance;
+}
 
 new Ignitor(require('@adonisjs/fold'))
   .appRoot(path.join(__dirname))
-  .fireHttpServer()
+  .fireHttpServer(httpServerCallback)
   .catch(console.error);
