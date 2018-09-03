@@ -17,8 +17,8 @@ const COPY_ID = 'source_copy_';
 const COPY_MISSING_ID = 'source_copy_missing_ids_';
 
 let hasStarted = false;
-let resolveScheduler: (scheduler: any) => any;
-const schedulerPromise: Promise<any> = new Promise(resolve => {
+let resolveScheduler: (scheduler: ProcessScheduler) => any;
+const schedulerPromise: Promise<ProcessScheduler> = new Promise(resolve => {
   resolveScheduler = resolve;
 });
 
