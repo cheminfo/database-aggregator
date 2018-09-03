@@ -18,7 +18,7 @@ const COPY_MISSING_ID = 'source_copy_missing_ids_';
 
 let hasStarted = false;
 let resolveScheduler: (scheduler: ProcessScheduler) => any;
-const schedulerPromise: Promise<ProcessScheduler> = new Promise(resolve => {
+const schedulerPromise: Promise<ProcessScheduler> = new Promise((resolve) => {
   resolveScheduler = resolve;
 });
 
@@ -89,7 +89,7 @@ export async function start() {
   }
 
   function setDeps(name: string, aggId: string) {
-    const scheduleRule = scheduleDefinition.find(s => s.id === name);
+    const scheduleRule = scheduleDefinition.find((s) => s.id === name);
     if (scheduleRule) {
       scheduleRule.deps.push(aggId);
       scheduleRule.noConcurrency.push(aggId);

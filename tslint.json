@@ -7,7 +7,8 @@
     "object-literal-sort-keys": false,
     "quotemark": [true, "single"],
     "ordered-imports": false,
-    "no-var-requires": false
+    "no-var-requires": false,
+    "arrow-parens": true
   },
   "rulesDirectory": []
 }

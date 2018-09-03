@@ -12,7 +12,7 @@ export function getCollection(name: string) {
 
 export function clean(data: any) {
   if (Array.isArray(data)) {
-    data.forEach((item) => {
+    data.forEach(item => {
       delete item._id;
     });
   } else {

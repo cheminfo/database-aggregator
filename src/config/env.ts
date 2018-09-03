@@ -7,7 +7,7 @@ for (const name in process.env) {
     const realName = name
       .substring(prefix.length)
       .toLowerCase()
-      .replace(/_([a-z])/g, value => {
+      .replace(/_([a-z])/g, (value) => {
         return value[1].toUpperCase();
       });
     envConfig[realName] = process.env[name];

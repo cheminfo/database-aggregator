@@ -51,7 +51,7 @@ export async function copyMissingIds(config: ISourceConfigElement) {
   const chunks = chunkLib([...idsToCopy], MAX_ELEMENTS_ID_CLAUSE);
 
   for (const chunk of chunks) {
-    await driver.getData(config, data => copyEntries(data, config), {
+    await driver.getData(config, (data) => copyEntries(data, config), {
       latestDate: (latest && latest.date) || new Date('1900-01-01'),
       ids: chunk
     });

@@ -46,7 +46,7 @@ export async function aggregate(conf: IAggregationConfigElement) {
         lastCid ? lastCid.sequentialID : 0,
         lastSourceSeq ? lastSourceSeq.sequentialID : 0
       );
-      const cids = ids.map(cid => cid.commonID);
+      const cids = ids.map((cid) => cid.commonID);
       commonIds = commonIds.concat(cids);
     }
 
@@ -120,10 +120,10 @@ async function aggregateValue(
       accept = await Promise.resolve(
         filter[key].call(
           null,
-          data[key].map(d => d.data),
+          data[key].map((d) => d.data),
           result,
           commonId,
-          data[key].map(d => d.id)
+          data[key].map((d) => d.id)
         )
       );
 

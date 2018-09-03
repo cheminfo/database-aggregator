@@ -35,7 +35,7 @@ if (sources.length === 0) {
       console.log('finished');
       return 0;
     },
-    e => {
+    (e) => {
       console.error(e);
       return 1;
     }
