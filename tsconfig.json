@@ -1,0 +1,13 @@
+{
+  "include": ["./src/**/*", "./bin/**/*"],
+  "exclude": ["./src/**/__tests__"],
+  "compilerOptions": {
+    "outDir": "./lib",
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "noImplicitAny": true
+  }
+}

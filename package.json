@@ -7,28 +7,38 @@
     "test": "test"
   },
   "files": [
-    "bin",
-    "src"
+    "lib",
+    "lib-es6"
   ],
   "bin": {
-    "database-aggregator": "./bin/database-aggregator.js"
+    "database-aggregator": "./lib/bin/database-aggregator.js"
   },
   "scripts": {
-    "eslint": "eslint bin examples src test",
-    "eslint-fix": "npm run eslint -- --fix",
-    "test": "npm run test-only && npm run eslint",
+    "test": "npm run test-only && npm run tslint",
     "test-coverage": "jest --runInBand --coverage",
-    "test-only": "jest --runInBand"
+    "test-only": "jest --runInBand",
+    "clean": "rimraf lib",
+    "tsc": "npm run clean && tsc",
+    "tslint": "tslint --project tsconfig.json",
+    "tslint-fix": "npm run tslint -- --fix"
   },
   "jest": {
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "<rootDir>/test/"
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
     ],
     "setupFiles": [
-      "./test/setup.js"
-    ],
-    "testEnvironment": "node"
+      "./test/setup.ts"
+    ]
   },
   "repository": {
     "type": "git",
@@ -48,21 +58,26 @@
     "@adonisjs/fold": "^4.0.9",
     "@adonisjs/framework": "^5.0.8",
     "@adonisjs/ignitor": "^2.0.7",
+    "@types/mongoose": "^5.2.9",
     "debug": "^3.1.0",
     "find": "^0.2.9",
     "is-running": "^2.1.0",
     "lodash.chunk": "^4.2.0",
     "lodash.isequal": "^4.5.0",
     "make-promises-safe": "^1.1.0",
-    "mongoose": "^5.2.9",
-    "process-scheduler": "^0.1.1"
+    "mongoose": "^5.2.12",
+    "process-scheduler": "^0.2.0"
   },
   "devDependencies": {
-    "eslint": "^5.4.0",
-    "eslint-config-cheminfo": "^1.18.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^21.21.0",
+    "@types/debug": "0.0.30",
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.7.1",
     "jest": "^23.5.0",
-    "js-yaml": "^3.12.0"
+    "js-yaml": "^3.12.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.0.1"
   }
 }
