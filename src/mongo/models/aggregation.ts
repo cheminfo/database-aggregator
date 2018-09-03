@@ -6,9 +6,9 @@ const debug = debugUtil('model:aggregation');
 export function save(name: string, data: IAggregationEntry) {
   debug.trace(`save to ${name}: ${data.id}`);
   const Model = getAggregation(name);
-  return Model.update({ id: data.id }, data, {
+  return Model.updateOne({ id: data.id }, data, {
     new: true,
-    upsert: true,
+    upsert: true
   }).exec();
 }
 

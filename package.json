@@ -58,14 +58,14 @@
     "@adonisjs/fold": "^4.0.9",
     "@adonisjs/framework": "^5.0.8",
     "@adonisjs/ignitor": "^2.0.7",
-    "@types/mongoose": "^5.2.7",
+    "@types/mongoose": "^5.2.9",
     "debug": "^3.1.0",
     "find": "^0.2.9",
     "is-running": "^2.1.0",
     "lodash.chunk": "^4.2.0",
     "lodash.isequal": "^4.5.0",
     "make-promises-safe": "^1.1.0",
-    "mongoose": "^5.2.9",
+    "mongoose": "^5.2.12",
     "process-scheduler": "^0.2.0"
   },
   "devDependencies": {

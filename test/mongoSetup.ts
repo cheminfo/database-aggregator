@@ -12,7 +12,9 @@ const readFileAsync = promisify(readFile);
 const mongoURL = 'mongodb://localhost:27017/__database-aggregator-test-db';
 
 export async function connect() {
-  await mongooseConnect(mongoURL, { useNewUrlParser: true });
+  await mongooseConnect(mongoURL, {
+    useNewUrlParser: true
+  });
   await connection.db.dropDatabase();
 }
 

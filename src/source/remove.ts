@@ -47,7 +47,7 @@ export async function remove(options: ISourceConfigElement) {
 
   for (const id of idsToDelete) {
     debug.trace(`delete ${id} from ${collection}`);
-    await Model.update(
+    await Model.updateOne(
       { id },
       {
         $set: {
