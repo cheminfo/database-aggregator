@@ -19,7 +19,7 @@
     "test-only": "jest --runInBand",
     "clean": "rimraf lib",
     "tsc": "npm run clean && tsc",
-    "tslint": "tslint --project tsconfig.base.json",
+    "tslint": "tslint --project tsconfig.json",
     "tslint-fix": "npm run tslint -- --fix"
   },
   "jest": {
@@ -51,7 +51,6 @@
   },
   "homepage": "https://github.com/cheminfo/database-aggregator#readme",
   "dependencies": {
-    "@types/mongoose": "^5.2.7",
     "@adonisjs/ace": "^5.0.4",
     "@adonisjs/auth": "^3.0.6",
     "@adonisjs/bodyparser": "^2.0.4",
@@ -59,6 +58,7 @@
     "@adonisjs/fold": "^4.0.9",
     "@adonisjs/framework": "^5.0.8",
     "@adonisjs/ignitor": "^2.0.7",
+    "@types/mongoose": "^5.2.7",
     "debug": "^3.1.0",
     "find": "^0.2.9",
     "is-running": "^2.1.0",
@@ -66,7 +66,7 @@
     "lodash.isequal": "^4.5.0",
     "make-promises-safe": "^1.1.0",
     "mongoose": "^5.2.9",
-    "process-scheduler": "^0.1.1"
+    "process-scheduler": "^0.2.0"
   },
   "devDependencies": {
     "@types/debug": "0.0.30",

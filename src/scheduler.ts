@@ -6,7 +6,7 @@ import { connect } from './mongo/connection';
 import { save } from './mongo/models/schedulerLog';
 import { debugUtil } from './util/debug';
 
-const ProcessScheduler = require('process-scheduler');
+import { ProcessScheduler } from 'process-scheduler';
 const debug = debugUtil('bin:schedule');
 
 const sources = Object.keys(config.source);
