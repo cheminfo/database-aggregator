@@ -27,7 +27,7 @@ export interface ISourceDriverConfig {
     config: ISourceConfigElement,
     callback: SourceDriverCallback,
     meta: ISourceDriverMeta
-  ) => Promise<any>;
+  ) => Promise<void>;
 }
 
 export interface ISourceConfigElement {
