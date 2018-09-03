@@ -35,18 +35,18 @@ export async function aggregate(conf: IAggregationConfigElement) {
     // Iterate over dependees
     for (const sourceName of sourceNames) {
       const firstSeqId = seqIds[sourceName] || 0;
-      const lastSeqId = firstSeqId + chunkSize;
       const lastSourceSeq = await getLastSeqId(sourceName);
-      maxSeqIds[sourceName] = Math.min(
-        lastSeqId,
-        lastSourceSeq ? lastSourceSeq.sequentialID : 0
-      );
-      const cidBases: ISourceBase[] = await getCommonIds(
+      const ids: ISourceBase[] = await getCommonIds(
         sourceName,
         firstSeqId,
-        lastSeqId
+        chunkSize
       );
-      const cids = cidBases.map(commonId => commonId.commonID);
+      const lastCid = ids[ids.length - 1];
+      maxSeqIds[sourceName] = Math.min(
+        lastCid ? lastCid.sequentialID : 0,
+        lastSourceSeq ? lastSourceSeq.sequentialID : 0
+      );
+      const cids = ids.map(cid => cid.commonID);
       commonIds = commonIds.concat(cids);
     }
 

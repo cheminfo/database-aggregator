@@ -22,7 +22,7 @@ const schedulerPromise: Promise<any> = new Promise(resolve => {
   resolveScheduler = resolve;
 });
 
-async function start() {
+export async function start() {
   if (hasStarted) {
     return;
   }
@@ -111,12 +111,7 @@ async function start() {
   resolveScheduler(scheduler);
 }
 
-async function triggerTask(taskId: string) {
+export async function triggerTask(taskId: string) {
   const scheduler = await schedulerPromise;
   scheduler.trigger(taskId);
 }
-
-module.exports = {
-  start,
-  triggerTask
-};

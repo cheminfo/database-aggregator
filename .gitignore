@@ -36,3 +36,4 @@ node_modules
 
 lib
 lib-es6
+.env

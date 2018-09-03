@@ -3,18 +3,26 @@ import { getSource } from '../model';
 
 const debug = debugUtil('model:source');
 
-export function getCommonIds(name: string, fromSeq: number, toSeq: number) {
+export function getCommonIds(
+  name: string,
+  fromSeq: number,
+  chunkSize?: number
+) {
   debug.trace(`getCommonIds for source ${name} from seq ${fromSeq}`);
   fromSeq = fromSeq || 0;
   const Model = getSource(name);
-  return Model.find({
+  const query = {
     sequentialID: {
-      $gt: fromSeq,
-      $lte: toSeq,
-    },
-  })
-    .select({ commonID: 1, sequentialID: 1 })
-    .exec();
+      $gt: fromSeq
+    }
+  };
+
+  const find = Model.find(query).select({ commonID: 1, sequentialID: 1 });
+  if (chunkSize !== undefined) {
+    find.limit(chunkSize);
+  }
+  find.sort({ sequentialID: 1 });
+  return find.exec();
 }
 
 export function getLastSeqId(name: string) {
