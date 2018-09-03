@@ -17,10 +17,8 @@
     "test": "npm run test-only && npm run tslint",
     "test-coverage": "jest --runInBand --coverage",
     "test-only": "jest --runInBand",
-    "clean": "rimraf lib lib-es6",
-    "tsc": "npm run clean && npm run tsc-es5 && npm run tsc-es6",
-    "tsc-es5": "tsc",
-    "tsc-es6": "tsc --project tsconfig.es6.json",
+    "clean": "rimraf lib",
+    "tsc": "npm run clean && tsc",
     "tslint": "tslint --project tsconfig.base.json",
     "tslint-fix": "npm run tslint -- --fix"
   },

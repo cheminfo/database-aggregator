@@ -35,5 +35,4 @@ node_modules
 .idea
 
 lib
-lib-es6
 .env
