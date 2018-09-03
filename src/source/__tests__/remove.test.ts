@@ -20,6 +20,9 @@ const config = {
         return new Set(data);
       }
       return data;
+    },
+    getData: (x, y, z) => {
+      // void
     }
   },
   collection: 'test'
