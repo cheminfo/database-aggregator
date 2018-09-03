@@ -6,7 +6,8 @@
     "no-console": false,
     "object-literal-sort-keys": false,
     "quotemark": [true, "single"],
-    "ordered-imports": false
+    "ordered-imports": false,
+    "no-var-requires": false
   },
   "rulesDirectory": []
 }

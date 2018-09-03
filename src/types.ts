@@ -8,7 +8,10 @@ export interface IConfig {
   source: ISourceConfig;
   aggregation: IAggregationConfig;
   homeDir: string;
-  ssl?: boolean;
+  ssl?: {
+    key: string;
+    cert: string;
+  };
 }
 
 export interface ISourceDriverMeta {

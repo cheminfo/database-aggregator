@@ -12,21 +12,18 @@ beforeAll(connect);
 afterAll(disconnect);
 
 const collection = getCollection('source_test');
-const config: ISourceConfigElement = {
+const config = {
   driver: {
-    getIds(sourceConfig) {
+    getIds: sourceConfig => {
       const data = ['test1', 'test3'];
       if (sourceConfig.type === 'set') {
         return new Set(data);
       }
       return data;
-    },
-    getData(sourceConfig, () => {}) {
-      // ignore
     }
   },
   collection: 'test'
-};
+} as ISourceConfigElement;
 
 const testData = {
   meta_source_sequence: [

@@ -2,7 +2,11 @@
 
 import { globalConfig as config } from '../src/config/config';
 import { connect } from '../src/mongo/connection';
-require('make-promises-safe');
+import * as https from 'https';
+import * as http from 'http';
+
+import 'make-promises-safe';
+
 const app = require('../src/api/server');
 import { debugUtil } from '../src/util/debug';
 
@@ -13,15 +17,11 @@ connect(); // Connect to mongodb database
 start(); // Start the scheduler
 
 if (config.ssl) {
-  require('https')
-    .createServer(config.ssl, app.callback())
-    .listen(config.port, () => {
-      debug.warn(`running on https://localhost:${config.port}`);
-    });
+  https.createServer(config.ssl, app.callback()).listen(config.port, () => {
+    debug.warn(`running on https://localhost:${config.port}`);
+  });
 } else {
-  require('http')
-    .createServer(app.callback())
-    .listen(config.port, () => {
-      debug.warn(`running on http://localhost:${config.port}`);
-    });
+  http.createServer(app.callback()).listen(config.port, () => {
+    debug.warn(`running on http://localhost:${config.port}`);
+  });
 }
