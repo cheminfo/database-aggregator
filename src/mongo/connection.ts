@@ -26,7 +26,7 @@ export async function disconnect() {
 export async function hasCollection(colName: string) {
   await connect();
   let collections = await connection.db.listCollections().toArray();
-  collections = collections.map(((col) => col.name);
+  collections = collections.map((col) => col.name);
   return collections.indexOf(colName) > -1;
 }
 
