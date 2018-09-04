@@ -21,7 +21,7 @@ const path = require('path');
 
 const { Ignitor } = require('@adonisjs/ignitor');
 
-const config = require('../src/config/config').globalConfig;
+const config = require('../lib/src/config/config').globalConfig;
 
 process.env.HOST = '0.0.0.0';
 process.env.PORT = config.port;

@@ -3,6 +3,6 @@
   "name": "database-aggregator-api",
   "autoload": {
     "App": "./app",
-    "Src": "../src"
+    "Src": "../lib/src"
   }
 }
