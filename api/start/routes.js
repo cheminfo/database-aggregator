@@ -13,6 +13,7 @@
 |
 */
 
+const Helpers = use('Helpers');
 const Router = use('Route');
 
 Router.group(() => {
@@ -24,3 +25,8 @@ Router.group(() => {
 Router.group(() => {
   Router.get('id/:id', 'DbController.getDataById');
 }).prefix('db/:name');
+
+Router.any('*', ({ response }) => {
+  const pathToDist = Helpers.publicPath('dist');
+  return response.download(pathToDist);
+});
