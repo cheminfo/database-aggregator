@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "database-aggregator",
   "version": "2.0.0",
   "description": "A database aggregator",
@@ -6,6 +7,7 @@
     "test": "test"
   },
   "files": [
+    "api",
     "lib",
     "src/types.ts"
   ],
@@ -14,10 +16,15 @@
     "database-aggregator": "./lib/bin/database-aggregator.js"
   },
   "scripts": {
+    "clean": "rimraf lib",
+    "front:build": "cd front && npm run build",
+    "front:install": "cd front && npm install",
+    "front:start": "cd front && npm start",
+    "prepare": "npm run front:install",
+    "prepublishOnly": "npm run front:build",
     "test": "npm run test-only && npm run tslint",
     "test-coverage": "jest --runInBand --coverage",
     "test-only": "jest --runInBand",
-    "clean": "rimraf lib",
     "tsc": "npm run clean && tsc",
     "tslint": "tslint --project tsconfig.json",
     "tslint-fix": "npm run tslint -- --fix"
