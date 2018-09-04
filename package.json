@@ -2,14 +2,14 @@
   "name": "database-aggregator",
   "version": "2.0.0",
   "description": "A database aggregator",
-  "main": "src/index.js",
   "directories": {
     "test": "test"
   },
   "files": [
     "lib",
-    "lib-es6"
+    "src/types.ts"
   ],
+  "types": "src/types.ts",
   "bin": {
     "database-aggregator": "./lib/bin/database-aggregator.js"
   },
