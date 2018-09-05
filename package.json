@@ -16,7 +16,7 @@
     "database-aggregator": "./lib/bin/database-aggregator.js"
   },
   "scripts": {
-    "back:start": "cross-env DATABASE_AGGREGATOR_HOME_DIR=test/devHomeDir nodemon api/server.js",
+    "back:start": "cross-env DATABASE_AGGREGATOR_HOME_DIR=test/devHomeDir nodemon --ignore src/ --ignore front/ api/server.js",
     "clean": "rimraf lib",
     "front:build": "cd front && npm run build",
     "front:install": "cd front && npm install",
