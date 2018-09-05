@@ -14,9 +14,9 @@ afterAll(disconnect);
 const collection = getCollection('source_test');
 const config = {
   driver: {
-    getIds: sourceConfig => {
+    getIds: (driverConfig) => {
       const data = ['test1', 'test3'];
-      if (sourceConfig.type === 'set') {
+      if (driverConfig.type === 'set') {
         return new Set(data);
       }
       return data;
@@ -25,6 +25,7 @@ const config = {
       // void
     }
   },
+  driverConfig: {},
   collection: 'test'
 } as ISourceConfigElement;
 
@@ -81,7 +82,12 @@ describe('source remove', () => {
   });
 
   it('should remove when driver returns a set', async () => {
-    await remove(Object.assign(config, { type: 'set', removeThreshold: 0.9 }));
+    await remove(
+      Object.assign(config, {
+        driverConfig: { type: 'set' },
+        removeThreshold: 0.9
+      })
+    );
     const data = await collection.find().toArray();
     expect(data[1].data).toBeNull();
     delete data[1].date;

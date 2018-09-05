@@ -21,17 +21,18 @@ export interface ISourceDriverMeta {
 
 export type SourceDriverCallback = (data: ISourceDriverEntry[]) => any;
 
-export interface ISourceDriverConfig {
-  getIds: (config: ISourceConfigElement) => string[] | Set<string>;
+export interface ISourceDriverConfig<DriverConfig = any> {
+  getIds: (config: DriverConfig) => string[] | Set<string>;
   getData: (
-    config: ISourceConfigElement,
+    config: DriverConfig,
     callback: SourceDriverCallback,
     meta: ISourceDriverMeta
   ) => Promise<void>;
 }
 
-export interface ISourceConfigFile {
-  driver: string | ISourceDriverConfig;
+export interface ISourceConfigFile<DriverConfigType = any> {
+  driver: string | ISourceDriverConfig<DriverConfigType>;
+  driverConfig: DriverConfigType;
   disabled?: boolean;
   version?: number;
   removeThreshold?: number;
@@ -39,7 +40,6 @@ export interface ISourceConfigFile {
   copyCronRule?: string;
   removeCronRule?: string;
   migration?: () => Promise<void>;
-  [key: string]: any;
 }
 
 export interface ISourceConfigElement extends ISourceConfigFile {
@@ -52,10 +52,10 @@ export type IAggregationConfig = IObject<IAggregationConfigElement>;
 
 export interface IAggregationConfigFile<
   SourceDataType = any,
-  AggregationResult = any
+  AggregationResultType = any
 > {
   sources: {
-    [key: string]: IAggregationCallback<SourceDataType, AggregationResult>;
+    [key: string]: IAggregationCallback<SourceDataType, AggregationResultType>;
   };
   disabled?: boolean;
   chunkSize?: number;

@@ -18,7 +18,7 @@ const MAX_ELEMENTS_ID_CLAUSE = 999;
 export async function copyMissingIds(config: ISourceConfigElement) {
   const driver = getDriver(config.driver);
 
-  let sourceIds = await driver.getIds(config);
+  let sourceIds = await driver.getIds(config.driverConfig);
   if (!(sourceIds instanceof Set)) {
     sourceIds = new Set(sourceIds);
   }
@@ -51,9 +51,13 @@ export async function copyMissingIds(config: ISourceConfigElement) {
   const chunks = chunkLib([...idsToCopy], MAX_ELEMENTS_ID_CLAUSE);
 
   for (const chunk of chunks) {
-    await driver.getData(config, (data) => copyEntries(data, config), {
-      latestDate: (latest && latest.date) || new Date('1900-01-01'),
-      ids: chunk
-    });
+    await driver.getData(
+      config.driverConfig,
+      (data) => copyEntries(data, config),
+      {
+        latestDate: (latest && latest.date) || new Date('1900-01-01'),
+        ids: chunk
+      }
+    );
   }
 }

@@ -10,8 +10,10 @@ describe('source copy', () => {
     const collection = getCollection('source_test');
     const config = {
       driver: getDriverPath('source-copy'),
-      driverValue: 2,
-      collection: 'test',
+      driverConfig: {
+        driverValue: 2
+      },
+      collection: 'test'
     };
 
     await copy(config);
@@ -39,7 +41,7 @@ describe('source copy', () => {
     const collection = getCollection('source_test_big');
     const config = {
       driver: getDriverPath('source-copy-big'),
-      collection: 'test_big',
+      collection: 'test_big'
     };
 
     await copy(config);

@@ -2,6 +2,8 @@
 
 module.exports = {
   driver: 'driverXYZ',
-  param1: 1,
-  param2: 2
+  driverConfig: {
+    param1: 1,
+    param2: 2
+  }
 };

@@ -14,14 +14,14 @@ afterAll(disconnect);
 const collection = getCollection('source_test');
 const config: ISourceConfigElement = {
   driver: {
-    getIds(sourceConfig) {
+    getIds(driverConfig) {
       const data = ['test1', 'test2', 'test3'];
-      if (sourceConfig.type === 'set') {
+      if (driverConfig.type === 'set') {
         return new Set(data);
       }
       return data;
     },
-    getData(sourceConfig, callback, options) {
+    getData(driverConfig, callback, options) {
       if (!options.ids) {
         throw new Error('unexpected');
       }
@@ -38,6 +38,7 @@ const config: ISourceConfigElement = {
       ]);
     }
   },
+  driverConfig: {},
   collection: 'test'
 };
 
@@ -81,7 +82,9 @@ describe('source copyMissingIds', () => {
   });
 
   it('should copy missing entries when driver returns a set', async () => {
-    await copyMissingIds(Object.assign(config, { type: 'set' }));
+    await copyMissingIds(
+      Object.assign(config, { driverConfig: { type: 'set' } })
+    );
     const data = await collection.find().toArray();
     expect(data[2].data).toEqual({ test: 3 });
     expect(clean(data)).toMatchSnapshot();

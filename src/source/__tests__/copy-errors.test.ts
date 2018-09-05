@@ -19,8 +19,10 @@ const driver = {
 function getEntryCopy(entry) {
   return copy({
     driver,
-    collection: 'test',
-    entry
+    driverConfig: {
+      entry
+    },
+    collection: 'test'
   });
 }
 

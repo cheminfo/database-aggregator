@@ -8,16 +8,16 @@ import { getDriver } from './getDriver';
 
 const debug = debugUtil('source:remove');
 
-export async function remove(options: ISourceConfigElement) {
-  const driver = getDriver(options.driver);
+export async function remove(config: ISourceConfigElement) {
+  const driver = getDriver(config.driver);
 
   // Get complete list of source Ids
-  let sourceIds = await driver.getIds(options);
+  let sourceIds = await driver.getIds(config.driverConfig);
   if (!(sourceIds instanceof Set)) {
     sourceIds = new Set(sourceIds);
   }
 
-  const collection = options.collection;
+  const collection = config.collection;
   const Model = getSource(collection);
 
   await connect();
@@ -35,7 +35,7 @@ export async function remove(options: ISourceConfigElement) {
     }
   }
   const removeThreshold =
-    options.removeThreshold === undefined ? 0.01 : options.removeThreshold;
+    config.removeThreshold === undefined ? 0.01 : config.removeThreshold;
   const percentToDelete = idsToDelete.size / copiedIds.length;
   if (percentToDelete > removeThreshold) {
     debug.warn(

@@ -31,18 +31,29 @@ test('load configuration', () => {
       // eslint-disable-next-line camelcase
       test1_001: {
         driver: 'driverXYZ',
-        param1: 10,
-        param2: 20,
+        driverConfig: {
+          param1: 10,
+          param2: 20
+        },
         collection: 'test1_001'
       },
       // eslint-disable-next-line camelcase
       test2_001: {
         driver: 'driverXYZ',
-        param1: 100,
-        param2: 200,
+        driverConfig: {
+          param1: 100,
+          param2: 200
+        },
         collection: 'test2_001'
       },
-      test0: { driver: 'driverXYZ', param1: 1, param2: 2, collection: 'test0' }
+      test0: {
+        driver: 'driverXYZ',
+        driverConfig: {
+          param1: 1,
+          param2: 2
+        },
+        collection: 'test0'
+      }
     },
     // Environment variables
     customProp: 'test custom prop'
