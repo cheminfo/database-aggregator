@@ -14,7 +14,6 @@ const { resolve } = require('path');
 */
 const providers = [
   '@adonisjs/framework/providers/AppProvider',
-  // '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/bodyparser/providers/BodyParserProvider',
   '@adonisjs/cors/providers/CorsProvider',
   resolve(__dirname, '../providers/mongoose/MongooseProvider')

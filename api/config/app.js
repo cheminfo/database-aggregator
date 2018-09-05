@@ -27,6 +27,8 @@ module.exports = {
   */
   appKey: Env.get('APP_KEY'),
 
+  nodeEnv: Env.get('NODE_ENV', 'production'),
+
   http: {
     /*
     |--------------------------------------------------------------------------

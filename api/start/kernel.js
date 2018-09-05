@@ -1,5 +1,6 @@
 'use strict';
 
+const Config = use('Config');
 const Server = use('Server');
 
 /*
@@ -44,7 +45,11 @@ const namedMiddleware = {
 | control over request lifecycle.
 |
 */
-const serverMiddleware = ['Adonis/Middleware/Static', 'Adonis/Middleware/Cors'];
+const serverMiddleware = ['Adonis/Middleware/Static'];
+
+if (Config.get('app.nodeEnv') === 'development') {
+  serverMiddleware.push('Adonis/Middleware/Cors');
+}
 
 Server.registerGlobal(globalMiddleware)
   .registerNamed(namedMiddleware)
