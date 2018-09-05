@@ -17,7 +17,7 @@ export function getConfig(customConfig?: any): IConfig {
     aggregationConfig,
     sourceConfig,
     envConfig,
-    customConfig,
+    customConfig
   );
 }
 
