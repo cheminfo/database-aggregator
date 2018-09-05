@@ -1,17 +1,17 @@
 import React from 'react';
 
+import CardTag from './CardTag';
+
 export default function AggregationTask(props) {
   const { task } = props;
   return (
     <div>
       <div className="font-bold text-xl mb-2">{task.collection}</div>
       <div>
-        <div className="font-bold mb-2">Sources</div>
-        <ul>
-          {task.sources.map((source) => (
-            <li key={source}>{source}</li>
-          ))}
-        </ul>
+        <span className="font-bold mr-3">Sources:</span>
+        {task.sources.map((source) => (
+          <CardTag key={source} value={source} />
+        ))}
       </div>
     </div>
   );
