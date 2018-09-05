@@ -6,7 +6,7 @@ export default class DashboardContent extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
-      tasks: []
+      tasks: null
     };
   }
 
@@ -18,14 +18,21 @@ export default class DashboardContent extends Component {
 
   render() {
     const { tasks } = this.state;
-    if (tasks.length === 0) {
-      return <p>No tasks</p>;
+    if (tasks === null) {
+      return <p>Loading</p>;
     } else {
       return (
         <div>
+          <h3>Aggregations</h3>
           <ul>
-            {tasks.map((task) => (
-              <li key={task.id}>{task.name}</li>
+            {tasks.aggregations.map((task) => (
+              <li key={task.collection}>{task.collection}</li>
+            ))}
+          </ul>
+          <h3>Sources</h3>
+          <ul>
+            {tasks.sources.map((task) => (
+              <li key={task.collection}>{task.collection}</li>
             ))}
           </ul>
         </div>
