@@ -4,9 +4,9 @@ export default function SourceTask(props) {
   const { task } = props;
   return (
     <div>
-      <h4>{task.collection}</h4>
+      <div className="font-bold text-xl mb-2">{task.collection}</div>
       <div>
-        <h5>Cron rules</h5>
+        <div className="font-bold mb-2">Cron rules</div>
         <ul>
           <li>Copy: {task.copyCronRule}</li>
           <li>Copy missing: {task.copyMissingIdsCronRule}</li>

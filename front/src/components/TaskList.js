@@ -4,6 +4,7 @@ import { axios } from '../axios';
 
 import AggregationTask from './AggregationTask';
 import SourceTask from './SourceTask';
+import TaskCard from './TaskCard';
 
 export default class DashboardContent extends Component {
   constructor(...args) {
@@ -26,18 +27,30 @@ export default class DashboardContent extends Component {
     } else {
       return (
         <section>
-          <h2>Task list</h2>
-          <h3>Aggregations</h3>
-          <div>
-            {tasks.aggregations.map((task) => (
-              <AggregationTask key={task.collection} task={task} />
-            ))}
-          </div>
-          <h3>Sources</h3>
-          <div>
-            {tasks.sources.map((task) => (
-              <SourceTask key={task.collection} task={task} />
-            ))}
+          <h2 className="text-center mb-10">Task list</h2>
+          <div className="flex w-full">
+            <div className="flex-1">
+              <div className="text-center text-2xl font-bold mb-6">Sources</div>
+              <div>
+                {tasks.sources.map((task) => (
+                  <TaskCard key={task.collection}>
+                    <SourceTask task={task} />
+                  </TaskCard>
+                ))}
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="text-center text-2xl font-bold mb-6">
+                Aggregations
+              </div>
+              <div>
+                {tasks.aggregations.map((task) => (
+                  <TaskCard key={task.collection}>
+                    <AggregationTask task={task} />
+                  </TaskCard>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
       );

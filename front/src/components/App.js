@@ -7,9 +7,11 @@ import Header from './Header';
 class App extends Component {
   render() {
     return (
-      <div className="m-3">
+      <div>
         <Header />
-        <Route exact path="/" component={TaskList} />
+        <div className="w-full max-w-3xl m-auto px-4 pt-4">
+          <Route exact path="/" component={TaskList} />
+        </div>
       </div>
     );
   }
