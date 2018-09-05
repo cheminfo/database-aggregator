@@ -24,5 +24,8 @@
       "not op_mini all",
       "ie 11"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^0.6.5"
   }
 }
