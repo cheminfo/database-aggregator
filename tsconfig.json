@@ -6,7 +6,6 @@
     "target": "ES6",
     "module": "commonjs",
     "strict": true,
-    "declaration": true,
     "moduleResolution": "node",
     "noImplicitAny": true
   }
