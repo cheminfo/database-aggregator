@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
-import Dashboard from './Dashboard';
+import TaskList from './TaskList';
+import Header from './Header';
 
 class App extends Component {
   render() {
     return (
       <div className="m-3">
-        <header>
-          <h1>Database aggregator</h1>
-        </header>
-
-        <Dashboard />
+        <Header />
+        <Route exact path="/" component={TaskList} />
       </div>
     );
   }

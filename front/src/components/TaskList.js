@@ -25,7 +25,8 @@ export default class DashboardContent extends Component {
       return <p>Loading</p>;
     } else {
       return (
-        <div>
+        <section>
+          <h2>Task list</h2>
           <h3>Aggregations</h3>
           <div>
             {tasks.aggregations.map((task) => (
@@ -38,7 +39,7 @@ export default class DashboardContent extends Component {
               <SourceTask key={task.collection} task={task} />
             ))}
           </div>
-        </div>
+        </section>
       );
     }
   }
