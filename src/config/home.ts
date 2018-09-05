@@ -1,32 +1,16 @@
 import { debugUtil } from '../util/debug';
+import { resolve, join } from 'path';
 
-const path = require('path');
 const debug = debugUtil('config:home');
 
-// eslint-disable-next-line no-process-env
-export let config = {};
-export let homeDir = process.env.DATABASE_AGGREGATOR_HOME_DIR;
-if (!homeDir) {
-  debug.debug('no home dir');
-  exports.config = {};
-} else {
-  homeDir = path.resolve(homeDir);
-  debug.debug(`home dir is ${homeDir}`);
-  config = getHomeConfig();
+const homeDirVar = process.env.DATABASE_AGGREGATOR_HOME_DIR as string;
+if (!homeDirVar) {
+  throw new Error(
+    'The DATABASE_AGGREGATOR_HOME_DIR environment variable must be set'
+  );
 }
 
-function getHomeConfig() {
-  try {
-    // eslint-disable-next-line import/no-dynamic-require
-    const homeConfig = require(path.join(homeDir, 'config.js'));
-    debug.debug('loaded main config file');
-    return homeConfig;
-  } catch (e) {
-    if (e.code === 'MODULE_NOT_FOUND') {
-      debug.debug('no main config found');
-    } else {
-      debug.error(`Error while reading and parsing config file\n${e}`);
-    }
-    return {};
-  }
-}
+export const homeDir = resolve(homeDirVar);
+debug.debug(`home dir is ${homeDir}`);
+
+export const config = require(join(homeDir, 'config.js'));

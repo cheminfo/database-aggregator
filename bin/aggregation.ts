@@ -1,8 +1,11 @@
-import { aggregate } from '../src/aggregation/aggregate';
-import { globalConfig as config } from '../src/config/config';
-import { connect } from '../src/mongo/connection';
-import { debugUtil } from '../src/util/debug';
-import { start, stop } from '../src/util/pid';
+import {
+  aggregate,
+  globalConfig as config,
+  connect,
+  debugUtil,
+  start,
+  stop
+} from '../src/index';
 
 const debug = debugUtil('bin:aggregate');
 

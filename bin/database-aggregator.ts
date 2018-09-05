@@ -1,8 +1,7 @@
 import 'make-promises-safe';
-import { connect } from '../src/mongo/connection';
-import { start } from '../src/scheduler';
+import { connect, startScheduler } from '../src/index';
 
 connect(); // Connect to mongodb database
-start(); // Start the scheduler
+startScheduler(); // Start the scheduler
 
 require('../../api/server');

@@ -1,9 +1,10 @@
-import { connect } from '../src/mongo/connection';
-import { start } from '../src/util/pid';
-
-const { copyMissingIds } = require('../src/source/copyMissingIds');
-import { globalConfig as config } from '../src/config/config';
-import { debugUtil } from '../src/util/debug';
+import {
+  connect,
+  start,
+  globalConfig as config,
+  debugUtil,
+  copyMissingIds
+} from '../src/index';
 
 const debug = debugUtil('bin:source');
 start();

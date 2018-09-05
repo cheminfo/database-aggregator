@@ -1,8 +1,12 @@
-import { globalConfig as config } from '../src/config/config';
-import { connect } from '../src/mongo/connection';
-import { remove } from '../src/source/remove';
-import { debugUtil } from '../src/util/debug';
-import { start, stop } from '../src/util/pid';
+import {
+  globalConfig as config,
+  connect,
+  debugUtil,
+  start,
+  stop,
+  remove
+} from '../src/index';
+
 const debug = debugUtil('bin:source');
 
 start();
