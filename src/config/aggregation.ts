@@ -32,7 +32,7 @@ if (homeDir) {
 
     // eslint-disable-next-line import/no-dynamic-require
     const databaseConfig: IAggregationConfigElement = require(configPath);
-    if (!databaseConfig.sources || databaseConfig.disabled === true) {
+    if (!databaseConfig.sources) {
       continue;
     }
     databaseConfig.collection = parsedConfigPath.name;

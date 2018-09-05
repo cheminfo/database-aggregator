@@ -37,6 +37,10 @@ export async function start() {
   const scheduleDefinition: any[] = [];
   // Create configuration
   for (const collection of sources) {
+    if (config.source[collection].disabled) {
+      continue;
+    }
+
     scheduleDefinition.push({
       id: COPY_ID + collection,
       worker: join(__dirname, '../src/source/workers/copyWorker.js'),
@@ -47,6 +51,7 @@ export async function start() {
       arg: config.source[collection],
       type: 'source'
     });
+
     // copy missing ids
     scheduleDefinition.push({
       id: COPY_MISSING_ID + collection,
@@ -71,6 +76,9 @@ export async function start() {
   }
 
   for (const collection of aggregations) {
+    if (config.aggregation[collection].disabled) {
+      continue;
+    }
     const aggId = `aggregation_${collection}`;
     scheduleDefinition.push({
       id: aggId,

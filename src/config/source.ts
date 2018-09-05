@@ -40,9 +40,7 @@ if (!homeDir) {
         continue;
       }
       const databaseConfig: ISourceConfigElement = cfg;
-      if (databaseConfig.disabled) {
-        continue;
-      }
+
       if (!databaseConfig.driver) {
         debug.warn(
           `Skipping source config ${
