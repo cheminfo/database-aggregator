@@ -30,8 +30,7 @@ export interface ISourceDriverConfig {
   ) => Promise<void>;
 }
 
-export interface ISourceConfigElement {
-  collection: string;
+export interface ISourceConfigFile {
   driver: string | ISourceDriverConfig;
   disabled?: boolean;
   version?: number;
@@ -43,26 +42,38 @@ export interface ISourceConfigElement {
   [key: string]: any;
 }
 
+export interface ISourceConfigElement extends ISourceConfigFile {
+  collection: string;
+}
+
 export type ISourceConfig = IObject<ISourceConfigElement>;
 
 export type IAggregationConfig = IObject<IAggregationConfigElement>;
 
-export interface IAggregationConfigElement {
+export interface IAggregationConfigFile<
+  SourceDataType = any,
+  AggregationResult = any
+> {
   sources: {
-    [key: string]: any;
+    [key: string]: IAggregationCallback<SourceDataType, AggregationResult>;
   };
-  collection: string;
   disabled?: boolean;
   chunkSize?: number;
   [key: string]: any;
 }
+export interface IAggregationConfigElement extends IAggregationConfigFile {
+  collection: string;
+}
 
-export type IAggregationCallback = (
-  data: ISourceEntry[],
-  result: object,
+export type IAggregationCallback<
+  SourceDataType = any,
+  AggregationResult = any
+> = (
+  data: SourceDataType[],
+  result: AggregationResult,
   commonID: string,
   ids: string[]
-) => undefined;
+) => void;
 
 export interface IObject<T> {
   [key: string]: T;
