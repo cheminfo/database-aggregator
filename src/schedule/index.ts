@@ -3,11 +3,13 @@ import { IAggregationConfigElement, ISourceConfigElement } from '../types';
 
 interface IAggregationTask {
   collection: string;
+  enabled: boolean;
   sources: string[];
 }
 
 interface ISourceTask {
   collection: string;
+  enabled: boolean;
   copyCronRule?: string;
   copyMissingIdsCronRule?: string;
   removeCronRule?: string;
@@ -32,6 +34,7 @@ function makeAggregationTask(
 ): IAggregationTask {
   return {
     collection: aggregation.collection,
+    enabled: !aggregation.disabled,
     sources: Object.keys(aggregation.sources)
   };
 }
@@ -39,6 +42,7 @@ function makeAggregationTask(
 function makeSourceTask(source: ISourceConfigElement): ISourceTask {
   return {
     collection: source.collection,
+    enabled: !source.disabled,
     copyCronRule: source.copyCronRule,
     copyMissingIdsCronRule: source.copyMissingIdsCronRule,
     removeCronRule: source.removeCronRule

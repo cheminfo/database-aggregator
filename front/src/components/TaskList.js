@@ -33,7 +33,7 @@ export default class DashboardContent extends Component {
               <div className="text-center text-2xl font-bold mb-6">Sources</div>
               <div>
                 {tasks.sources.map((task) => (
-                  <TaskCard key={task.collection}>
+                  <TaskCard enabled={task.enabled} key={task.collection}>
                     <SourceTask task={task} />
                   </TaskCard>
                 ))}
@@ -45,7 +45,7 @@ export default class DashboardContent extends Component {
               </div>
               <div>
                 {tasks.aggregations.map((task) => (
-                  <TaskCard key={task.collection}>
+                  <TaskCard enabled={task.enabled} key={task.collection}>
                     <AggregationTask task={task} />
                   </TaskCard>
                 ))}
