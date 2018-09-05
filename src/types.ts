@@ -59,7 +59,6 @@ export interface IAggregationConfigFile<
   };
   disabled?: boolean;
   chunkSize?: number;
-  [key: string]: any;
 }
 export interface IAggregationConfigElement extends IAggregationConfigFile {
   collection: string;
