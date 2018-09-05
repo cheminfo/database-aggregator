@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import { axios } from '../axios';
 
+import AggregationTask from './AggregationTask';
+import SourceTask from './SourceTask';
+
 export default class DashboardContent extends Component {
   constructor(...args) {
     super(...args);
@@ -24,17 +27,17 @@ export default class DashboardContent extends Component {
       return (
         <div>
           <h3>Aggregations</h3>
-          <ul>
+          <div>
             {tasks.aggregations.map((task) => (
-              <li key={task.collection}>{task.collection}</li>
+              <AggregationTask key={task.collection} task={task} />
             ))}
-          </ul>
+          </div>
           <h3>Sources</h3>
-          <ul>
+          <div>
             {tasks.sources.map((task) => (
-              <li key={task.collection}>{task.collection}</li>
+              <SourceTask key={task.collection} task={task} />
             ))}
-          </ul>
+          </div>
         </div>
       );
     }

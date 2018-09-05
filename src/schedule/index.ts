@@ -1,21 +1,23 @@
 import { globalConfig } from '../config/config';
 import { IAggregationConfigElement, ISourceConfigElement } from '../types';
 
-interface ITask {
-  type: TaskType;
+interface IAggregationTask {
   collection: string;
+  sources: string[];
 }
 
-enum TaskType {
-  aggregation = 'aggregation',
-  source = 'source'
+interface ISourceTask {
+  collection: string;
+  copyCronRule?: string;
+  copyMissingIdsCronRule?: string;
+  removeCronRule?: string;
 }
 
 const aggregationConfigs = globalConfig.aggregation;
 const sourceConfigs = globalConfig.source;
 
-const aggregations: ITask[] = [];
-const sources: ITask[] = [];
+const aggregations: IAggregationTask[] = [];
+const sources: ISourceTask[] = [];
 
 for (const aggregation of Object.keys(aggregationConfigs)) {
   aggregations.push(makeAggregationTask(aggregationConfigs[aggregation]));
@@ -25,17 +27,21 @@ for (const source of Object.keys(sourceConfigs)) {
   sources.push(makeSourceTask(sourceConfigs[source]));
 }
 
-function makeAggregationTask(aggregation: IAggregationConfigElement): ITask {
+function makeAggregationTask(
+  aggregation: IAggregationConfigElement
+): IAggregationTask {
   return {
-    type: TaskType.aggregation,
-    collection: aggregation.collection
+    collection: aggregation.collection,
+    sources: Object.keys(aggregation.sources)
   };
 }
 
-function makeSourceTask(source: ISourceConfigElement): ITask {
+function makeSourceTask(source: ISourceConfigElement): ISourceTask {
   return {
-    type: TaskType.source,
-    collection: source.collection
+    collection: source.collection,
+    copyCronRule: source.copyCronRule,
+    copyMissingIdsCronRule: source.copyMissingIdsCronRule,
+    removeCronRule: source.removeCronRule
   };
 }
 

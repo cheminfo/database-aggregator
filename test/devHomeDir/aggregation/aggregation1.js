@@ -1,5 +1,8 @@
 'use strict';
 
 module.exports = {
-  sources: {}
+  cronRule: '0 0 * * *',
+  sources: {
+    source1: () => {}
+  }
 };
