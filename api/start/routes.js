@@ -20,11 +20,11 @@ Router.group(() => {
   Router.get('all', 'SchedulerController.all');
   Router.get('tasks', 'SchedulerController.tasks');
   Router.post('trigger/:taskId', 'SchedulerController.trigger');
-}).prefix('scheduler');
+}).prefix('api/scheduler');
 
 Router.group(() => {
   Router.get('id/:id', 'DbController.getDataById');
-}).prefix('db/:name');
+}).prefix('api/db/:name');
 
 Router.any('*', ({ response }) => {
   const pathToDist = Helpers.publicPath('dist');
