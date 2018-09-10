@@ -130,3 +130,40 @@ module.exports = {
   }
 };
 ```
+
+## Writing the configuration in typescript
+database-aggegrator provides type information. It can help help a lot to use typescript for getting the configuration right from the start.
+
+### Aggregation config file
+```ts
+import { IAggregationConfigFile } from 'database-aggregator';
+
+const config: IAggregationConfigFile = {
+  disabled: false,
+  chunkSize: 10000,
+  sources: {
+    source1: (data, result, pid) => {
+        ...
+      };
+    }
+  }
+};
+
+module.exports = config;
+```
+
+### Source config file
+```ts
+import { ISourceConfigFile } from 'database-aggregator';
+
+const config: ISourceConfigFile<any> = {
+  driver: 'oracle',
+  copyCronRule: '0 0 0 * * *', // each day
+  copyMissingIdsCronRule: '0 0 0 * * *', // one per day
+  removeCronRule: '0 0 0 * * *', // each day
+  disabled: process.env.NODE_ENV === 'production',
+  driverConfig: {} // This must match the generic type passed above (here it's any)
+};
+
+module.exports = config;
+```
