@@ -55,3 +55,11 @@ export function getTasks() {
     sources
   };
 }
+
+export function getAggregation(name: string) {
+  return aggregations.find((aggregation) => aggregation.collection === name);
+}
+
+export function getSource(name: string) {
+  return sources.find((source) => source.collection === name);
+}

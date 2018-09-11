@@ -17,10 +17,16 @@ const Helpers = use('Helpers');
 const Router = use('Route');
 
 Router.group(() => {
-  Router.get('all', 'SchedulerController.all');
   Router.get('tasks', 'SchedulerController.tasks');
-  Router.post('trigger/:taskId', 'SchedulerController.trigger');
 }).prefix('api/scheduler');
+
+Router.group(() => {
+  Router.get('/', 'AggregationController.get');
+}).prefix('api/scheduler/aggregation/:name');
+
+Router.group(() => {
+  Router.get('/', 'SourceController.get');
+}).prefix('api/scheduler/source/:name');
 
 Router.group(() => {
   Router.get('id/:id', 'DbController.getDataById');
