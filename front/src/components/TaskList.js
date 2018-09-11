@@ -42,14 +42,11 @@ export default class DashboardContent extends Component {
               <div>
                 {tasks.sources.map(task => (
                   <div
+                    key={task.collection}
                     className="cursor-pointer"
                     onClick={() => this.navToSource(task.collection)}
                   >
-                    <TaskCard
-                      enabled={task.enabled}
-                      key={task.collection}
-                      status={task.status}
-                    >
+                    <TaskCard enabled={task.enabled} status={task.status}>
                       <SourceTask task={task} />
                     </TaskCard>
                   </div>
@@ -63,14 +60,11 @@ export default class DashboardContent extends Component {
               <div>
                 {tasks.aggregations.map(task => (
                   <div
+                    key={task.collection}
                     className="cursor-pointer"
                     onClick={() => this.navToAggregation(task.collection)}
                   >
-                    <TaskCard
-                      enabled={task.enabled}
-                      key={task.collection}
-                      status={task.status}
-                    >
+                    <TaskCard enabled={task.enabled} status={task.status}>
                       <AggregationTask task={task} />
                     </TaskCard>
                   </div>

@@ -4,7 +4,6 @@ import { getSchedulerLog } from '../model';
 const Model = getSchedulerLog();
 
 export async function getLastStatus(taskId: string) {
-  console.log(taskId);
   const doc = await getLastTask(taskId);
   if (!doc) {
     return doc;

@@ -17,7 +17,6 @@ const statusTextMap = {
 
 export default function TaskCard(props) {
   const { enabled, status, children } = props;
-  console.log(status);
   const opacity = classNames({ 'opacity-25': !enabled });
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-md m-auto px-6 py-4 mb-6 relative">

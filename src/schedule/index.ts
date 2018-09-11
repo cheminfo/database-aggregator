@@ -54,7 +54,6 @@ function makeSourceTask(source: ISourceConfigElement): ISourceTask {
 }
 
 export async function getTasks() {
-  console.log('get tasks');
   const taskSources = sources.slice();
   const taskAgg = aggregations.slice();
   const statuses = await Promise.all([
@@ -69,7 +68,6 @@ export async function getTasks() {
   taskSources.forEach((s, idx) => (s.status = statuses[0][idx]));
   taskAgg.forEach((agg, idx) => (agg.status = statuses[1][idx]));
 
-  console.log('return');
   return {
     sources: taskSources,
     aggregations: taskAgg
