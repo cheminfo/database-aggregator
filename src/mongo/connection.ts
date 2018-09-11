@@ -1,36 +1,42 @@
 'use strict';
 
-const { URL } = require('url');
-
-import { connect as connectMongoose, connection } from 'mongoose';
+import * as mongoose from 'mongoose';
 
 import { globalConfig as config } from '../config/config';
 
+const { URL } = require('url');
+
+mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
+
 export async function connect() {
-  if (connection.readyState === 0) {
+  if (mongoose.connection.readyState === 0) {
     const url = new URL(config.url);
     url.pathname = config.database;
-    await connectMongoose(url.href, {
-      useNewUrlParser: true
-    });
+    await mongoose.connect(
+      url.href,
+      {
+        useNewUrlParser: true
+      }
+    );
   }
-  return connection;
+  return mongoose.connection;
 }
 
 export async function disconnect() {
-  if (connection.readyState !== 0) {
-    await connection.close();
+  if (mongoose.connection.readyState !== 0) {
+    await mongoose.connection.close();
   }
 }
 
 export async function hasCollection(colName: string) {
   await connect();
-  let collections = await connection.db.listCollections().toArray();
+  let collections = await mongoose.connection.db.listCollections().toArray();
   collections = collections.map((col) => col.name);
   return collections.indexOf(colName) > -1;
 }
 
 export async function dropCollection(colName: string) {
   await connect();
-  await connection.dropCollection(colName);
+  await mongoose.connection.dropCollection(colName);
 }

@@ -20,7 +20,11 @@ export async function copy(config: ISourceConfigElement) {
     .sort('-date')
     .exec();
 
-  await driver.getData(config.driverConfig, (data) => copyEntries(data, config), {
-    latestDate: latest && latest.date
-  });
+  await driver.getData(
+    config.driverConfig,
+    (data) => copyEntries(data, config),
+    {
+      latestDate: latest && latest.date
+    }
+  );
 }

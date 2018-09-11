@@ -1,13 +1,14 @@
 'use strict';
 
+const config = require('../../config/config').globalConfig;
 const { connect } = require('../../mongo/connection');
-const copyMissingIds = require('../copyMissingIds');
+const { copyMissingIds } = require('../copyMissingIds');
 
-process.on('message', (options) => {
-  (async function () {
+process.on('message', (sourceDB) => {
+  (async function() {
     try {
       await connect();
-      await copyMissingIds(options);
+      await copyMissingIds(config.source[sourceDB]);
     } catch (e) {
       console.error(e);
       process.exit(1);

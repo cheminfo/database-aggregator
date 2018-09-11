@@ -1,31 +1,28 @@
 import { ISourceDriverConfig } from '../types';
+import { validateDriver } from '../util/validateDriver';
 
 export function getDriver(
-  driver: string | ISourceDriverConfig,
+  driver: string | ISourceDriverConfig
 ): ISourceDriverConfig {
   const driverModule = getDriverModule(driver);
   if (typeof driverModule !== 'object' || driverModule === null) {
     throw new TypeError('driver must be a string or object');
   }
 
-  if (typeof driverModule.getData !== 'function') {
-    throw new TypeError(`driver must provide a method named "getData"`);
-  } else if (typeof driverModule.getIds !== 'function') {
-    throw new TypeError(`driver must provide a method named "getIds"`);
-  }
+  validateDriver(driverModule);
 
   return driverModule;
 }
 
 function getDriverModule(
-  driver: string | ISourceDriverConfig,
+  driver: string | ISourceDriverConfig
 ): ISourceDriverConfig {
   if (typeof driver === 'string') {
     let driverLocation;
     if (!driver.includes('/')) {
       try {
         driverLocation = require.resolve(
-          `database-aggregator-driver-${driver}`,
+          `database-aggregator-driver-${driver}`
         );
       } catch (e) {
         // ignore

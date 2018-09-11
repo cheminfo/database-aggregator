@@ -52,7 +52,7 @@ export async function start() {
         getRemoveTaskId(collection),
         getCopyMissingIdTaskId(collection)
       ],
-      arg: config.source[collection],
+      arg: collection,
       type: 'source'
     });
 
@@ -64,7 +64,7 @@ export async function start() {
       cronRule: config.source[collection].copyMissingIdsCronRule,
       deps: [],
       noConcurrency: [],
-      arg: config.source[collection],
+      arg: collection,
       type: 'source'
     });
     scheduleDefinition.push({
@@ -74,7 +74,7 @@ export async function start() {
       cronRule: config.source[collection].removeCronRule,
       deps: [],
       noConcurrency: [],
-      arg: config.source[collection],
+      arg: collection,
       type: 'source'
     });
   }

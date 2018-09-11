@@ -3,10 +3,10 @@
   "exclude": ["./src/**/__tests__"],
   "compilerOptions": {
     "outDir": "./lib",
-    "target": "ES6",
+    "target": "ES2017",
     "module": "commonjs",
     "strict": true,
     "moduleResolution": "node",
-    "noImplicitAny": true
+    "allowJs": true
   }
 }

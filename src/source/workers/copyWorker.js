@@ -1,13 +1,14 @@
 'use strict';
 
+const config = require('../../config/config').globalConfig;
 const { connect } = require('../../mongo/connection');
-const copy = require('../copy');
+const { copy } = require('../copy');
 
-process.on('message', (options) => {
-  (async function () {
+process.on('message', (sourceDB) => {
+  (async function() {
     try {
       await connect();
-      await copy(options);
+      await copy(config.source[sourceDB]);
     } catch (e) {
       console.error(e);
       process.exit(1);

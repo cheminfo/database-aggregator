@@ -6,7 +6,7 @@ import { ISourceConfigElement, ISourceDriverEntry } from '../types';
 
 export async function copyEntries(
   entries: ISourceDriverEntry[],
-  options: ISourceConfigElement,
+  options: ISourceConfigElement
 ) {
   const collection = options.collection;
   const Model = getSource(collection);
