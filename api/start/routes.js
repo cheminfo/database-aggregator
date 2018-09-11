@@ -26,6 +26,7 @@ Router.group(() => {
 
 Router.group(() => {
   Router.get('/', 'SourceController.get');
+  Router.get('history', 'SourceController.history');
 }).prefix('api/scheduler/source/:name');
 
 Router.group(() => {
