@@ -1,6 +1,7 @@
 import React from 'react';
 import StatusSvg from './svg/StatusSvg';
 import DateTime from './DateTime';
+import Collapsible from './Collapsible';
 
 export default function SourceTaskHistory({ history }) {
   return (
@@ -15,13 +16,15 @@ export default function SourceTaskHistory({ history }) {
         </thead>
         <tbody className="align-baseline">
           <tr>
-            <TableCell>
+            <TableCell className="w-8">
               <StatusSvg status="success" />
             </TableCell>
-            <TableCell>
+            <TableCell className="w-64">
               <DateTime date={new Date()} />
             </TableCell>
-            <TableCell>GHI</TableCell>
+            <TableCell>
+              <Collapsible title="abc">Test 123</Collapsible>
+            </TableCell>
           </tr>
         </tbody>
       </table>
@@ -39,7 +42,10 @@ function TableHeader(props) {
 
 function TableCell(props) {
   return (
-    <td className="p-2 border-t border-grey-light text-xs whitespace-no-wrap">
+    <td
+      className={`p-2 border-t border-grey-light text-xs whitespace-no-wrap ${props.className ||
+        ''}`}
+    >
       {props.children}
     </td>
   );
