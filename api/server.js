@@ -17,11 +17,16 @@
 |     Make sure to pass relative path from the project root.
 */
 
+require('make-promises-safe');
+
 const path = require('path');
 
 const { Ignitor } = require('@adonisjs/ignitor');
 
 const config = require('../lib/src/config/config').globalConfig;
+const { startScheduler } = require('../lib/src/index');
+
+startScheduler(); // Start the scheduler
 
 process.env.HOST = '0.0.0.0';
 process.env.PORT = config.port;
