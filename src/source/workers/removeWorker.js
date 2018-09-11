@@ -10,6 +10,7 @@ process.on('message', (sourceDB) => {
       await connect();
       await remove(config.source[sourceDB]);
     } catch (e) {
+      // tslint:disable-next-line no-console
       console.error(e);
       process.exit(1);
     }
