@@ -14,6 +14,14 @@ export default class DashboardContent extends Component {
     };
   }
 
+  navToAggregation = collection => {
+    this.props.history.push(`/tasks/aggregations/${collection}`);
+  };
+
+  navToSource = collection => {
+    this.props.history.push(`/tasks/sources/${collection}`);
+  };
+
   componentDidMount() {
     axios.get('scheduler/tasks').then(res => {
       this.setState({ tasks: res.data });
@@ -33,13 +41,18 @@ export default class DashboardContent extends Component {
               <div className="text-center text-2xl font-bold mb-6">Sources</div>
               <div>
                 {tasks.sources.map(task => (
-                  <TaskCard
-                    enabled={task.enabled}
-                    key={task.collection}
-                    status={task.status}
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => this.navToSource(task.collection)}
                   >
-                    <SourceTask task={task} />
-                  </TaskCard>
+                    <TaskCard
+                      enabled={task.enabled}
+                      key={task.collection}
+                      status={task.status}
+                    >
+                      <SourceTask task={task} />
+                    </TaskCard>
+                  </div>
                 ))}
               </div>
             </div>
@@ -49,13 +62,18 @@ export default class DashboardContent extends Component {
               </div>
               <div>
                 {tasks.aggregations.map(task => (
-                  <TaskCard
-                    enabled={task.enabled}
-                    key={task.collection}
-                    status={task.status}
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => this.navToAggregation(task.collection)}
                   >
-                    <AggregationTask task={task} />
-                  </TaskCard>
+                    <TaskCard
+                      enabled={task.enabled}
+                      key={task.collection}
+                      status={task.status}
+                    >
+                      <AggregationTask task={task} />
+                    </TaskCard>
+                  </div>
                 ))}
               </div>
             </div>

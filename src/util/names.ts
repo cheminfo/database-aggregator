@@ -26,6 +26,10 @@ export function getAggregationModelName(name: string) {
   return getModelName(AGGREGATION, name);
 }
 
+export function getAggregationTaskId(collection: string) {
+  return `${AGGREGATION}_${collection}`;
+}
+
 export function getCopyTaskId(collection: string) {
   return COPY_ID + collection;
 }

@@ -1,7 +1,7 @@
 import { globalConfig } from '../config/config';
 import { IAggregationConfigElement, ISourceConfigElement } from '../types';
 import { getLastStatus } from '../mongo/models/schedulerLog';
-import { getAggregationModelName, getCopyTaskId } from '../util/names';
+import { getAggregationTaskId, getCopyTaskId } from '../util/names';
 
 interface IAggregationTask {
   collection: string;
@@ -62,7 +62,7 @@ export async function getTasks() {
       taskSources.map((source) => getLastStatus(getCopyTaskId(source.collection)))
     ),
     Promise.all(
-      taskAgg.map((agg) => getLastStatus(getAggregationModelName(agg.collection)))
+      taskAgg.map((agg) => getLastStatus(getAggregationTaskId(agg.collection)))
     )
   ]);
 
