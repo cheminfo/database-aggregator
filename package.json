@@ -81,7 +81,7 @@
     "lodash.isequal": "^4.5.0",
     "make-promises-safe": "^1.1.0",
     "mongoose": "^5.2.14",
-    "process-scheduler": "^0.2.0"
+    "process-scheduler": "^0.2.1"
   },
   "devDependencies": {
     "@types/debug": "0.0.30",
