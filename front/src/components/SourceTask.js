@@ -4,6 +4,7 @@ import SourceTaskCron from './SourceTaskCron';
 
 export default function SourceTask(props) {
   const { task } = props;
+  
   const hasNextExecutions =
     task.copyCronRule || task.copyMissingIdsCronRule || task.removeCronRule;
   return (
