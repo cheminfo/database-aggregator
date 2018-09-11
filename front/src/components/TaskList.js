@@ -14,16 +14,16 @@ export default class DashboardContent extends Component {
     };
   }
 
-  navToAggregation = collection => {
+  navToAggregation = (collection) => {
     this.props.history.push(`/tasks/aggregations/${collection}`);
   };
 
-  navToSource = collection => {
+  navToSource = (collection) => {
     this.props.history.push(`/tasks/sources/${collection}`);
   };
 
   componentDidMount() {
-    axios.get('scheduler/tasks').then(res => {
+    axios.get('scheduler/tasks').then((res) => {
       this.setState({ tasks: res.data });
     });
   }
@@ -40,7 +40,7 @@ export default class DashboardContent extends Component {
             <div className="flex-1">
               <div className="text-center text-2xl font-bold mb-6">Sources</div>
               <div>
-                {tasks.sources.map(task => (
+                {tasks.sources.map((task) => (
                   <div
                     key={task.collection}
                     className="cursor-pointer"
@@ -58,7 +58,7 @@ export default class DashboardContent extends Component {
                 Aggregations
               </div>
               <div>
-                {tasks.aggregations.map(task => (
+                {tasks.aggregations.map((task) => (
                   <div
                     key={task.collection}
                     className="cursor-pointer"
