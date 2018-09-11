@@ -15,7 +15,7 @@ export default class DashboardContent extends Component {
   }
 
   componentDidMount() {
-    axios.get('scheduler/tasks').then((res) => {
+    axios.get('scheduler/tasks').then(res => {
       this.setState({ tasks: res.data });
     });
   }
@@ -32,8 +32,12 @@ export default class DashboardContent extends Component {
             <div className="flex-1">
               <div className="text-center text-2xl font-bold mb-6">Sources</div>
               <div>
-                {tasks.sources.map((task) => (
-                  <TaskCard enabled={task.enabled} key={task.collection}>
+                {tasks.sources.map(task => (
+                  <TaskCard
+                    enabled={task.enabled}
+                    key={task.collection}
+                    status={task.status}
+                  >
                     <SourceTask task={task} />
                   </TaskCard>
                 ))}
@@ -44,8 +48,12 @@ export default class DashboardContent extends Component {
                 Aggregations
               </div>
               <div>
-                {tasks.aggregations.map((task) => (
-                  <TaskCard enabled={task.enabled} key={task.collection}>
+                {tasks.aggregations.map(task => (
+                  <TaskCard
+                    enabled={task.enabled}
+                    key={task.collection}
+                    status={task.status}
+                  >
                     <AggregationTask task={task} />
                   </TaskCard>
                 ))}

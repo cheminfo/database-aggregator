@@ -7,14 +7,15 @@ import { save } from './mongo/models/schedulerLog';
 import { debugUtil } from './util/debug';
 
 import { ProcessScheduler } from 'process-scheduler';
+import {
+  getCopyTaskId,
+  getCopyMissingIdTaskId,
+  getRemoveTaskId
+} from './util/names';
 const debug = debugUtil('bin:schedule');
 
 const sources = Object.keys(config.source);
 const aggregations = Object.keys(config.aggregation);
-
-const REMOVE_ID = 'source_remove_';
-const COPY_ID = 'source_copy_';
-const COPY_MISSING_ID = 'source_copy_missing_ids_';
 
 let hasStarted = false;
 let resolveScheduler: (scheduler: ProcessScheduler) => any;
@@ -42,19 +43,22 @@ export async function start() {
     }
 
     scheduleDefinition.push({
-      id: COPY_ID + collection,
+      id: getCopyTaskId(collection),
       worker: join(__dirname, '../src/source/workers/copyWorker.js'),
       immediate: false,
       cronRule: config.source[collection].copyCronRule,
       deps: [],
-      noConcurrency: [REMOVE_ID + collection, COPY_MISSING_ID + collection],
+      noConcurrency: [
+        getRemoveTaskId(collection),
+        getCopyMissingIdTaskId(collection)
+      ],
       arg: config.source[collection],
       type: 'source'
     });
 
     // copy missing ids
     scheduleDefinition.push({
-      id: COPY_MISSING_ID + collection,
+      id: getCopyMissingIdTaskId(collection),
       worker: join(__dirname, '../src/source/workers/copyMissingIdsWorker.js'),
       immediate: false,
       cronRule: config.source[collection].copyMissingIdsCronRule,
@@ -64,7 +68,7 @@ export async function start() {
       type: 'source'
     });
     scheduleDefinition.push({
-      id: REMOVE_ID + collection,
+      id: getRemoveTaskId(collection),
       worker: join(__dirname, '../src/source/workers/removeWorker.js'),
       immediate: false,
       cronRule: config.source[collection].removeCronRule,
@@ -90,9 +94,9 @@ export async function start() {
 
     const aggSources = Object.keys(config.aggregation[collection].sources);
     for (const source of aggSources) {
-      setDeps(COPY_ID + source, aggId);
-      setDeps(REMOVE_ID + source, aggId);
-      setDeps(COPY_MISSING_ID + source, aggId);
+      setDeps(getCopyTaskId(source), aggId);
+      setDeps(getRemoveTaskId(source), aggId);
+      setDeps(getCopyMissingIdTaskId(source), aggId);
     }
   }
 

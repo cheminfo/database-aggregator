@@ -3,6 +3,21 @@ import { getSchedulerLog } from '../model';
 
 const Model = getSchedulerLog();
 
+export async function getLastStatus(taskId: string) {
+  console.log(taskId);
+  const doc = await getLastTask(taskId);
+  if (!doc) {
+    return doc;
+  }
+  return doc.state[doc.state.length - 1].status;
+}
+
+export function getLastTask(taskId: string) {
+  return Model.findOne({ taskId })
+    .sort('-date')
+    .exec();
+}
+
 export async function save(obj: ISchedulerLogEntry) {
   const stat = {
     status: obj.status,

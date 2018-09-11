@@ -1,10 +1,13 @@
 import { globalConfig } from '../config/config';
 import { IAggregationConfigElement, ISourceConfigElement } from '../types';
+import { getLastStatus } from '../mongo/models/schedulerLog';
+import { getAggregationModelName, getCopyTaskId } from '../util/names';
 
 interface IAggregationTask {
   collection: string;
   enabled: boolean;
   sources: string[];
+  status?: string;
 }
 
 interface ISourceTask {
@@ -13,6 +16,7 @@ interface ISourceTask {
   copyCronRule?: string;
   copyMissingIdsCronRule?: string;
   removeCronRule?: string;
+  status?: string | null;
 }
 
 const aggregationConfigs = globalConfig.aggregation;
@@ -49,10 +53,26 @@ function makeSourceTask(source: ISourceConfigElement): ISourceTask {
   };
 }
 
-export function getTasks() {
+export async function getTasks() {
+  console.log('get tasks');
+  const taskSources = sources.slice();
+  const taskAgg = aggregations.slice();
+  const statuses = await Promise.all([
+    Promise.all(
+      taskSources.map((source) => getLastStatus(getCopyTaskId(source.collection)))
+    ),
+    Promise.all(
+      taskAgg.map((agg) => getLastStatus(getAggregationModelName(agg.collection)))
+    )
+  ]);
+
+  taskSources.forEach((s, idx) => (s.status = statuses[0][idx]));
+  taskAgg.forEach((agg, idx) => (agg.status = statuses[1][idx]));
+
+  console.log('return');
   return {
-    aggregations,
-    sources
+    sources: taskSources,
+    aggregations: taskAgg
   };
 }
 

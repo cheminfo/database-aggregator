@@ -7,7 +7,7 @@ const schedule = use('Src/schedule/index');
 
 class SchedulerController {
   async tasks() {
-    const tasks = schedule.getTasks();
+    const tasks = await schedule.getTasks();
     return tasks;
   }
 

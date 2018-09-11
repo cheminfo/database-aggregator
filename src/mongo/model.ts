@@ -8,57 +8,53 @@ import sourceSequenceSchema from '../schema/sourceSequence';
 
 import { Schema } from 'mongoose';
 import { dropCollection, hasCollection } from '../mongo/connection';
+import {
+  getSourceModelName,
+  getSourceName,
+  getAggregationModelName,
+  getMetaModelName
+} from '../util/names';
 
 const models = new Map();
 
-const AGGREGATION = 'aggregation';
-const SOURCE = 'source';
-const META = 'meta';
-
 export function getSource(name: string) {
-  return getModel(SOURCE, name, sourceSchema);
+  return getModel(getSourceModelName(name), sourceSchema);
 }
 
 export async function dropSource(name: string) {
-  const collName = exports.getSourceName(name);
+  const collName = getSourceName(name);
   await dropCollection(collName);
 }
 
-export function getSourceName(name: string) {
-  return getModelName(SOURCE, name);
-}
-
-export function getAggregationName(name: string) {
-  return getModelName(AGGREGATION, name);
-}
-
 export function getAggregation(name: string) {
-  return getModel(AGGREGATION, name, aggregationSchema);
+  return getModel(getAggregationModelName(name), aggregationSchema);
 }
 
 export async function dropAggregation(name: string) {
-  const collName = getAggregationName(name);
+  const collName = getAggregationModelName(name);
   await dropCollection(collName);
 }
 
 export function getAggregationIfExists(name: string) {
-  return getModelIfExists(AGGREGATION, name, aggregationSchema);
+  return getModelIfExists(getAggregationModelName(name), aggregationSchema);
 }
 
 export function getSourceSequence() {
-  return getModel(META, 'source_sequence', sourceSequenceSchema);
+  return getModel(getMetaModelName('source_sequence'), sourceSequenceSchema);
 }
 
 export function getAggregationSequence() {
-  return getModel(META, 'aggregation_sequence', aggregationSequenceSchema);
+  return getModel(
+    getMetaModelName('aggregation_sequence'),
+    aggregationSequenceSchema
+  );
 }
 
 export function getSchedulerLog() {
-  return getModel(META, 'scheduler_log', schedulerLogSchema);
+  return getModel(getMetaModelName('scheduler_log'), schedulerLogSchema);
 }
 
-function getModel(prefix: string, name: string, schema: Schema) {
-  const collName = getModelName(prefix, name);
+function getModel(collName: string, schema: Schema) {
   if (models.has(collName)) {
     return models.get(collName);
   }
@@ -67,17 +63,14 @@ function getModel(prefix: string, name: string, schema: Schema) {
   return model;
 }
 
-function getModelName(prefix: string, name: string) {
-  return `${prefix}_${name}`;
-}
-
-async function getModelIfExists(prefix: string, name: string, schema: Schema) {
-  const collName = getModelName(prefix, name);
+async function getModelIfExists(collName: string, schema: Schema) {
   if (models.has(collName)) {
     return models.get(collName);
   } else {
     const hasCol = await hasCollection(collName);
-    if (!hasCol) { return null; }
+    if (!hasCol) {
+      return null;
+    }
     const model = mongoose.model(collName, schema, collName);
     models.set(collName, model);
     return model;
