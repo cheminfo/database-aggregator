@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 import StatusSvg from './svg/StatusSvg';
 import DateTime from './DateTime';
@@ -27,7 +26,7 @@ export default function SourceTaskHistory({ history }) {
                     <StatusSvg status={last.status} />
                   </TableCell>
                   <TableCell className="w-64">
-                    <DateTime date={moment(last.date).fromNow()} />
+                    <DateTime date={last.date} />
                   </TableCell>
                   <TableCell>
                     {last.stdout ? (

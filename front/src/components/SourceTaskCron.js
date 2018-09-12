@@ -1,7 +1,7 @@
 import React from 'react';
-import moment from 'moment';
-
 import { parseExpression } from 'cron-parser';
+
+import DateTime from './DateTime';
 
 export default function SourceTaskCron(props) {
   const { label, value } = props;
@@ -11,7 +11,7 @@ export default function SourceTaskCron(props) {
 
   return (
     <li>
-      {label}: {moment(parsed.next().toString()).fromNow()}
+      {label}: <DateTime date={parsed.next().toString()} />
     </li>
   );
 }
