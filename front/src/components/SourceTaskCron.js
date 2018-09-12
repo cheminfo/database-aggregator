@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import { parseExpression } from 'cron-parser';
 
@@ -10,7 +11,7 @@ export default function SourceTaskCron(props) {
 
   return (
     <li>
-      {label}: {parsed.next().toString()}
+      {label}: {moment(parsed.next().toString()).fromNow()}
     </li>
   );
 }

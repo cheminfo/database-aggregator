@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+
 import StatusSvg from './svg/StatusSvg';
 import DateTime from './DateTime';
 import Collapsible from './Collapsible';
@@ -25,7 +27,7 @@ export default function SourceTaskHistory({ history }) {
                     <StatusSvg status={last.status} />
                   </TableCell>
                   <TableCell className="w-64">
-                    <DateTime date={last.date} />
+                    <DateTime date={moment(last.date).fromNow()} />
                   </TableCell>
                   <TableCell>
                     {last.stdout ? (
