@@ -46,7 +46,7 @@ export default function SourceTaskHistory({ history }) {
           </tbody>
         </table>
       ) : (
-        'This task was never executed'
+        'No tasks found'
       )}
     </div>
   );

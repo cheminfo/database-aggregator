@@ -7,23 +7,11 @@ export default class DatePicker extends Component {
     super(props);
 
     this.state = {
-      focusedInput: null,
-      startDate: props.initialStartDate,
-      endDate: props.initialEndDate
+      focusedInput: null
     };
   }
 
-  onDatesChange = (event) => {
-    const { startDate, endDate } = event;
-    this.setState({
-      startDate,
-      endDate
-    });
-    if (this.props.onDatesChange) {
-      this.props.onDatesChange(event);
-    }
-  };
-  onFocusChange = (focusedInput) => {
+  onFocusChange = focusedInput => {
     this.setState({ focusedInput });
   };
   render() {
@@ -31,12 +19,14 @@ export default class DatePicker extends Component {
       <DateRangePicker
         startDateId="startDate"
         endDateId="endDate"
-        startDate={this.state.startDate}
-        endDate={this.state.endDate}
+        startDate={this.props.startDate}
+        endDate={this.props.endDate}
         focusedInput={this.state.focusedInput}
         isOutsideRange={isOutsideRange}
-        onDatesChange={this.onDatesChange}
+        onDatesChange={this.props.onDatesChange}
         onFocusChange={this.onFocusChange}
+        minimumNights={0}
+        displayFormat="DD/MM/YYYY"
       />
     );
   }

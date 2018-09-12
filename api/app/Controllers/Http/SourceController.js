@@ -14,8 +14,19 @@ class SourceController {
   }
 
   async history({ request, params }) {
+    const query = request.get();
+    const dateParams = {};
+    if (query.from) dateParams.$gt = new Date(+query.from);
+    if (query.to) dateParams.$lt = new Date(+query.to);
     const { name } = params;
-    const result = await Model.find({ taskId: `source_copy_${name}` })
+
+    const filter = {
+      taskId: `source_copy_${name}`
+    };
+    if (query.from && query.to) {
+      filter.date = dateParams;
+    }
+    const result = await Model.find(filter)
       .sort({
         date: -1
       })
