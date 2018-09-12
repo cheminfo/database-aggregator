@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import TaskList from './TaskList';
-import SourceTaskHistory from './SourceTaskHistory';
+import SourceTaskDetails from './SourceTaskDetails';
 import Header from './Header';
 import NoMatch from './NoMatch';
 
@@ -17,7 +17,7 @@ class App extends Component {
             <Route
               exact
               path="/tasks/sources/:task"
-              component={SourceTaskHistory}
+              component={SourceTaskDetails}
             />
             <Route component={NoMatch} />
           </Switch>

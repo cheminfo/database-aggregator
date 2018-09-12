@@ -6,6 +6,7 @@ import Collapsible from './Collapsible';
 export default function SourceTaskHistory({ history }) {
   return (
     <div className="container-xl">
+      <div className="text-l font-bold mb-3">Task history</div>
       <table className="w-full text-left table-collapse">
         <thead>
           <tr>
@@ -15,17 +16,27 @@ export default function SourceTaskHistory({ history }) {
           </tr>
         </thead>
         <tbody className="align-baseline">
-          <tr>
-            <TableCell className="w-8">
-              <StatusSvg status="success" />
-            </TableCell>
-            <TableCell className="w-64">
-              <DateTime date={new Date()} />
-            </TableCell>
-            <TableCell>
-              <Collapsible title="abc">Test 123</Collapsible>
-            </TableCell>
-          </tr>
+          {history.map((historyItem) => {
+            const last = historyItem.state[0];
+            return (
+              <tr>
+                <TableCell className="w-8">
+                  <StatusSvg status={last.status} />
+                </TableCell>
+                <TableCell className="w-64">
+                  <DateTime date={last.date} />
+                </TableCell>
+                <TableCell>
+                  {last.stdout ? (
+                    <Collapsible title="stdout">{last.stdout}</Collapsible>
+                  ) : null}
+                  {last.stderr ? (
+                    <Collapsible title="stderr">{last.stderr}</Collapsible>
+                  ) : null}
+                </TableCell>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
