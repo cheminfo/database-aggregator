@@ -33,6 +33,13 @@ export default class SourceTaskDetails extends Component {
     if (this.state.loading) {
       return 'Loading...';
     }
-    return <SourceTaskHistory history={this.state.history} />;
+    return (
+      <div className="flex">
+        <div className="flex-1">Other</div>
+        <div className="flex-1">
+          <SourceTaskHistory history={this.state.history} />
+        </div>
+      </div>
+    );
   }
 }
