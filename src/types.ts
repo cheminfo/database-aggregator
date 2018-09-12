@@ -48,19 +48,16 @@ export interface ISourceDriverEntry {
   data: object;
 }
 
-export interface IAggregationConfigFile<
-  SourceDataType = any,
-  AggregationResultType = any
-> {
+export interface IAggregationConfigFile<AggregationResultType = any> {
   sources: {
-    [key: string]: IAggregationCallback<SourceDataType, AggregationResultType>;
+    [key: string]: IAggregationCallback<any, AggregationResultType>;
   };
   disabled?: boolean;
   chunkSize?: number;
 }
 
 export type IAggregationCallback<
-  SourceDataType = any,
+  SourceDataType extends object = any,
   AggregationResult = any
 > = (
   data: SourceDataType[],
