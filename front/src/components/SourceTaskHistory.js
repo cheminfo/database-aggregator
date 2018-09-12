@@ -7,38 +7,42 @@ export default function SourceTaskHistory({ history }) {
   return (
     <div className="container-xl">
       <div className="text-l font-bold mb-3">Task history</div>
-      <table className="w-full text-left table-collapse">
-        <thead>
-          <tr>
-            <TableHeader>Status</TableHeader>
-            <TableHeader>Date</TableHeader>
-            <TableHeader>Info</TableHeader>
-          </tr>
-        </thead>
-        <tbody className="align-baseline">
-          {history.map((historyItem) => {
-            const last = historyItem.state[0];
-            return (
-              <tr>
-                <TableCell className="w-8">
-                  <StatusSvg status={last.status} />
-                </TableCell>
-                <TableCell className="w-64">
-                  <DateTime date={last.date} />
-                </TableCell>
-                <TableCell>
-                  {last.stdout ? (
-                    <Collapsible title="stdout">{last.stdout}</Collapsible>
-                  ) : null}
-                  {last.stderr ? (
-                    <Collapsible title="stderr">{last.stderr}</Collapsible>
-                  ) : null}
-                </TableCell>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      {history.length > 0 ? (
+        <table className="w-full text-left table-collapse">
+          <thead>
+            <tr>
+              <TableHeader>Status</TableHeader>
+              <TableHeader>Date</TableHeader>
+              <TableHeader>Info</TableHeader>
+            </tr>
+          </thead>
+          <tbody className="align-baseline">
+            {history.map((historyItem) => {
+              const last = historyItem.state[0];
+              return (
+                <tr>
+                  <TableCell className="w-8">
+                    <StatusSvg status={last.status} />
+                  </TableCell>
+                  <TableCell className="w-64">
+                    <DateTime date={last.date} />
+                  </TableCell>
+                  <TableCell>
+                    {last.stdout ? (
+                      <Collapsible title="stdout">{last.stdout}</Collapsible>
+                    ) : null}
+                    {last.stderr ? (
+                      <Collapsible title="stderr">{last.stderr}</Collapsible>
+                    ) : null}
+                  </TableCell>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      ) : (
+        'This task was never executed'
+      )}
     </div>
   );
 }
