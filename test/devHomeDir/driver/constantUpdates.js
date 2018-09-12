@@ -13,7 +13,7 @@ const driver = {
     ]);
   },
   getIds() {
-    return [123];
+    return ['123'];
   }
 };
 
