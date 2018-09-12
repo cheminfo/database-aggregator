@@ -15,11 +15,13 @@ export interface IConfig {
 }
 
 export interface ISourceDriverMeta {
-  latestDate: Date;
+  latestDate: Date | null;
   ids?: string[];
 }
 
-export type SourceDriverCallback = (data: ISourceDriverEntry[]) => any;
+export type SourceDriverCallback = (
+  data: ISourceDriverEntry[]
+) => void | Promise<void>;
 
 export interface ISourceDriverConfig<DriverConfig = any> {
   getIds: (config: DriverConfig) => string[] | Set<string>;
@@ -100,14 +102,4 @@ export interface ISourceDriverEntry {
   id: string;
   modificationDate: Date;
   data: object;
-}
-
-export interface ISchedulerLogEntry {
-  id: string;
-  pid: string;
-  status: string;
-  date: Date;
-  message: string;
-  stdout: string;
-  stderr: string;
 }

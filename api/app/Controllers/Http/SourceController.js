@@ -1,10 +1,16 @@
 'use strict';
 
 const Model = use('Src/mongo/model').getSchedulerLog();
+const schedule = use('Src/schedule/index');
 
 class SourceController {
-  get({ params }) {
-    return `Source controller for ${params.name}`;
+  async get({ params, response }) {
+    const source = await schedule.getSource(params.name);
+    if (!source) {
+      response.status(404);
+      return { error: 'source not found' };
+    }
+    return source;
   }
 
   async history({ request, params }) {

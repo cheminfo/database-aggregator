@@ -7,7 +7,7 @@ interface IAggregationTask {
   collection: string;
   enabled: boolean;
   sources: string[];
-  status?: string;
+  status?: string | null;
 }
 
 interface ISourceTask {
@@ -58,7 +58,9 @@ export async function getTasks() {
   const taskAgg = aggregations.slice();
   const statuses = await Promise.all([
     Promise.all(
-      taskSources.map((source) => getLastStatus(getCopyTaskId(source.collection)))
+      taskSources.map((source) =>
+        getLastStatus(getCopyTaskId(source.collection))
+      )
     ),
     Promise.all(
       taskAgg.map((agg) => getLastStatus(getAggregationTaskId(agg.collection)))
@@ -74,10 +76,24 @@ export async function getTasks() {
   };
 }
 
-export function getAggregation(name: string) {
-  return aggregations.find((aggregation) => aggregation.collection === name);
+export async function getAggregation(name: string) {
+  const foundAggregation = aggregations.find(
+    (aggregation) => aggregation.collection === name
+  );
+  if (foundAggregation) {
+    const status = await getLastStatus(
+      getCopyTaskId(foundAggregation.collection)
+    );
+    foundAggregation.status = status;
+  }
+  return foundAggregation;
 }
 
-export function getSource(name: string) {
-  return sources.find((source) => source.collection === name);
+export async function getSource(name: string) {
+  const foundSource = sources.find((source) => source.collection === name);
+  if (foundSource) {
+    const status = await getLastStatus(getCopyTaskId(foundSource.collection));
+    foundSource.status = status;
+  }
+  return foundSource;
 }

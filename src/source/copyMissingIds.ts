@@ -7,6 +7,7 @@ import { ISourceConfigElement } from '../types';
 import { debugUtil } from '../util/debug';
 import { copyEntries } from './copyEntries';
 import { getDriver } from './getDriver';
+import { ISourceDocument } from '../internalTypes';
 
 const debug = debugUtil('source:copyMissingIds');
 
@@ -30,9 +31,9 @@ export async function copyMissingIds(config: ISourceConfigElement) {
 
   // Get all ids from copied source
   const targetIds: Set<string> = new Set(
-    (await Model.find({ data: { $ne: null } }, { id: 1 })
-      .lean()
-      .exec()).map((t: any) => t.id)
+    (await Model.find({ data: { $ne: null } }, { id: 1 }).lean()).map(
+      (t: ISourceDocument) => t.id
+    )
   );
   const idsToCopy = new Set();
 

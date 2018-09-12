@@ -1,7 +1,7 @@
+import { join, resolve, parse } from 'path';
+
 import { IAggregationConfig, IAggregationConfigElement } from '../types';
 import { debugUtil } from '../util/debug';
-
-const path = require('path');
 
 const find = require('find');
 
@@ -13,7 +13,7 @@ export const aggregationConfig = { aggregation: dbConfig };
 const homeDir = require('./home').homeDir;
 
 if (homeDir) {
-  const aggregationDir = path.join(homeDir, 'aggregation');
+  const aggregationDir = join(homeDir, 'aggregation');
   let databases;
   try {
     debug.trace(`Searching aggregation configurations in ${aggregationDir}`);
@@ -24,8 +24,8 @@ if (homeDir) {
   databases = databases || [];
 
   for (const database of databases) {
-    const configPath = path.resolve(aggregationDir, database);
-    const parsedConfigPath = path.parse(configPath);
+    const configPath = resolve(aggregationDir, database);
+    const parsedConfigPath = parse(configPath);
     if (parsedConfigPath.ext !== '.js') {
       continue;
     }

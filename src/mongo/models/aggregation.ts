@@ -30,5 +30,5 @@ export function deleteById(name: string, id: string) {
 
 export function count(name: string) {
   const Model = getAggregation(name);
-  return Model.count();
+  return Model.count({});
 }

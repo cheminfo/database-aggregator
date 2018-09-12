@@ -1,5 +1,5 @@
-import { ISchedulerLogEntry } from '../../types';
 import { getSchedulerLog } from '../model';
+import { IChangeData } from 'process-scheduler';
 
 const Model = getSchedulerLog();
 
@@ -8,7 +8,7 @@ export async function getLastStatus(taskId: string) {
   if (!doc) {
     return doc;
   }
-  return doc.state[doc.state.length - 1].status;
+  return doc.state.sort((a, b) => Number(b.date) - Number(a.date))[0].status;
 }
 
 export function getLastTask(taskId: string) {
@@ -17,7 +17,7 @@ export function getLastTask(taskId: string) {
     .exec();
 }
 
-export async function save(obj: ISchedulerLogEntry) {
+export async function save(obj: IChangeData) {
   const stat = {
     status: obj.status,
     date: new Date(),

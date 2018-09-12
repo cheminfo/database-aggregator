@@ -85,6 +85,7 @@
   },
   "devDependencies": {
     "@types/debug": "0.0.30",
+    "@types/is-running": "^2.1.0",
     "@types/jest": "^23.3.2",
     "@types/node": "^10.9.4",
     "cross-env": "^5.2.0",

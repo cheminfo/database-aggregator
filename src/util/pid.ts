@@ -3,14 +3,14 @@
 import { readFileSync, unlinkSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-const isRunning = require('is-running');
+import isRunning = require('is-running');
 
 const pidFile = join(__dirname, '../../source.pid');
 
 export function start() {
   try {
     const pid = readFileSync(pidFile, 'utf8');
-    if (isRunning(pid)) {
+    if (isRunning(Number(pid))) {
       console.log(`process is running (pid: ${pid})`);
       process.exit(0);
     }

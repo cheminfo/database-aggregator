@@ -12,6 +12,8 @@ import {
   getCopyMissingIdTaskId,
   getRemoveTaskId
 } from './util/names';
+import { IScheduleDefinition } from './internalTypes';
+
 const debug = debugUtil('bin:schedule');
 
 const sources = Object.keys(config.source);
@@ -35,7 +37,7 @@ export async function start() {
     }
   };
 
-  const scheduleDefinition: any[] = [];
+  const scheduleDefinition: IScheduleDefinition[] = [];
   // Create configuration
   for (const collection of sources) {
     if (config.source[collection].disabled) {
@@ -88,6 +90,8 @@ export async function start() {
       id: aggId,
       worker: join(__dirname, '../src/aggregation/worker.js'),
       immediate: false,
+      deps: [],
+      noConcurrency: [],
       arg: collection,
       type: 'aggregation'
     });
@@ -114,7 +118,7 @@ export async function start() {
   debug.trace(`scheduler config${schedulerConfig}`);
   const scheduler = new ProcessScheduler(schedulerConfig);
 
-  scheduler.on('change', (data: any) => {
+  scheduler.on('change', (data) => {
     save(data);
   });
   scheduler.schedule(scheduleDefinition);

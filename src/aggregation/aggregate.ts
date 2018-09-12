@@ -70,7 +70,7 @@ export async function aggregate(conf: IAggregationConfigElement) {
         obj.value = await aggregateValue(data, sources, commonId);
       }
 
-      let oldEntry = await findById(collection, commonId);
+      const oldEntry = await findById(collection, commonId);
       if (obj.value === null) {
         if (oldEntry) {
           await deleteById(collection, commonId);
@@ -82,8 +82,7 @@ export async function aggregate(conf: IAggregationConfigElement) {
           );
         }
       } else {
-        oldEntry = oldEntry || {};
-        if (isequal(obj.value, oldEntry.value)) {
+        if (oldEntry && isequal(obj.value, oldEntry.value)) {
           // Don't save if has not changed
           debug.trace(
             `Not saving ${collection}:${commonId} because has not changed`

@@ -1,10 +1,9 @@
 'use strict';
 
 import * as mongoose from 'mongoose';
+import { URL } from 'url';
 
 import { globalConfig as config } from '../config/config';
-
-const { URL } = require('url');
 
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
