@@ -1,4 +1,31 @@
 import { Document } from 'mongoose';
+import {
+  IConfigFile,
+  ISourceConfigFile,
+  IAggregationConfigFile
+} from './types';
+
+export interface IObject<T> {
+  [key: string]: T;
+}
+
+export interface IConfig extends IConfigFile {
+  source: ISourceConfig;
+  aggregation: IAggregationConfig;
+  homeDir: string;
+}
+
+export interface ISourceConfigElement extends ISourceConfigFile {
+  collection: string;
+}
+
+export type ISourceConfig = IObject<ISourceConfigElement>;
+
+export interface IAggregationConfigElement extends IAggregationConfigFile {
+  collection: string;
+}
+
+export type IAggregationConfig = IObject<IAggregationConfigElement>;
 
 export interface ISchedulerLogDocument extends Document {
   taskId: string;
@@ -51,4 +78,21 @@ export interface IScheduleDefinition {
   noConcurrency: string[];
   arg: string;
   type: string;
+}
+
+export interface IAggregationEntry {
+  id: string;
+  date: number;
+  value: any;
+}
+
+export interface ISourceBase {
+  sequentialID: number;
+  commonID: string;
+}
+
+export interface ISourceEntry extends ISourceBase {
+  id: string;
+  date: Date;
+  data: object | null;
 }

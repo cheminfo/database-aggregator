@@ -3,11 +3,10 @@ const chunkLib = require('lodash.chunk');
 import { connect } from '../mongo/connection';
 import { getSource } from '../mongo/model';
 
-import { ISourceConfigElement } from '../types';
 import { debugUtil } from '../util/debug';
 import { copyEntries } from './copyEntries';
 import { getDriver } from './getDriver';
-import { ISourceDocument } from '../internalTypes';
+import { ISourceConfigElement, ISourceDocument } from '../internalTypes';
 
 const debug = debugUtil('source:copyMissingIds');
 

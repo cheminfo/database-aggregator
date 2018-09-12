@@ -4,7 +4,7 @@ import {
   IConfig,
   ISourceConfig,
   ISourceConfigElement
-} from '../types';
+} from '../internalTypes';
 
 export function config(configObject: IConfig) {
   const validatedConfig = Object.assign({}, configObject);

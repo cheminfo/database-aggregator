@@ -1,4 +1,4 @@
-import { IConfig } from '../types';
+import { IConfig } from '../internalTypes';
 export let defaultConfig: IConfig = {
   url: 'mongodb://localhost:27017',
   database: 'test',

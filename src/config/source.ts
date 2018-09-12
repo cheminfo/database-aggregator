@@ -2,7 +2,7 @@
 import { join, resolve, parse } from 'path';
 const find = require('find');
 
-import { ISourceConfig, ISourceConfigElement } from '../types';
+import { ISourceConfig, ISourceConfigElement } from '../internalTypes';
 import { debugUtil } from '../util/debug';
 
 import { homeDir } from './home';

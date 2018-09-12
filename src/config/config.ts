@@ -1,4 +1,4 @@
-import { IConfig } from '../types';
+import { IConfig } from '../internalTypes';
 import { debugUtil } from '../util/debug';
 import { aggregationConfig } from './aggregation';
 import { defaultConfig } from './default';

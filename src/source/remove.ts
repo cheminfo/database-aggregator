@@ -2,7 +2,7 @@ import { connect } from '../mongo/connection';
 import { getSource } from '../mongo/model';
 
 import { getNextSequenceID } from '../mongo/models/sourceSequence';
-import { ISourceConfigElement } from '../types';
+import { ISourceConfigElement } from '../internalTypes';
 import { debugUtil } from '../util/debug';
 import { getDriver } from './getDriver';
 

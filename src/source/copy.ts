@@ -1,6 +1,6 @@
 import { connect } from '../mongo/connection';
 import { getSource } from '../mongo/model';
-import { ISourceConfigElement } from '../types';
+import { ISourceConfigElement } from '../internalTypes';
 
 import { copyEntries } from './copyEntries';
 import { getDriver } from './getDriver';

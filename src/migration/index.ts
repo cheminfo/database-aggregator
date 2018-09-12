@@ -3,7 +3,7 @@ import {
   getSourceVersion,
   updateSourceVersion
 } from '../mongo/models/sourceSequence';
-import { ISourceConfig } from '../types';
+import { ISourceConfig } from '../internalTypes';
 import { sources as sourcesValidation } from '../config/validation';
 
 export async function sources(sourceConfigs: ISourceConfig) {

@@ -6,14 +6,14 @@ import {
   getCommonIds,
   getLastSeqId
 } from '../mongo/models/source';
+import { IAggregationCallback } from '../types';
 import {
-  IAggregationCallback,
   IAggregationConfigElement,
-  IAggregationEntry,
   IObject,
+  IAggregationEntry,
   ISourceBase,
   ISourceEntry
-} from '../types';
+} from '../internalTypes';
 import { debugUtil } from '../util/debug';
 const isequal = require('lodash.isequal');
 const debug = debugUtil('aggregation');

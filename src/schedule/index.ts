@@ -1,5 +1,8 @@
 import { globalConfig } from '../config/config';
-import { IAggregationConfigElement, ISourceConfigElement } from '../types';
+import {
+  IAggregationConfigElement,
+  ISourceConfigElement
+} from '../internalTypes';
 import { getLastStatus } from '../mongo/models/schedulerLog';
 import { getAggregationTaskId, getCopyTaskId } from '../util/names';
 

@@ -1,4 +1,4 @@
-import { IObject } from '../types';
+import { IObject } from '../internalTypes';
 const prefix = 'DATABASE_AGGREGATOR_';
 
 export const envConfig: IObject<string | undefined> = {};

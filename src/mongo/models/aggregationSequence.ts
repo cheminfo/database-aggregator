@@ -1,4 +1,4 @@
-import { IObject } from '../../types';
+import { IObject } from '../../internalTypes';
 import { getAggregationSequence } from '../model';
 const Model = getAggregationSequence();
 

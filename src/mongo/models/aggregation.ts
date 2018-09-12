@@ -1,4 +1,4 @@
-import { IAggregationEntry } from '../../types';
+import { IAggregationEntry } from '../../internalTypes';
 import { debugUtil } from '../../util/debug';
 import { getAggregation } from '../model';
 

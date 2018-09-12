@@ -2,7 +2,8 @@ const isequal = require('lodash.isequal');
 
 import { getSource } from '../mongo/model';
 import { getNextSequenceID } from '../mongo/models/sourceSequence';
-import { ISourceConfigElement, ISourceDriverEntry } from '../types';
+import { ISourceDriverEntry } from '../types';
+import { ISourceConfigElement } from '../internalTypes';
 
 export async function copyEntries(
   entries: ISourceDriverEntry[],

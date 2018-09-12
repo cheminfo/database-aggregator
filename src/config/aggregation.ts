@@ -1,6 +1,9 @@
 import { join, resolve, parse } from 'path';
 
-import { IAggregationConfig, IAggregationConfigElement } from '../types';
+import {
+  IAggregationConfig,
+  IAggregationConfigElement
+} from '../internalTypes';
 import { debugUtil } from '../util/debug';
 
 const find = require('find');
