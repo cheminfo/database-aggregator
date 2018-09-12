@@ -21,7 +21,7 @@ class SourceController {
     const { name } = params;
 
     const filter = {
-      taskId: `source_copy_${name}`
+      taskId: { $in: [`source_copy_${name}`, `source_remove_${name}`, `source_copy_missing_ids_${name}`] }
     };
     if (query.from && query.to) {
       filter.date = dateParams;
