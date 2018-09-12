@@ -24,7 +24,7 @@ function SourceTaskDetailsComponent({
 }) {
   return (
     <>
-      <h1>{name}</h1>
+      <h1 className="mb-4">{name}</h1>
       <div className="flex">
         <div className="flex-1">Other</div>
         <div className="flex-1">

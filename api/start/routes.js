@@ -22,6 +22,7 @@ Router.group(() => {
 
 Router.group(() => {
   Router.get('/', 'AggregationController.get');
+  Router.get('history', 'AggregationController.history')
 }).prefix('api/scheduler/aggregation/:name');
 
 Router.group(() => {

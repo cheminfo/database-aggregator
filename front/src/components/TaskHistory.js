@@ -19,7 +19,8 @@ export default function TaskHistory({ history, includeType = false }) {
       </thead>
       <tbody className="align-baseline">
         {history.map(historyItem => {
-          const type = taskType.exec(historyItem.taskId)[1];
+          const m = taskType.exec(historyItem.taskId);
+          const type = m && m[1];
           const last = historyItem.state[0];
           return (
             <tr key={historyItem.pid}>
