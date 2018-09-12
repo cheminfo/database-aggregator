@@ -17,6 +17,35 @@ export function getLastTask(taskId: string) {
     .exec();
 }
 
+export async function getTasks(taskId: string | string[], options: any) {
+  const dateParams: any = {};
+  if (options.from) {
+    dateParams.$gt = new Date(+options.from);
+  }
+  if (options.to) {
+    dateParams.$lt = new Date(+options.to);
+  }
+
+  const filter: any = {};
+
+  if (Array.isArray(taskId)) {
+    filter.taskId = {
+      $in: taskId
+    };
+  } else {
+    filter.taskId = taskId;
+  }
+  if (options.from && options.to) {
+    filter.date = dateParams;
+  }
+  const result = await Model.find(filter)
+    .sort({
+      date: -1
+    })
+    .select({ _id: 0, __v: 0, 'state._id': 0 });
+  return result;
+}
+
 export async function save(obj: IChangeData) {
   const stat = {
     status: obj.status,

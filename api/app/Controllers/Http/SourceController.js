@@ -2,6 +2,7 @@
 
 const Model = use('Src/mongo/model').getSchedulerLog();
 const schedule = use('Src/schedule/index');
+const { getTasks } = use('Src/mongo/models/schedulerLog');
 
 class SourceController {
   async get({ params, response }) {
@@ -14,23 +15,16 @@ class SourceController {
   }
 
   async history({ request, params }) {
-    const query = request.get();
-    const dateParams = {};
-    if (query.from) dateParams.$gt = new Date(+query.from);
-    if (query.to) dateParams.$lt = new Date(+query.to);
     const { name } = params;
-
-    const filter = {
-      taskId: { $in: [`source_copy_${name}`, `source_remove_${name}`, `source_copy_missing_ids_${name}`] }
-    };
-    if (query.from && query.to) {
-      filter.date = dateParams;
-    }
-    const result = await Model.find(filter)
-      .sort({
-        date: -1
-      })
-      .select({ _id: 0, __v: 0, 'state._id': 0 });
+    const query = request.get();
+    const result = await getTasks(
+      [
+        `source_copy_${name}`,
+        `source_remove_${name}`,
+        `source_copy_missing_ids_${name}`
+      ],
+      query
+    );
     return result;
   }
 }

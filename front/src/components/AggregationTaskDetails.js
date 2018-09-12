@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import TaskHistory from './TaskHistory';
 import DatePicker from './DatePicker';
 import TaskDetailProvider from './TaskDetailProvider';
 
-export default function SourceTaskDetails({ match }) {
+export default function AggregationTaskDetails({ match }) {
   return (
     <TaskDetailProvider
-      type="source"
       match={match}
-      component={SourceTaskDetailsComponent}
+      type="aggregation"
+      component={AggregationTaskDetailsComponent}
     />
   );
 }
 
-function SourceTaskDetailsComponent({
+function AggregationTaskDetailsComponent({
   onDatesChange,
   startDate,
   endDate,
@@ -23,7 +23,7 @@ function SourceTaskDetailsComponent({
   name
 }) {
   return (
-    <>
+    <Fragment>
       <h1>{name}</h1>
       <div className="flex">
         <div className="flex-1">Other</div>
@@ -36,13 +36,9 @@ function SourceTaskDetailsComponent({
               endDate={endDate}
             />
           </div>
-          {loadingHistory ? (
-            'Loading...'
-          ) : (
-            <TaskHistory history={history} includeType />
-          )}
+          {loadingHistory ? 'Loading...' : <TaskHistory history={history} />}
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }

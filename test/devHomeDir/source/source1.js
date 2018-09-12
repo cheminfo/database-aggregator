@@ -4,6 +4,7 @@
 const source = {
   copyCronRule: '*/5 * * * *',
   removeCronRule: '*/15 * * * *',
+  copyMissingIdsCronRule: '5/15 * * * *',
   driver: require('../driver/constantUpdates')
 };
 
