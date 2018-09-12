@@ -18,10 +18,10 @@ export default function SourceTaskHistory({ history }) {
             </tr>
           </thead>
           <tbody className="align-baseline">
-            {history.map((historyItem) => {
+            {history.map(historyItem => {
               const last = historyItem.state[0];
               return (
-                <tr>
+                <tr key={historyItem.pid}>
                   <TableCell className="w-8">
                     <StatusSvg status={last.status} />
                   </TableCell>
@@ -35,6 +35,10 @@ export default function SourceTaskHistory({ history }) {
                     {last.stderr ? (
                       <Collapsible title="stderr">{last.stderr}</Collapsible>
                     ) : null}
+                    {!last.stdout &&
+                      !last.stderr && (
+                        <span className="font-italic text-grey">N/A</span>
+                      )}
                   </TableCell>
                 </tr>
               );
