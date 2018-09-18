@@ -11,7 +11,7 @@ export default function SourceTaskCron(props) {
 
   return (
     <li>
-      {label}: <DateTime date={parsed.next().toString()} />
+      {label}: <DateTime date={parsed.next().toISOString()} />
     </li>
   );
 }
