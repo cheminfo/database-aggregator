@@ -33,8 +33,12 @@ Router.group(() => {
 }).prefix('api/scheduler/source/:name');
 
 Router.group(() => {
-  Router.get('id/:id', 'DbController.getDataById');
-}).prefix('api/db/:name');
+  Router.get('aggregation/:name/id/:id', 'DbController.getAggregationById');
+  Router.get('source/:name/id/:id', 'DbController.getSourceById');
+  Router.get('source/:name/commonId/:id', 'DbController.getSourceByCommonId');
+  Router.delete('aggregation/:name', 'DbController.deleteAggregation');
+  Router.delete('source/:name', 'DbController.deleteSource');
+}).prefix('api/db');
 
 Router.any('*', ({ response }) => {
   const pathToDist = Helpers.publicPath('dist');

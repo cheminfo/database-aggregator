@@ -28,6 +28,13 @@ export function getSource(name: string) {
   return getModel<ISourceDocument>(getSourceModelName(name), sourceSchema);
 }
 
+export function getSourceIfExists(name: string) {
+  return getModelIfExists<ISourceDocument>(
+    getSourceModelName(name),
+    sourceSchema
+  );
+}
+
 export async function dropSource(name: string) {
   const collName = getSourceName(name);
   await dropCollection(collName);
