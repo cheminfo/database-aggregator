@@ -13,6 +13,7 @@ export default class TaskDetailProvider extends Component {
       .minutes(0)
       .seconds(0);
     this.state = {
+      task: null,
       loadingHistory: false,
       history: [],
       startDate: today,
@@ -21,24 +22,44 @@ export default class TaskDetailProvider extends Component {
   }
 
   componentDidMount() {
+    this.fetchInfo();
     this.fetchHistory(this.state.startDate, this.state.endDate);
   }
 
-  fetchHistory(startDate, endDate) {
+  getUrl(path = '') {
     const {
       type,
       match: { params }
     } = this.props;
-    let url = '/scheduler/' + type + '/' + params.task + '/history';
+    return `/scheduler/${type}/${params.task}/${path}`;
+  }
+
+  triggerTask = (type) => {
+    const options = {};
+    if (type) {
+      options.params = {
+        type
+      };
+    }
+    axios.post(this.getUrl('trigger'), undefined, options);
+  };
+
+  fetchInfo() {
+    axios.get(this.getUrl()).then((response) => {
+      this.setState({ task: response.data });
+    });
+  }
+
+  fetchHistory(startDate, endDate) {
     this.setState({ loadingHistory: true });
     axios
-      .get(url, {
+      .get(this.getUrl('history'), {
         params: {
           from: +startDate - HOURS_12,
           to: +endDate + HOURS_12
         }
       })
-      .then(response => {
+      .then((response) => {
         const history = response.data;
         for (const elem of history) {
           elem.state.sort((a, b) => b.date.localeCompare(a.date));
@@ -61,12 +82,14 @@ export default class TaskDetailProvider extends Component {
     const Component = this.props.component;
     return (
       <Component
+        task={this.state.task}
         onDatesChange={this.onDatesChange.bind(this)}
         startDate={this.state.startDate}
         endDate={this.state.endDate}
         history={this.state.history}
         loadingHistory={this.state.historyLoading}
         name={this.props.match.params.task}
+        triggerTask={this.triggerTask}
       />
     );
   }

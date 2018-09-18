@@ -40,15 +40,11 @@ export async function start() {
   const scheduleDefinition: IScheduleDefinition[] = [];
   // Create configuration
   for (const collection of sources) {
-    if (config.source[collection].disabled) {
-      continue;
-    }
-
-    scheduleDefinition.push({
+    const sourceConfig = config.source[collection];
+    const copyConfig: IScheduleDefinition = {
       id: getCopyTaskId(collection),
       worker: join(__dirname, '../src/source/workers/copyWorker.js'),
       immediate: false,
-      cronRule: config.source[collection].copyCronRule,
       deps: [],
       noConcurrency: [
         getRemoveTaskId(collection),
@@ -56,35 +52,40 @@ export async function start() {
       ],
       arg: collection,
       type: 'source'
-    });
+    };
+    scheduleDefinition.push(copyConfig);
 
-    // copy missing ids
-    scheduleDefinition.push({
+    const copyMissingConfig: IScheduleDefinition = {
       id: getCopyMissingIdTaskId(collection),
       worker: join(__dirname, '../src/source/workers/copyMissingIdsWorker.js'),
       immediate: false,
-      cronRule: config.source[collection].copyMissingIdsCronRule,
       deps: [],
       noConcurrency: [],
       arg: collection,
       type: 'source'
-    });
-    scheduleDefinition.push({
+    };
+    scheduleDefinition.push(copyMissingConfig);
+
+    const removeConfig: IScheduleDefinition = {
       id: getRemoveTaskId(collection),
       worker: join(__dirname, '../src/source/workers/removeWorker.js'),
       immediate: false,
-      cronRule: config.source[collection].removeCronRule,
       deps: [],
       noConcurrency: [],
       arg: collection,
       type: 'source'
-    });
+    };
+    scheduleDefinition.push(removeConfig);
+
+    if (!config.source[collection].disabled) {
+      copyConfig.cronRule = sourceConfig.copyCronRule;
+      copyMissingConfig.cronRule = sourceConfig.copyMissingIdsCronRule;
+      removeConfig.cronRule = sourceConfig.removeCronRule;
+    }
   }
 
   for (const collection of aggregations) {
-    if (config.aggregation[collection].disabled) {
-      continue;
-    }
+    const aggregationConfig = config.aggregation[collection];
     const aggId = `aggregation_${collection}`;
     scheduleDefinition.push({
       id: aggId,
@@ -96,11 +97,13 @@ export async function start() {
       type: 'aggregation'
     });
 
-    const aggSources = Object.keys(config.aggregation[collection].sources);
-    for (const source of aggSources) {
-      setDeps(getCopyTaskId(source), aggId);
-      setDeps(getRemoveTaskId(source), aggId);
-      setDeps(getCopyMissingIdTaskId(source), aggId);
+    if (!aggregationConfig.disabled) {
+      const aggSources = Object.keys(config.aggregation[collection].sources);
+      for (const source of aggSources) {
+        setDeps(getCopyTaskId(source), aggId);
+        setDeps(getRemoveTaskId(source), aggId);
+        setDeps(getCopyMissingIdTaskId(source), aggId);
+      }
     }
   }
 

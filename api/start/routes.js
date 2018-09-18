@@ -22,12 +22,14 @@ Router.group(() => {
 
 Router.group(() => {
   Router.get('/', 'AggregationController.get');
-  Router.get('history', 'AggregationController.history')
+  Router.get('history', 'AggregationController.history');
+  Router.post('trigger', 'AggregationController.trigger');
 }).prefix('api/scheduler/aggregation/:name');
 
 Router.group(() => {
   Router.get('/', 'SourceController.get');
   Router.get('history', 'SourceController.history');
+  Router.post('trigger', 'SourceController.trigger');
 }).prefix('api/scheduler/source/:name');
 
 Router.group(() => {

@@ -1,8 +1,10 @@
 'use strict';
 
-const Model = use('Src/mongo/model').getSchedulerLog();
 const schedule = use('Src/schedule/index');
 const { getTasks } = use('Src/mongo/models/schedulerLog');
+const { triggerTask } = use('Src/scheduler');
+
+const types = ['copy', 'remove', 'copy_missing_ids'];
 
 class SourceController {
   async get({ params, response }) {
@@ -26,6 +28,20 @@ class SourceController {
       query
     );
     return result;
+  }
+
+  trigger({ request, response, params }) {
+    const query = request.get();
+    const type = query.type;
+    if (!type || !types.includes(type)) {
+      response.status(400);
+      return {
+        ok: false,
+        error: 'invalid or missing type'
+      };
+    }
+    triggerTask(`source_${type}_${params.name}`);
+    return { ok: true };
   }
 }
 

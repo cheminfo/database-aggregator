@@ -3,6 +3,7 @@ import React from 'react';
 import TaskHistory from './TaskHistory';
 import DatePicker from './DatePicker';
 import TaskDetailProvider from './TaskDetailProvider';
+import SourceTaskData from './SourceTaskData';
 
 export default function SourceTaskDetails({ match }) {
   return (
@@ -15,18 +16,22 @@ export default function SourceTaskDetails({ match }) {
 }
 
 function SourceTaskDetailsComponent({
+  task,
   onDatesChange,
   startDate,
   endDate,
   loadingHistory,
   history,
-  name
+  name,
+  triggerTask
 }) {
   return (
     <>
       <h1 className="mb-4">{name}</h1>
       <div className="flex">
-        <div className="flex-1">Other</div>
+        <div className="flex-1">
+          <SourceTaskData task={task} triggerTask={triggerTask} />
+        </div>
         <div className="flex-1">
           <div className="mb-4 mx-2">
             <div className="text-l font-bold mb-3">Task history</div>
