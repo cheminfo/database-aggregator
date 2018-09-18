@@ -6,7 +6,7 @@ import AggregationTask from './AggregationTask';
 import SourceTask from './SourceTask';
 import TaskCard from './TaskCard';
 
-export default class DashboardContent extends Component {
+export default class TaskList extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
