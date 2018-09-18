@@ -34,6 +34,5 @@ node_modules
 
 .idea
 
-.env
 /api/public
 /lib
