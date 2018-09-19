@@ -2,7 +2,7 @@ import React from 'react';
 
 import TaskTriggerButton from './TaskTriggerButton';
 import AggregationSources from './AggregationSources';
-import Button from './Button';
+import ResetButton from './ResetButton';
 
 export default function AggregationTaskData(props) {
   const { task, triggerTask, resetDatabase } = props;
@@ -17,11 +17,7 @@ export default function AggregationTaskData(props) {
         />
       </div>
       <div>
-        <Button
-          description="Reset database"
-          color="red"
-          onClick={resetDatabase}
-        />
+        <ResetButton resetDatabase={resetDatabase} />
       </div>
     </>
   );

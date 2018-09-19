@@ -2,7 +2,7 @@ import React from 'react';
 
 import SourceNextExecutions from './SourceNextExecutions';
 import TaskTriggerButton from './TaskTriggerButton';
-import Button from './Button';
+import ResetButton from './ResetButton';
 
 export default function SourceTaskData(props) {
   const { task, triggerTask, resetDatabase } = props;
@@ -28,11 +28,7 @@ export default function SourceTaskData(props) {
         />
       </div>
       <div>
-        <Button
-          description="Reset database"
-          color="red"
-          onClick={resetDatabase}
-        />
+        <ResetButton resetDatabase={resetDatabase} />
       </div>
     </>
   );
