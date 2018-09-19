@@ -23,14 +23,19 @@ function SourceTaskDetailsComponent({
   loadingHistory,
   history,
   name,
-  triggerTask
+  triggerTask,
+  resetDatabase
 }) {
   return (
     <>
       <h1 className="mb-4">{name}</h1>
       <div className="flex">
         <div className="flex-1">
-          <SourceTaskData task={task} triggerTask={triggerTask} />
+          <SourceTaskData
+            task={task}
+            triggerTask={triggerTask}
+            resetDatabase={resetDatabase}
+          />
         </div>
         <div className="flex-1">
           <div className="mb-4 mx-2">

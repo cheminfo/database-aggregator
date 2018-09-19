@@ -2,9 +2,10 @@ import React from 'react';
 
 import SourceNextExecutions from './SourceNextExecutions';
 import TaskTriggerButton from './TaskTriggerButton';
+import Button from './Button';
 
 export default function SourceTaskData(props) {
-  const { task, triggerTask } = props;
+  const { task, triggerTask, resetDatabase } = props;
   if (!task) return null;
   return (
     <>
@@ -24,6 +25,13 @@ export default function SourceTaskData(props) {
         <TaskTriggerButton
           description="Trigger copy_missing_ids"
           triggerTask={() => triggerTask('copy_missing_ids')}
+        />
+      </div>
+      <div>
+        <Button
+          description="Reset database"
+          color="red"
+          onClick={resetDatabase}
         />
       </div>
     </>

@@ -47,9 +47,13 @@ export function getAggregation(name: string) {
   );
 }
 
-export async function dropAggregation(name: string) {
+export function dropAggregation(name: string) {
   const collName = getAggregationModelName(name);
-  await dropCollection(collName);
+  const aggregationSequence = getAggregationSequence();
+  return Promise.all([
+    dropCollection(collName),
+    aggregationSequence.deleteOne({ _id: name })
+  ]);
 }
 
 export function getAggregationIfExists(name: string) {

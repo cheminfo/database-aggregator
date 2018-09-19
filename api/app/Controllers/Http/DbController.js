@@ -56,6 +56,18 @@ class DbController {
     const { db, id } = parseRequest(ctx);
     return getSource(ctx, db, { commonID: id });
   }
+
+  async deleteSource(ctx) {
+    const { name: db } = ctx.params;
+    await model.dropSource(db);
+    return { ok: true };
+  }
+
+  async deleteAggregation(ctx) {
+    const { name: db } = ctx.params;
+    await model.dropAggregation(db);
+    return { ok: true };
+  }
 }
 
 module.exports = DbController;

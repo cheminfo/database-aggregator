@@ -26,12 +26,12 @@ export default class TaskDetailProvider extends Component {
     this.fetchHistory(this.state.startDate, this.state.endDate);
   }
 
-  getUrl(path = '') {
+  getUrl(path = '', prefix = 'scheduler') {
     const {
       type,
       match: { params }
     } = this.props;
-    return `/scheduler/${type}/${params.task}/${path}`;
+    return `/${prefix}/${type}/${params.task}/${path}`;
   }
 
   triggerTask = (type) => {
@@ -68,6 +68,10 @@ export default class TaskDetailProvider extends Component {
       });
   }
 
+  resetDatabase = () => {
+    axios.delete(this.getUrl('', 'db'));
+  };
+
   onDatesChange(event) {
     this.setState({
       startDate: event.startDate,
@@ -90,6 +94,7 @@ export default class TaskDetailProvider extends Component {
         loadingHistory={this.state.historyLoading}
         name={this.props.match.params.task}
         triggerTask={this.triggerTask}
+        resetDatabase={this.resetDatabase}
       />
     );
   }
