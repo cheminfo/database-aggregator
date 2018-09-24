@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "database-aggregator",
   "version": "3.0.0-0",
   "description": "A database aggregator",
