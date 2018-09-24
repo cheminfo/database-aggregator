@@ -20,7 +20,7 @@ export default class Collapsible extends Component {
           />
           <div>{this.props.title}</div>
         </div>
-        <div>{!this.state.collapsed && <div>{this.props.children}</div>}</div>
+        <div>{!this.state.collapsed && <pre>{this.props.children}</pre>}</div>
       </div>
     );
   }
