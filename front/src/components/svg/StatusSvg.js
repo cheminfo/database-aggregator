@@ -4,7 +4,8 @@ const statusColorMap = {
   null: 'text-grey-light',
   error: 'text-red-light',
   queued: 'text-orange-light',
-  success: 'text-green-light'
+  success: 'text-green-light',
+  running: 'text-blue-light'
 };
 
 export default function({ status }) {
