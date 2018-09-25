@@ -7,7 +7,7 @@ export async function getLastSeqIds(name: string) {
   if (result) {
     return result.sourceSeq;
   }
-  return null;
+  return {};
 }
 
 export async function setSeqIds(name: string, seqIds: IObject<number>) {

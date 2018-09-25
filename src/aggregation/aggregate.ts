@@ -28,8 +28,7 @@ export async function aggregate(conf: IAggregationConfigElement) {
   debug.trace('get common ids');
   do {
     // while commonIdsSet.size > 0
-    let seqIds = await getLastSeqIds(collection);
-    seqIds = seqIds || {};
+    const seqIds = await getLastSeqIds(collection);
     let commonIds: string[] = [];
 
     // Iterate over dependees
