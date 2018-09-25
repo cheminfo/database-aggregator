@@ -1,6 +1,7 @@
 import { connect, disconnect, insertData } from '../../../test/mongoSetup';
 import { clean } from '../../../test/util';
 import { aggregate } from '../aggregate';
+import { getLastSeqIds } from '../../mongo/models/aggregationSequence';
 const aggregation = require('./../../mongo/models/aggregation');
 
 beforeEach(connect);
@@ -36,6 +37,10 @@ describe('aggregation', () => {
     data.forEach((d: any) => {
       d.date = null;
     });
+    const lastSeq = await getLastSeqIds('chemical');
+    expect(lastSeq.miscelaneous).toBeGreaterThan(0);
+    expect(lastSeq.prices).toBeGreaterThan(0);
+    expect(lastSeq.names).toBeGreaterThan(0);
     expect(clean(data)).toMatchSnapshot();
   });
 

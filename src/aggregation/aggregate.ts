@@ -42,10 +42,12 @@ export async function aggregate(conf: IAggregationConfigElement) {
         chunkSize
       );
       const lastCid = ids[ids.length - 1];
-      maxSeqIds[sourceName] = Math.min(
-        lastCid ? lastCid.sequentialID : 0,
-        lastSourceSeq ? lastSourceSeq.sequentialID : 0
-      );
+      // If last cid is undefined it means there are no more source entries
+      maxSeqIds[sourceName] = lastCid
+        ? lastCid.sequentialID
+        : lastSourceSeq
+          ? lastSourceSeq.sequentialID
+          : 0;
       const cids = ids.map((cid) => cid.commonID);
       commonIds = commonIds.concat(cids);
     }
