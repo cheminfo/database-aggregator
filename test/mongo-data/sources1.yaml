@@ -1,16 +1,13 @@
 source_source_test:
-  - 
-    id: el11
+  - id: el11
     data: 1
     commonID: '1'
     sequentialID: 1
-  - 
-    id: el12
+  - id: el12
     data: 2
     commonID: '1'
     sequentialID: 2
-  - 
-    id: el21
+  - id: el21
     data: 3
     commonID: '2'
     sequentialID: 3

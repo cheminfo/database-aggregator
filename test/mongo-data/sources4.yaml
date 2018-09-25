@@ -1,31 +1,25 @@
 source_source_test:
-  - 
-    id: el11
+  - id: el11
     data: null
     commonID: '1'
     sequentialID: 8
-  - 
-    id: el12
+  - id: el12
     data: null
     commonID: '1'
     sequentialID: 9
-  - 
-    id: el21
+  - id: el21
     data: null
     commonID: '2'
     sequentialID: 11
-  - 
-    id: el22
+  - id: el22
     data: 5
     commonID: '2'
     sequentialID: 6
-  - 
-    id: el32
+  - id: el32
     data: null
     commonID: '3'
     sequentialID: 10
-  - 
-    id: el41
+  - id: el41
     data: null
     commonID: '4'
     sequentialID: 9
