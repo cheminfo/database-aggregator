@@ -3,6 +3,8 @@
 const Config = use('Config');
 const Server = use('Server');
 
+const customMiddleware = Config.get('aggregator.middleware');
+
 /*
 |--------------------------------------------------------------------------
 | Global Middleware
@@ -13,6 +15,9 @@ const Server = use('Server');
 |
 */
 const globalMiddleware = ['Adonis/Middleware/BodyParser'];
+if (customMiddleware) {
+  globalMiddleware.push(customMiddleware);
+}
 
 /*
 |--------------------------------------------------------------------------
