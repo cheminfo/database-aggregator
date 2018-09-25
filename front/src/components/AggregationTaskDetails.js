@@ -29,15 +29,13 @@ function AggregationTaskDetailsComponent({
   return (
     <Fragment>
       <h1 className="mb-4">{name}</h1>
-      <div className="flex">
-        <div className="flex-1">
-          <AggregationTaskData
-            task={task}
-            triggerTask={triggerTask}
-            resetDatabase={resetDatabase}
-          />
-        </div>
-        <div className="flex-1">
+      <div className="w-full">
+        <AggregationTaskData
+          task={task}
+          triggerTask={triggerTask}
+          resetDatabase={resetDatabase}
+        />
+        <div className="w-full">
           <div className="mb-4 mx-2">
             <div className="text-l font-bold mb-3">Task history</div>
             <DatePicker

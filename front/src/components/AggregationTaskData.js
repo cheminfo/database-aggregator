@@ -10,13 +10,11 @@ export default function AggregationTaskData(props) {
   return (
     <>
       <AggregationSources task={task} enableClick />
-      <div className="mt-4">
+      <div className="flex my-4">
         <TaskTriggerButton
           triggerTask={triggerTask}
           description="Trigger aggregation"
         />
-      </div>
-      <div>
         <ResetButton resetDatabase={resetDatabase} />
       </div>
     </>
