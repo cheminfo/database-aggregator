@@ -29,7 +29,7 @@ export interface ISourceDriverConfig<DriverConfig = any> {
     config: DriverConfig,
     callback: SourceDriverCallback,
     meta: ISourceDriverMeta
-  ) => Promise<void>;
+  ) => void | Promise<void>;
 }
 
 export type SourceDriverCallback = (

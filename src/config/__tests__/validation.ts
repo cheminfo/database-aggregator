@@ -1,9 +1,16 @@
 import { aggregation, source } from '../validation';
+import {
+  IAggregationConfigElement,
+  ISourceConfigElement
+} from '../../internalTypes';
 
 describe('source validation', () => {
   it('should return a new object', () => {
-    const conf = {
-      version: 1,
+    const conf: ISourceConfigElement = {
+      collection: 'test',
+      driver: 'test',
+      driverConfig: {},
+      version: 1
     };
     const validatedConfig = source(conf);
     expect(validatedConfig).toBeDefined();
@@ -12,8 +19,9 @@ describe('source validation', () => {
 
   it('version should be a integer or undefined', () => {
     const conf = {
-      version: '1',
+      version: '1'
     };
+    // @ts-ignore
     expect(() => source(conf)).toThrow('source version must be a number');
   });
 });
@@ -21,24 +29,30 @@ describe('source validation', () => {
 describe('aggregation validation', () => {
   it('should throw on wrong config object', async () => {
     const err = /^aggregation configuration must be an object$/;
+    // @ts-ignore
     await expect(() => aggregation()).toThrow(err);
+    // @ts-ignore
     await expect(() => aggregation(42)).toThrow(err);
+    // @ts-ignore
     await expect(() => aggregation(null)).toThrow(err);
   });
 
   it('should throw if collection is not a string', () => {
+    // @ts-ignore
     return expect(() => aggregation({ collection: 42 })).toThrow(
-      /^config\.collection must be a string$/,
+      /^config\.collection must be a string$/
     );
   });
 
   it('should throw if sources is not an object', async () => {
     const err = /^config\.sources must be an object$/;
     await expect(() =>
-      aggregation({ collection: 'dummy', sources: null }),
+      // @ts-ignore
+      aggregation({ collection: 'dummy', sources: null })
     ).toThrow(err);
     await expect(() =>
-      aggregation({ collection: 'dummy', sources: 42 }),
+      // @ts-ignore
+      aggregation({ collection: 'dummy', sources: 42 })
     ).toThrow(err);
   });
 
@@ -47,42 +61,43 @@ describe('aggregation validation', () => {
     await expect(() =>
       aggregation({
         collection: 'dummy',
-        sources: { a: 1 },
-        chunkSize: 0.1,
-      }),
+        sources: { a: () => void 0 },
+        chunkSize: 0.1
+      })
     ).toThrow(err);
     await expect(() =>
       aggregation({
         collection: 'dummy',
-        sources: { a: 1 },
-        chunkSize: -1,
-      }),
+        sources: { a: () => void 0 },
+        chunkSize: -1
+      })
     ).toThrow(err);
     await expect(() =>
       aggregation({
         collection: 'dummy',
-        sources: { a: 1 },
-        chunkSize: 0,
-      }),
+        sources: { a: () => void 0 },
+        chunkSize: 0
+      })
     ).toThrow(err);
   });
 
   it('should throw if sources is an empty object', () => {
     return expect(() =>
-      aggregation({ collection: 'dummy', sources: {} }),
+      aggregation({ collection: 'dummy', sources: {} })
     ).toThrow(/^config\.sources must have at least one source$/);
   });
 
   it('should throw if sources properties are not functions', () => {
     return expect(() =>
+      // @ts-ignore
       aggregation({
         collection: 'dummy',
         sources: {
-          source1: 'abc',
-        },
-      }),
+          source1: 'abc'
+        }
+      })
     ).toThrow(
-      'all sources in the aggregation config should be functions (source1)',
+      'all sources in the aggregation config should be functions (source1)'
     );
   });
 
@@ -92,8 +107,8 @@ describe('aggregation validation', () => {
       sources: {
         source1: () => {
           // noop
-        },
-      },
+        }
+      }
     };
     const validatedConfig = aggregation(aggConfig);
     expect(validatedConfig).toBeDefined();
@@ -101,13 +116,13 @@ describe('aggregation validation', () => {
   });
 
   it('should set the default chunkSize if not specified', () => {
-    const aggConfig = {
+    const aggConfig: IAggregationConfigElement = {
       collection: 'dummy',
       sources: {
         source1: () => {
           // noop
-        },
-      },
+        }
+      }
     };
     let validatedConfig = aggregation(aggConfig);
     expect(validatedConfig.chunkSize).toEqual(1000);

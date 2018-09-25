@@ -12,7 +12,7 @@ describe('aggregation', () => {
     const conf = {
       collection: 'chemical',
       sources: {
-        miscelaneous(values, result) {
+        miscelaneous(values: any[], result: any) {
           if (values && values[0]) {
             const value = values[0];
             result.mf = {};
@@ -23,17 +23,17 @@ describe('aggregation', () => {
             result.info.rn = value.rn;
           }
         },
-        prices(values, result) {
+        prices(values: any[], result: any) {
           result.prices = values;
         },
-        names(values, result) {
-          result.names = values.map(value => value.name);
+        names(values: any[], result: any) {
+          result.names = values.map((value) => value.name);
         }
       }
     };
     await aggregate(conf);
     const data = await aggregation.findAll('chemical').lean();
-    data.forEach(d => {
+    data.forEach((d: any) => {
       d.date = null;
     });
     expect(clean(data)).toMatchSnapshot();
@@ -44,7 +44,7 @@ describe('aggregation', () => {
       collection: 'sourceAgg',
       sources: {
         // eslint-disable-next-line camelcase
-        source_test(values, result) {
+        source_test(values: any, result: any) {
           result.values = values.slice();
         }
       }
@@ -78,8 +78,8 @@ describe('aggregation', () => {
   });
 });
 
-function aggSnapshot(data) {
-  data.forEach(d => {
+function aggSnapshot(data: any[]) {
+  data.forEach((d) => {
     d.date = null;
   });
   expect(clean(data)).toMatchSnapshot();

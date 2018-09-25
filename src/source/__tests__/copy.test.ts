@@ -41,6 +41,7 @@ describe('source copy', () => {
     const collection = getCollection('source_test_big');
     const config = {
       driver: getDriverPath('source-copy-big'),
+      driverConfig: {},
       collection: 'test_big'
     };
 

@@ -28,7 +28,10 @@ export function dropDatabase() {
   return connection.db.dropDatabase();
 }
 
-export async function insertData(filename, options = {}) {
+export async function insertData(
+  filename: string | object,
+  options: IInsertDataOptions = {}
+) {
   let parsed;
   if (typeof filename === 'string') {
     const parsedFilename = parse(filename);
@@ -58,4 +61,8 @@ export async function insertData(filename, options = {}) {
     const collection = connection.collection(collName);
     await collection.insertMany(parsed[collName]);
   }
+}
+
+interface IInsertDataOptions {
+  drop?: boolean;
 }

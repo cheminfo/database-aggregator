@@ -2,11 +2,12 @@ import { connect, disconnect, insertData } from '../../../test/mongoSetup';
 import { clean, getCollection } from '../../../test/util';
 
 import { copy } from '../copy';
+import { ISourceDriverConfig } from '../../types';
 
 beforeAll(connect);
 afterAll(disconnect);
 
-const driver = {
+const driver: ISourceDriverConfig = {
   getData(config, callback) {
     return callback([config.entry]);
   },
@@ -15,7 +16,7 @@ const driver = {
   }
 };
 
-function getEntryCopy(collection, entry) {
+function getEntryCopy(collection: string, entry: any) {
   return copy({
     driver,
     driverConfig: {

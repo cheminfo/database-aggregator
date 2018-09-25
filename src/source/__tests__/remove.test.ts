@@ -6,13 +6,13 @@ import {
 } from '../../../test/mongoSetup';
 import { getCollection, clean } from '../../../test/util';
 import { remove } from '../remove';
-import { ISourceConfigElement } from '../../types';
+import { ISourceConfigElement } from '../../internalTypes';
 
 beforeAll(connect);
 afterAll(disconnect);
 
 const collection = getCollection('source_test');
-const config = {
+const config: ISourceConfigElement = {
   driver: {
     getIds: (driverConfig) => {
       const data = ['test1', 'test3'];
@@ -27,7 +27,7 @@ const config = {
   },
   driverConfig: {},
   collection: 'test'
-} as ISourceConfigElement;
+};
 
 const testData = {
   meta_source_sequence: [

@@ -6,7 +6,7 @@ import {
 } from '../../../test/mongoSetup';
 import { clean, getCollection } from '../../../test/util';
 import { copyMissingIds } from '../copyMissingIds';
-import { ISourceConfigElement } from '../../types';
+import { ISourceConfigElement } from '../../internalTypes';
 
 beforeAll(connect);
 afterAll(disconnect);
