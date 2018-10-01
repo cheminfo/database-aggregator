@@ -54,7 +54,7 @@ export default function TaskHistory({ history, includeType = false }) {
       </tbody>
     </table>
   ) : (
-    'No tasks found'
+    'No history for the selected time period'
   );
 }
 
