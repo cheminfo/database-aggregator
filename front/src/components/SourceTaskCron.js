@@ -12,7 +12,7 @@ export default function SourceTaskCron(props) {
 
   return (
     <li>
-      <StatusSvg inline={true} size="small" status={status} />
+      <StatusSvg inline size="small" status={status} />
       &nbsp; &nbsp; {label}: <DateTime date={parsed.next().toISOString()} />
     </li>
   );

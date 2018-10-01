@@ -85,7 +85,6 @@ export async function getTasks() {
 
   taskSources.forEach((s, idx) => {
     s.copyState = statuses[0][idx][0];
-    s.state = s.copyState;
     s.removeState = statuses[0][idx][1];
     s.copyMissingIdsState = statuses[0][idx][2];
   });

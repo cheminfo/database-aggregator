@@ -20,7 +20,7 @@ class TaskList extends Component {
     if (error) {
       return (
         <section>
-          <h2 className="text-center mb-10">Task list</h2>
+          <h2 className="text-center mb-4">Task list</h2>
           <Error message={error} />
         </section>
       );
@@ -30,16 +30,16 @@ class TaskList extends Component {
     } else {
       return (
         <section>
-          <h2 className="text-center mb-10">Task list</h2>
+          <h2 className="text-center mb-4">Task list</h2>
           <div className="flex w-full">
             <div className="flex-1">
-              <div className="text-center text-2xl font-bold mb-6">Sources</div>
+              <div className="text-center text-xl font-bold mb-4">Sources</div>
               <div>
                 {tasks.sources.map((task) => (
                   <TaskCard
                     key={task.collection}
                     enabled={task.enabled}
-                    statusMessage={task.reason}
+                    state={task.copyState}
                     onClick={() => this.navToSource(task.collection)}
                   >
                     <SourceTask task={task} />
@@ -48,7 +48,7 @@ class TaskList extends Component {
               </div>
             </div>
             <div className="flex-1">
-              <div className="text-center text-2xl font-bold mb-6">
+              <div className="text-center text-xl font-bold mb-4">
                 Aggregations
               </div>
               <div>
@@ -56,8 +56,7 @@ class TaskList extends Component {
                   <TaskCard
                     key={task.collection}
                     enabled={task.enabled}
-                    status={task.state.status}
-                    statusMessage={task.state.reason}
+                    state={task.state}
                     onClick={() => this.navToAggregation(task.collection)}
                   >
                     <AggregationTask task={task} />

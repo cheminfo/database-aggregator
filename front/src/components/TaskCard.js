@@ -3,7 +3,12 @@ import classNames from 'classnames';
 import StatusSvg from './svg/StatusSvg';
 
 export default function TaskCard(props) {
-  const { enabled, status, statusMessage, onClick, children } = props;
+  const { enabled, state, onClick, children } = props;
+  let status, statusMessage;
+  if (state) {
+    status = state.status;
+    statusMessage = state.reason;
+  }
   const opacity = classNames({ 'opacity-25': !enabled });
   return (
     <div
