@@ -11,12 +11,12 @@ const statusColorMap = {
 };
 
 const statusTextMap = {
-  null: 'This task has never been scheduled',
-  error: 'Last execution of this task failed',
-  queued: 'This task is currently queued',
-  running: 'This task is running',
-  success: 'Last execution of this task succeeded',
-  interrupted: 'Interrupted during last execution'
+  null: 'The task has never been scheduled',
+  error: 'The task failed',
+  queued: 'The task is queued',
+  running: 'The task is running',
+  success: 'The task succeeded',
+  interrupted: 'The task has been interrupted'
 };
 
 export default function({ status, message, inline, size }) {
