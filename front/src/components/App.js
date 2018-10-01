@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import TaskList from './TaskList';
+import TaskListWithData from './TaskListWithData';
 import AggregationTaskDetails from './AggregationTaskDetails';
 import SourceTaskDetails from './SourceTaskDetails';
 import Header from './Header';
@@ -14,7 +14,7 @@ class App extends Component {
         <Header />
         <div className="w-full max-w-3xl m-auto px-4 pt-4">
           <Switch>
-            <Route exact path="/" component={TaskList} />
+            <Route exact path="/" component={TaskListWithData} />
             <Route
               exact
               path="/tasks/sources/:task"

@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 
-import { axios } from '../axios';
-
 import AggregationTask from './AggregationTask';
 import SourceTask from './SourceTask';
 import TaskCard from './TaskCard';
 
 export default class TaskList extends Component {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      tasks: null
-    };
-  }
-
   navToAggregation = (collection) => {
     this.props.history.push(`/tasks/aggregations/${collection}`);
   };
@@ -22,14 +13,8 @@ export default class TaskList extends Component {
     this.props.history.push(`/tasks/sources/${collection}`);
   };
 
-  componentDidMount() {
-    axios.get('scheduler/tasks').then((res) => {
-      this.setState({ tasks: res.data });
-    });
-  }
-
   render() {
-    const { tasks } = this.state;
+    const { tasks } = this.props;
     if (tasks === null) {
       return <p>Loading</p>;
     } else {
