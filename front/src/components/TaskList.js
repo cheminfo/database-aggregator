@@ -36,18 +36,14 @@ class TaskList extends Component {
               <div className="text-center text-2xl font-bold mb-6">Sources</div>
               <div>
                 {tasks.sources.map((task) => (
-                  <div
+                  <TaskCard
                     key={task.collection}
-                    className="cursor-pointer"
+                    enabled={task.enabled}
+                    statusMessage={task.reason}
                     onClick={() => this.navToSource(task.collection)}
                   >
-                    <TaskCard
-                      enabled={task.enabled}
-                      statusMessage={task.reason}
-                    >
-                      <SourceTask task={task} />
-                    </TaskCard>
-                  </div>
+                    <SourceTask task={task} />
+                  </TaskCard>
                 ))}
               </div>
             </div>
@@ -57,19 +53,15 @@ class TaskList extends Component {
               </div>
               <div>
                 {tasks.aggregations.map((task) => (
-                  <div
+                  <TaskCard
                     key={task.collection}
-                    className="cursor-pointer"
+                    enabled={task.enabled}
+                    status={task.status}
+                    statusMessage={task.reason}
                     onClick={() => this.navToAggregation(task.collection)}
                   >
-                    <TaskCard
-                      enabled={task.enabled}
-                      status={task.status}
-                      statusMessage={task.reason}
-                    >
-                      <AggregationTask task={task} />
-                    </TaskCard>
-                  </div>
+                    <AggregationTask task={task} />
+                  </TaskCard>
                 ))}
               </div>
             </div>
