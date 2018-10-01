@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import AggregationTask from './AggregationTask';
 import SourceTask from './SourceTask';
 import TaskCard from './TaskCard';
 
-export default class TaskList extends Component {
+class TaskList extends Component {
   navToAggregation = (collection) => {
     this.props.history.push(`/tasks/aggregations/${collection}`);
   };
@@ -70,3 +71,5 @@ export default class TaskList extends Component {
     }
   }
 }
+
+export default withRouter(TaskList);
