@@ -13,7 +13,6 @@ export default class TaskDetailProvider extends Component {
       .minutes(0)
       .seconds(0);
     this.state = {
-      task: null,
       loadingHistory: false,
       history: [],
       startDate: today,
@@ -22,7 +21,6 @@ export default class TaskDetailProvider extends Component {
   }
 
   componentDidMount() {
-    this.fetchInfo();
     this.fetchHistory(this.state.startDate, this.state.endDate);
   }
 
@@ -43,12 +41,6 @@ export default class TaskDetailProvider extends Component {
     }
     axios.post(this.getUrl('trigger'), undefined, options);
   };
-
-  fetchInfo() {
-    axios.get(this.getUrl()).then((response) => {
-      this.setState({ task: response.data });
-    });
-  }
 
   fetchHistory(startDate, endDate) {
     this.setState({ loadingHistory: true });
@@ -86,7 +78,6 @@ export default class TaskDetailProvider extends Component {
     const Component = this.props.component;
     return (
       <Component
-        task={this.state.task}
         onDatesChange={this.onDatesChange.bind(this)}
         startDate={this.state.startDate}
         endDate={this.state.endDate}

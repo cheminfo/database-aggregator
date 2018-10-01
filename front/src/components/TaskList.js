@@ -17,7 +17,6 @@ class TaskList extends Component {
 
   render() {
     const { tasks, error } = this.props;
-
     if (error) {
       return (
         <section>
