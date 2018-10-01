@@ -37,9 +37,9 @@ function compareStatus(a, b) {
 
 function compareState(stateA, stateB) {
   if (compareStatus(stateA, stateB) === 0) {
-    const dateA = stateA ? stateA.date.getTime() : 0;
-    const dateB = stateB ? stateB.date.getTime() : 0;
-    return dateB - dateA;
+    const dateA = stateA ? stateA.date : '';
+    const dateB = stateB ? stateB.date : '';
+    return dateB.localeCompare(dateA);
   } else {
     return compareStatus(stateA, stateB);
   }
