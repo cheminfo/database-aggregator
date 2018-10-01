@@ -33,7 +33,11 @@ export default function({ status, message, inline, size }) {
   return (
     <div
       className={classNames({ inline })}
-      title={message || statusTextMap[status] || `Unknown status: ${status}`}
+      title={
+        message
+          ? `${statusTextMap[status]}: ${message}`
+          : statusTextMap[status] || `Unknown status: ${status}`
+      }
     >
       <svg className={svgClassNames} viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="40" stroke="black" strokeWidth="3" />
