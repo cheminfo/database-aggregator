@@ -26,6 +26,7 @@ export class Polling extends Component {
         this.setState({ data: response.data, error: null, loading: false });
       })
       .catch((e) => {
+        console.log(e);
         let {
           response: { data: error }
         } = e;
@@ -37,6 +38,7 @@ export class Polling extends Component {
   }
 
   fetchWithTimeout() {
+    if (this.props.interval < 0) return;
     this.timeout = setTimeout(async () => {
       await this.fetch();
       this.fetchWithTimeout();
