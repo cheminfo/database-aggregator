@@ -12,7 +12,6 @@ export async function getLastStatus(taskId: string) {
 }
 
 export async function updateOutstandingTasks() {
-  console.log('update outstanding tasks');
   return Model.updateMany(
     {
       state: {
