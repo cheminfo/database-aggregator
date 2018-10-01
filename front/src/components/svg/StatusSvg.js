@@ -6,7 +6,8 @@ const statusColorMap = {
   error: 'text-red-light',
   queued: 'text-orange-light',
   running: 'text-blue-light',
-  success: 'text-green-light'
+  success: 'text-green-light',
+  interrupted: 'text-grey-light'
 };
 
 const statusTextMap = {
@@ -14,7 +15,8 @@ const statusTextMap = {
   error: 'Last execution of this task failed',
   queued: 'This task is currently queued',
   running: 'This task is running',
-  success: 'Last execution of this task succeeded'
+  success: 'Last execution of this task succeeded',
+  interrupted: 'Interrupted during last execution'
 };
 
 export default function({ status, message, inline, size }) {
@@ -31,7 +33,7 @@ export default function({ status, message, inline, size }) {
   return (
     <div
       className={classNames({ inline })}
-      title={message || statusTextMap[status]}
+      title={message || statusTextMap[status] || `Unknown status: ${status}`}
     >
       <svg className={svgClassNames} viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="40" stroke="black" strokeWidth="3" />
