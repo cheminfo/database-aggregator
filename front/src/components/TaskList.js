@@ -56,8 +56,8 @@ class TaskList extends Component {
                   <TaskCard
                     key={task.collection}
                     enabled={task.enabled}
-                    status={task.status}
-                    statusMessage={task.reason}
+                    status={task.state.status}
+                    statusMessage={task.state.reason}
                     onClick={() => this.navToAggregation(task.collection)}
                   >
                     <AggregationTask task={task} />

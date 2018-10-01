@@ -1,9 +1,10 @@
 import { globalConfig } from '../config/config';
 import {
   IAggregationConfigElement,
-  ISourceConfigElement
+  ISourceConfigElement,
+  ISchedulerStatus
 } from '../internalTypes';
-import { getLastStatus } from '../mongo/models/schedulerLog';
+import { getLastState } from '../mongo/models/schedulerLog';
 import {
   getAggregationTaskId,
   getCopyTaskId,
@@ -15,7 +16,7 @@ interface IAggregationTask {
   collection: string;
   enabled: boolean;
   sources: string[];
-  status?: string | null;
+  state?: ISchedulerStatus | null;
 }
 
 interface ISourceTask {
@@ -24,10 +25,10 @@ interface ISourceTask {
   copyCronRule?: string;
   copyMissingIdsCronRule?: string;
   removeCronRule?: string;
-  status?: string | null;
-  copyStatus?: string | null;
-  removeStatus?: string | null;
-  copyMissingIdsStatus?: string | null;
+  state?: ISchedulerStatus | null;
+  copyState?: ISchedulerStatus | null;
+  removeState?: ISchedulerStatus | null;
+  copyMissingIdsState?: ISchedulerStatus | null;
 }
 
 const aggregationConfigs = globalConfig.aggregation;
@@ -71,24 +72,24 @@ export async function getTasks() {
     Promise.all(
       taskSources.map((source) =>
         Promise.all([
-          getLastStatus(getCopyTaskId(source.collection)),
-          getLastStatus(getRemoveTaskId(source.collection)),
-          getLastStatus(getCopyMissingIdTaskId(source.collection))
+          getLastState(getCopyTaskId(source.collection)),
+          getLastState(getRemoveTaskId(source.collection)),
+          getLastState(getCopyMissingIdTaskId(source.collection))
         ])
       )
     ),
     Promise.all(
-      taskAgg.map((agg) => getLastStatus(getAggregationTaskId(agg.collection)))
+      taskAgg.map((agg) => getLastState(getAggregationTaskId(agg.collection)))
     )
   ]);
 
   taskSources.forEach((s, idx) => {
-    s.copyStatus = statuses[0][idx][0];
-    s.status = s.copyStatus;
-    s.removeStatus = statuses[0][idx][1];
-    s.copyMissingIdsStatus = statuses[0][idx][2];
+    s.copyState = statuses[0][idx][0];
+    s.state = s.copyState;
+    s.removeState = statuses[0][idx][1];
+    s.copyMissingIdsState = statuses[0][idx][2];
   });
-  taskAgg.forEach((agg, idx) => (agg.status = statuses[1][idx]));
+  taskAgg.forEach((agg, idx) => (agg.state = statuses[1][idx]));
 
   return {
     sources: taskSources,
@@ -101,10 +102,10 @@ export async function getAggregation(name: string) {
     (aggregation) => aggregation.collection === name
   );
   if (foundAggregation) {
-    const status = await getLastStatus(
+    const state = await getLastState(
       getCopyTaskId(foundAggregation.collection)
     );
-    foundAggregation.status = status;
+    foundAggregation.state = state;
   }
   return foundAggregation;
 }
@@ -112,8 +113,8 @@ export async function getAggregation(name: string) {
 export async function getSource(name: string) {
   const foundSource = sources.find((source) => source.collection === name);
   if (foundSource) {
-    const status = await getLastStatus(getCopyTaskId(foundSource.collection));
-    foundSource.status = status;
+    const state = await getLastState(getCopyTaskId(foundSource.collection));
+    foundSource.state = state;
   }
   return foundSource;
 }

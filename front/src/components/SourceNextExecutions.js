@@ -14,16 +14,16 @@ export default function SourceNextExecutions(props) {
       <ul style={{ listStyle: 'none' }}>
         <SourceTaskCron
           label="Copy"
-          status={task.copyStatus}
+          status={task.copyState.status}
           value={task.copyCronRule}
         />
         <SourceTaskCron
-          status={task.copyMissingIdsStatus}
+          status={task.copyMissingIdsState.status}
           label="Copy missing"
           value={task.copyMissingIdsCronRule}
         />
         <SourceTaskCron
-          status={task.removeStatus}
+          status={task.removeState.status}
           label="Remove"
           value={task.removeCronRule}
         />

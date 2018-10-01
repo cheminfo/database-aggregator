@@ -4,7 +4,7 @@ import TaskList from './TaskList';
 
 const TaskListWithData = () => {
   return (
-    <Polling interval={2000} url="scheduler/tasks">
+    <Polling interval={10000} url="scheduler/tasks">
       {({ data, error }) => {
         return <TaskList tasks={data} error={error} />;
       }}

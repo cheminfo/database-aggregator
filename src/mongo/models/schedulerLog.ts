@@ -3,12 +3,15 @@ import { IChangeData } from 'process-scheduler';
 
 const Model = getSchedulerLog();
 
-export async function getLastStatus(taskId: string) {
+export async function getLastState(taskId: string) {
   const doc = await getLastTask(taskId);
   if (!doc) {
     return doc;
   }
-  return doc.state.sort((a, b) => Number(b.date) - Number(a.date))[0].status;
+  const state = doc.state.sort((a, b) => Number(b.date) - Number(a.date))[0];
+  delete state.stdout;
+  delete state.stderr;
+  return state;
 }
 
 export async function updateOutstandingTasks() {
@@ -70,6 +73,7 @@ export async function save(obj: IChangeData) {
   const stat = {
     status: obj.status,
     date: new Date(),
+    reason: obj.reason,
     message: obj.message,
     stdout: obj.stdout,
     stderr: obj.stderr

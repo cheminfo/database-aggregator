@@ -2,7 +2,8 @@
 
 /** @type {import('../../../src/types').ISourceDriverConfig} */
 const driver = {
-  getData(config, callback, meta) {
+  async getData(config, callback, meta) {
+    await wait(30);
     return callback([
       {
         id: '123',
@@ -16,5 +17,11 @@ const driver = {
     return ['123'];
   }
 };
+
+function wait(seconds) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, Math.floor(seconds * 1000));
+  });
+}
 
 module.exports = driver;
