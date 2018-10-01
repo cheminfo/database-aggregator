@@ -32,7 +32,7 @@ function AggregationTaskDetailsComponent({
     <Fragment>
       <h1 className="mb-4">{name}</h1>
       <div className="w-full">
-        <Polling url={`/scheduler/${type}/${name}`} interval={10000}>
+        <Polling url={`/scheduler/${type}/${name}`} interval={-1}>
           {({ data, error }) => {
             return (
               <AggregationTaskData

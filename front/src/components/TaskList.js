@@ -43,7 +43,6 @@ class TaskList extends Component {
                   >
                     <TaskCard
                       enabled={task.enabled}
-                      status={task.status}
                       statusMessage={task.reason}
                     >
                       <SourceTask task={task} />

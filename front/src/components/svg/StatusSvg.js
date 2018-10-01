@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 const statusColorMap = {
   null: 'text-grey-light',
@@ -16,13 +17,23 @@ const statusTextMap = {
   success: 'Last execution of this task succeeded'
 };
 
-export default function({ status, message }) {
+export default function({ status, message, inline, size }) {
+  if (status === undefined) return null;
+  const svgClassNames = classNames({
+    'w-6': size !== 'small',
+    'h-6': size !== 'small',
+    'w-4': size === 'small',
+    'h-4': size === 'small',
+    'fill-current': true,
+    [statusColorMap[status]]: true
+  });
+
   return (
-    <div title={message || statusTextMap[status]}>
-      <svg
-        className={`fill-current ${statusColorMap[status]} w-6 h-6`}
-        viewBox="0 0 100 100"
-      >
+    <div
+      className={classNames({ inline })}
+      title={message || statusTextMap[status]}
+    >
+      <svg className={svgClassNames} viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="40" stroke="black" strokeWidth="3" />
       </svg>
     </div>

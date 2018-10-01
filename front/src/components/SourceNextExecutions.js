@@ -11,13 +11,22 @@ export default function SourceNextExecutions(props) {
     task.copyCronRule || task.copyMissingIdsCronRule || task.removeCronRule;
   if (hasNextExecutions) {
     return (
-      <ul>
-        <SourceTaskCron label="Copy" value={task.copyCronRule} />
+      <ul style={{ listStyle: 'none' }}>
         <SourceTaskCron
+          label="Copy"
+          status={task.copyStatus}
+          value={task.copyCronRule}
+        />
+        <SourceTaskCron
+          status={task.copyMissingIdsStatus}
           label="Copy missing"
           value={task.copyMissingIdsCronRule}
         />
-        <SourceTaskCron label="Remove" value={task.removeCronRule} />
+        <SourceTaskCron
+          status={task.removeStatus}
+          label="Remove"
+          value={task.removeCronRule}
+        />
       </ul>
     );
   } else {
