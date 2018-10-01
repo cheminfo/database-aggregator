@@ -5,7 +5,7 @@ import StatusSvg from './svg/StatusSvg';
 import DateTime from './DateTime';
 import Collapsible from './Collapsible';
 
-const taskType = /^source_(.+)_[^_]+$/;
+const taskType = /^source_(copy_missing_ids|copy|remove|)_/;
 
 export default function TaskHistory({ history, includeType = false }) {
   return history.length > 0 ? (
