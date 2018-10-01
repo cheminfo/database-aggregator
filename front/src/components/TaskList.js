@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import AggregationTask from './AggregationTask';
 import SourceTask from './SourceTask';
 import TaskCard from './TaskCard';
+import Error from './Error';
 
 class TaskList extends Component {
   navToAggregation = (collection) => {
@@ -21,9 +22,7 @@ class TaskList extends Component {
       return (
         <section>
           <h2 className="text-center mb-10">Task list</h2>
-          <div className="text-center m-6 p-4 bg-red-lighter rounded font-bold">
-            Error: {error}
-          </div>
+          <Error message={error} />
         </section>
       );
     }
