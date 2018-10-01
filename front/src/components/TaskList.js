@@ -15,7 +15,18 @@ class TaskList extends Component {
   };
 
   render() {
-    const { tasks } = this.props;
+    const { tasks, error } = this.props;
+
+    if (error) {
+      return (
+        <section>
+          <h2 className="text-center mb-10">Task list</h2>
+          <div className="text-center m-6 p-4 bg-red-lighter rounded font-bold">
+            Error: {error}
+          </div>
+        </section>
+      );
+    }
     if (tasks === null) {
       return <p>Loading</p>;
     } else {

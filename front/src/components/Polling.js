@@ -4,7 +4,11 @@ import { axios } from '../axios';
 export class Polling extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loading: false,
+      data: null,
+      error: null
+    };
   }
 
   async componentDidMount() {
@@ -19,11 +23,17 @@ export class Polling extends Component {
     return axios
       .get(this.props.url)
       .then((response) => {
-        this.setState({ data: response.data, loading: false });
+        this.setState({ data: response.data, error: null, loading: false });
       })
-      .catch((e) =>
-        this.setState({ data: null, error: e.message, loading: false })
-      );
+      .catch((e) => {
+        let {
+          response: { data: error }
+        } = e;
+        if (typeof error === 'object') {
+          error = error.error;
+        }
+        this.setState({ data: null, error, loading: false });
+      });
   }
 
   fetchWithTimeout() {
