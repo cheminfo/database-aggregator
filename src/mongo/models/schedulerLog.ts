@@ -11,6 +11,27 @@ export async function getLastStatus(taskId: string) {
   return doc.state.sort((a, b) => Number(b.date) - Number(a.date))[0].status;
 }
 
+export async function updateOutstandingTasks() {
+  console.log('update outstanding tasks');
+  return Model.updateMany(
+    {
+      state: {
+        $not: {
+          $elemMatch: { status: { $in: ['success', 'error', 'interrupted'] } }
+        }
+      }
+    },
+    {
+      $push: {
+        state: {
+          status: 'interrupted',
+          date: new Date()
+        }
+      }
+    }
+  ).exec();
+}
+
 export function getLastTask(taskId: string) {
   return Model.findOne({ taskId })
     .sort('-date')

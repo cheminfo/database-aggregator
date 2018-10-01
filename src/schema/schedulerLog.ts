@@ -23,6 +23,11 @@ export default new Schema({
         required: true,
         index: true
       },
+      reason: {
+        type: String,
+        required: false,
+        index: false
+      },
       date: {
         type: Date,
         required: true,

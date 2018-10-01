@@ -36,6 +36,7 @@ export interface ISchedulerLogDocument extends Document {
 
 export interface ISchedulerStatus {
   status: string;
+  reason?: string;
   date: Date;
   stdout?: string;
   stderr?: string;

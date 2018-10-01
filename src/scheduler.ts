@@ -3,7 +3,7 @@ import { join } from 'path';
 import { globalConfig as config } from './config/config';
 import { sources as migrateSources } from './migration';
 import { connect } from './mongo/connection';
-import { save } from './mongo/models/schedulerLog';
+import { save, updateOutstandingTasks } from './mongo/models/schedulerLog';
 import { debugUtil } from './util/debug';
 
 import { ProcessScheduler } from 'process-scheduler';
@@ -117,6 +117,8 @@ export async function start() {
 
   // We run migration scripts before starting the scheduler
   await migrateSources(config.source);
+  // Sanitize the database
+  await updateOutstandingTasks();
 
   debug.trace(`scheduler config${schedulerConfig}`);
   const scheduler = new ProcessScheduler(schedulerConfig);

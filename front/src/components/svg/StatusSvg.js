@@ -16,9 +16,9 @@ const statusTextMap = {
   success: 'Last execution of this task succeeded'
 };
 
-export default function({ status }) {
+export default function({ status, message }) {
   return (
-    <div title={statusTextMap[status]}>
+    <div title={message || statusTextMap[status]}>
       <svg
         className={`fill-current ${statusColorMap[status]} w-6 h-6`}
         viewBox="0 0 100 100"

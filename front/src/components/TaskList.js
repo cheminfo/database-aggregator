@@ -46,7 +46,11 @@ export default class TaskList extends Component {
                     className="cursor-pointer"
                     onClick={() => this.navToSource(task.collection)}
                   >
-                    <TaskCard enabled={task.enabled} status={task.status}>
+                    <TaskCard
+                      enabled={task.enabled}
+                      status={task.status}
+                      statusMessage={task.reason}
+                    >
                       <SourceTask task={task} />
                     </TaskCard>
                   </div>
@@ -64,7 +68,11 @@ export default class TaskList extends Component {
                     className="cursor-pointer"
                     onClick={() => this.navToAggregation(task.collection)}
                   >
-                    <TaskCard enabled={task.enabled} status={task.status}>
+                    <TaskCard
+                      enabled={task.enabled}
+                      status={task.status}
+                      statusMessage={task.reason}
+                    >
                       <AggregationTask task={task} />
                     </TaskCard>
                   </div>
