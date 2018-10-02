@@ -65,13 +65,13 @@
   },
   "homepage": "https://github.com/cheminfo/database-aggregator#readme",
   "dependencies": {
-    "@adonisjs/ace": "^5.0.5",
-    "@adonisjs/auth": "^3.0.6",
-    "@adonisjs/bodyparser": "^2.0.4",
-    "@adonisjs/cors": "^1.0.6",
+    "@adonisjs/ace": "^5.0.8",
+    "@adonisjs/auth": "^3.0.7",
+    "@adonisjs/bodyparser": "^2.0.5",
+    "@adonisjs/cors": "^1.0.7",
     "@adonisjs/fold": "^4.0.9",
-    "@adonisjs/framework": "^5.0.8",
-    "@adonisjs/ignitor": "^2.0.7",
+    "@adonisjs/framework": "^5.0.9",
+    "@adonisjs/ignitor": "^2.0.8",
     "@types/mongoose": "^5.2.17",
     "cron-parser": "^2.6.0",
     "debug": "^4.0.1",
@@ -80,23 +80,23 @@
     "lodash.chunk": "^4.2.0",
     "lodash.isequal": "^4.5.0",
     "make-promises-safe": "^1.1.0",
-    "mongoose": "^5.2.17",
+    "mongoose": "^5.3.0",
     "process-scheduler": "^0.3.0"
   },
   "devDependencies": {
     "@types/debug": "0.0.30",
     "@types/is-running": "^2.1.0",
     "@types/jest": "^23.3.2",
-    "@types/node": "^10.11.0",
+    "@types/node": "^10.11.3",
     "cross-env": "^5.2.0",
     "jest": "^23.6.0",
     "js-yaml": "^3.12.0",
     "nodemon": "^1.18.4",
     "npm-run-all": "^4.1.3",
     "shx": "^0.3.2",
-    "ts-jest": "^23.10.1",
+    "ts-jest": "^23.10.3",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.1.1"
   }
 }
