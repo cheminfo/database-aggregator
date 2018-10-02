@@ -1,15 +1,15 @@
 import { globalConfig } from '../config/config';
 import {
   IAggregationConfigElement,
-  ISourceConfigElement,
-  ISchedulerStatus
+  ISchedulerStatus,
+  ISourceConfigElement
 } from '../internalTypes';
 import { getLastState } from '../mongo/models/schedulerLog';
 import {
   getAggregationTaskId,
+  getCopyMissingIdTaskId,
   getCopyTaskId,
-  getRemoveTaskId,
-  getCopyMissingIdTaskId
+  getRemoveTaskId
 } from '../util/names';
 
 interface IAggregationTask {

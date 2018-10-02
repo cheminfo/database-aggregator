@@ -1,7 +1,5 @@
-/* eslint-disable no-process-env */
 process.env.DATABASE_AGGREGATOR_CUSTOM_PROP = 'test custom prop';
 process.env.DATABASE_AGGREGATOR_HOME_DIR = `${__dirname}/../../../test/homeDir`;
-/* eslint-enable */
 
 import { globalConfig } from '../config';
 
@@ -28,7 +26,6 @@ test('load configuration', () => {
     removeThreshold: 0.01,
     aggregation: { chemical: { collection: 'chemical' } },
     source: {
-      // eslint-disable-next-line camelcase
       test1_001: {
         driver: 'driverXYZ',
         driverConfig: {
@@ -37,7 +34,6 @@ test('load configuration', () => {
         },
         collection: 'test1_001'
       },
-      // eslint-disable-next-line camelcase
       test2_001: {
         driver: 'driverXYZ',
         driverConfig: {

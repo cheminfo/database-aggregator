@@ -3,8 +3,7 @@
 module.exports = {
   disabled: false,
   sources: {
-    // eslint-disable-next-line camelcase
-    test_001: function (data, result /* , pid, id */) {
+    test_001: function(data, result /* , pid, id */) {
       if (data.length > 1) {
         throw new Error('Expecting only one element here');
       }

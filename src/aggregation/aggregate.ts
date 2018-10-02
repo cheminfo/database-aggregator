@@ -1,4 +1,13 @@
+import { isEqual } from 'lodash';
+
 import { aggregation as aggregationValidation } from '../config/validation';
+import {
+  IAggregationConfigElement,
+  IAggregationEntry,
+  IObject,
+  ISourceBase,
+  ISourceEntry
+} from '../internalTypes';
 import { deleteById, findById, save } from '../mongo/models/aggregation';
 import { getLastSeqIds, setSeqIds } from '../mongo/models/aggregationSequence';
 import {
@@ -7,15 +16,8 @@ import {
   getLastSeqId
 } from '../mongo/models/source';
 import { IAggregationCallback } from '../types';
-import {
-  IAggregationConfigElement,
-  IObject,
-  IAggregationEntry,
-  ISourceBase,
-  ISourceEntry
-} from '../internalTypes';
 import { debugUtil } from '../util/debug';
-const isequal = require('lodash.isequal');
+
 const debug = debugUtil('aggregation');
 
 export async function aggregate(conf: IAggregationConfigElement) {
@@ -83,7 +85,7 @@ export async function aggregate(conf: IAggregationConfigElement) {
           );
         }
       } else {
-        if (oldEntry && isequal(obj.value, oldEntry.value)) {
+        if (oldEntry && isEqual(obj.value, oldEntry.value)) {
           // Don't save if has not changed
           debug.trace(
             `Not saving ${collection}:${commonId} because has not changed`

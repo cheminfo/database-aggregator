@@ -43,14 +43,12 @@ const config: ISourceConfigElement = {
 };
 
 const testData = {
-  // eslint-disable-next-line camelcase
   meta_source_sequence: [
     {
       _id: 'test',
       seq: 2
     }
   ],
-  // eslint-disable-next-line camelcase
   source_test: [
     {
       id: 'test1',

@@ -1,3 +1,1 @@
-'use strict';
-
-require('../../api/server');
+import '../../api/server';

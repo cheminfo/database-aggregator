@@ -1,4 +1,6 @@
-import { join, resolve, parse } from 'path';
+import { join, parse, resolve } from 'path';
+
+import * as find from 'find';
 
 import {
   IAggregationConfig,
@@ -6,13 +8,11 @@ import {
 } from '../internalTypes';
 import { debugUtil } from '../util/debug';
 
-const find = require('find');
-
 const debug = debugUtil('config:aggregation');
 
 const dbConfig: IAggregationConfig = {};
 export const aggregationConfig = { aggregation: dbConfig };
-// eslint-disable-next-line import/no-dynamic-require
+// tslint:disable-next-line no-var-requires
 const homeDir = require('./home').homeDir;
 
 if (homeDir) {
@@ -33,7 +33,7 @@ if (homeDir) {
       continue;
     }
 
-    // eslint-disable-next-line import/no-dynamic-require
+    // tslint:disable-next-line no-var-requires
     const databaseConfig: IAggregationConfigElement = require(configPath);
     if (!databaseConfig.sources) {
       continue;

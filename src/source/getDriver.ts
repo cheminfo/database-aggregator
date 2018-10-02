@@ -36,7 +36,6 @@ function getDriverModule(
       }
     }
 
-    // eslint-disable-next-line import/no-dynamic-require
     const driverModule: ISourceDriverConfig = require(driverLocation);
     if (typeof driverModule !== 'object' || driverModule === null) {
       throw new TypeError('driver module must be an object');

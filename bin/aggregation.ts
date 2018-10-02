@@ -1,8 +1,8 @@
 import {
   aggregate,
-  globalConfig as config,
   connect,
   debugUtil,
+  globalConfig as config,
   start,
   stop
 } from '../src/index';

@@ -1,9 +1,9 @@
 import {
   connect,
-  start,
-  globalConfig as config,
+  copyMissingIds,
   debugUtil,
-  copyMissingIds
+  globalConfig as config,
+  start
 } from '../src/index';
 
 const debug = debugUtil('bin:source');

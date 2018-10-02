@@ -1,10 +1,10 @@
+import { sources as sourcesValidation } from '../config/validation';
+import { ISourceConfig } from '../internalTypes';
 import { dropSource } from '../mongo/model';
 import {
   getSourceVersion,
   updateSourceVersion
 } from '../mongo/models/sourceSequence';
-import { ISourceConfig } from '../internalTypes';
-import { sources as sourcesValidation } from '../config/validation';
 
 export async function sources(sourceConfigs: ISourceConfig) {
   sourceConfigs = sourcesValidation(sourceConfigs);

@@ -1,9 +1,9 @@
-const isequal = require('lodash.isequal');
+import { isEqual } from 'lodash';
 
+import { ISourceConfigElement } from '../internalTypes';
 import { getSource } from '../mongo/model';
 import { getNextSequenceID } from '../mongo/models/sourceSequence';
 import { ISourceDriverEntry } from '../types';
-import { ISourceConfigElement } from '../internalTypes';
 
 export async function copyEntries(
   entries: ISourceDriverEntry[],
@@ -39,11 +39,11 @@ export async function copyEntries(
       if (doc.commonID !== entry.commonID) {
         throw new Error('commonID may not be changed');
       }
-      if (!isequal(doc.data, entry.data)) {
+      if (!isEqual(doc.data, entry.data)) {
         doc.data = entry.data;
         mustSave = true;
       }
-      if (!isequal(doc.date, entry.modificationDate)) {
+      if (!isEqual(doc.date, entry.modificationDate)) {
         mustSave = true;
       }
     }
