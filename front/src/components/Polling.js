@@ -26,12 +26,16 @@ export class Polling extends Component {
         this.setState({ data: response.data, error: null, loading: false });
       })
       .catch((e) => {
-        console.log(e);
-        let {
-          response: { data: error }
-        } = e;
-        if (typeof error === 'object') {
-          error = error.error;
+        let error = e.message;
+        if (e.response) {
+          if (typeof e.response.data === 'string') {
+            error = e.response.data;
+          } else if (
+            typeof e.response.data === 'object' &&
+            e.response.data !== null
+          ) {
+            error = e.response.data.error;
+          }
         }
         this.setState({ data: null, error, loading: false });
       });
