@@ -28,7 +28,7 @@ export default function TaskHistory({ history, includeType = false }) {
           return (
             <tr key={historyItem.pid}>
               <TableCell className="w-16">
-                <StatusSvg status={last.status} statusMessage={last.reason} />
+                <StatusSvg status={last.status} message={last.reason} />
               </TableCell>
               {includeType ? (
                 <TableCell className="w-32">{type}</TableCell>

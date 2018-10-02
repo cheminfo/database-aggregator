@@ -2,9 +2,9 @@
 
 /** @type {import('../../../src/types').ISourceConfigFile} */
 const source = {
-  copyCronRule: '*/1 * * * *',
-  removeCronRule: '*/15 * * * *',
-  copyMissingIdsCronRule: '5/15 * * * *',
+  copyCronRule: '*/5 * * * *',
+  removeCronRule: '*/10 * * * *',
+  copyMissingIdsCronRule: '*/15 * * * *',
   driver: require('../driver/constantUpdates')
 };
 

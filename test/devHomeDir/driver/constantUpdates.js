@@ -13,7 +13,8 @@ const driver = {
       }
     ]);
   },
-  getIds() {
+  async getIds() {
+    await wait(20);
     return ['123'];
   }
 };
