@@ -34,16 +34,18 @@ class TaskList extends Component {
           <div className="flex w-full">
             <div className="flex-1">
               <div className="text-center text-xl font-bold mb-4">Sources</div>
-              <div>
+              <div className="flex flex-wrap">
                 {tasks.sources.map((task) => (
-                  <TaskCard
-                    key={task.collection}
-                    enabled={task.enabled}
-                    state={task.copyState}
-                    onClick={() => this.navToSource(task.collection)}
-                  >
-                    <SourceTask task={task} />
-                  </TaskCard>
+                  <div className="w-full xl:w-1/2 px-4">
+                    <TaskCard
+                      key={task.collection}
+                      enabled={task.enabled}
+                      state={task.copyState}
+                      onClick={() => this.navToSource(task.collection)}
+                    >
+                      <SourceTask task={task} />
+                    </TaskCard>
+                  </div>
                 ))}
               </div>
             </div>

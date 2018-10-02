@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <div className="w-full max-w-3xl m-auto px-4 pt-4">
+        <div className="w-full max-w-4xl m-auto px-4 pt-4">
           <Switch>
             <Route exact path="/" component={TaskListWithData} />
             <Route
