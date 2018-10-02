@@ -66,8 +66,8 @@ function makeSourceTask(source: ISourceConfigElement): ISourceTask {
 }
 
 export async function getTasks() {
-  const taskSources = sources.slice();
-  const taskAgg = aggregations.slice();
+  const taskSources = sources.map(shallowCopy);
+  const taskAgg = aggregations.map(shallowCopy);
   const statuses = await Promise.all([
     Promise.all(
       taskSources.map((source) =>
@@ -97,10 +97,11 @@ export async function getTasks() {
 }
 
 export async function getAggregation(name: string) {
-  const foundAggregation = aggregations.find(
+  let foundAggregation = aggregations.find(
     (aggregation) => aggregation.collection === name
   );
   if (foundAggregation) {
+    foundAggregation = shallowCopy(foundAggregation);
     const state = await getLastState(
       getCopyTaskId(foundAggregation.collection)
     );
@@ -110,19 +111,25 @@ export async function getAggregation(name: string) {
 }
 
 export async function getSource(name: string) {
-  const foundSource = sources.find((source) => source.collection === name);
+  let foundSource = sources.find((source) => source.collection === name);
   if (foundSource === undefined) {
     throw new Error('source not found');
   }
-  const state = await Promise.all([
-    getLastState(getCopyTaskId(foundSource.collection)),
-    getLastState(getRemoveTaskId(foundSource.collection)),
-    getLastState(getCopyMissingIdTaskId(foundSource.collection))
-  ]);
+
   if (foundSource) {
+    foundSource = shallowCopy(foundSource);
+    const state = await Promise.all([
+      getLastState(getCopyTaskId(foundSource.collection)),
+      getLastState(getRemoveTaskId(foundSource.collection)),
+      getLastState(getCopyMissingIdTaskId(foundSource.collection))
+    ]);
     foundSource.copyState = state[0];
     foundSource.removeState = state[1];
     foundSource.copyMissingIdsState = state[2];
   }
   return foundSource;
+}
+
+function shallowCopy<T>(object: T): T {
+  return Object.assign({}, object);
 }
