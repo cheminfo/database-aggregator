@@ -7,12 +7,12 @@ import { save, updateOutstandingTasks } from './mongo/models/schedulerLog';
 import { debugUtil } from './util/debug';
 
 import { ProcessScheduler } from 'process-scheduler';
+import { IScheduleDefinition } from './internalTypes';
 import {
-  getCopyTaskId,
   getCopyMissingIdTaskId,
+  getCopyTaskId,
   getRemoveTaskId
 } from './util/names';
-import { IScheduleDefinition } from './internalTypes';
 
 const debug = debugUtil('bin:schedule');
 

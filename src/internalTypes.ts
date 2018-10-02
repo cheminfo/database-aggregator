@@ -1,8 +1,8 @@
 import { Document } from 'mongoose';
 import {
+  IAggregationConfigFile,
   IConfigFile,
-  ISourceConfigFile,
-  IAggregationConfigFile
+  ISourceConfigFile
 } from './types';
 
 export interface IObject<T> {

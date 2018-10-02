@@ -1,18 +1,18 @@
 'use strict';
-import { join, resolve, parse } from 'path';
-const find = require('find');
+import { join, parse, resolve } from 'path';
+
+import * as find from 'find';
 
 import { ISourceConfig, ISourceConfigElement } from '../internalTypes';
 import { debugUtil } from '../util/debug';
 
-import { homeDir } from './home';
 import { validateDriver } from '../util/validateDriver';
+import { homeDir } from './home';
 
 const debug = debugUtil('config:source');
 
 const dbConfig: ISourceConfig = {};
 export const sourceConfig = { source: dbConfig };
-// eslint-disable-next-line import/no-dynamic-require
 
 if (!homeDir) {
   debug.debug('no home dir');
@@ -29,7 +29,7 @@ if (!homeDir) {
     }
 
     try {
-      // eslint-disable-next-line import/no-dynamic-require
+      // tslint:disable-next-line no-var-requires
       cfg = require(configPath);
     } catch (e) {
       console.error(

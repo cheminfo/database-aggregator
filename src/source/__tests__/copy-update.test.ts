@@ -29,7 +29,6 @@ function getEntryCopy(collection: string, entry: any) {
 describe('source copy updates', () => {
   it('should not allow to change the commonID', async () => {
     await insertData({
-      // eslint-disable-next-line camelcase
       source_test1: [
         {
           id: 'test1',
@@ -56,7 +55,6 @@ describe('source copy updates', () => {
 
   it('should not save if nothing changed', async () => {
     await insertData({
-      // eslint-disable-next-line camelcase
       source_test2: [
         {
           id: 'test2',

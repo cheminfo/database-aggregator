@@ -48,7 +48,6 @@ describe('aggregation', () => {
     const conf = {
       collection: 'sourceAgg',
       sources: {
-        // eslint-disable-next-line camelcase
         source_test(values: any, result: any) {
           result.values = values.slice();
         }

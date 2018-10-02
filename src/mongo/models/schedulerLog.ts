@@ -1,5 +1,5 @@
-import { getSchedulerLog } from '../model';
 import { IChangeData } from 'process-scheduler';
+import { getSchedulerLog } from '../model';
 
 const Model = getSchedulerLog();
 

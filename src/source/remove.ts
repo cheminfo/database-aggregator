@@ -1,8 +1,8 @@
 import { connect } from '../mongo/connection';
 import { getSource } from '../mongo/model';
 
-import { getNextSequenceID } from '../mongo/models/sourceSequence';
 import { ISourceConfigElement } from '../internalTypes';
+import { getNextSequenceID } from '../mongo/models/sourceSequence';
 import { debugUtil } from '../util/debug';
 import { getDriver } from './getDriver';
 

@@ -1,7 +1,5 @@
 'use strict';
 
-/* eslint-disable no-process-exit */
-
 const { connect } = require('../mongo/connection');
 const config = require('../config/config').globalConfig;
 

@@ -1,8 +1,8 @@
 import {
-  globalConfig as config,
   connect,
   copy,
   debugUtil,
+  globalConfig as config,
   start,
   stop
 } from '../src/index';

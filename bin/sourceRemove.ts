@@ -1,10 +1,10 @@
 import {
-  globalConfig as config,
   connect,
   debugUtil,
+  globalConfig as config,
+  remove,
   start,
-  stop,
-  remove
+  stop
 } from '../src/index';
 
 const debug = debugUtil('bin:source');

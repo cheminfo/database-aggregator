@@ -1,5 +1,5 @@
+import { join, resolve } from 'path';
 import { debugUtil } from '../util/debug';
-import { resolve, join } from 'path';
 
 const debug = debugUtil('config:home');
 
@@ -13,4 +13,5 @@ if (!homeDirVar) {
 export const homeDir = resolve(homeDirVar);
 debug.debug(`home dir is ${homeDir}`);
 
+// tslint:disable-next-line no-var-requires
 export const config = require(join(homeDir, 'config.js'));

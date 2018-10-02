@@ -7,20 +7,20 @@ import sourceSchema from '../schema/source';
 import sourceSequenceSchema from '../schema/sourceSequence';
 
 import { Schema } from 'mongoose';
-import { dropCollection, hasCollection } from '../mongo/connection';
 import {
-  getSourceModelName,
-  getSourceName,
-  getAggregationModelName,
-  getMetaModelName
-} from '../util/names';
-import {
+  IAggregationDocument,
+  IAggregationSequenceDocument,
   ISchedulerLogDocument,
   ISourceDocument,
-  IAggregationDocument,
-  ISourceSequenceDocument,
-  IAggregationSequenceDocument
+  ISourceSequenceDocument
 } from '../internalTypes';
+import { dropCollection, hasCollection } from '../mongo/connection';
+import {
+  getAggregationModelName,
+  getMetaModelName,
+  getSourceModelName,
+  getSourceName
+} from '../util/names';
 
 const models = new Map<string, mongoose.Model<mongoose.Document>>();
 
