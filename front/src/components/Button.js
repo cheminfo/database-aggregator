@@ -7,6 +7,8 @@ export default function Button(props) {
     'mb-2 mr-2 text-white font-bold py-2 px-4 rounded',
     `bg-${props.color}`,
     `hover:bg-${props.color}-dark`,
+    `active:bg-${props.color}-light`,
+    'focus:outline-none',
     { block: props.block }
   );
   return (
