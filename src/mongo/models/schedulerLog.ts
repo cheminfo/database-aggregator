@@ -9,6 +9,7 @@ export async function getLastState(taskId: string) {
     return doc;
   }
   const state = doc.state.sort((a, b) => Number(b.date) - Number(a.date))[0];
+
   delete state.stdout;
   delete state.stderr;
   return state;

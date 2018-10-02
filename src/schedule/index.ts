@@ -111,9 +111,18 @@ export async function getAggregation(name: string) {
 
 export async function getSource(name: string) {
   const foundSource = sources.find((source) => source.collection === name);
+  if (foundSource === undefined) {
+    throw new Error('source not found');
+  }
+  const state = await Promise.all([
+    getLastState(getCopyTaskId(foundSource.collection)),
+    getLastState(getRemoveTaskId(foundSource.collection)),
+    getLastState(getCopyMissingIdTaskId(foundSource.collection))
+  ]);
   if (foundSource) {
-    const state = await getLastState(getCopyTaskId(foundSource.collection));
-    foundSource.state = state;
+    foundSource.copyState = state[0];
+    foundSource.removeState = state[1];
+    foundSource.copyMissingIdsState = state[2];
   }
   return foundSource;
 }
