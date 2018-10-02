@@ -24,9 +24,12 @@ const statusScore = {
 };
 
 function sortTasks(a, b) {
-  const stateA = a.state;
-  const stateB = b.state;
-  return compareState(stateA, stateB);
+  if (a.enabled !== b.enabled) {
+    return a.enabled ? -1 : 1;
+  }
+  const stateCompare = compareState(a.state, b.state);
+  if (stateCompare !== 0) return stateCompare;
+  return a.collection.localeCompare(b.collection);
 }
 
 function compareStatus(a, b) {
