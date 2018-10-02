@@ -89,10 +89,10 @@ describe('aggregation validation', () => {
 
   it('should throw if sources properties are not functions', () => {
     return expect(() =>
-      // @ts-ignore
       aggregation({
         collection: 'dummy',
         sources: {
+          // @ts-ignore
           source1: 'abc'
         }
       })

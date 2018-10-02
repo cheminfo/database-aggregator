@@ -11,7 +11,7 @@
     "react-dates": "^18.1.0",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.0.0-next.a671462c"
+    "react-scripts": "2.0.3"
   },
   "scripts": {
     "build-css": "tailwind build styles.css -c ./tailwind.js -o src/styles.css",
