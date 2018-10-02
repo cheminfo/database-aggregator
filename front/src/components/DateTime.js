@@ -11,7 +11,7 @@ export default class DateTime extends Component {
       this.setState({
         fromNow: this.fromNow()
       });
-    }, 60000);
+    }, 1000);
   }
   componentWillUnmount() {
     clearInterval(this.interval);
