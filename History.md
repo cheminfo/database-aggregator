@@ -19,6 +19,71 @@
 
 
 
+<a name="3.0.0-4"></a>
+# [3.0.0-4](https://github.com/cheminfo/database-aggregator/compare/v3.0.0-3...v3.0.0-4) (2018-10-01)
+
+
+### Bug Fixes
+
+* provide data to aggregation details ([9f6f55f](https://github.com/cheminfo/database-aggregator/commit/9f6f55f))
+* task list links ([300fcee](https://github.com/cheminfo/database-aggregator/commit/300fcee))
+
+
+### Features
+
+* add polling for task list ([18c2390](https://github.com/cheminfo/database-aggregator/commit/18c2390))
+
+
+
+<a name="3.0.0-3"></a>
+# [3.0.0-3](https://github.com/cheminfo/database-aggregator/compare/v3.0.0-2...v3.0.0-3) (2018-10-01)
+
+
+
+<a name="3.0.0-2"></a>
+# [3.0.0-2](https://github.com/cheminfo/database-aggregator/compare/v3.0.0-1...v3.0.0-2) (2018-09-24)
+
+
+
+<a name="3.0.0-1"></a>
+# [3.0.0-1](https://github.com/cheminfo/database-aggregator/compare/v3.0.0-0...v3.0.0-1) (2018-09-24)
+
+
+
+<a name="3.0.0-0"></a>
+# [3.0.0-0](https://github.com/cheminfo/database-aggregator/compare/v2.0.0...v3.0.0-0) (2018-09-24)
+
+
+* change how driver configuration is passed to source config ([a07d772](https://github.com/cheminfo/database-aggregator/commit/a07d772))
+
+
+### Bug Fixes
+
+* **aggregation:** use chunkSize to limit the mongo find ([#41](https://github.com/cheminfo/database-aggregator/issues/41)) ([25fa7b6](https://github.com/cheminfo/database-aggregator/commit/25fa7b6))
+* **api:** connect to MongoDB on boot ([2b986ee](https://github.com/cheminfo/database-aggregator/commit/2b986ee))
+* **api:** setup cors for dev ([e67f5d9](https://github.com/cheminfo/database-aggregator/commit/e67f5d9))
+* **bin:** import API server correctly ([abb518e](https://github.com/cheminfo/database-aggregator/commit/abb518e))
+* **front:** correctly use axios ([1fbab44](https://github.com/cheminfo/database-aggregator/commit/1fbab44))
+* **front:** send credentials in dev ([9bcca43](https://github.com/cheminfo/database-aggregator/commit/9bcca43))
+* **scheduler:** create a unique index on scheduler log and retry writes ([d1fea40](https://github.com/cheminfo/database-aggregator/commit/d1fea40))
+* remove SourceDataType from IAggregationConfigFile ([9eb33c3](https://github.com/cheminfo/database-aggregator/commit/9eb33c3))
+* update process-scheduler ([1dbc840](https://github.com/cheminfo/database-aggregator/commit/1dbc840))
+
+
+### Features
+
+* migrate API server to Adonis ([#43](https://github.com/cheminfo/database-aggregator/issues/43)) ([9440074](https://github.com/cheminfo/database-aggregator/commit/9440074))
+* migrate to TypeScript ([#45](https://github.com/cheminfo/database-aggregator/issues/45)) ([02cc638](https://github.com/cheminfo/database-aggregator/commit/02cc638))
+* throw if there is no home dir ([39119a9](https://github.com/cheminfo/database-aggregator/commit/39119a9))
+
+
+### BREAKING CHANGES
+
+* The format of the source configuration file has changed
+* The DATABASE_AGGREGATOR_HOME_DIR env varible is now mandatory.
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/cheminfo/database-aggregator/compare/v1.0.4...v2.0.0) (2018-05-29)
 
