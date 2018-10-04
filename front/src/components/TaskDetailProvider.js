@@ -82,7 +82,11 @@ export default class TaskDetailProvider extends Component {
             }
           });
         }
-        this.setState({ loadingHistory: false, history: response.data });
+        this.setState({
+          loadingHistory: false,
+          history: response.data,
+          fetchTime: new Date()
+        });
       });
   }
 
@@ -128,6 +132,7 @@ export default class TaskDetailProvider extends Component {
         history={this.state.history}
         loadingHistory={this.state.historyLoading}
         refreshHistory={() => this.fetchHistory()}
+        fetchTime={this.state.fetchTime}
         name={this.props.match.params.task}
         triggerTask={this.triggerTask}
         resetDatabase={this.resetDatabase}

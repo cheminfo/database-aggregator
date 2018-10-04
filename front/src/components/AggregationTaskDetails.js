@@ -5,6 +5,7 @@ import DatePicker from './DatePicker';
 import TaskDetailProvider from './TaskDetailProvider';
 import AggregationTaskData from './AggregationTaskData';
 import { Polling } from './Polling';
+import DateTime from './DateTime';
 
 const type = 'aggregation';
 
@@ -24,6 +25,7 @@ function AggregationTaskDetailsComponent({
   endDate,
   loadingHistory,
   refreshHistory,
+  fetchTime,
   history,
   name,
   triggerTask,
@@ -59,6 +61,7 @@ function AggregationTaskDetailsComponent({
             >
               Refresh
             </span>
+            <DateTime date={fetchTime} />
           </div>
           {loadingHistory ? 'Loading...' : <TaskHistory history={history} />}
         </div>
