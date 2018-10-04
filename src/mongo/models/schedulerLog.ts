@@ -4,14 +4,16 @@ import { getSchedulerLog } from '../model';
 const Model = getSchedulerLog();
 
 export async function getLastState(taskId: string) {
-  const doc = await getLastTask(taskId);
+  const doc = await getLastTask(taskId, {
+    'state._id': 0,
+    'state.stdout': 0,
+    'state.stderr': 0
+  });
   if (!doc) {
     return doc;
   }
   const state = doc.state.sort((a, b) => Number(b.date) - Number(a.date))[0];
 
-  delete state.stdout;
-  delete state.stderr;
   return state;
 }
 
@@ -35,9 +37,10 @@ export async function updateOutstandingTasks() {
   ).exec();
 }
 
-export function getLastTask(taskId: string) {
+export function getLastTask(taskId: string, select?: any) {
   return Model.findOne({ taskId })
     .sort('-date')
+    .select(select)
     .exec();
 }
 
