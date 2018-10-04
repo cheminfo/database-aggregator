@@ -6,11 +6,13 @@ import AggregationTaskDetails from './AggregationTaskDetails';
 import SourceTaskDetails from './SourceTaskDetails';
 import Header from './Header';
 import NoMatch from './NoMatch';
+import NotificationCenter from './NotificationCenter';
 
 class App extends Component {
   render() {
     return (
       <div>
+        <NotificationCenter />
         <Header />
         <div className="w-full max-w-4xl m-auto px-4 pt-4">
           <Switch>
