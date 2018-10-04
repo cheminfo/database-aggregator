@@ -14,8 +14,15 @@ export default class DateTime extends Component {
       });
     }, 10000);
   }
+
   componentWillUnmount() {
     clearInterval(this.interval);
+  }
+
+  static getDerivedStateFromProps(props) {
+    return {
+      fromNow: moment(props.date).fromNow()
+    };
   }
   render() {
     const spanClassNames = classNames({

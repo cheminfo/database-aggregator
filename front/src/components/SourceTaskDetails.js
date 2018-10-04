@@ -6,7 +6,6 @@ import TaskDetailProvider from './TaskDetailProvider';
 import SourceTaskData from './SourceTaskData';
 import { Polling } from './Polling';
 import Error from './Error';
-import moment from 'moment';
 import DateTime from './DateTime';
 
 const type = 'source';
