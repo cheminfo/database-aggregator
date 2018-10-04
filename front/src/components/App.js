@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import TaskListWithData from './TaskListWithData';
-import AggregationTaskDetails from './AggregationTaskDetails';
-import SourceTaskDetails from './SourceTaskDetails';
+import TaskDetails from './TaskDetails';
+import AggregationTaskData from './AggregationTaskData';
+import SourceTaskData from './SourceTaskData';
 import Header from './Header';
 import NoMatch from './NoMatch';
 import NotificationCenter from './NotificationCenter';
+import TaskDetailProvider from './TaskDetailProvider';
 
 class App extends Component {
   render() {
@@ -20,12 +22,26 @@ class App extends Component {
             <Route
               exact
               path="/tasks/sources/:task"
-              component={SourceTaskDetails}
+              render={(props) => (
+                <TaskDetailProvider
+                  {...props}
+                  type="source"
+                  taskDataComponent={SourceTaskData}
+                  component={TaskDetails}
+                />
+              )}
             />
             <Route
               exact
               path="/tasks/aggregations/:task"
-              component={AggregationTaskDetails}
+              render={(props) => (
+                <TaskDetailProvider
+                  {...props}
+                  type="aggregation"
+                  taskDataComponent={AggregationTaskData}
+                  component={TaskDetails}
+                />
+              )}
             />
             <Route component={NoMatch} />
           </Switch>

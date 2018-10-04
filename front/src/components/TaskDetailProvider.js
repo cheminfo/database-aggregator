@@ -123,9 +123,10 @@ export default class TaskDetailProvider extends Component {
   }
 
   render() {
-    const Component = this.props.component;
+    const { component: Component, ...otherProps } = this.props;
     return (
       <Component
+        {...otherProps}
         onDatesChange={this.onDatesChange.bind(this)}
         startDate={this.state.startDate}
         endDate={this.state.endDate}
