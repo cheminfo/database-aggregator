@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { axios } from '../axios';
+import { axios, getErrorMessage } from '../axios';
+import notification from '../notification';
 
 const HOURS_12 = 12 * 60 * 60 * 1000;
 
@@ -39,7 +40,24 @@ export default class TaskDetailProvider extends Component {
         type
       };
     }
-    axios.post(this.getUrl('trigger'), undefined, options);
+    axios
+      .post(this.getUrl('trigger'), undefined, options)
+      .then(() => {
+        notification.addNotification({
+          title: `Trigger ${type}`,
+          description: `Trigger ${type} was successful`,
+          type: 'success',
+          timeout: 5000
+        });
+      })
+      .catch((e) => {
+        let error = getErrorMessage(e);
+        notification.addNotification({
+          title: `Trigger ${type}`,
+          description: `error: ${error}`,
+          type: 'error'
+        });
+      });
   };
 
   fetchHistory(startDate, endDate) {
