@@ -1,3 +1,19 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/cheminfo/database-aggregator/compare/v3.0.0...v3.1.0) (2018-10-04)
+
+
+### Bug Fixes
+
+* make sure DateTime is rerendered when props change ([3ebb770](https://github.com/cheminfo/database-aggregator/commit/3ebb770))
+* **TaskHistory:** only show execution time if task ended ([#60](https://github.com/cheminfo/database-aggregator/issues/60)) ([85a5b31](https://github.com/cheminfo/database-aggregator/commit/85a5b31))
+
+
+### Features
+
+* show time of last fetch in task history ([9c32662](https://github.com/cheminfo/database-aggregator/commit/9c32662))
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/cheminfo/database-aggregator/compare/v3.0.0-4...v3.0.0) (2018-10-04)
 
