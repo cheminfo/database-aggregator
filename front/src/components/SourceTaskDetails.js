@@ -24,6 +24,7 @@ function SourceTaskDetailsComponent({
   startDate,
   endDate,
   loadingHistory,
+  refreshHistory,
   history,
   name,
   triggerTask,
@@ -55,6 +56,12 @@ function SourceTaskDetailsComponent({
               startDate={startDate}
               endDate={endDate}
             />
+            <span
+              className="m-4 ml-8 p-2 border-grey-darker border rounded cursor-pointer"
+              onClick={refreshHistory}
+            >
+              Refresh
+            </span>
           </div>
           {loadingHistory ? (
             'Loading...'

@@ -22,7 +22,7 @@ export default class TaskDetailProvider extends Component {
   }
 
   componentDidMount() {
-    this.fetchHistory(this.state.startDate, this.state.endDate);
+    this.fetchHistory();
   }
 
   getUrl(path = '', prefix = 'scheduler') {
@@ -61,7 +61,7 @@ export default class TaskDetailProvider extends Component {
       });
   };
 
-  fetchHistory(startDate, endDate) {
+  fetchHistory(startDate = this.state.startDate, endDate = this.state.endDate) {
     this.setState({ loadingHistory: true });
     axios
       .get(this.getUrl('history'), {
@@ -127,6 +127,7 @@ export default class TaskDetailProvider extends Component {
         endDate={this.state.endDate}
         history={this.state.history}
         loadingHistory={this.state.historyLoading}
+        refreshHistory={() => this.fetchHistory()}
         name={this.props.match.params.task}
         triggerTask={this.triggerTask}
         resetDatabase={this.resetDatabase}

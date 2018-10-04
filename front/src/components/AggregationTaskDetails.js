@@ -23,6 +23,7 @@ function AggregationTaskDetailsComponent({
   startDate,
   endDate,
   loadingHistory,
+  refreshHistory,
   history,
   name,
   triggerTask,
@@ -52,6 +53,12 @@ function AggregationTaskDetailsComponent({
               startDate={startDate}
               endDate={endDate}
             />
+            <span
+              className="m-4 ml-8 p-2 border-grey-darker border rounded cursor-pointer"
+              onClick={refreshHistory}
+            >
+              Refresh
+            </span>
           </div>
           {loadingHistory ? 'Loading...' : <TaskHistory history={history} />}
         </div>
