@@ -30,6 +30,7 @@ export default function TaskHistory({ history, includeType = false }) {
           const duration = moment
             .duration(moment(last.date).diff(first.date))
             .humanize();
+          const finished = last.status === 'success' || last.status === 'error';
           return (
             <tr key={historyItem.pid}>
               <TableCell className="w-16">
@@ -42,7 +43,7 @@ export default function TaskHistory({ history, includeType = false }) {
                 <DateTime date={last.date} />
               </TableCell>
               <TableCell>
-                <div>Execution took {duration}</div>
+                {finished ? <div>Execution took {duration}</div> : null}
                 {last.stdout ? (
                   <Collapsible title="stdout">{last.stdout}</Collapsible>
                 ) : null}
