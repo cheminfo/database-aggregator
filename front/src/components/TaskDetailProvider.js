@@ -54,7 +54,14 @@ export default class TaskDetailProvider extends Component {
       .then((response) => {
         const history = response.data;
         for (const elem of history) {
-          elem.state.sort((a, b) => b.date.localeCompare(a.date));
+          elem.state.sort((a, b) => {
+            const byDate = b.date.localeCompare(a.date);
+            if (byDate !== 0) {
+              return byDate;
+            } else {
+              return b._id.localeCompare(a._id);
+            }
+          });
         }
         this.setState({ loadingHistory: false, history: response.data });
       });

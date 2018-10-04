@@ -1,18 +1,28 @@
 import { IChangeData } from 'process-scheduler';
+import { ISchedulerStatus } from '../../internalTypes';
 import { getSchedulerLog } from '../model';
 
 const Model = getSchedulerLog();
 
+function sortState(a: ISchedulerStatus, b: ISchedulerStatus) {
+  const byDate = Number(b.date) - Number(a.date);
+  if (byDate !== 0) {
+    return byDate;
+  } else {
+    // @ts-ignore
+    return String(b._id).localeCompare(String(a._id));
+  }
+}
+
 export async function getLastState(taskId: string) {
   const doc = await getLastTask(taskId, {
-    'state._id': 0,
     'state.stdout': 0,
     'state.stderr': 0
   });
   if (!doc) {
     return doc;
   }
-  const state = doc.state.sort((a, b) => Number(b.date) - Number(a.date))[0];
+  const state = doc.state.sort(sortState)[0];
 
   return state;
 }
@@ -69,7 +79,7 @@ export async function getTasks(taskId: string | string[], options: any) {
     .sort({
       date: -1
     })
-    .select({ _id: 0, __v: 0, 'state._id': 0 });
+    .select({ _id: 0, __v: 0 });
   return result;
 }
 
