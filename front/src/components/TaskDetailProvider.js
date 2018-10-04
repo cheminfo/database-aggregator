@@ -34,6 +34,7 @@ export default class TaskDetailProvider extends Component {
   }
 
   triggerTask = (type) => {
+    const params = this.props.match.params;
     const options = {};
     if (type) {
       options.params = {
@@ -44,7 +45,7 @@ export default class TaskDetailProvider extends Component {
       .post(this.getUrl('trigger'), undefined, options)
       .then(() => {
         notification.addNotification({
-          title: `Trigger ${type}`,
+          title: `Trigger ${type} ${params.task}`,
           description: `Trigger ${type} was successful`,
           type: 'success',
           timeout: 5000
@@ -53,7 +54,7 @@ export default class TaskDetailProvider extends Component {
       .catch((e) => {
         let error = getErrorMessage(e);
         notification.addNotification({
-          title: `Trigger ${type}`,
+          title: `Trigger ${type} ${params.task}`,
           description: `error: ${error}`,
           type: 'error'
         });
@@ -86,7 +87,25 @@ export default class TaskDetailProvider extends Component {
   }
 
   resetDatabase = () => {
-    axios.delete(this.getUrl('', 'db'));
+    const params = this.props.match.params;
+    axios.delete(this.getUrl('', 'db')).then(
+      () => {
+        notification.addNotification({
+          title: `Reset ${params.task}`,
+          description: 'Database successfully reset',
+          type: 'success',
+          timeout: 5000
+        });
+      },
+      (e) => {
+        let error = getErrorMessage(e);
+        notification.addNotification({
+          title: `Reset ${params.task}`,
+          description: `error: ${error}`,
+          type: 'error'
+        });
+      }
+    );
   };
 
   onDatesChange(event) {
