@@ -65,7 +65,7 @@ function SourceTaskDetailsComponent({
             >
               Refresh
             </span>
-            <DateTime date={fetchTime} />
+            <DateTime description="last fetched" light date={fetchTime} />
           </div>
           {loadingHistory ? (
             'Loading...'

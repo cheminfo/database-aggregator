@@ -61,7 +61,7 @@ function AggregationTaskDetailsComponent({
             >
               Refresh
             </span>
-            <DateTime date={fetchTime} />
+            <DateTime description="last fetched" light date={fetchTime} />
           </div>
           {loadingHistory ? 'Loading...' : <TaskHistory history={history} />}
         </div>
