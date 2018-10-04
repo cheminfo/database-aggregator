@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import moment from 'moment';
 
 import StatusSvg from './svg/StatusSvg';
 import DateTime from './DateTime';
@@ -20,11 +21,15 @@ export default function TaskHistory({ history, includeType = false }) {
           <TableHeader>Info</TableHeader>
         </tr>
       </thead>
-      <tbody className="align-baseline">
+      <tbody className="align-middle">
         {history.map((historyItem) => {
           const m = taskType.exec(historyItem.taskId);
           const type = m && m[1];
           const last = historyItem.state[0];
+          const first = historyItem.state[historyItem.state.length - 1];
+          const duration = moment
+            .duration(moment(last.date).diff(first.date))
+            .humanize();
           return (
             <tr key={historyItem.pid}>
               <TableCell className="w-16">
@@ -37,16 +42,13 @@ export default function TaskHistory({ history, includeType = false }) {
                 <DateTime date={last.date} />
               </TableCell>
               <TableCell>
+                <div>Execution took {duration}</div>
                 {last.stdout ? (
                   <Collapsible title="stdout">{last.stdout}</Collapsible>
                 ) : null}
                 {last.stderr ? (
                   <Collapsible title="stderr">{last.stderr}</Collapsible>
                 ) : null}
-                {!last.stdout &&
-                  !last.stderr && (
-                    <span className="font-italic text-grey">N/A</span>
-                  )}
               </TableCell>
             </tr>
           );
