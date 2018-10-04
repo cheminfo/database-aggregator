@@ -2,25 +2,12 @@ import React from 'react';
 
 import TaskHistory from './TaskHistory';
 import DatePicker from './DatePicker';
-import TaskDetailProvider from './TaskDetailProvider';
-import SourceTaskData from './SourceTaskData';
 import { Polling } from './Polling';
 import Error from './Error';
 import DateTime from './DateTime';
 
-const type = 'source';
-
-export default function SourceTaskDetails({ match }) {
-  return (
-    <TaskDetailProvider
-      type={type}
-      match={match}
-      component={SourceTaskDetailsComponent}
-    />
-  );
-}
-
-function SourceTaskDetailsComponent({
+export default function TaskDetails({
+  type,
   onDatesChange,
   startDate,
   endDate,
@@ -30,7 +17,8 @@ function SourceTaskDetailsComponent({
   history,
   name,
   triggerTask,
-  resetDatabase
+  resetDatabase,
+  taskDataComponent: TaskData
 }) {
   return (
     <>
@@ -40,7 +28,7 @@ function SourceTaskDetailsComponent({
           {({ data, error }) => {
             if (error) return <Error message={error} />;
             return (
-              <SourceTaskData
+              <TaskData
                 task={data}
                 triggerTask={triggerTask}
                 error={error}
