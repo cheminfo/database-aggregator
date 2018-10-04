@@ -14,7 +14,7 @@ export default function AggregationTaskData(props) {
       <AggregationSources task={task} enableClick />
       <div className="flex my-4">
         <TaskTriggerButton
-          triggerTask={triggerTask}
+          triggerTask={() => triggerTask('aggregation')}
           description="Trigger aggregation"
         />
         <ResetButton resetDatabase={resetDatabase} />
