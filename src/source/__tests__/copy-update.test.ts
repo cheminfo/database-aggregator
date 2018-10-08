@@ -47,7 +47,7 @@ describe('source copy updates', () => {
         data: {},
         modificationDate: new Date(1)
       })
-    ).rejects.toThrow(/^commonID may not be changed$/);
+    ).rejects.toThrow(/^commonID may not be changed/);
 
     const mongoEntry = await getCollection('source_test1').findOne({});
     expect(clean(mongoEntry)).toMatchSnapshot();

@@ -37,7 +37,7 @@ export async function copyEntries(
       mustSave = true;
     } else {
       if (doc.commonID !== entry.commonID) {
-        throw new Error('commonID may not be changed');
+        throw new Error(`commonID may not be changed\nId: ${entry.id}\nPrevious commonID: ${doc.commonID}\nNew commonID: ${entry.commonID}`);
       }
       if (!isEqual(doc.data, entry.data)) {
         doc.data = entry.data;
