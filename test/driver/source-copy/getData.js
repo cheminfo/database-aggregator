@@ -1,9 +1,11 @@
 'use strict';
 
-async function getData(config, callback, options) {
+const firstDay = new Date('1900-01-01').getTime();
+
+async function getData(config, callback, meta) {
   const { driverValue } = config;
-  const { latestDate } = options;
-  if (latestDate === null) {
+  const { latestDate } = meta;
+  if (latestDate.getTime() === firstDay) {
     return callback([
       {
         id: 'test1',

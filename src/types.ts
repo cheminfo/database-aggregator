@@ -37,7 +37,7 @@ export type SourceDriverCallback = (
 ) => void | Promise<void>;
 
 export interface ISourceDriverMeta {
-  latestDate: Date | null;
+  latestDate: Date;
   ids?: string[];
 }
 
