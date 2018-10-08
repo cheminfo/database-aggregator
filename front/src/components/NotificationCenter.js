@@ -29,7 +29,6 @@ export default class NotificationCenter extends Component {
 
   onClose = (id) => {
     const idx = this.state.notifications.findIndex((notif) => notif.key === id);
-    console.log(id);
     if (idx >= 0) {
       const newNotifications = this.state.notifications.slice();
       newNotifications.splice(idx, 1);
