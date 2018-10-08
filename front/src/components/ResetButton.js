@@ -39,7 +39,7 @@ export default class ResetButton extends Component {
         <Button
           color="red"
           onClick={this.showWarning}
-          description="Reset database"
+          description="Drop collection"
         />
         {portal}
       </div>
