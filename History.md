@@ -1,3 +1,15 @@
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/cheminfo/database-aggregator/compare/v3.1.0...v3.1.1) (2018-10-08)
+
+
+### Bug Fixes
+
+* **copy:** add id and commonId to the error message when commonId changes ([342b71c](https://github.com/cheminfo/database-aggregator/commit/342b71c))
+* **copy:** pass 1900-01-01 to driver for first execution ([388347d](https://github.com/cheminfo/database-aggregator/commit/388347d))
+* **front:** "reset database" -> "drop collection" ([5fce620](https://github.com/cheminfo/database-aggregator/commit/5fce620))
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/cheminfo/database-aggregator/compare/v3.0.0...v3.1.0) (2018-10-04)
 
