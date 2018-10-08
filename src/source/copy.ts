@@ -24,7 +24,7 @@ export async function copy(config: ISourceConfigElement) {
     config.driverConfig,
     (data) => copyEntries(data, config),
     {
-      latestDate: latest && latest.date
+      latestDate: (latest && latest.date) || new Date('1900-01-01')
     }
   );
 }
