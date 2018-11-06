@@ -16,7 +16,12 @@ class AggregationController {
   async history({ request, params }) {
     const { name } = params;
     const query = request.get();
-    const result = await getTasks(`aggregation_${name}`, query);
+    const tasksOptions = {
+      from: +query.from,
+      to: +query.to
+    };
+
+    const result = await getTasks(`aggregation_${name}`, tasksOptions);
     return result;
   }
   trigger({ params }) {

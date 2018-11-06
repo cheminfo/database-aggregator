@@ -54,13 +54,28 @@ export function getLastTask(taskId: string, select?: any) {
     .exec();
 }
 
-export async function getTasks(taskId: string | string[], options: any) {
+interface ITaskOptions {
+  from: number;
+  to: number;
+}
+
+export async function getTasks(
+  taskId: string | string[],
+  options: ITaskOptions
+) {
+  if (Number.isNaN(options.to) || Number.isNaN(options.from)) {
+    throw new Error('to and from must be numbers');
+  }
+
+  if (options.to && options.from && options.to < options.from) {
+    throw new Error('to must be greater than from');
+  }
   const dateParams: any = {};
   if (options.from) {
-    dateParams.$gt = new Date(+options.from);
+    dateParams.$gt = new Date(options.from);
   }
   if (options.to) {
-    dateParams.$lt = new Date(+options.to);
+    dateParams.$lt = new Date(options.to);
   }
 
   const filter: any = {};
@@ -72,9 +87,10 @@ export async function getTasks(taskId: string | string[], options: any) {
   } else {
     filter.taskId = taskId;
   }
-  if (options.from && options.to) {
+  if (options.from !== undefined && options.to !== undefined) {
     filter.date = dateParams;
   }
+
   const result = await Model.find(filter)
     .sort({
       date: -1

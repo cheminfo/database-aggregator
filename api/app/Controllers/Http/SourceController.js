@@ -19,13 +19,17 @@ class SourceController {
   async history({ request, params }) {
     const { name } = params;
     const query = request.get();
+    const taskOptions = {
+      from: +query.from,
+      to: +query.to
+    };
     const result = await getTasks(
       [
         `source_copy_${name}`,
         `source_remove_${name}`,
         `source_copy_missing_ids_${name}`
       ],
-      query
+      taskOptions
     );
     return result;
   }
