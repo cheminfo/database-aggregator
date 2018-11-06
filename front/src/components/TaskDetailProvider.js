@@ -1,40 +1,45 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { axios, getErrorMessage } from '../axios';
 import notification from '../notification';
 
 const HOURS_12 = 12 * 60 * 60 * 1000;
 
-export default class TaskDetailProvider extends Component {
-  constructor(props) {
-    super(props);
+function TaskDetailProvider(props) {
+  const [history, setHistory] = useState({
+    loading: false,
+    data: []
+  });
 
+  const [range, setRange] = useState(() => {
     const today = moment()
       .hours(12)
       .minutes(0)
       .seconds(0);
-    this.state = {
-      loadingHistory: false,
-      history: [],
+
+    return {
       startDate: today,
       endDate: today
     };
-  }
+  });
 
-  componentDidMount() {
-    this.fetchHistory();
-  }
+  useEffect(
+    () => {
+      fetchHistory(range.startDate, range.endDate);
+    },
+    [range, props.type]
+  );
 
-  getUrl(path = '', prefix = 'scheduler') {
+  function getUrl(path = '', prefix = 'scheduler') {
     const {
       type,
       match: { params }
-    } = this.props;
+    } = props;
     return `/${prefix}/${type}/${params.task}/${path}`;
   }
 
-  triggerTask = (type) => {
-    const params = this.props.match.params;
+  function triggerTask(type) {
+    const params = props.match.params;
     const options = {};
     if (type) {
       options.params = {
@@ -42,7 +47,7 @@ export default class TaskDetailProvider extends Component {
       };
     }
     axios
-      .post(this.getUrl('trigger'), undefined, options)
+      .post(getUrl('trigger'), undefined, options)
       .then(() => {
         notification.addNotification({
           title: `Trigger ${type} ${params.task}`,
@@ -59,12 +64,12 @@ export default class TaskDetailProvider extends Component {
           type: 'error'
         });
       });
-  };
+  }
 
-  fetchHistory(startDate = this.state.startDate, endDate = this.state.endDate) {
-    this.setState({ loadingHistory: true });
+  function fetchHistory(startDate = range.startDate, endDate = range.endDate) {
+    setHistory({ loading: true, data: [] });
     axios
-      .get(this.getUrl('history'), {
+      .get(getUrl('history'), {
         params: {
           from: +startDate - HOURS_12,
           to: +endDate + HOURS_12
@@ -82,17 +87,17 @@ export default class TaskDetailProvider extends Component {
             }
           });
         }
-        this.setState({
-          loadingHistory: false,
-          history: response.data,
+        setHistory({
+          loading: false,
+          data: response.data,
           fetchTime: new Date()
         });
       });
   }
 
-  resetDatabase = () => {
-    const params = this.props.match.params;
-    axios.delete(this.getUrl('', 'db')).then(
+  function resetDatabase() {
+    const params = props.match.params;
+    axios.delete(getUrl('', 'db')).then(
       () => {
         notification.addNotification({
           title: `Reset ${params.task}`,
@@ -110,34 +115,31 @@ export default class TaskDetailProvider extends Component {
         });
       }
     );
-  };
+  }
 
-  onDatesChange(event) {
-    this.setState({
+  function onDatesChange(event) {
+    setRange({
       startDate: event.startDate,
       endDate: event.endDate
     });
-    if (event.startDate && event.endDate) {
-      this.fetchHistory(event.startDate, event.endDate);
-    }
   }
 
-  render() {
-    const { component: Component, ...otherProps } = this.props;
-    return (
-      <Component
-        {...otherProps}
-        onDatesChange={this.onDatesChange.bind(this)}
-        startDate={this.state.startDate}
-        endDate={this.state.endDate}
-        history={this.state.history}
-        loadingHistory={this.state.historyLoading}
-        refreshHistory={() => this.fetchHistory()}
-        fetchTime={this.state.fetchTime}
-        name={this.props.match.params.task}
-        triggerTask={this.triggerTask}
-        resetDatabase={this.resetDatabase}
-      />
-    );
-  }
+  const { component: Component, ...otherProps } = props;
+  return (
+    <Component
+      {...otherProps}
+      onDatesChange={onDatesChange}
+      startDate={range.startDate}
+      endDate={range.endDate}
+      history={history.data}
+      loadingHistory={history.loading}
+      refreshHistory={() => fetchHistory()}
+      fetchTime={history.fetchTime}
+      name={props.match.params.task}
+      triggerTask={triggerTask}
+      resetDatabase={resetDatabase}
+    />
+  );
 }
+
+export default TaskDetailProvider;

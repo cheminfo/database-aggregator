@@ -8,7 +8,6 @@ import DateTime from './DateTime';
 
 export default function TaskDetails({
   type,
-  includeType,
   onDatesChange,
   startDate,
   endDate,
@@ -21,12 +20,14 @@ export default function TaskDetails({
   resetDatabase,
   taskDataComponent: TaskData
 }) {
+  console.log('task details', type, name, history);
   return (
     <>
       <h1 className="mb-4">{name}</h1>
       <div className="w-full">
         <Polling interval={10000} url={`/scheduler/${type}/${name}`}>
           {({ data, error }) => {
+            console.log(data);
             if (error) return <Error message={error} />;
             return (
               <TaskData
