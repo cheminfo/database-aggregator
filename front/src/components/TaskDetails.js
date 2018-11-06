@@ -8,6 +8,7 @@ import DateTime from './DateTime';
 
 export default function TaskDetails({
   type,
+  includeType,
   onDatesChange,
   startDate,
   endDate,
@@ -57,7 +58,7 @@ export default function TaskDetails({
           {loadingHistory ? (
             'Loading...'
           ) : (
-            <TaskHistory history={history} includeType />
+            <TaskHistory history={history} includeType={includeType} />
           )}
         </div>
       </div>
