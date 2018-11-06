@@ -58,7 +58,7 @@ export default function TaskDetails({
           {loadingHistory ? (
             'Loading...'
           ) : (
-            <TaskHistory history={history} includeType={includeType} />
+            <TaskHistory history={history} includeType={type === 'source'} />
           )}
         </div>
       </div>

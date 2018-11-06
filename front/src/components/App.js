@@ -28,7 +28,6 @@ class App extends Component {
                   type="source"
                   taskDataComponent={SourceTaskData}
                   component={TaskDetails}
-                  includeType
                 />
               )}
             />
@@ -41,7 +40,6 @@ class App extends Component {
                   type="aggregation"
                   taskDataComponent={AggregationTaskData}
                   component={TaskDetails}
-                  includeType={false}
                 />
               )}
             />
