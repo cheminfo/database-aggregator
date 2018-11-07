@@ -6,7 +6,7 @@ import ResetButton from './ResetButton';
 
 export default function SourceTaskData(props) {
   const { task, triggerTask, resetDatabase } = props;
-  if (!task) return null;
+  if (!task) return <div>heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</div>;
   return (
     <div className="flex my-4">
       <div className="px-2">

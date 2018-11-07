@@ -20,14 +20,12 @@ export default function TaskDetails({
   resetDatabase,
   taskDataComponent: TaskData
 }) {
-  console.log('task details', type, name, history);
   return (
     <>
       <h1 className="mb-4">{name}</h1>
       <div className="w-full">
         <Polling interval={10000} url={`/scheduler/${type}/${name}`}>
           {({ data, error }) => {
-            console.log(data);
             if (error) return <Error message={error} />;
             return (
               <TaskData
@@ -56,11 +54,11 @@ export default function TaskDetails({
             </span>
             <DateTime description="last fetched" light date={fetchTime} />
           </div>
-          {loadingHistory ? (
-            'Loading...'
-          ) : (
-            <TaskHistory history={history} includeType={type === 'source'} />
-          )}
+          <TaskHistory
+            history={history}
+            includeType={type === 'source'}
+            loading={loadingHistory}
+          />
         </div>
       </div>
     </>
