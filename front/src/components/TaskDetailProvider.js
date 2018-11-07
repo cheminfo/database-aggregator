@@ -5,7 +5,8 @@ import notification from '../notification';
 
 const HOURS_12 = 12 * 60 * 60 * 1000;
 
-function TaskDetailProvider(props) {
+// Provides a task's history and trigger functions to components downstream
+export default function TaskDetailProvider(props) {
   const [history, setHistory] = useState({
     loading: false,
     data: []
@@ -92,6 +93,15 @@ function TaskDetailProvider(props) {
           data: response.data,
           fetchTime: new Date()
         });
+      })
+      .catch((e) => {
+        const errorMessage = getErrorMessage(e);
+        setHistory({
+          loading: false,
+          data: null,
+          error: errorMessage,
+          fetchTime: new Date()
+        });
       });
   }
 
@@ -132,6 +142,7 @@ function TaskDetailProvider(props) {
       startDate={range.startDate}
       endDate={range.endDate}
       history={history.data}
+      historyError={history.error}
       loadingHistory={history.loading}
       refreshHistory={() => fetchHistory()}
       fetchTime={history.fetchTime}
@@ -141,5 +152,3 @@ function TaskDetailProvider(props) {
     />
   );
 }
-
-export default TaskDetailProvider;

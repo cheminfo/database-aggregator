@@ -15,6 +15,7 @@ export default function TaskDetails({
   refreshHistory,
   fetchTime,
   history,
+  historyError,
   name,
   triggerTask,
   resetDatabase,
@@ -54,11 +55,15 @@ export default function TaskDetails({
             </span>
             <DateTime description="last fetched" light date={fetchTime} />
           </div>
-          <TaskHistory
-            history={history}
-            includeType={type === 'source'}
-            loading={loadingHistory}
-          />
+          {historyError ? (
+            <Error message={historyError} />
+          ) : (
+            <TaskHistory
+              history={history}
+              includeType={type === 'source'}
+              loading={loadingHistory}
+            />
+          )}
         </div>
       </div>
     </>
