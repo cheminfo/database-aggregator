@@ -15,7 +15,8 @@ export async function connect() {
     await mongoose.connect(
       url.href,
       {
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        autoReconnect: true
       }
     );
   }
