@@ -116,7 +116,7 @@ async function aggregateValue(
   commonId: string
 ) {
   const result = {};
-  let accept = true;
+  let accept: void | boolean = true;
   for (const key in filter) {
     if (data[key]) {
       accept = await Promise.resolve(

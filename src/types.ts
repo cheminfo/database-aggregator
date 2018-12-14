@@ -64,4 +64,4 @@ export type IAggregationCallback<
   result: AggregationResult,
   commonID: string,
   ids: string[]
-) => void;
+) => void | boolean;
