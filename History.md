@@ -1,3 +1,12 @@
+## [3.1.4](https://github.com/cheminfo/database-aggregator/compare/v3.1.3...v3.1.4) (2018-12-18)
+
+
+### Bug Fixes
+
+* allow aggregation callback to return a Promise ([c0fc9d8](https://github.com/cheminfo/database-aggregator/commit/c0fc9d8))
+
+
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/cheminfo/database-aggregator/compare/v3.1.0...v3.1.1) (2018-10-08)
 
