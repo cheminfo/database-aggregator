@@ -56,12 +56,18 @@ export interface IAggregationConfigFile<AggregationResultType = any> {
   chunkSize?: number;
 }
 
-export type IAggregationCallback<
-  SourceDataType extends object = any,
-  AggregationResult = any
+export type MaybePromiseBool =
+  | void
+  | boolean
+  | Promise<void>
+  | Promise<boolean>;
+
+export type IAggregationCallback <
+SourceDataType extends object = any ,
+AggregationResult = any
 > = (
   data: SourceDataType[],
   result: AggregationResult,
   commonID: string,
   ids: string[]
-) => void | boolean;
+) => MaybePromiseBool;

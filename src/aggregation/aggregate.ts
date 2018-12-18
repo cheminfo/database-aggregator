@@ -15,7 +15,7 @@ import {
   getCommonIds,
   getLastSeqId
 } from '../mongo/models/source';
-import { IAggregationCallback } from '../types';
+import { IAggregationCallback, MaybePromiseBool } from '../types';
 import { debugUtil } from '../util/debug';
 
 const debug = debugUtil('aggregation');
@@ -47,8 +47,8 @@ export async function aggregate(conf: IAggregationConfigElement) {
       maxSeqIds[sourceName] = lastCid
         ? lastCid.sequentialID
         : lastSourceSeq
-          ? lastSourceSeq.sequentialID
-          : 0;
+        ? lastSourceSeq.sequentialID
+        : 0;
       const cids = ids.map((cid) => cid.commonID);
       commonIds = commonIds.concat(cids);
     }
@@ -116,10 +116,10 @@ async function aggregateValue(
   commonId: string
 ) {
   const result = {};
-  let accept: void | boolean = true;
+  let accept: MaybePromiseBool = true;
   for (const key in filter) {
     if (data[key]) {
-      accept = await Promise.resolve(
+      accept = await Promise.resolve<MaybePromiseBool>(
         filter[key].call(
           null,
           data[key].map((d) => d.data),
